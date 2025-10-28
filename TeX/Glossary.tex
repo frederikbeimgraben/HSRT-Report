@@ -1,7 +1,19 @@
 %!TEX root = ../Main.tex
 \makeglossaries
-\setglossarystyle{long3colheader}
-\renewcommand*{\entryname}{Wort}
+
+\newglossarystyle{manualfixedwidth}{
+  \setglossarystyle{long3colheader} % Use existing stable base style
+  \newcolumntype{R}{>{\raggedleft\arraybackslash}p{2cm}}
+  \setlength\LTleft{-5pt}
+  \renewenvironment{theglossary}%
+    {\begin{longtable}{p{4cm}p{10cm}R}} % override only the tabular environment specifying widths
+    {\end{longtable}}%
+}
+
+\setglossarystyle{manualfixedwidth}
+
+%\setglossarystyle{long3colheader}
+\renewcommand*{\entryname}{Wort/Abkürzung}
 \renewcommand*{\descriptionname}{Beschreibung}
 \renewcommand*{\pagelistname}{Seite(n)}
 \setlength{\glsdescwidth}{0.75\textwidth}

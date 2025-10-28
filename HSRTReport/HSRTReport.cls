@@ -283,7 +283,7 @@
 \newcommand{\decoRule}{\rule{.8\textwidth}{.4pt}}
 
 %----------------------------------------
-%   TABLE OF CONTENTS
+%   TABLE OF CONTENTS / FIG / TAB
 %----------------------------------------
 % Page Numbering in the Table of Contents
 \renewcommand\cftchappagefont{\blenderfont\color{gray}}
@@ -296,6 +296,18 @@
 \renewcommand\cftsecfont{\blenderfont\color{gray}}
 \renewcommand\cftsubsecfont{\blenderfont\color{gray}}
 \renewcommand\cftsubsubsecfont{\blenderfont\color{gray}}
+
+\RedeclareSectionCommands[
+  tocentryformat=\blenderfont\normalsize,
+  tocpagenumberformat=\blenderfont\normalsize
+]{section,subsection}
+
+% Figure and Table in the Table of Contents
+\renewcommand\cftfigfont{\blenderfont\color{gray}}
+\renewcommand\cftfigpagefont{\blenderfont\color{gray}}
+\renewcommand\cfttabfont{\blenderfont\color{gray}}
+\renewcommand\cfttabpagefont{\blenderfont\color{gray}}
+\renewcommand{\cftdotsep}{1.5}
 
 % ----------------------------------------
 % Local Imports

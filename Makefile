@@ -23,6 +23,7 @@ clean:
 compile:
 # If not Exists, create 'Build' directory
 	[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
+	# makeglossaries -o $(BUILD_DIR)/$(SOURCE:.tex=.gls) $(BUILD_DIR)/$(SOURCE:.tex=)
 	$(LATEX) $(LATEX_FLAGS) -output-directory=$(BUILD_DIR) $(SOURCE)
 # If not Exists, create 'Output/' directory
 	[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)

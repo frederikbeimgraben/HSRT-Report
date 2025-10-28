@@ -1,0 +1,167 @@
+% !TEX root = ../Main.tex
+\chapter{Problemstellung}
+
+Der aktuelle Antragsprozess erfolgt überwiegend per E-Mail. Dadurch fehlt eine zentrale Übersicht über eingereichte Anträge, ihren Bearbeitungsstatus und die jeweils verantwortlichen Personen. Im Postfach gehen Anträge leicht unter oder werden übersehen, was zu Verzögerungen in der Bearbeitung führen kann. Zudem sind viele Formulare nicht digital ausfüllbar, was den Prozess weiter erschwert. Für Antragsteller ist der aktuelle Status ihres Antrags meist nicht ersichtlich, sodass keine Transparenz über den Fortschritt besteht. Darüber hinaus erfordern kleinere Anträge häufig eine synchrone Sitzung, um sie zu besprechen oder zu bearbeiten, was zusätzlichen organisatorischen Aufwand bedeutet.
+
+\begin{multicols}{2}
+    \begin{figure}[H]
+        \centering
+        \includesvg[width=0.8\textwidth]{Content/Images/Use_Case_Scenarios.svg}
+        \caption{Aktueller Prozess}
+        \label{fig:aktuelle_prozesse}
+    \end{figure}
+
+    \columnbreak
+
+    \subsubsection{Aktueller Prozess}
+
+    Der aktuelle Prozess der Antragsbearbeitung erfolgt per Mail und über ausfüllbare PDF-Formulare.
+    Durch die Menge der Anträge ist ein regelmäßiges Feedback zu Zuständen bzw. der Änderung selbiger schwierig bis nicht bewältigbar.\\
+
+    Des Weiteren ist es den Antragsstellern nicht möglich, den aktuellen Status ihres Antrags selbstständig zu überprüfen oder Informationen zu aktualisieren.
+    Dies führt zu unnötigen Kommunikationsaufwand (häufige Rückfragen zum aktuellen Status).\\
+
+    Es gibt neben dem hier dargestellten Prozess – Projektantrag (PA) auf Förderung mit Qualitätssicherungsmitteln (QSM) oder Studierendenschaftsmitteln (VSM) – auch noch Änträge auf Rückerstattung von Privatauslagen.
+    Diese sollten generell überarbeitet werden, sodass sie mit einem Projektantrag (PA) verknüpft werden können.
+\end{multicols}
+
+\chapter{Lösungsansatz}
+Zur Behebung der genannten Probleme soll eine zentrale Antragsplattform entwickelt werden, über die Anträge vollständig digital gestellt und verwaltet werden können. Die Eingabefelder der Anträge sollen dynamisch konfigurierbar sein, sodass unterschiedliche Antragstypen flexibel abgebildet werden können. Der zugrunde liegende Prozessablauf wird über klar definierte Zustände und Übergänge beschrieben, wodurch sich der Bearbeitungsfortschritt strukturiert nachverfolgen lässt.
+Berechtigte Benutzerinnen und Benutzer sollen zudem neue Antragsprozesse und -arten selbstständig anlegen und konfigurieren können, sodass das System bei organisatorischen oder inhaltlichen Änderungen leicht erweiterbar bleibt.
+Antragstellerinnen und Antragsteller erhalten eine transparente Übersicht über den aktuellen Status ihres Antrags und werden bei Änderungen automatisch benachrichtigt. Dadurch wird der gesamte Ablauf effizienter, nachvollziehbarer und weniger fehleranfällig gestaltet.
+Für Gremienmitglieder soll auch eine asynchrone Abstimmung über Anträge möglich sein.
+Alle Schritte des Prozesses sollen ausführlich dokumentiert werden, um den Prozess zu verstehen und zu überprüfen.
+
+Nach Abschluss des Genehmigungsprozesses wird automatisch ein PDF erzeugt, das sowohl den vollständigen Antrag als auch ein Protokoll der Abstimmung enthält. Dieses Dokument dient der internen Dokumentation sowie der Erfüllung von Dokumentationspflichten gegenüber Kontrollbehörden.
+Für die Authentifikation sollen moderne SSO-Mechanismen – insbesondere OIDC über Keycloak – verwendet werden.
+
+\iffalse
+	% Commands for InfoBoxes
+	Dieses Template erlaubt die Verwendung von verschiedenen Infoboxen, die in \texttt{TeX/Modules/Infoboxes.tex} definiert sind. Diese Infoboxen können in beliebigen \texttt{.tex}-Dateien verwendet werden.
+	\smallskip
+	\begin{lstlisting}[language=tex]
+\begin{InfoBox}
+    <content>
+\end{InfoBox}
+\end{lstlisting}
+	\smallskip
+
+	Die vordefinierten Infobox-Typen sind:
+
+	\begin{itemize}
+		\item \texttt{InfoBox}
+		\item \texttt{WarningBox}
+		\item \texttt{SuccessBox}
+		\item \texttt{ImportantBox}
+	\end{itemize}
+
+	Des Weiteren können eigene Infoboxen mit dem Befehl \texttt{CustomBox} erstellt werden. Dieser Befehl erwartet zwei Argumente: ein Icon und eine Farbe.
+	\smallskip
+	\begin{lstlisting}[language=tex]
+\begin{CustomBox}{\faIcon{<fa-icon>}}{<color>}
+    <content>
+\end{CustomBox}
+\end{lstlisting}
+	\smallskip
+	Als Farbe können entweder die \LaTeX-Standardfarben oder eigene Farben verwendet werden. Die Icons können der \href{https://fontawesome.com/icons?d=gallery&m=free}{Font Awesome Icon Library} entnommen werden.
+
+	\section{Beispiele}
+
+	\begin{InfoBox}
+		\subsubsection{Äußere InfoBox}
+		Diese InfoBox enthält mehrere andere Infoboxen, die über eine \texttt{multicols}-Umgebung in zwei Spalten angeordnet sind.
+		\vspace*{-1em}
+		\begin{multicols}{2}
+			\begin{CustomBox}{\faIcon{user-graduate}}{britishracinggreen}
+				\subsubsection{Custom Box 1}
+				Diese Box hat das \texttt{user-graduate}-Icon und die Farbe \texttt{britishracinggreen}.
+			\end{CustomBox}
+			\begin{CustomBox}{\faIcon{chart-pie}}{britishracinggreen}
+				\subsubsection{Custom Box 2}
+				\vspace{0.5em}
+				\begin{tikzpicture}[scale=0.6]
+					\pie [cloud, explode=0.1, text=legend, style=very thin] {
+						10/A,
+						20/B,
+						30/C,
+						40/D
+					}
+				\end{tikzpicture}
+				\vspace{0.5em}\\
+				Diese Box hat das \texttt{chart-pie}-Icon und die Farbe \texttt{britishracinggreen}.
+				Sie enthält ein Tortendiagramm im \texttt{cloud}-Stil, das über das \texttt{pgf-pie}-Paket in TikZ erstellt wurde.
+			\end{CustomBox}
+			\columnbreak
+			\begin{InfoBox}
+				\subsubsection{Innere InfoBox}
+				Diese InfoBox enthält eine doppelt geschachtelte \texttt{CustomBox}.
+
+				% Nested UserBox
+				\begin{CustomBox}{\faIcon{user}}{blue}
+					\subsubsection{User Box}
+					Diese Box hat das \texttt{user}-Icon und die Farbe \texttt{blue}.
+				\end{CustomBox}
+			\end{InfoBox}
+			\begin{WarningBox}
+				\subsubsection{Warning Box}
+				Diese Box ist eine \texttt{WarningBox}.
+			\end{WarningBox}
+			\begin{SuccessBox}
+				\subsubsection{Success Box}
+				Diese Box ist eine \texttt{SuccessBox}.
+			\end{SuccessBox}
+		\end{multicols}
+	\end{InfoBox}
+
+	\pagebreak
+
+	\section{Code}
+
+	\begin{lstlisting}[language=tex]
+\begin{InfoBox}
+    \subsubsection{Äußere InfoBox}
+    Diese InfoBox enthält mehrere andere Infoboxen, die über eine \texttt{multicols}-Umgebung in zwei Spalten angeordnet sind.
+    \vspace*{-1em}
+    \begin{multicols}{2}
+        \begin{CustomBox}{\faIcon{user-graduate}}{britishracinggreen}
+            \subsubsection{Custom Box 1}
+            Diese Box hat das \texttt{user-graduate}-Icon und die Farbe \texttt{britishracinggreen}.
+        \end{CustomBox}
+        \begin{CustomBox}{\faIcon{chart-pie}}{britishracinggreen}
+            \subsubsection{Custom Box 2}
+            \vspace{0.5em}
+            \begin{tikzpicture}[scale=0.6]
+                \pie [cloud, explode=0.1, text=legend, style=very thin] {
+                    10/A,
+                    20/B,
+                    30/C,
+                    40/D
+                }
+            \end{tikzpicture}
+            \vspace{0.5em}\\
+            Diese Box hat das \texttt{chart-pie}-Icon und die Farbe \texttt{britishracinggreen}.
+            Sie enthält ein Tortendiagramm im \texttt{cloud}-Stil, das über das \texttt{pgf-pie}-Paket in TikZ erstellt wurde.
+        \end{CustomBox}
+        \columnbreak
+        \begin{InfoBox}
+            \subsubsection{Innere InfoBox}
+            Diese InfoBox enthält eine doppelt geschachtelte \texttt{CustomBox}.
+
+            % Nested UserBox
+            \begin{CustomBox}{\faIcon{user}}{blue}
+                \subsubsection{User Box}
+                Diese Box hat das \texttt{user}-Icon und die Farbe \texttt{blue}.
+            \end{CustomBox}
+        \end{InfoBox}
+        \begin{WarningBox}
+            \subsubsection{Warning Box}
+            Diese Box ist eine \texttt{WarningBox}.
+        \end{WarningBox}
+        \begin{SuccessBox}
+            \subsubsection{Success Box}
+            Diese Box ist eine \texttt{SuccessBox}.
+        \end{SuccessBox}
+    \end{multicols}
+\end{InfoBox}
+\end{lstlisting}
+\fi

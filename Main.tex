@@ -1,0 +1,28 @@
+\documentclass[
+    11pt,
+    paper=a4,
+    oneside,
+    DIV=14,
+    onecolumn
+]{HSRTReport/HSRTReport}
+
+\input{TeX/Preamble}
+
+% ==== Document ====
+\begin{document}
+
+% Title page
+\maketitle
+
+\setstretch{1.0}
+% ===== Content =====
+\input{Content/00_toc.tex}
+\input{Content/01_content.tex}
+\input{Content/99_bib.tex}
+
+\iffalse
+\pagebreak
+% Print the glossary
+\printnoidxglossaries
+\fi
+\end{document}  

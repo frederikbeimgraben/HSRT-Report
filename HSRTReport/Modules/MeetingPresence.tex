@@ -1,0 +1,37 @@
+% !TEX root = ../../Main.tex
+\DeclareRobustCommand{\tableDot}[1]{
+    \strcompare{#1}{true}{
+        $\bullet$
+    }{
+        \hspace{1em}
+    }
+}
+
+\DeclareRobustCommand{\PresenceTableLine}[8]{
+%   Name | Note        | ab* | bis* | STUPA?        | AStA?         | Anwesend?     | Online?
+    #1   & \textit{#2} & #3  & #4   & \tableDot{#5} & \tableDot{#6} & \tableDot{#7} & \tableDot{#8} \\[-1em]
+}
+
+\DeclareRobustCommand{\PresenceTableSums}[4]{
+    \textbf{Summe} & & & & \textbf{#1} & \textbf{#2} & \textbf{#3} & \textbf{#4} \\
+}
+
+\DeclareRobustCommand{\rotFull}[1]{
+    \rotatebox{90}{#1}
+}
+
+\DeclareRobustCommand{\rotFF}[1]{
+    \rotatebox{45}{#1}
+}
+
+\newcommand{\dotsColumnWidth}{0.75em}
+
+\DeclareRobustCommand{\PresenceTable}[1] {
+    \begin{center}
+        \begin{tabularx}{\textwidth}{X X | >{\centering\arraybackslash}p{2.5em} >{\centering\arraybackslash}p{2.5em} | >{\centering\arraybackslash}p{\dotsColumnWidth} >{\centering\arraybackslash}p{\dotsColumnWidth} >{\centering\arraybackslash}p{\dotsColumnWidth} >{\centering\arraybackslash}p{\dotsColumnWidth}}
+          \textbf{Name} & \textit{\textbf{Notiz/Rolle*}} & \textbf{\textit{ab*}} & \textit{\textbf{bis*}} & \rotFull{\textbf{STUPA}} & \rotFull{\textbf{AStA}} & \rotFull{\textbf{Präsent}} & \rotFull{\textbf{Online}} \\
+            \specialrule{.2em}{.05em}{.05em} \addlinespace[1ex]
+            #1
+        \end{tabularx}
+    \end{center}
+}

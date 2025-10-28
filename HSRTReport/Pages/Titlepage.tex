@@ -1,0 +1,69 @@
+% !TEX root = ../../../../Main.tex
+
+\newcommand{\createdon}[1]{\gdef\@createdon{#1}}
+
+\renewcommand{\maketitle}{
+    \setlength{\imageHeight}{2cm*\real{\mainLogoScale}*\real{\logosScale}}
+    \begin{titlepage}
+        \begin{tikzpicture}[overlay, remember picture]
+            \node[anchor=south east, inner sep=0pt, xshift=-0.1cm, yshift=0.1cm] (heart) at (current page.south east) {
+                \tiny\color{gray}\blenderfont Made with {\ensuremath\heartsuit} in \LaTeX
+            };
+            \node[anchor=north west, inner sep=0pt, xshift=0.9cm, yshift=-1.5cm, opacity=0] (logo0) at (current page.north west) {
+                \includegraphics[height=\imageHeight]{\imagesPath/DUMMY_FOOT.png}
+            };
+            \foreach \i in {1,...,\value{logoCounter}} {
+                % Calculate name for i-1
+                \pgfmathtruncatemacro{\prev}{\i-1}
+                \node[anchor=west, inner sep=0pt, xshift=-0.1cm, opacity=0.3] (logo\i) at (logo\prev.east) {
+                    \makeatletter
+                    \testarray{LogosScales}(\i)
+                    \setlength{\imageHeight}{1.5cm*\real{\temp@macro}*\real{\logosScale}}
+                    \testarray{LogosExtensions}(\i)
+                    \let\extension\temp@macro
+                    \testarray{LogosOpacities}(\i)
+                    \let\opacity\temp@macro
+                    \testarray{LogosPaths}(\i)
+                    \ifthenelse{\equal{\extension}{svg}}{
+                        \begin{tikzpicture}
+                            \node[opacity=\opacity] {
+                                \includesvg[height=\imageHeight]{\classPath/Assets/Images/\temp@macro.\extension}
+                            };
+                        \end{tikzpicture}
+                    }{
+                        \begin{tikzpicture}
+                            \node[opacity=\opacity] {
+                                \includegraphics[height=\imageHeight]{\classPath/Assets/Images/\temp@macro.\extension}
+                            };
+                        \end{tikzpicture}
+                    }
+                    \makeatother
+                };
+            }
+        \end{tikzpicture}
+
+        \vskip 10em
+
+        % title
+        \begin{flushleft}
+            {
+                \noindent
+                \color{black}\textbf{
+                    \blenderfont\Huge\hspace*{-2.5pt}\@title
+                }
+            }
+            \color{black}
+            \vspace*{-0.5em}
+            \rule{\textwidth}{0.5mm}
+        \end{flushleft}
+
+        \vskip 7em
+
+        \vfill
+        % table
+        \noindent
+        \setstretch{1.0}
+
+        \GetTitlePageDataTable
+    \end{titlepage}
+}

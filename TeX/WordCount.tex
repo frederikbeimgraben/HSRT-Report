@@ -3,11 +3,11 @@
 % Source: https://docs.overleaf.com/writing-and-editing/using-word-count
 
 \newcommand{\quickwordcount}[1]{%
-  \immediate\write18{texcount -1 -sum -merge -q #1.tex Build/Main.bbl > Build/words.sum }%
+  \immediate\write18{texcount -1 -sum -merge -q #1.tex > Build/words.sum }%
   \input{Build/words.sum} words%
 }
 
 \newcommand{\detailtexcount}[1]{%
-  \immediate\write18{texcount -merge -sum -q #1.tex Build/Main.bbl > Build/.wcdetail }%
+  \immediate\write18{texcount -merge -sum -q #1.tex > Build/.wcdetail }%
   \verbatiminput{Build/.wcdetail}%
 }

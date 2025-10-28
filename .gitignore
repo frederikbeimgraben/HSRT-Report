@@ -23,6 +23,7 @@ svg-inkscape/
 *-blx.bib
 *(busy)
 *SAVE-ERROR
+*.sum
 
 # Python
 *.pyc

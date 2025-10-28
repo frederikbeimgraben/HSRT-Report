@@ -12,43 +12,47 @@
 %TC:envir table [ignore] ignore
 
 % === Content ===
-\chapter{First Chapter}
 
-Das \gls{abstract} beschreibt in wenigen Sätzen die Zielsetzung und das Ergebnis der Ausarbeitung. Das Abstract muss sich vollständig auf der Titelseite befinden. Die Zeichensatzformatierung wird in einem eigenen Absatz beschrieben  Das Abstract soll es den Lesern:innen ermöglichen, innerhalb von wenigen Augenblicken zu erfassen, welcher Inhalt hinter der Überschrift steckt und ob das Thema, aus Sicht der Leser:innen, zur weiteren Bearbeitung lohnt. Das Abstract ist keine verbale Beschreibung des Inhaltsverzeichnisses, sondern gibt kurz und knapp z.B. die Zielsetzung (z.B. Hypothese), die eingesetzten Methoden und die erzielten Ergebnisse / Erkenntnisse bekannt. Weitere Hinweise finden Sie außerdem im Vorlesungsskript.
-
-Beispielverweis auf Quelle \cite{ahrensAbschlussarbeiten}.
-
-Test-Acronym: \acrshort{gcd}.
-
-\section{First Section}
-
-% Beispieltabelle
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|}
-\hline
-Spalte 1 & Spalte 2 \\
-\hline
-Inhalt 1 & Inhalt 2 \\
-\hline
-\end{tabular}
-\caption{Beispiel-Tabelle}
-\label{tab:example}
-\end{table}
-
-\chapter{Second Chapter}
-
-\section{Another Section}
-
-% Beispielabbildung
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{HSRTReport/Assets/Images/METI.png}
-\caption{MeTI-Logo}
-\label{fig:meti}
-\end{figure}
 
 
 %TC:ignore
-% Alles hier wird von TexCount ignoriert.
-%TC:endignore
+\iffalse
+	\chapter{First Chapter}
+
+	Das \gls{abstract} beschreibt in wenigen Sätzen die Zielsetzung und das Ergebnis der Ausarbeitung. Das Abstract muss sich vollständig auf der Titelseite befinden. Die Zeichensatzformatierung wird in einem eigenen Absatz beschrieben  Das Abstract soll es den Lesern:innen ermöglichen, innerhalb von wenigen Augenblicken zu erfassen, welcher Inhalt hinter der Überschrift steckt und ob das Thema, aus Sicht der Leser:innen, zur weiteren Bearbeitung lohnt. Das Abstract ist keine verbale Beschreibung des Inhaltsverzeichnisses, sondern gibt kurz und knapp z.B. die Zielsetzung (z.B. Hypothese), die eingesetzten Methoden und die erzielten Ergebnisse / Erkenntnisse bekannt. Weitere Hinweise finden Sie außerdem im Vorlesungsskript.
+
+	Beispielverweis auf Quelle \cite{ahrensAbschlussarbeiten}.
+
+	Test-Acronym: \acrshort{gcd}.
+
+	\section{First Section}
+
+	% Beispieltabelle
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{|c|c|}
+			\hline
+			Spalte 1 & Spalte 2 \\
+			\hline
+			Inhalt 1 & Inhalt 2 \\
+			\hline
+		\end{tabular}
+		\caption{Beispiel-Tabelle}
+		\label{tab:example}
+	\end{table}
+
+	\chapter{Second Chapter}
+
+	\section{Another Section}
+
+	% Beispielabbildung
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.5\textwidth]{HSRTReport/Assets/Images/METI.png}
+		\caption{MeTI-Logo}
+		\label{fig:meti}
+	\end{figure}
+
+	% Alles hier wird von TexCount ignoriert.
+	%TC:endignore
+\fi

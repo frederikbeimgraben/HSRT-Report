@@ -1,0 +1,45 @@
+%!TEX root = ../Main.tex
+\makeglossaries
+\iffalse
+	\newglossarystyle{manualfixedwidth}{
+	\setglossarystyle{long3colheader} % Use existing stable base style
+	\newcolumntype{R}{>{\raggedleft\arraybackslash}p{2cm}}
+	\setlength\LTleft{-5pt}
+	\renewenvironment{theglossary}%
+	{\begin{longtable}{p{4cm}p{10cm}R}} % override only the tabular environment specifying widths
+			{\end{longtable}}%
+	}
+\fi
+
+\newglossarystyle{manualfixedwidth}{
+\setglossarystyle{long3colheader} % Use existing stable base style
+\newcolumntype{R}{>{\raggedleft\arraybackslash}p{2cm}}
+\newcolumntype{D}{>{\raggedright\arraybackslash}p{4.5cm}}
+\setlength\LTleft{-5pt}
+\renewenvironment{theglossary}%
+{\begin{longtable}{Dp{9.5cm}R}} % override only the tabular environment specifying widths
+		{\end{longtable}}%
+\renewcommand{\arraystretch}{1.1} % 1.5 times normal line height
+}
+
+\setglossarystyle{manualfixedwidth}
+
+%\setglossarystyle{long3colheader}
+\renewcommand*{\entryname}{Wort/Abkürzung}
+\renewcommand*{\descriptionname}{Beschreibung}
+\renewcommand*{\pagelistname}{Seite(n)}
+\setlength{\glsdescwidth}{0.75\textwidth}
+\glsenablehyper
+\renewcommand*{\glsclearpage}{}
+\renewcommand{\acronymname}{Abkürzungsverzeichnis}
+
+%%% https://golatex.de/viewtopic.php?t=23348
+% masculine genitive
+\glsaddkey
+{genitive}% key
+{}% default value
+{\glsentrygenitive}% no link cs
+{\Glsentrygenitive}% no link ucfirst cs
+{\glsgen}% link cs
+{\Glsgen}% link ucfirst cs
+{\GLSgen}% link all caps cs

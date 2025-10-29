@@ -1,0 +1,48 @@
+% !TEX root = ../../HSRTReport.cls
+% ==============================================================================
+% Page Setup Module
+% ==============================================================================
+% Description: Page layout configuration including headers, footers, and styling
+% Author: Frederik Beimgraben
+% License: Creative Commons CC BY 4.0
+% ==============================================================================
+
+% ==============================================================================
+% Page Style Configuration
+% ==============================================================================
+% Use fancy page style for headers and footers
+\pagestyle{fancy}
+
+% Remove default header rule
+\renewcommand{\headrulewidth}{0pt}
+
+% ==============================================================================
+% Header and Footer Setup
+% ==============================================================================
+% Set page number font style
+\setkomafont{pagenumber}{\color{gray}\blenderfont\selectfont}
+
+% Clear all header and footer fields
+\fancyhf{}
+
+% Configure header
+\fancyhead[L]{\color{gray}\blenderfont \@title}  % Document title on left
+\fancyhead[R]{\pagemark}                         % Page number on right
+
+% Clear footer
+\fancyfoot[C]{}
+
+% ==============================================================================
+% Fancy Page Style Definition
+% ==============================================================================
+% Define the fancy page style explicitly
+\fancypagestyle{fancy}{
+	\fancyhf{}
+	\fancyhead[L]{\color{gray}\blenderfont \@title}
+	\fancyhead[R]{\pagemark}
+	\fancyfoot[C]{}
+}
+
+% ==============================================================================
+% End of Page Setup Module
+% ==============================================================================

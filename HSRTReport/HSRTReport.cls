@@ -335,17 +335,19 @@
 % ----------------------------------------
 \input{\classPath/Pages/Titlepage.tex}
 
+% ==== Configuration Modules ====
+\input{\classPath/Config/GlossarySettings}
+\input{\classPath/Config/ToC}
+
 % ==== Content Modules ====
 \input{\classPath/Modules/Content/Listings}
 \input{\classPath/Modules/Content/Floats}
-\input{\classPath/Modules/Content/GlossarySettings}
 
 % ==== Layout Modules ====
 \input{\classPath/Modules/Layout/InfoBlocks}
 \input{\classPath/Modules/Layout/Watermark}
 
 % ==== Formatting Modules ====
-\input{\classPath/Modules/Formatting/ToC}
 \input{\classPath/Modules/Formatting/Typography}
 
 % ==== Tool Modules ====

@@ -1,0 +1,71 @@
+% !TEX root = ../../HSRTReport.cls
+% ==============================================================================
+% Fonts Configuration Module
+% ==============================================================================
+% Description: Font families and typography setup for the HSRTReport class
+% Author: Frederik Beimgraben
+% License: Creative Commons CC BY 4.0
+% ==============================================================================
+
+% ==============================================================================
+% Default Font Families
+% ==============================================================================
+% Set default Roman and Sans Serif families
+\renewcommand*\rmdefault{lmr}     % Latin Modern Roman
+\renewcommand*\sfdefault{lmss}    % Latin Modern Sans Serif
+
+% ==============================================================================
+% Color Definitions
+% ==============================================================================
+% Define custom colors for typography
+\definecolor{midnightblue}{rgb}{0.094, 0.051, 0.228}
+
+% ==============================================================================
+% Custom Font Families
+% ==============================================================================
+% Blender font family for headings and special text
+\newfontfamily\blenderfont[
+	Path=\fontsPath/Blender/,
+	Extension=.ttf,
+	UprightFont=*-Medium,
+	BoldFont=*-Bold,
+	ItalicFont=*-MediumItalic,
+	BoldItalicFont=*-BoldItalic
+]{Blender}
+
+% DIN font family for body text
+\newfontfamily\dinfont[
+	Path=\fontsPath/DIN/,
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic
+]{DIN}
+
+% ==============================================================================
+% Main Document Fonts
+% ==============================================================================
+% Set sans serif font (used for headings)
+\setsansfont{Blender}[
+	Path=\fontsPath/Blender/,
+	Extension=.ttf,
+	UprightFont=*-Medium,
+	BoldFont=*-Bold,
+	ItalicFont=*-MediumItalic,
+	BoldItalicFont=*-BoldItalic
+]
+
+% Set main font (used for body text)
+\setmainfont{DIN}[
+	Path=\fontsPath/DIN/,
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic
+]
+
+% ==============================================================================
+% End of Fonts Configuration Module
+% ==============================================================================

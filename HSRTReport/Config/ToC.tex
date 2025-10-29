@@ -1,0 +1,56 @@
+% !TEX root = ../../HSRTReport.cls
+% ==============================================================================
+% Table of Contents Configuration Module
+% ==============================================================================
+% Description: Formatting for table of contents, list of figures, and list of tables
+% Author: Frederik Beimgraben
+% License: Creative Commons CC BY 4.0
+% ==============================================================================
+
+% ==============================================================================
+% Page Number Formatting in TOC
+% ==============================================================================
+% Configure page number font for different section levels
+\renewcommand\cftchappagefont{\blenderfont\color{gray}}
+\renewcommand\cftsecpagefont{\blenderfont\color{gray}}
+\renewcommand\cftsubsecpagefont{\blenderfont\color{gray}}
+\renewcommand\cftsubsubsecpagefont{\blenderfont\color{gray}}
+
+% ==============================================================================
+% Entry Title Formatting in TOC
+% ==============================================================================
+% Configure entry title font for different section levels
+\renewcommand\cftchapfont{\blenderfont\color{gray}}
+\renewcommand\cftsecfont{\blenderfont\color{gray}}
+\renewcommand\cftsubsecfont{\blenderfont\color{gray}}
+\renewcommand\cftsubsubsecfont{\blenderfont\color{gray}}
+
+% ==============================================================================
+% Section Command TOC Formatting
+% ==============================================================================
+% Configure TOC entry and page number format for sections and subsections
+\RedeclareSectionCommands[
+	tocentryformat=\blenderfont\normalsize,
+	tocpagenumberformat=\blenderfont\normalsize
+]{section,subsection}
+
+% ==============================================================================
+% Figure and Table TOC Formatting
+% ==============================================================================
+% Configure font for figure entries in list of figures
+\renewcommand\cftfigfont{\blenderfont\color{gray}}
+\renewcommand\cftfigpagefont{\blenderfont\color{gray}}
+
+% Configure font for table entries in list of tables
+\renewcommand\cfttabfont{\blenderfont\color{gray}}
+\renewcommand\cfttabpagefont{\blenderfont\color{gray}}
+
+% ==============================================================================
+% Dot Separation Configuration
+% ==============================================================================
+% Set spacing between dots in TOC
+\renewcommand{\cftdotsep}{1.5}
+
+% ==============================================================================
+% End of Table of Contents Configuration Module
+% ==============================================================================

@@ -1,0 +1,54 @@
+% !TEX root = ../../HSRTReport.cls
+% ==============================================================================
+% Sections Configuration Module
+% ==============================================================================
+% Description: Section formatting and styling for chapters, sections, subsections
+% Author: Frederik Beimgraben
+% License: Creative Commons CC BY 4.0
+% ==============================================================================
+
+% ==============================================================================
+% Section Font Configuration
+% ==============================================================================
+% Set font for all sectioning commands (disposition)
+\setkomafont{disposition}{\blenderfont\bfseries}
+
+% Configure individual section level fonts
+\setkomafont{chapter}{\Large\blenderfont\bfseries}
+\setkomafont{section}{\Large\blenderfont\bfseries}
+\setkomafont{subsection}{\large\blenderfont\bfseries}
+\setkomafont{subsubsection}{\large\blenderfont\bfseries}
+
+% ==============================================================================
+% Section Spacing Configuration
+% ==============================================================================
+% Redefine chapter spacing
+\RedeclareSectionCommand[
+	beforeskip=1ex,      % Space before chapter
+	afterskip=0.5ex,     % Space after chapter
+	style=section        % Use section style
+]{chapter}
+
+% Redefine spacing for sections, subsections, and subsubsections
+\RedeclareSectionCommands[
+	beforeskip=0.6ex,    % Space before section
+	afterskip=0.3ex,     % Space after section
+]{section,subsection,subsubsection}
+
+% ==============================================================================
+% Decorative Elements
+% ==============================================================================
+% Decorative rule for visual separation
+\newcommand{\decoRule}{\rule{.8\textwidth}{.4pt}}
+
+% ==============================================================================
+% Counter Configuration
+% ==============================================================================
+% Remove chapter dependency from figure, table, and equation counters
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\counterwithout{equation}{chapter}
+
+% ==============================================================================
+% End of Sections Configuration Module
+% ==============================================================================

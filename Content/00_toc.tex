@@ -1,6 +1,21 @@
 % !TEX root = ../Main.tex
+% ==============================================================================
+% Table of Contents and Lists
+% ==============================================================================
+% Description: This file generates the table of contents and all document lists
+%              including figures, tables, equations, listings, and glossaries.
+%              The formatting uses the blenderfont style for consistency.
+% Author: [Your Name]
+% Date: [Date]
+% ==============================================================================
 
-% ==== TOC =====
+% ------------------------------------------------------------------------------
+% Table of Contents
+% ------------------------------------------------------------------------------
+% Generate the main table of contents with custom formatting
+% The blenderfont provides a consistent typographic style
+% Vertical spacing is adjusted for optimal layout
+% ------------------------------------------------------------------------------
 {
 \newpage
 \blenderfont
@@ -8,9 +23,15 @@
 \tableofcontents
 }
 
+% Add vertical fill to push subsequent content down
 \vspace{\fill}
 
-% ==== List of Figures ====
+% ------------------------------------------------------------------------------
+% List of Figures
+% ------------------------------------------------------------------------------
+% Generate list of all figures in the document
+% Figures are automatically numbered and referenced
+% ------------------------------------------------------------------------------
 \newpage
 {
 	\noindent
@@ -19,30 +40,66 @@
 	\listoffigures
 }
 
-% ==== List of Tables ====
+% ------------------------------------------------------------------------------
+% List of Tables
+% ------------------------------------------------------------------------------
+% Generate list of all tables in the document
+% Tables are automatically numbered and referenced
+% ------------------------------------------------------------------------------
 {
 	\noindent
 	\blenderfont
 	\listoftables
 }
 
-% ==== List of Equations ====
+% ------------------------------------------------------------------------------
+% List of Listings
+% ------------------------------------------------------------------------------
+% Generate list of all code listings in the document
+% Code listings are automatically numbered and referenced
+% This includes all lstlisting environments with captions
+% ------------------------------------------------------------------------------
+{
+	\noindent
+	\blenderfont
+	\lstlistoflistings
+}
+
+% ------------------------------------------------------------------------------
+% List of Equations
+% ------------------------------------------------------------------------------
+% Generate list of all equations in the document
+% Uses custom command \listofmyequations defined in the class
+% ------------------------------------------------------------------------------
 {
 	\noindent
 	\blenderfont
 	\listofmyequations
 }
 
-% ==== Glossary =====
+% ------------------------------------------------------------------------------
+% Glossary Section
+% ------------------------------------------------------------------------------
+% Generate glossary and list of acronyms
+% Two separate glossaries are printed:
+%   1. Main glossary with technical terms
+%   2. Acronym list with abbreviations
+% ------------------------------------------------------------------------------
 {
 	\noindent
 	\blenderfont
+
+	% --- Main Glossary ---
+	% Print main glossary with German header "Wort"
 	{
 		\renewcommand*{\entryname}{Wort}
 		\newpage
 		\vspace*{-2.25em}
 		\printglossary
 	}
+
+	% --- Acronym List ---
+	% Print acronym glossary with German header "Abkürzung"
 	{
 		\renewcommand*{\entryname}{Abkürzung}
 		\newpage
@@ -50,3 +107,7 @@
 		\printglossary[type=\acronymtype]
 	}
 }
+
+% ==============================================================================
+% End of Table of Contents and Lists
+% ==============================================================================

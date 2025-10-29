@@ -2,59 +2,135 @@
 % ==============================================================================
 % Document-Specific General Settings
 % ==============================================================================
-% Description: Title, author, abstract, and other document metadata
+% Description: This file contains all document-specific settings including
+%              title, author information, abstract, keywords, and other
+%              metadata required for the title page and document properties.
+% Author: [Your Name]
+% Date: [Date]
 % ==============================================================================
 
 % ------------------------------------------------------------------------------
 % Watermark and Date Configuration
 % ------------------------------------------------------------------------------
-% Meeting date
+% Configure document watermark and creation date
+% These settings affect the document's visual presentation and metadata
+% ------------------------------------------------------------------------------
+
+% Watermark text (leave empty for no watermark)
+% Example: \newcommand{\waterMarkText}{DRAFT}
+% Example: \newcommand{\waterMarkText}{CONFIDENTIAL}
 \newcommand{\waterMarkText}{}
 
-% Current date and time
+% Document creation date
+% Format: DD.MM.YYYY
+% This date appears on the title page and in document metadata
 \createdon{XX.XX.20XX}
 
 % ------------------------------------------------------------------------------
 % Document Title
+% ------------------------------------------------------------------------------
+% Main title of the document
+% This appears on the title page and in PDF metadata
+% For multi-line titles, use \\ for line breaks
 % ------------------------------------------------------------------------------
 \title{Vorgaben zur Formatierung der Seminararbeit}
 
 % ------------------------------------------------------------------------------
 % Title Page Data Fields
 % ------------------------------------------------------------------------------
+% Configure all fields that appear on the title page
+% Use \AddTitlePageDataLine{Label}{Content} for each field
+% Use \AddTitlePageDataSpace{dimension} to add vertical spacing
+% Use \newline within content for line breaks
+% ------------------------------------------------------------------------------
+
+% --- Document Topic ---
+% The main topic or theme of the document
 \AddTitlePageDataLine{Thema}{
 	Thema-XXX: \newline
 	Vorgaben zur Formatierung der Seminararbeit
 }
+
+% Add spacing between sections
 \AddTitlePageDataSpace{5pt}
+
+% --- Author Information ---
+% Student name, semester, and contact information
 \AddTitlePageDataLine{Vorgelegt von}{
 	Hans Maria Muster \newline
 	X. Fachsemester \newline
 	\href{mailto:hans-maria.muster@student.hs-reutlingen.de}{hans-maria.muster@student.hs-reutlingen.de}
 }
+
+% Add spacing
 \AddTitlePageDataSpace{5pt}
+
+% --- Submission Date ---
+% Date when the document is submitted
+% Format: DD.MM.YYYY
 \AddTitlePageDataLine{Vorgelegt am}{XX.XX.20XX}
+
+% Add spacing
 \AddTitlePageDataSpace{5pt}
+
+% --- Academic Information ---
+% Study program and course details
 \AddTitlePageDataLine{Studiengang}{Medizinisch Technische Informatik B.Sc.}
+
+% Module/Course information
 \AddTitlePageDataLine{Modul}{
 	METI6.3 \newline
 	Seminar Ausgewählter Themen der Medizinisch-Technischen Informatik
 }
-\AddTitlePageDataLine{Dozent:in}{Prof. Dr. Sven Steddin}
-\AddTitlePageDataLine{Semester}{Wintersemester 20XX/20XX}
-\AddTitlePageDataSpace{5pt}
-\AddTitlePageDataLine{Wortanzahl}{\quickwordcount{Content/01_content}} % !!! Only 01_content.tex !!!
 
+% --- Supervisor Information ---
+% Professor or supervisor name
+\AddTitlePageDataLine{Dozent:in}{Prof. Dr. Sven Steddin}
+
+% --- Semester Information ---
+% Academic semester (e.g., Wintersemester 2024/2025)
+\AddTitlePageDataLine{Semester}{Wintersemester 20XX/20XX}
+
+% Add spacing
+\AddTitlePageDataSpace{5pt}
+
+% --- Word Count ---
+% Automatic word count for the main content
+% Note: This only counts words in the specified file (Content/01_content.tex)
+% For multiple files, use \quickwordcount{file1,file2,file3}
+\AddTitlePageDataLine{Wortanzahl}{\quickwordcount{Content/01_content}}
 
 % ------------------------------------------------------------------------------
 % Abstract
 % ------------------------------------------------------------------------------
+% The abstract provides a concise summary of the document
+% It should include:
+%   - Research objective/hypothesis
+%   - Methodology used
+%   - Key findings/results
+%   - Main conclusions
+% Keep it brief (typically 150-250 words)
+% ------------------------------------------------------------------------------
 \newcommand{\titlepageabstract}{%
-	Das Abstract beschreibt in wenigen Sätzen die Zielsetzung und das Ergebnis der Ausarbeitung. Das Abstract muss sich vollständig auf der Titelseite befinden. Die Zeichensatzformatierung wird in einem eigenen Absatz beschrieben  Das Abstract soll es den Lesern:innen ermöglichen, innerhalb von wenigen Augenblicken zu erfassen, welcher Inhalt hinter der Überschrift steckt und ob das Thema, aus Sicht der Leser:innen, zur weiteren Bearbeitung lohnt. Das Abstract ist keine verbale Beschreibung des Inhaltsverzeichnisses, sondern gibt kurz und knapp z.B. die Zielsetzung (z.B. Hypothese), die eingesetzten Methoden und die erzielten Ergebnisse / Erkenntnisse bekannt. Weitere Hinweise finden Sie außerdem im Vorlesungsskript.
+	Das Abstract beschreibt in wenigen Sätzen die Zielsetzung und das Ergebnis
+	der Ausarbeitung. Das Abstract muss sich vollständig auf der Titelseite
+	befinden. Die Zeichensatzformatierung wird in einem eigenen Absatz
+	beschrieben. Das Abstract soll es den Lesern:innen ermöglichen, innerhalb
+	von wenigen Augenblicken zu erfassen, welcher Inhalt hinter der Überschrift
+	steckt und ob das Thema, aus Sicht der Leser:innen, zur weiteren Bearbeitung
+	lohnt. Das Abstract ist keine verbale Beschreibung des Inhaltsverzeichnisses,
+	sondern gibt kurz und knapp z.B. die Zielsetzung (z.B. Hypothese), die
+	eingesetzten Methoden und die erzielten Ergebnisse / Erkenntnisse bekannt.
+	Weitere Hinweise finden Sie außerdem im Vorlesungsskript.
 }
 
 % ------------------------------------------------------------------------------
 % Keywords
+% ------------------------------------------------------------------------------
+% Keywords help categorize and index the document
+% Separate keywords with commas
+% Choose 3-7 relevant keywords that describe the main topics
+% These appear on the title page and in PDF metadata
 % ------------------------------------------------------------------------------
 \newcommand{\titlepagekeywords}{%
 	Seminararbeit, wissenschaftliche Ausarbeitung, Bachelor-Thesis, Studium, Plagiat
@@ -63,14 +139,52 @@
 % ------------------------------------------------------------------------------
 % List of Equations Configuration
 % ------------------------------------------------------------------------------
+% Customize the names for equation-related elements
+% These affect how equations are labeled in lists and references
+% ------------------------------------------------------------------------------
+
+% Name for the list of equations (appears as chapter/section title)
 \renewcommand{\listequationsname}{Formeln und Gleichungen}
+
+% Name for individual equation references
 \renewcommand{\equationname}{Formel}
 
 % ------------------------------------------------------------------------------
 % Paragraph Configuration
 % ------------------------------------------------------------------------------
-% Disable indentation
+% Configure paragraph formatting throughout the document
+% ------------------------------------------------------------------------------
+
+% Paragraph indentation
+% 0pt = no indentation (German standard for academic texts)
+% >0pt = indent first line of each paragraph (English standard)
 \setlength{\parindent}{0pt}
+
+% Paragraph spacing (space between paragraphs)
+% Default is usually appropriate, but can be adjusted if needed
+% Example: \setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+% ------------------------------------------------------------------------------
+% Optional: Custom Author Commands
+% ------------------------------------------------------------------------------
+% If you need multiple authors or additional author information,
+% you can define custom commands here:
+%
+% \newcommand{\authorOne}{First Author}
+% \newcommand{\authorTwo}{Second Author}
+% \newcommand{\matriculationNumber}{12345678}
+% \newcommand{\studentID}{S-12345}
+% ------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+% Optional: Document Version Control
+% ------------------------------------------------------------------------------
+% For tracking document versions during development
+%
+% \newcommand{\documentVersion}{1.0}
+% \newcommand{\lastModified}{\today}
+% \newcommand{\reviewStatus}{Draft}
+% ------------------------------------------------------------------------------
 
 % ==============================================================================
 % End of General Settings

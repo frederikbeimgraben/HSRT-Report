@@ -1,1 +1,73 @@
 % !TEX root = ../Main.tex
+% ==============================================================================
+% Document Content Loader
+% ==============================================================================
+% Description: This file serves as the main content loader for all chapters.
+%              Chapters are included via \input commands in the designated area.
+%              The marked section is automatically managed by chapter scripts.
+% Author: [Your Name]
+% Date: [Date]
+% ==============================================================================
+
+% ------------------------------------------------------------------------------
+% TexCount Settings – For word count
+% ------------------------------------------------------------------------------
+%
+% Ignore Headings:
+%TC:macro \chapter [ignore]
+%TC:macro \section [ignore]
+%TC:macro \subsection [ignore]
+%TC:macro \subsubsection [ignore]
+%TC:macro \includesvg [ignore]
+%
+% Ignore Figures and Tables:
+%TC:envir figure [ignore] ignore
+%TC:envir table [ignore] ignore
+%
+% ------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+% Chapter Loading Instructions
+% ------------------------------------------------------------------------------
+% To add chapters manually:
+%   1. Create a new .tex file in Content/Chapters/
+%   2. Add \input{Content/Chapters/filename} in the marked area below
+%
+% To use automatic chapter management:
+%   - Use ./scripts/create_chapter.sh to create new chapters
+%   - Use ./scripts/list_chapters.sh to view all chapters
+%   - Use ./scripts/delete_chapter.sh to remove chapters
+%
+% The scripts will automatically update this file's chapter list.
+% ------------------------------------------------------------------------------
+
+% ==============================================================================
+% BEGIN CHAPTER INCLUDES (Auto-managed Section)
+% ==============================================================================
+% WARNING: Do not manually edit between the BEGIN and END markers if using
+%          the chapter management scripts. Manual edits will be preserved,
+%          but may interfere with automatic management.
+% ==============================================================================
+
+% --- CHAPTER LIST START --- (Do not remove this marker)
+% --- CHAPTER LIST END --- (Do not remove this marker)
+
+% ==============================================================================
+% END CHAPTER INCLUDES
+% ==============================================================================
+
+% ------------------------------------------------------------------------------
+% Additional Content (Optional)
+% ------------------------------------------------------------------------------
+% Any content that should appear after all chapters but before the bibliography
+% can be added here. For example, appendices or supplementary material.
+% ------------------------------------------------------------------------------
+
+% Uncomment to add appendices:
+% \appendix
+% \input{Content/Chapters/appendix_a}
+% \input{Content/Chapters/appendix_b}
+
+% ==============================================================================
+% End of Content Loader
+% ==============================================================================

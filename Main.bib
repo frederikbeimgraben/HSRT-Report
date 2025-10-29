@@ -1,4 +1,36 @@
 
+% ==============================================================================
+% Bibliography Database
+% ==============================================================================
+% Description: This file contains all bibliographic references for the document.
+%              Entries are in BibTeX format and are processed by BibLaTeX/Biber.
+% Format:      Standard BibTeX format with additional BibLaTeX fields
+% Usage:       Cite entries using \cite{key}, \textcite{key}, \parencite{key}
+% Author:      [Your Name]
+% Date:        [Date]
+% ==============================================================================
+
+% ------------------------------------------------------------------------------
+% Entry Types Overview
+% ------------------------------------------------------------------------------
+% @article     - Journal articles
+% @book        - Books
+% @inbook      - Chapter or section in a book
+% @incollection - Part of a book with its own title
+% @inproceedings - Conference paper
+% @manual      - Technical documentation
+% @mastersthesis - Master's thesis
+% @phdthesis   - PhD dissertation
+% @techreport  - Technical report
+% @unpublished - Unpublished work
+% @online      - Online resources
+% @misc        - Everything else
+% ------------------------------------------------------------------------------
+
+% ==============================================================================
+% Journal Articles
+% ==============================================================================
+
 @article{ott_einfluss_2021,
 	title = {Einfluss transkranieller Gleichstromstimulation auf das motorische Lernen bei Patienten mit wiederholten Schädelhirntraumen},
 	rights = {http://www.fu-berlin.de/sites/refubium/rechtliches/Nutzungsbedingungen},
@@ -157,6 +189,10 @@ Dies ist die erste Studie, die den stimulatorischen Effekt auf das motorische Le
 	file = {Full Text PDF:/home/frederik/Zotero/storage/BTGZA7MM/Hamilton et al. - 2015 - Neural signal processing and closed-loop control algorithm design for an implanted neural recording.pdf:application/pdf},
 }
 
+% ==============================================================================
+% Meta-Analyses and Reviews
+% ==============================================================================
+
 @article{simonsmeier_electrical_2018,
 	title = {Electrical brain stimulation ({tES}) improves learning more than performance: A meta-analysis},
 	volume = {84},
@@ -194,6 +230,10 @@ Dies ist die erste Studie, die den stimulatorischen Effekt auf das motorische Le
 	pmcid = {PMC9113288},
 	file = {Full Text PDF:/home/frederik/Zotero/storage/YT8A9PEV/Senkowski et al. - 2022 - Boosting working memory uncovering the differential effects of tDCS and tACS.pdf:application/pdf},
 }
+
+% ==============================================================================
+% Online Resources
+% ==============================================================================
 
 @online{noauthor_neurowissenschaft_nodate,
 	title = {Neurowissenschaft: Hirnmanipulation per Hightech},
@@ -274,6 +314,10 @@ These results provide further evidence for the capacity of {tDCS} applied to {rV
 	keywords = {{IFG}, Learning, Neuroplasticity, {NIBS}, {tDCS}, {VLPFC}},
 	file = {ScienceDirect Full Text PDF:/home/frederik/Zotero/storage/63IKSU5D/Gibson et al. - 2020 - Transcranial direct current stimulation facilitates category learning.pdf:application/pdf;ScienceDirect Snapshot:/home/frederik/Zotero/storage/7N74VDSB/S1935861X19304681.html:text/html},
 }
+
+% ==============================================================================
+% Book Chapters and Collections
+% ==============================================================================
 
 @incollection{chatterjee_chapter_2013,
 	title = {Chapter 27 - The ethics of neuroenhancement},
@@ -515,6 +559,104 @@ We hope that the remote nature of this training program will facilitate increase
 	date = {2017},
 	pmcid = {PMC5740087},
 }
+
+% ==============================================================================
+% Example Entries for Common Reference Types
+% ==============================================================================
+% Below are template examples for common citation types.
+% Copy and modify these for your own references.
+% ------------------------------------------------------------------------------
+
+% --- Example: Journal Article ---
+@article{example2023,
+	author = {Lastname, Firstname and Coauthor, Name},
+	title = {Example Article Title: Subtitle if Present},
+	journal = {Journal Name},
+	volume = {42},
+	number = {3},
+	pages = {123--145},
+	year = {2023},
+	doi = {10.1234/example.2023.001},
+	url = {https://doi.org/10.1234/example.2023.001},
+	abstract = {Optional abstract text for reference},
+	keywords = {keyword1, keyword2, keyword3}
+}
+
+% --- Example: Book ---
+@book{examplebook2022,
+	author = {Author, Name},
+	title = {Book Title: Complete with Subtitle},
+	subtitle = {Optional Separate Subtitle Field},
+	publisher = {Publisher Name},
+	address = {City, Country},
+	year = {2022},
+	edition = {2},
+	isbn = {978-3-12345-678-9},
+	pages = {350},
+	series = {Book Series Name},
+	volume = {3}
+}
+
+% --- Example: Conference Paper ---
+@inproceedings{conference2023,
+	author = {Speaker, Name and Collaborator, Other},
+	title = {Conference Paper Title},
+	booktitle = {Proceedings of the International Conference Name},
+	year = {2023},
+	editor = {Editor, Name},
+	pages = {45--52},
+	address = {Conference Location},
+	publisher = {ACM},
+	doi = {10.1145/1234567.1234568}
+}
+
+% --- Example: Website ---
+@online{website2024,
+	author = {{Organization Name}},
+	title = {Web Page Title},
+	year = {2024},
+	url = {https://www.example.com/page},
+	urldate = {2024-11-28},
+	note = {Accessed: November 28, 2024}
+}
+
+% --- Example: Thesis ---
+@phdthesis{dissertation2023,
+	author = {Student, Name},
+	title = {Dissertation Title: A Comprehensive Study},
+	school = {University Name},
+	year = {2023},
+	address = {City, Country},
+	type = {PhD thesis},
+	month = {June}
+}
+
+% --- Example: Technical Report ---
+@techreport{report2023,
+	author = {Researcher, Name},
+	title = {Technical Report Title},
+	institution = {Research Institute},
+	year = {2023},
+	type = {Technical Report},
+	number = {TR-2023-001},
+	address = {City, Country},
+	month = {March}
+}
+
+% ==============================================================================
+% Bibliography Notes
+% ==============================================================================
+% - Keep entries sorted alphabetically by citation key for easier maintenance
+% - Use consistent naming convention for keys (e.g., author_keyword_year)
+% - Include DOI when available for better accessibility
+% - Add abstracts for complex papers to aid in reference management
+% - Use keywords field to categorize references (primary, secondary, etc.)
+% - Regular expressions can be used in some fields (check BibLaTeX manual)
+% ==============================================================================
+
+% ==============================================================================
+% End of Bibliography Database
+% ==============================================================================
 
 @article{caulfield_optimized_2022,
 	title = {Optimized electrode positions, size, and current intensity for high-definition transcranial direct current stimulation},

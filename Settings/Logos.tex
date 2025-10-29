@@ -2,23 +2,96 @@
 % ==============================================================================
 % Logo Configuration
 % ==============================================================================
-% Description: Document-specific logo selection and configuration
+% Description: This file configures which logos appear on the title page and
+%              their positioning. Multiple logos can be displayed simultaneously.
+%              The AddLogo command handles logo placement and scaling.
+% Usage:       Uncomment the desired logo(s) and adjust parameters as needed.
+% Author: [Your Name]
+% Date: [Date]
 % ==============================================================================
+
+% ------------------------------------------------------------------------------
+% Logo Configuration Syntax
+% ------------------------------------------------------------------------------
+% \AddLogo{LogoName}{ScaleX}{ScaleY}{Format}
+%
+% Parameters:
+%   LogoName - Name of the logo file (without extension)
+%   ScaleX   - Horizontal scaling factor (1.0 = original width)
+%   ScaleY   - Vertical scaling factor (1.0 = original height)
+%   Format   - File format (png, svg, pdf, jpg)
+%
+% Logo files must be placed in: HSRTReport/Assets/Images/
+% ------------------------------------------------------------------------------
 
 % ------------------------------------------------------------------------------
 % Available Logos
 % ------------------------------------------------------------------------------
-% STUPA Logo
+% Below are pre-configured logos for various departments and organizations.
+% Uncomment (remove the % at the beginning) the logo(s) you want to use.
+% Multiple logos can be active simultaneously and will be arranged automatically.
+% ------------------------------------------------------------------------------
+
+% --- Student Parliament (STUPA) Logo ---
+% Use this for student organization related documents
+% Scale: 110% width, 70% height
 %\AddLogo{STUPA}{1.1}{0.7}{png}
 
-% INF Logo (Informatik Kombiniert)
+% --- Informatics Department Logo (Combined Version) ---
+% Standard logo for informatics department documents
+% Scale: 90% width, 100% height
+% This logo is active by default
 \AddLogo{INF_Kombiniert}{0.9}{1}{svg}
 
-% HSRT Logo (Hochschule Reutlingen)
+% --- Hochschule Reutlingen (HSRT) Main Logo ---
+% Official university logo for formal documents
+% Scale: 170% width, 100% height
+% Uncomment for official university submissions
 % \AddLogo{HSRT}{1.7}{1}{png}
 
-% METI Logo
+% --- Medical Technical Informatics (METI) Logo ---
+% Specific logo for METI study program
+% Scale: 100% width, 50% height
+% Uncomment for METI-specific documents
 % \AddLogo{METI}{1.0}{0.5}{png}
+
+% ------------------------------------------------------------------------------
+% Custom Logo Addition
+% ------------------------------------------------------------------------------
+% To add your own custom logo:
+% 1. Place the logo file in HSRTReport/Assets/Images/
+% 2. Add a configuration line following this pattern:
+%    \AddLogo{YourLogoName}{ScaleX}{ScaleY}{Format}
+%
+% Example for a company logo:
+% \AddLogo{CompanyLogo}{1.2}{1.2}{pdf}
+%
+% Example for a research group logo:
+% \AddLogo{ResearchGroup}{0.8}{0.8}{png}
+% ------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+% Logo Positioning Notes
+% ------------------------------------------------------------------------------
+% - Logos are automatically positioned on the title page
+% - Multiple logos are arranged in a grid layout
+% - The order of \AddLogo commands determines the display order
+% - Scaling factors can be adjusted for optimal visual balance
+% - SVG format is recommended for scalability
+% - PNG format is suitable for raster images
+% - PDF format provides best quality for vector graphics
+% ------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+% Troubleshooting
+% ------------------------------------------------------------------------------
+% If a logo doesn't appear:
+% 1. Check that the file exists in HSRTReport/Assets/Images/
+% 2. Verify the file extension matches the format parameter
+% 3. Ensure the \AddLogo line is not commented out
+% 4. Check for typos in the logo name
+% 5. Try different scaling factors if the logo appears too small/large
+% ------------------------------------------------------------------------------
 
 % ==============================================================================
 % End of Logo Configuration

@@ -1,21 +1,91 @@
 % !TEX root = Main.tex
+% ==============================================================================
+% Glossary and Acronym Definitions
+% ==============================================================================
+% Description: This file contains all glossary entries and acronyms used in
+%              the document. Entries are automatically sorted and formatted.
+% Usage:       Reference entries in text using:
+%              - \gls{label} for glossary entries
+%              - \acrshort{label} for acronym short form
+%              - \acrlong{label} for acronym long form
+%              - \acrfull{label} for full acronym (short and long)
+% Author: [Your Name]
+% Date: [Date]
+% ==============================================================================
 
-% ============================================================================
-% GLOSSAR: STIMULATIONSTECHNIKEN (KOMPAKT)
-% ============================================================================
+% ------------------------------------------------------------------------------
+% Glossary Entries
+% ------------------------------------------------------------------------------
+% Define technical terms, concepts, and important words
+% Syntax: \newglossaryentry{label}{
+%     name={Display Name},
+%     description={Detailed description},
+%     plural={Plural form (optional)},
+%     genitive={Genitive form (optional)}
+% }
+% ------------------------------------------------------------------------------
 
-% tES / Transkranielle Elektrostimulation
+% Example: Technical term
 \newglossaryentry{Textkoerper}
 {
 	name=Textkörper,
 	description={
-			Bezeichnung für den Bereich innerhalb der Arbeit, in dem die eigentliche Ausarbeitung enthalten ist.
-		}
+			Bezeichnung für den Bereich innerhalb der Arbeit, in dem die
+			eigentliche Ausarbeitung enthalten ist. Der Textkörper umfasst
+			alle Kapitel zwischen Einleitung und Fazit.
+		},
 	genitive=Textkörpers,
 	plural=Textkörper
 }
 
+% ------------------------------------------------------------------------------
+% Add more glossary entries here
+% ------------------------------------------------------------------------------
+% \newglossaryentry{example}
+% {
+%     name=Example,
+%     description={An example glossary entry for demonstration purposes}
+% }
+
+% ==============================================================================
+% Acronym Definitions
+% ==============================================================================
+% Define abbreviations and acronyms that appear in the document
+% Syntax: \newacronym{label}{SHORT}{Long Form}
+% ------------------------------------------------------------------------------
+
+% Document-related acronyms
 \newacronym{a:Abb}{Abb.}{Abbildung}
-\newacronym{a:MPG}{MPG}{Medizinproduktegesetz}
-\newacronym{a:MS}{MS}{Microsoft®}
 \newacronym{a:Tab}{Tab.}{Tabelle}
+
+% Legal and regulatory acronyms
+\newacronym{a:MPG}{MPG}{Medizinproduktegesetz}
+
+% Company and organization acronyms
+\newacronym{a:MS}{MS}{Microsoft®}
+
+% ------------------------------------------------------------------------------
+% Add more acronyms here (alphabetically sorted recommended)
+% ------------------------------------------------------------------------------
+% Technical acronyms
+% \newacronym{a:API}{API}{Application Programming Interface}
+% \newacronym{a:CPU}{CPU}{Central Processing Unit}
+% \newacronym{a:GPU}{GPU}{Graphics Processing Unit}
+
+% Academic acronyms
+% \newacronym{a:BSc}{B.Sc.}{Bachelor of Science}
+% \newacronym{a:MSc}{M.Sc.}{Master of Science}
+% \newacronym{a:PhD}{Ph.D.}{Doctor of Philosophy}
+
+% ==============================================================================
+% Glossary Configuration Notes
+% ==============================================================================
+% - Entries are automatically sorted alphabetically
+% - Unused entries can be included using \glsaddallunused in Main.tex
+% - Multiple glossary types can be defined if needed
+% - Cross-references between entries are supported
+% ==============================================================================
+
+% ==============================================================================
+% End of Glossary Definitions
+% ==============================================================================

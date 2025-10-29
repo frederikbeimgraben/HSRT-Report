@@ -3,18 +3,51 @@
 % Document Preamble
 % ==============================================================================
 % Description: Document-specific configuration and settings
+%              This file contains all document-specific configurations that
+%              customize the HSRTReport class for your particular document
+% Author: [Your Name]
+% Date: [Date]
 % ==============================================================================
 
 % ------------------------------------------------------------------------------
 % Bibliography Configuration
 % ------------------------------------------------------------------------------
+% Configure BibLaTeX bibliography management
+% The bibliography file (Main.bib) contains all references in BibTeX format
+% Additional .bib files can be added with multiple \addbibresource commands
+% ------------------------------------------------------------------------------
 \addbibresource{Main.bib}
 
 % ------------------------------------------------------------------------------
-% Document Settings
+% Document Settings Import
 % ------------------------------------------------------------------------------
-\input{Settings/General}
-\input{Settings/Logos}
+% Load document-specific settings from external files
+% This modular approach keeps the preamble clean and organized
+% ------------------------------------------------------------------------------
+\input{Settings/General}    % General document settings (title, author, etc.)
+\input{Settings/Logos}      % Logo configuration and positioning
+
+% ------------------------------------------------------------------------------
+% Custom Commands and Macros (Optional)
+% ------------------------------------------------------------------------------
+% Add your custom LaTeX commands here
+% Example: \newcommand{\mycommand}[1]{#1}
+% ------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+% Additional Package Loading (Optional)
+% ------------------------------------------------------------------------------
+% Load additional packages not included in the HSRTReport class
+% Note: Most common packages are already loaded by the class
+% Example: \usepackage{mypackage}
+% ------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+% Package Configuration (Optional)
+% ------------------------------------------------------------------------------
+% Configure packages that require specific settings
+% Example: \setpackageoption{value}
+% ------------------------------------------------------------------------------
 
 % ==============================================================================
 % End of Preamble

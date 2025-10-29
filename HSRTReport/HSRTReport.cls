@@ -56,13 +56,13 @@
 % Package Imports
 % ==============================================================================
 % Load core packages first
-\input{\classPath/Config/Imports/Core}
+\input{\classPath/Imports/Core}
 % Document structure packages
-\input{\classPath/Config/Imports/Document}
+\input{\classPath/Imports/Document}
 % Content and typography packages
-\input{\classPath/Config/Imports/Content}
+\input{\classPath/Imports/Content}
 % Graphics and TikZ packages
-\input{\classPath/Config/Imports/Graphics}
+\input{\classPath/Imports/Graphics}
 
 % ==============================================================================
 % Module Includes

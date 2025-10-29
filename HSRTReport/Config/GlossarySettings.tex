@@ -1,10 +1,28 @@
-%!TEX root = ../../Main.tex
+% !TEX root = ../HSRTReport.cls
+% ==============================================================================
+% Glossary Configuration Module
+% ==============================================================================
+% Description: Glossary and acronym list configuration and styling
+% Author: Frederik Beimgraben
+% License: Creative Commons CC BY 4.0
+% ==============================================================================
+
+% ==============================================================================
+% Glossary Initialization
+% ==============================================================================
 \makeglossaries
 
+% ==============================================================================
+% Column Type Definitions
+% ==============================================================================
+% Define custom column types for glossary tables
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
+% ==============================================================================
+% Custom Glossary Style
+% ==============================================================================
 \newglossarystyle{manualfixedwidth}{
 	\setglossarystyle{long3colheader}
 	\renewenvironment{theglossary}
@@ -20,17 +38,35 @@
 	\renewcommand{\arraystretch}{1.1}
 }
 
+% Apply the custom glossary style
 \setglossarystyle{manualfixedwidth}
 
+% ==============================================================================
+% Glossary Labels and Settings
+% ==============================================================================
+% German labels for glossary columns
 \renewcommand*{\entryname}{Wort/Abkürzung}
 \renewcommand*{\descriptionname}{Bedeutung}
 \renewcommand*{\pagelistname}{Seite(n)}
+
+% Enable hyperlinks in glossary
 \glsenablehyper
+
+% Disable page breaks between glossary groups
 \renewcommand*{\glsclearpage}{}
+
+% German name for acronym list
 \renewcommand{\acronymname}{Abkürzungsverzeichnis}
 
-%%% https://golatex.de/viewtopic.php?t=23348
-% masculine genitive
+% ==============================================================================
+% Custom Glossary Keys for German Grammar
+% ==============================================================================
+% Source: https://golatex.de/viewtopic.php?t=23348
+% These keys enable proper German declension in glossary entries
+
+% ------------------------------------------------------------------------------
+% Genitive Case (Genitiv)
+% ------------------------------------------------------------------------------
 \glsaddkey
 {genitive}% key
 {}% default value
@@ -40,7 +76,9 @@
 {\Glsgen}% link ucfirst cs
 {\GLSgen}% link all caps cs
 
-% dative
+% ------------------------------------------------------------------------------
+% Dative Case (Dativ)
+% ------------------------------------------------------------------------------
 \glsaddkey
 {dative}% key
 {}% default value

@@ -1,0 +1,36 @@
+% !TEX root = ../HSRTReport.cls
+% ==============================================================================
+% Equations Configuration Module
+% ==============================================================================
+% Description: Configuration for equation lists and equation formatting
+% Author: Frederik Beimgraben
+% License: Creative Commons CC BY 4.0
+% ==============================================================================
+
+% ==============================================================================
+% List of Equations Configuration
+% ==============================================================================
+% Define custom list for equations
+\newcommand{\listequationsname}{List of Equations}
+\newlistof{myequations}{equ}{\listequationsname}
+
+% Define equation name for references
+\newcommand{\equationname}{Equation}
+
+% ==============================================================================
+% Equation List Commands
+% ==============================================================================
+% Command to add equations to the list
+\newcommand{\myequations}[1]{%
+	\addcontentsline{equ}{myequations}{\protect\equationname~\numberline{\theequation:} #1}\par}
+
+% ==============================================================================
+% Equation Counter Configuration
+% ==============================================================================
+% Remove chapter dependency from equation counter
+% (This allows continuous equation numbering throughout the document)
+\counterwithout{equation}{chapter}
+
+% ==============================================================================
+% End of Equations Configuration Module
+% ==============================================================================

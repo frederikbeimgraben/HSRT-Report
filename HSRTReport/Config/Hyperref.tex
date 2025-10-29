@@ -1,0 +1,30 @@
+% !TEX root = ../HSRTReport.cls
+% ==============================================================================
+% Hyperref Configuration Module
+% ==============================================================================
+% Description: Configure hyperlinks, PDF metadata, and link colors
+% Author: Frederik Beimgraben
+% License: Creative Commons CC BY 4.0
+% ==============================================================================
+
+% ==============================================================================
+% PDF and Hyperlink Configuration
+% ==============================================================================
+% Note: hyperref package is already loaded in Config/Imports/Document.tex
+\hypersetup{
+	pdfpagemode={UseOutlines},              % Show bookmarks on opening
+	bookmarksopen=true,                     % Open bookmark tree
+	bookmarksopenlevel=0,                   % Level to which bookmarks are open
+	hypertexnames=false,                    % Use guessable names for links
+	colorlinks=true,                        % Color links instead of boxes
+	citecolor=[rgb]{0.286, 0.427, 0.537},   % Citation link color (blue-gray)
+	linkcolor=[rgb]{0.161, 0.31, 0.427},    % Internal link color (dark blue)
+	urlcolor=[rgb]{0.071, 0.212, 0.322},    % URL link color (dark teal)
+	pdfstartview={FitV},                    % Fit page width in viewer
+	unicode,                                % Allow unicode characters
+	breaklinks=true                         % Allow links to break across lines
+}
+
+% ==============================================================================
+% End of Hyperref Configuration Module
+% ==============================================================================

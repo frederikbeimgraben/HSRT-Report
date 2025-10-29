@@ -328,13 +328,19 @@
 % ----------------------------------------
 \input{\classPath/Pages/Titlepage.tex}
 
-% ==== Tools ====
-\input{\classPath/Modules/Listings}
-\input{\classPath/Modules/Floats}
-\input{\classPath/Modules/MeetingPresence}
-\input{\classPath/Modules/InfoBlocks}
-\input{\classPath/Modules/Watermark}
-\input{\classPath/Modules/ToC}
-\input{\classPath/Modules/Typography}
-\input{\classPath/Modules/GlossarySettings}
-\input{\classPath/Modules/WordCount}
+% ==== Content Modules ====
+\input{\classPath/Modules/Content/Listings}
+\input{\classPath/Modules/Content/Floats}
+\input{\classPath/Modules/Content/GlossarySettings}
+
+% ==== Layout Modules ====
+\input{\classPath/Modules/Layout/InfoBlocks}
+\input{\classPath/Modules/Layout/Watermark}
+
+% ==== Formatting Modules ====
+\input{\classPath/Modules/Formatting/ToC}
+\input{\classPath/Modules/Formatting/Typography}
+
+% ==== Tool Modules ====
+\input{\classPath/Modules/Tools/MeetingPresence}
+\input{\classPath/Modules/Tools/WordCount}

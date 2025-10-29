@@ -1,0 +1,14 @@
+\glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
+\begin{theglossary}\glossaryheader
+\glsgroupheading{A}\relax \glsresetentrylist %
+\glossentry{a:Abb}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{10}}}\glsgroupskip
+\glsgroupheading{M}\relax \glsresetentrylist %
+\glossentry{a:MPG}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{10}}}%
+\glossentry{a:MS}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{10}}}\glsgroupskip
+\glsgroupheading{T}\relax \glsresetentrylist %
+\glossentry{a:Tab}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsignore{10}}}%
+\end{theglossary}\glossarypostamble

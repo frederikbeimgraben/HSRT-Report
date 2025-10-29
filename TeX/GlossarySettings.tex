@@ -6,20 +6,17 @@
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
 \newglossarystyle{manualfixedwidth}{
-	\setglossarystyle{long3colheader} % Use existing stable base style
-	%\newcolumntype{R}{>{\raggedleft}p{2cm}}
-	%\newcolumntype{W}{>{\raggedright}p{4.5cm}}
-	%\newcolumntype{D}{>{\raggedright}p{9.5cm}}
-	%\setlength\LTleft{-5pt}
+	\setglossarystyle{long3colheader}
 	\renewenvironment{theglossary}
 	{\begin{longtable}{
 				@{}
-				L{0.3\textwidth-\tabcolsep}
-				p{0.59\textwidth-\tabcolsep}
-				R{0.1\textwidth-\tabcolsep}
+				L{0.30\textwidth-\tabcolsep}
+				p{0.58\textwidth-\tabcolsep}
+				R{0.10\textwidth-\tabcolsep}
 				@{}
 			}}
 			{\end{longtable}}
+	\renewcommand*{\glsgroupskip}{}
 	\renewcommand{\arraystretch}{1.1}
 }
 

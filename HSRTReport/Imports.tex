@@ -8,26 +8,17 @@
 % fp package
 \RequirePackage[nomessages]{fp}% http://ctan.org/pkg/fp
 
-% xstring package
-\RequirePackage{xstring}
-
 % Glossaries package
-\RequirePackage[acronym]{glossaries}
-
-% Import multicols
-\RequirePackage{multicol}
-
-% Silence package warnings
-\RequirePackage{silence}
+\RequirePackage[acronym, savenumberlist=true]{glossaries}
 
 % Babel for language support
 \RequirePackage[ngerman]{babel}
 
 % Bibliography management with biber backend and IEEE style
 \RequirePackage[
-    backend=biber,
-    sorting=none,
-    style=ieee
+	backend=biber,
+	sorting=none,
+	style=ieee
 ]{biblatex}
 
 % Context-sensitive quotation marks
@@ -35,9 +26,6 @@
 
 % Geometry for setting page dimensions and margins
 \RequirePackage[a4paper, margin=2cm]{geometry}
-
-% Booktabs for better table formatting
-\RequirePackage{booktabs}
 
 % Tabularx for tables with fixed width columns
 \RequirePackage{tabularx}

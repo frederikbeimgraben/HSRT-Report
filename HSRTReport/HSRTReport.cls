@@ -349,5 +349,4 @@
 \input{\classPath/Modules/Formatting/Typography}
 
 % ==== Tool Modules ====
-\input{\classPath/Modules/Tools/MeetingPresence}
 \input{\classPath/Modules/Tools/WordCount}

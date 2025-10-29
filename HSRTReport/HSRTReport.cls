@@ -336,3 +336,5 @@
 \input{\classPath/Modules/Watermark}
 \input{\classPath/Modules/ToC}
 \input{\classPath/Modules/Typography}
+\input{\classPath/Modules/GlossarySettings}
+\input{\classPath/Modules/WordCount}

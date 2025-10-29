@@ -24,6 +24,14 @@ svg-inkscape/
 *(busy)
 *SAVE-ERROR
 *.sum
+*.equ
+*.glg
+*.glo
+*.gls
+*.ist
+*.alg
+*.acr
+*.acn
 
 # Python
 *.pyc

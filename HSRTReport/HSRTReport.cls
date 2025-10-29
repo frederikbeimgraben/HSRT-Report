@@ -56,13 +56,13 @@
 % Imports
 % ----------------------------------------
 % Load core packages first
-\input{\classPath/Config/Imports-Core}
+\input{\classPath/Config/Imports/Core}
 % Document structure packages
-\input{\classPath/Config/Imports-Document}
+\input{\classPath/Config/Imports/Document}
 % Content and typography packages
-\input{\classPath/Config/Imports-Content}
+\input{\classPath/Config/Imports/Content}
 % Graphics and TikZ packages
-\input{\classPath/Config/Imports-Graphics}
+\input{\classPath/Config/Imports/Graphics}
 
 %----------------------------------------
 %   REFS
@@ -338,17 +338,15 @@
 % ==== Configuration Modules ====
 \input{\classPath/Config/GlossarySettings}
 \input{\classPath/Config/ToC}
+\input{\classPath/Config/Floats}
+\input{\classPath/Config/Typography}
 
 % ==== Content Modules ====
 \input{\classPath/Modules/Content/Listings}
-\input{\classPath/Modules/Content/Floats}
 
 % ==== Layout Modules ====
 \input{\classPath/Modules/Layout/InfoBlocks}
 \input{\classPath/Modules/Layout/Watermark}
-
-% ==== Formatting Modules ====
-\input{\classPath/Modules/Formatting/Typography}
 
 % ==== Tool Modules ====
 \input{\classPath/Modules/Tools/WordCount}

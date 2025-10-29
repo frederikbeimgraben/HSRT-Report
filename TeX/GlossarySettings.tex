@@ -1,34 +1,33 @@
 %!TEX root = ../Main.tex
 \makeglossaries
-\iffalse
-	\newglossarystyle{manualfixedwidth}{
-	\setglossarystyle{long3colheader} % Use existing stable base style
-	\newcolumntype{R}{>{\raggedleft\arraybackslash}p{2cm}}
-	\setlength\LTleft{-5pt}
-	\renewenvironment{theglossary}%
-	{\begin{longtable}{p{4cm}p{10cm}R}} % override only the tabular environment specifying widths
-			{\end{longtable}}%
-	}
-\fi
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
 \newglossarystyle{manualfixedwidth}{
-\setglossarystyle{long3colheader} % Use existing stable base style
-\newcolumntype{R}{>{\raggedleft\arraybackslash}p{2cm}}
-\newcolumntype{D}{>{\raggedright\arraybackslash}p{4.5cm}}
-\setlength\LTleft{-5pt}
-\renewenvironment{theglossary}%
-{\begin{longtable}{Dp{9.5cm}R}} % override only the tabular environment specifying widths
-		{\end{longtable}}%
-\renewcommand{\arraystretch}{1.1} % 1.5 times normal line height
+	\setglossarystyle{long3colheader} % Use existing stable base style
+	%\newcolumntype{R}{>{\raggedleft}p{2cm}}
+	%\newcolumntype{W}{>{\raggedright}p{4.5cm}}
+	%\newcolumntype{D}{>{\raggedright}p{9.5cm}}
+	%\setlength\LTleft{-5pt}
+	\renewenvironment{theglossary}
+	{\begin{longtable}{
+				@{}
+				L{0.3\textwidth-\tabcolsep}
+				p{0.59\textwidth-\tabcolsep}
+				R{0.1\textwidth-\tabcolsep}
+				@{}
+			}}
+			{\end{longtable}}
+	\renewcommand{\arraystretch}{1.1}
 }
 
 \setglossarystyle{manualfixedwidth}
 
-%\setglossarystyle{long3colheader}
 \renewcommand*{\entryname}{Wort/Abkürzung}
-\renewcommand*{\descriptionname}{Beschreibung}
+\renewcommand*{\descriptionname}{Bedeutung}
 \renewcommand*{\pagelistname}{Seite(n)}
-\setlength{\glsdescwidth}{0.75\textwidth}
 \glsenablehyper
 \renewcommand*{\glsclearpage}{}
 \renewcommand{\acronymname}{Abkürzungsverzeichnis}
@@ -43,3 +42,13 @@
 {\glsgen}% link cs
 {\Glsgen}% link ucfirst cs
 {\GLSgen}% link all caps cs
+
+% dative
+\glsaddkey
+{dative}% key
+{}% default value
+{\glsentrydative}% no link cs
+{\Glsentrydative}% no link ucfirst cs
+{\glsdative}% link cs
+{\Glsdative}% link ucfirst cs
+{\GLSdative}% link all caps cs

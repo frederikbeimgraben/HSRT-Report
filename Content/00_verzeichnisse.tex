@@ -27,11 +27,19 @@
 }
 
 % ==== Glossary =====
-\newpage
 {
 	\noindent
 	\blenderfont
-	\vspace*{-2.25em}
-	\printglossary
-	\printglossary[type=\acronymtype]
+	{
+		\renewcommand*{\entryname}{Wort}
+		\newpage
+		\vspace*{-2.25em}
+		\printglossary
+	}
+	{
+		\renewcommand*{\entryname}{Abkürzung}
+		\newpage
+		\vspace*{-2.25em}
+		\printglossary[type=\acronymtype]
+	}
 }

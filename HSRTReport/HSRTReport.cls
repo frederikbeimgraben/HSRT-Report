@@ -309,6 +309,20 @@
 \renewcommand\cfttabpagefont{\blenderfont\color{gray}}
 \renewcommand{\cftdotsep}{1.5}
 
+% List of equations
+\newcommand{\listequationsname}{List of Equations}
+\newlistof{myequations}{equ}{\listequationsname}
+
+\newcommand{\equationname}{Equation}
+
+% Command to add equations to the list
+\newcommand{\myequations}[1]{%
+	\addcontentsline{equ}{myequations}{\protect\equationname~\numberline{\theequation:} #1}\par}
+
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\counterwithout{equation}{chapter}
+
 % ----------------------------------------
 % Local Imports
 % ----------------------------------------

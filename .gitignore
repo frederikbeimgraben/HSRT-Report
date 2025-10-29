@@ -32,6 +32,7 @@ svg-inkscape/
 *.alg
 *.acr
 *.acn
+Main.pdf
 
 # Python
 *.pyc

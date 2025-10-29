@@ -52,9 +52,9 @@
 % Load the base class with options
 \LoadClass{\baseclass}
 
-% ----------------------------------------
-% Imports
-% ----------------------------------------
+% ==============================================================================
+% Package Imports
+% ==============================================================================
 % Load core packages first
 \input{\classPath/Config/Imports/Core}
 % Document structure packages
@@ -64,9 +64,9 @@
 % Graphics and TikZ packages
 \input{\classPath/Config/Imports/Graphics}
 
-%----------------------------------------
-%   REFS
-%----------------------------------------
+% ==============================================================================
+% Hyperref Configuration
+% ==============================================================================
 % Hyperref already loaded in Imports-Document
 \hypersetup{
 	pdfpagemode={UseOutlines},
@@ -82,179 +82,11 @@
 	breaklinks=true
 }
 
-%----------------------------------------
-%   FONT SETUP
-%----------------------------------------
-\renewcommand*\rmdefault{lmr}
-\renewcommand*\sfdefault{lmss}
-\definecolor{midnightblue}{rgb}{0.094, 0.051, 0.228}
+% Font and page setup are loaded from configuration modules
 
-\newfontfamily\blenderfont[
-	Path=\fontsPath/Blender/,
-	Extension=.ttf,
-	UprightFont=*-Medium,
-	BoldFont=*-Bold,
-	ItalicFont=*-MediumItalic,
-	BoldItalicFont=*-BoldItalic
-]{Blender}
-\newfontfamily\dinfont[
-	Path=\fontsPath/DIN/,
-	Extension=.ttf,
-	UprightFont=*-Regular,
-	BoldFont=*-Bold,
-	ItalicFont=*-Italic,
-	BoldItalicFont=*-BoldItalic
-]{DIN}
-
-\setsansfont{Blender}[
-	Path=\fontsPath/Blender/,
-	Extension=.ttf,
-	UprightFont=*-Medium,
-	BoldFont=*-Bold,
-	ItalicFont=*-MediumItalic,
-	BoldItalicFont=*-BoldItalic
-]
-\setmainfont{DIN}[
-	Path=\fontsPath/DIN/,
-	Extension=.ttf,
-	UprightFont=*-Regular,
-	BoldFont=*-Bold,
-	ItalicFont=*-Italic,
-	BoldItalicFont=*-BoldItalic
-]
-
-
-%----------------------------------------
-%   PAGE SETUP
-%----------------------------------------
-
-\pagestyle{fancy}
-
-\renewcommand{\headrulewidth}{0pt}
-
-%----------------------------------------
-%   LOGOS
-%----------------------------------------
-
-% ==== Add more logos to be placed besides the main logo on the title page ====
-\newcommand{\logosScale}{1}
-\newcommand{\mainLogoScale}{1}
-
-\newlength{\imageHeight}
-
-
-\DeclareRobustCommand{\SetLogosScale}[1]{
-	\renewcommand{\logosScale}{#1}
-}
-
-\let\newglobalarray\newarray
-\patchcmd{\newglobalarray}{\edef}{\xdef}{}{}
-
-% Set the array to expand the elements
-\expandarrayelementtrue
-
-% AddLogo Command with automatic counter
-% Array to store the logos and to be used in pgffor later
-\newglobalarray\LogosPaths
-\newglobalarray\LogosScales
-\newglobalarray\LogosOpacities
-\newglobalarray\LogosExtensions
-\newcounter{logoCounter}
-\setcounter{logoCounter}{0}
-% Command to add a logo to the array
-% Usage: \AddLogoToArray{<Name>}{<Scale>}{<Opacity>}
-\DeclareRobustCommand{\AddLogo}[4]{
-\stepcounter{logoCounter}
-\LogosPaths(\thelogoCounter)={#1}
-\LogosScales(\thelogoCounter)={#2}
-\LogosOpacities(\thelogoCounter)={#3}
-\LogosExtensions(\thelogoCounter)={#4}
-}
-
-% Command to get opacity of a logo
-\DeclareRobustCommand{\GetLogoOpacity}[1]{
-	\expand{\LogosOpacities(#1)}
-}
-
-% Command to add a data line for the title page (key, value)
-% Use a token register to store the data
-\newtoks\titlePageData
-\def\tand{&}
-\titlePageData={\tand}
-\DeclareRobustCommand{\AddTitlePageDataSpace}[1]{
-	% Add vertical space of size #1
-	\titlePageData=\expandafter{\the\titlePageData \vspace{#1}}
-}
-\DeclareRobustCommand{\AddTitlePageDataLine}[2]{
-	\titlePageData=\expandafter{\the\titlePageData\\ \textbf{#1}\tand #2}
-}
-
-% Command to get all the data for the title page (to be inserted in tabular)
-% ({tabular}{@{} p{40mm} l}) Key is always bold
-\DeclareRobustCommand{\GetTitlePageDataTable}{
-	\begin{tabular}{@{} p{30mm} p{\textwidth-30mm-2\tabcolsep}}
-		\the\titlePageData
-	\end{tabular}
-}
-
-% =============================================================================
-\def\skylinePath{\classPath/Assets/Images/Skyline.svg}
-
-\newcommand{\footerYShift}{1.5em}
-\newcommand{\footerXShift}{0.7em}
-
-% Define the logo and its position
-\AtBeginPage{
-	\setlength{\imageHeight}{2cm*\real{\mainLogoScale}*\real{\logosScale}*\real{0.45}}
-	\begin{tikzpicture}[overlay, remember picture]
-		% === Main Logo(s) ===
-		\node[anchor=south east, inner sep=0pt, xshift=-\footerXShift, yshift=\footerYShift, opacity=0.0] (logo0) at (current page.south east) {
-			\strcompare{\thepage}{1}{}{
-				\includegraphics[height=\imageHeight]{\imagesPath/DUMMY_FOOT.png}
-			}
-		};
-		\ifnum\thepage=1
-		\else
-			% For loop to place all logos
-			\foreach \i in {1,...,\value{logoCounter}} {
-					% Calculate name for i-1
-					\pgfmathtruncatemacro{\prev}{\i-1}
-					\node[anchor=east, inner sep=0pt, xshift=-0.1cm, opacity=0.3] (logo\i) at (logo\prev.west) {
-						\makeatletter
-						\testarray{LogosScales}(\i)
-						\setlength{\imageHeight}{1.5cm*\real{\temp@macro}*\real{\logosScale}*\real{0.55}}
-						\testarray{LogosExtensions}(\i)
-						\let\extension\temp@macro
-						\testarray{LogosOpacities}(\i)
-						\let\opacity\temp@macro
-						\testarray{LogosPaths}(\i)
-						\ifthenelse{\equal{\extension}{svg}}{
-							\begin{tikzpicture}
-								\node[opacity=\opacity] {
-									\includesvg[height=\imageHeight]{\classPath/Assets/Images/\temp@macro.\extension}
-								};
-							\end{tikzpicture}
-						}{
-							\begin{tikzpicture}
-								\node[opacity=\opacity] {
-									\includegraphics[height=\imageHeight]{\classPath/Assets/Images/\temp@macro.\extension}
-								};
-							\end{tikzpicture}
-						}
-						\makeatother
-					};
-				}
-		\fi
-		% Skyline
-		\node[anchor=south west, inner sep=0pt, yshift=0em] at (current page.south west) {
-			\includesvg[width=1.5\paperwidth]{\skylinePath}
-		};
-	\end{tikzpicture}
-}
-
-%----------------------------------------
-%   TITLE PAGE
-%----------------------------------------
+% ==============================================================================
+% Title Page Configuration
+% ==============================================================================
 \setkomafont{pagenumber}{\color{gray}\blenderfont\selectfont}
 
 \fancyhf{}
@@ -289,9 +121,9 @@
 
 \newcommand{\decoRule}{\rule{.8\textwidth}{.4pt}}
 
-%----------------------------------------
-%   TABLE OF CONTENTS / FIG / TAB
-%----------------------------------------
+% ==============================================================================
+% Table of Contents Configuration
+% ==============================================================================
 % Page Numbering in the Table of Contents
 \renewcommand\cftchappagefont{\blenderfont\color{gray}}
 \renewcommand\cftsecpagefont{\blenderfont\color{gray}}
@@ -330,23 +162,34 @@
 \counterwithout{table}{chapter}
 \counterwithout{equation}{chapter}
 
-% ----------------------------------------
-% Local Imports
-% ----------------------------------------
+% ==============================================================================
+% Module Includes
+% ==============================================================================
 \input{\classPath/Pages/Titlepage.tex}
 
-% ==== Configuration Modules ====
+% ------------------------------------------------------------------------------
+% Configuration Modules
+% ------------------------------------------------------------------------------
+\input{\classPath/Config/Fonts}
+\input{\classPath/Config/PageSetup}
 \input{\classPath/Config/GlossarySettings}
 \input{\classPath/Config/ToC}
 \input{\classPath/Config/Floats}
 \input{\classPath/Config/Typography}
 
-% ==== Content Modules ====
+% ------------------------------------------------------------------------------
+% Content Modules
+% ------------------------------------------------------------------------------
 \input{\classPath/Modules/Content/Listings}
 
-% ==== Layout Modules ====
+% ------------------------------------------------------------------------------
+% Layout Modules
+% ------------------------------------------------------------------------------
+\input{\classPath/Modules/Layout/Logos}
 \input{\classPath/Modules/Layout/InfoBlocks}
 \input{\classPath/Modules/Layout/Watermark}
 
-% ==== Tool Modules ====
+% ------------------------------------------------------------------------------
+% Tool Modules
+% ------------------------------------------------------------------------------
 \input{\classPath/Modules/Tools/WordCount}

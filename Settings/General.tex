@@ -1,15 +1,27 @@
-% !TEX root = ../../Main.tex
+% !TEX root = ../Main.tex
+% ==============================================================================
+% Document-Specific General Settings
+% ==============================================================================
+% Description: Title, author, abstract, and other document metadata
+% ==============================================================================
 
+% ------------------------------------------------------------------------------
+% Watermark and Date Configuration
+% ------------------------------------------------------------------------------
 % Meeting date
 \newcommand{\waterMarkText}{}
 
 % Current date and time
 \createdon{XX.XX.20XX}
 
-% Title
+% ------------------------------------------------------------------------------
+% Document Title
+% ------------------------------------------------------------------------------
 \title{Vorgaben zur Formatierung der Seminararbeit}
 
-% Data fields for the title page
+% ------------------------------------------------------------------------------
+% Title Page Data Fields
+% ------------------------------------------------------------------------------
 \AddTitlePageDataLine{Thema}{
 	Thema-XXX: \newline
 	Vorgaben zur Formatierung der Seminararbeit
@@ -34,19 +46,32 @@
 \AddTitlePageDataLine{Wortanzahl}{\quickwordcount{Content/01_content}} % !!! Only 01_content.tex !!!
 
 
+% ------------------------------------------------------------------------------
 % Abstract
+% ------------------------------------------------------------------------------
 \newcommand{\titlepageabstract}{%
 	Das Abstract beschreibt in wenigen Sätzen die Zielsetzung und das Ergebnis der Ausarbeitung. Das Abstract muss sich vollständig auf der Titelseite befinden. Die Zeichensatzformatierung wird in einem eigenen Absatz beschrieben  Das Abstract soll es den Lesern:innen ermöglichen, innerhalb von wenigen Augenblicken zu erfassen, welcher Inhalt hinter der Überschrift steckt und ob das Thema, aus Sicht der Leser:innen, zur weiteren Bearbeitung lohnt. Das Abstract ist keine verbale Beschreibung des Inhaltsverzeichnisses, sondern gibt kurz und knapp z.B. die Zielsetzung (z.B. Hypothese), die eingesetzten Methoden und die erzielten Ergebnisse / Erkenntnisse bekannt. Weitere Hinweise finden Sie außerdem im Vorlesungsskript.
 }
 
+% ------------------------------------------------------------------------------
 % Keywords
+% ------------------------------------------------------------------------------
 \newcommand{\titlepagekeywords}{%
 	Seminararbeit, wissenschaftliche Ausarbeitung, Bachelor-Thesis, Studium, Plagiat
 }
 
-% List of equations
+% ------------------------------------------------------------------------------
+% List of Equations Configuration
+% ------------------------------------------------------------------------------
 \renewcommand{\listequationsname}{Formeln und Gleichungen}
 \renewcommand{\equationname}{Formel}
 
+% ------------------------------------------------------------------------------
+% Paragraph Configuration
+% ------------------------------------------------------------------------------
 % Disable indentation
 \setlength{\parindent}{0pt}
+
+% ==============================================================================
+% End of General Settings
+% ==============================================================================

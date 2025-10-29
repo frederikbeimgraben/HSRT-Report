@@ -1,0 +1,152 @@
+% !TEX root = ../../HSRTReport.cls
+% ==============================================================================
+% Logos Module
+% ==============================================================================
+% Description: Logo management and positioning for title and footer pages
+% Author: Frederik Beimgraben
+% License: Creative Commons CC BY 4.0
+% ==============================================================================
+
+% ==============================================================================
+% Logo Scale Settings
+% ==============================================================================
+\newcommand{\logosScale}{1}
+\newcommand{\mainLogoScale}{1}
+\newlength{\imageHeight}
+
+% Set the scale for all logos
+\DeclareRobustCommand{\SetLogosScale}[1]{
+	\renewcommand{\logosScale}{#1}
+}
+
+% ==============================================================================
+% Logo Array Management
+% ==============================================================================
+% Configure array handling for global scope
+\let\newglobalarray\newarray
+\patchcmd{\newglobalarray}{\edef}{\xdef}{}{}
+
+% Enable array element expansion
+\expandarrayelementtrue
+
+% ==============================================================================
+% Logo Storage Arrays
+% ==============================================================================
+% Arrays to store logo properties
+\newglobalarray\LogosPaths
+\newglobalarray\LogosScales
+\newglobalarray\LogosOpacities
+\newglobalarray\LogosExtensions
+
+% Counter for number of logos
+\newcounter{logoCounter}
+\setcounter{logoCounter}{0}
+
+% ==============================================================================
+% Logo Management Commands
+% ==============================================================================
+% Add a logo to the arrays
+% Usage: \AddLogo{<Name>}{<Scale>}{<Opacity>}{<Extension>}
+\DeclareRobustCommand{\AddLogo}[4]{
+\stepcounter{logoCounter}
+\LogosPaths(\thelogoCounter)={#1}
+\LogosScales(\thelogoCounter)={#2}
+\LogosOpacities(\thelogoCounter)={#3}
+\LogosExtensions(\thelogoCounter)={#4}
+}
+
+% Get opacity value for a specific logo
+\DeclareRobustCommand{\GetLogoOpacity}[1]{
+	\expand{\LogosOpacities(#1)}
+}
+
+% ==============================================================================
+% Title Page Data Management
+% ==============================================================================
+% Token register to store title page data
+\newtoks\titlePageData
+\def\tand{&}
+\titlePageData={\tand}
+
+% Add vertical space to title page data
+\DeclareRobustCommand{\AddTitlePageDataSpace}[1]{
+	\titlePageData=\expandafter{\the\titlePageData \vspace{#1}}
+}
+
+% Add a data line to title page (key-value pair)
+\DeclareRobustCommand{\AddTitlePageDataLine}[2]{
+	\titlePageData=\expandafter{\the\titlePageData\\ \textbf{#1}\tand #2}
+}
+
+% Get formatted title page data table
+\DeclareRobustCommand{\GetTitlePageDataTable}{
+	\begin{tabular}{@{} p{30mm} p{\textwidth-30mm-2\tabcolsep}}
+		\the\titlePageData
+	\end{tabular}
+}
+
+% ==============================================================================
+% Background Graphics Configuration
+% ==============================================================================
+% Path to skyline graphic
+\def\skylinePath{\classPath/Assets/Images/Skyline.svg}
+
+% Footer positioning
+\newcommand{\footerYShift}{1.5em}
+\newcommand{\footerXShift}{0.7em}
+
+% ==============================================================================
+% Logo Placement on Pages
+% ==============================================================================
+% Define logo positioning at beginning of each page
+\AtBeginPage{
+	\setlength{\imageHeight}{2cm*\real{\mainLogoScale}*\real{\logosScale}*\real{0.45}}
+	\begin{tikzpicture}[overlay, remember picture]
+		% === Main Logo(s) ===
+		\node[anchor=south east, inner sep=0pt, xshift=-\footerXShift, yshift=\footerYShift, opacity=0.0] (logo0) at (current page.south east) {
+			\strcompare{\thepage}{1}{}{
+				\includegraphics[height=\imageHeight]{\imagesPath/DUMMY_FOOT.png}
+			}
+		};
+		\ifnum\thepage=1
+		\else
+			% For loop to place all logos
+			\foreach \i in {1,...,\value{logoCounter}} {
+					% Calculate name for i-1
+					\pgfmathtruncatemacro{\prev}{\i-1}
+					\node[anchor=east, inner sep=0pt, xshift=-0.1cm, opacity=0.3] (logo\i) at (logo\prev.west) {
+						\makeatletter
+						\testarray{LogosScales}(\i)
+						\setlength{\imageHeight}{1.5cm*\real{\temp@macro}*\real{\logosScale}*\real{0.55}}
+						\testarray{LogosExtensions}(\i)
+						\let\extension\temp@macro
+						\testarray{LogosOpacities}(\i)
+						\let\opacity\temp@macro
+						\testarray{LogosPaths}(\i)
+						\ifthenelse{\equal{\extension}{svg}}{
+							\begin{tikzpicture}
+								\node[opacity=\opacity] {
+									\includesvg[height=\imageHeight]{\classPath/Assets/Images/\temp@macro.\extension}
+								};
+							\end{tikzpicture}
+						}{
+							\begin{tikzpicture}
+								\node[opacity=\opacity] {
+									\includegraphics[height=\imageHeight]{\classPath/Assets/Images/\temp@macro.\extension}
+								};
+							\end{tikzpicture}
+						}
+						\makeatother
+					};
+				}
+		\fi
+		% Skyline
+		\node[anchor=south west, inner sep=0pt, yshift=0em] at (current page.south west) {
+			\includesvg[width=1.5\paperwidth]{\skylinePath}
+		};
+	\end{tikzpicture}
+}
+
+% ==============================================================================
+% End of Logos Module
+% ==============================================================================

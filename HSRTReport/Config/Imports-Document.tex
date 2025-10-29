@@ -1,0 +1,50 @@
+% !TEX root = ../HSRTReport.cls
+% ==== Document Structure Packages ====
+% Packages for document layout and structure
+
+% Language support
+\RequirePackage[ngerman]{babel}
+
+% Page geometry
+\RequirePackage[a4paper, margin=2cm]{geometry}
+
+% Bibliography management
+\RequirePackage[
+	backend=biber,
+	sorting=none,
+	style=ieee
+]{biblatex}
+
+% Context-sensitive quotation marks
+\RequirePackage{csquotes}
+
+% Glossaries and acronyms
+\RequirePackage[acronym, savenumberlist=true]{glossaries}
+
+% Headers and footers
+\RequirePackage{fancyhdr}
+
+% Table of contents formatting
+\RequirePackage{tocloft}
+
+% Line spacing
+\RequirePackage{setspace}
+
+% Hyperlinks and references
+\RequirePackage{hyperref}
+
+% Enhanced cross-references
+\RequirePackage[nameinlink, noabbrev]{cleveref}
+
+% Watermark support
+\RequirePackage{draftwatermark}
+
+% Verbatim text
+\RequirePackage{verbatim}
+
+% Lorem ipsum text generation
+\RequirePackage{lipsum}
+\RequirePackage{blindtext}
+
+% Quotations and epigraphs
+\RequirePackage{epigraph}

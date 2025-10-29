@@ -55,12 +55,19 @@
 % ----------------------------------------
 % Imports
 % ----------------------------------------
-\input{\classPath/Imports}
+% Load core packages first
+\input{\classPath/Config/Imports-Core}
+% Document structure packages
+\input{\classPath/Config/Imports-Document}
+% Content and typography packages
+\input{\classPath/Config/Imports-Content}
+% Graphics and TikZ packages
+\input{\classPath/Config/Imports-Graphics}
 
 %----------------------------------------
 %   REFS
 %----------------------------------------
-\RequirePackage{hyperref}
+% Hyperref already loaded in Imports-Document
 \hypersetup{
 	pdfpagemode={UseOutlines},
 	bookmarksopen=true,

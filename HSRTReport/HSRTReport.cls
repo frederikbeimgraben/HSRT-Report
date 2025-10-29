@@ -22,8 +22,8 @@
 
 % If not using XeTeX, print an error message and stop compiling
 \ifx\XeTeXversion\undefined
-    \PackageError{HSRTReport}{This class can only be used with XeLaTeX.}{}
-    \stop
+	\PackageError{HSRTReport}{This class can only be used with XeLaTeX.}{}
+	\stop
 \fi
 
 %----------------------------------------
@@ -62,17 +62,17 @@
 %----------------------------------------
 \RequirePackage{hyperref}
 \hypersetup{
-    pdfpagemode={UseOutlines},
-    bookmarksopen=true,
-    bookmarksopenlevel=0,
-    hypertexnames=false,
-    colorlinks=true,
-    citecolor=[rgb]{0.286, 0.427, 0.537},
-    linkcolor=[rgb]{0.161, 0.31, 0.427},
-    urlcolor=[rgb]{0.071, 0.212, 0.322},
-    pdfstartview={FitV},
-    unicode,
-    breaklinks=true
+	pdfpagemode={UseOutlines},
+	bookmarksopen=true,
+	bookmarksopenlevel=0,
+	hypertexnames=false,
+	colorlinks=true,
+	citecolor=[rgb]{0.286, 0.427, 0.537},
+	linkcolor=[rgb]{0.161, 0.31, 0.427},
+	urlcolor=[rgb]{0.071, 0.212, 0.322},
+	pdfstartview={FitV},
+	unicode,
+	breaklinks=true
 }
 
 %----------------------------------------
@@ -83,37 +83,37 @@
 \definecolor{midnightblue}{rgb}{0.094, 0.051, 0.228}
 
 \newfontfamily\blenderfont[
-    Path=\fontsPath/Blender/,
-    Extension=.ttf,
-    UprightFont=*-Medium,
-    BoldFont=*-Bold,
-    ItalicFont=*-MediumItalic,
-    BoldItalicFont=*-BoldItalic
+	Path=\fontsPath/Blender/,
+	Extension=.ttf,
+	UprightFont=*-Medium,
+	BoldFont=*-Bold,
+	ItalicFont=*-MediumItalic,
+	BoldItalicFont=*-BoldItalic
 ]{Blender}
 \newfontfamily\dinfont[
-    Path=\fontsPath/DIN/,
-    Extension=.ttf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-BoldItalic
+	Path=\fontsPath/DIN/,
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic
 ]{DIN}
 
 \setsansfont{Blender}[
-    Path=\fontsPath/Blender/,
-    Extension=.ttf,
-    UprightFont=*-Medium,
-    BoldFont=*-Bold,
-    ItalicFont=*-MediumItalic,
-    BoldItalicFont=*-BoldItalic
+	Path=\fontsPath/Blender/,
+	Extension=.ttf,
+	UprightFont=*-Medium,
+	BoldFont=*-Bold,
+	ItalicFont=*-MediumItalic,
+	BoldItalicFont=*-BoldItalic
 ]
 \setmainfont{DIN}[
-    Path=\fontsPath/DIN/,
-    Extension=.ttf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-BoldItalic
+	Path=\fontsPath/DIN/,
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic
 ]
 
 
@@ -137,7 +137,7 @@
 
 
 \DeclareRobustCommand{\SetLogosScale}[1]{
-    \renewcommand{\logosScale}{#1}
+	\renewcommand{\logosScale}{#1}
 }
 
 \let\newglobalarray\newarray
@@ -157,16 +157,16 @@
 % Command to add a logo to the array
 % Usage: \AddLogoToArray{<Name>}{<Scale>}{<Opacity>}
 \DeclareRobustCommand{\AddLogo}[4]{
-    \stepcounter{logoCounter}
-    \LogosPaths(\thelogoCounter)={#1}
-    \LogosScales(\thelogoCounter)={#2}
-    \LogosOpacities(\thelogoCounter)={#3}
-    \LogosExtensions(\thelogoCounter)={#4}
+\stepcounter{logoCounter}
+\LogosPaths(\thelogoCounter)={#1}
+\LogosScales(\thelogoCounter)={#2}
+\LogosOpacities(\thelogoCounter)={#3}
+\LogosExtensions(\thelogoCounter)={#4}
 }
 
 % Command to get opacity of a logo
 \DeclareRobustCommand{\GetLogoOpacity}[1]{
-    \expand{\LogosOpacities(#1)}
+	\expand{\LogosOpacities(#1)}
 }
 
 % Command to add a data line for the title page (key, value)
@@ -175,19 +175,19 @@
 \def\tand{&}
 \titlePageData={\tand}
 \DeclareRobustCommand{\AddTitlePageDataSpace}[1]{
-    % Add vertical space of size #1
-    \titlePageData=\expandafter{\the\titlePageData \vspace{#1}}
+	% Add vertical space of size #1
+	\titlePageData=\expandafter{\the\titlePageData \vspace{#1}}
 }
 \DeclareRobustCommand{\AddTitlePageDataLine}[2]{
-    \titlePageData=\expandafter{\the\titlePageData\\ \textbf{#1}\tand #2}
+	\titlePageData=\expandafter{\the\titlePageData\\ \textbf{#1}\tand #2}
 }
 
 % Command to get all the data for the title page (to be inserted in tabular)
 % ({tabular}{@{} p{40mm} l}) Key is always bold
 \DeclareRobustCommand{\GetTitlePageDataTable}{
-    \begin{tabular}{@{} p{40mm} l}
-        \the\titlePageData
-    \end{tabular}
+	\begin{tabular}{@{} p{30mm} p{\textwidth-30mm-2\tabcolsep}}
+		\the\titlePageData
+	\end{tabular}
 }
 
 % =============================================================================
@@ -198,51 +198,51 @@
 
 % Define the logo and its position
 \AtBeginPage{
-    \setlength{\imageHeight}{2cm*\real{\mainLogoScale}*\real{\logosScale}*\real{0.45}}
-    \begin{tikzpicture}[overlay, remember picture]
-        % === Main Logo(s) ===
-        \node[anchor=south east, inner sep=0pt, xshift=-\footerXShift, yshift=\footerYShift, opacity=0.0] (logo0) at (current page.south east) {
-            \strcompare{\thepage}{1}{}{
-                \includegraphics[height=\imageHeight]{\imagesPath/DUMMY_FOOT.png}
-            }
-        };
-        \ifnum\thepage=1
-        \else
-        % For loop to place all logos
-        \foreach \i in {1,...,\value{logoCounter}} {
-            % Calculate name for i-1
-            \pgfmathtruncatemacro{\prev}{\i-1}
-            \node[anchor=east, inner sep=0pt, xshift=-0.1cm, opacity=0.3] (logo\i) at (logo\prev.west) {
-                \makeatletter
-                \testarray{LogosScales}(\i)
-                \setlength{\imageHeight}{1.5cm*\real{\temp@macro}*\real{\logosScale}*\real{0.55}}
-                \testarray{LogosExtensions}(\i)
-                \let\extension\temp@macro
-                \testarray{LogosOpacities}(\i)
-                \let\opacity\temp@macro
-                \testarray{LogosPaths}(\i)
-                \ifthenelse{\equal{\extension}{svg}}{
-                    \begin{tikzpicture}
-                        \node[opacity=\opacity] {
-                            \includesvg[height=\imageHeight]{\classPath/Assets/Images/\temp@macro.\extension}
-                        };
-                    \end{tikzpicture}
-                }{
-                    \begin{tikzpicture}
-                        \node[opacity=\opacity] {
-                            \includegraphics[height=\imageHeight]{\classPath/Assets/Images/\temp@macro.\extension}
-                        };
-                    \end{tikzpicture}
-                }
-                \makeatother
-            };
-        }
-        \fi
-        % Skyline
-        \node[anchor=south west, inner sep=0pt, yshift=0em] at (current page.south west) {
-            \includesvg[width=1.5\paperwidth]{\skylinePath}
-        };
-    \end{tikzpicture}
+	\setlength{\imageHeight}{2cm*\real{\mainLogoScale}*\real{\logosScale}*\real{0.45}}
+	\begin{tikzpicture}[overlay, remember picture]
+		% === Main Logo(s) ===
+		\node[anchor=south east, inner sep=0pt, xshift=-\footerXShift, yshift=\footerYShift, opacity=0.0] (logo0) at (current page.south east) {
+			\strcompare{\thepage}{1}{}{
+				\includegraphics[height=\imageHeight]{\imagesPath/DUMMY_FOOT.png}
+			}
+		};
+		\ifnum\thepage=1
+		\else
+			% For loop to place all logos
+			\foreach \i in {1,...,\value{logoCounter}} {
+					% Calculate name for i-1
+					\pgfmathtruncatemacro{\prev}{\i-1}
+					\node[anchor=east, inner sep=0pt, xshift=-0.1cm, opacity=0.3] (logo\i) at (logo\prev.west) {
+						\makeatletter
+						\testarray{LogosScales}(\i)
+						\setlength{\imageHeight}{1.5cm*\real{\temp@macro}*\real{\logosScale}*\real{0.55}}
+						\testarray{LogosExtensions}(\i)
+						\let\extension\temp@macro
+						\testarray{LogosOpacities}(\i)
+						\let\opacity\temp@macro
+						\testarray{LogosPaths}(\i)
+						\ifthenelse{\equal{\extension}{svg}}{
+							\begin{tikzpicture}
+								\node[opacity=\opacity] {
+									\includesvg[height=\imageHeight]{\classPath/Assets/Images/\temp@macro.\extension}
+								};
+							\end{tikzpicture}
+						}{
+							\begin{tikzpicture}
+								\node[opacity=\opacity] {
+									\includegraphics[height=\imageHeight]{\classPath/Assets/Images/\temp@macro.\extension}
+								};
+							\end{tikzpicture}
+						}
+						\makeatother
+					};
+				}
+		\fi
+		% Skyline
+		\node[anchor=south west, inner sep=0pt, yshift=0em] at (current page.south west) {
+			\includesvg[width=1.5\paperwidth]{\skylinePath}
+		};
+	\end{tikzpicture}
 }
 
 %----------------------------------------
@@ -256,10 +256,10 @@
 \fancyfoot[C]{}
 
 \fancypagestyle{fancy}{
-    \fancyhf{}
-    \fancyhead[L]{\color{gray}\blenderfont \@title}
-    \fancyhead[R]{\pagemark}
-    \fancyfoot[C]{}
+	\fancyhf{}
+	\fancyhead[L]{\color{gray}\blenderfont \@title}
+	\fancyhead[R]{\pagemark}
+	\fancyfoot[C]{}
 }
 
 % Set font for all headings
@@ -270,14 +270,14 @@
 \setkomafont{subsubsection}{\large\blenderfont\bfseries}
 
 \RedeclareSectionCommand[
-    beforeskip=1ex,
-    afterskip=0.5ex,
-    style=section
+	beforeskip=1ex,
+	afterskip=0.5ex,
+	style=section
 ]{chapter}
 
 \RedeclareSectionCommands[
-    beforeskip=0.6ex,
-    afterskip=0.3ex,
+	beforeskip=0.6ex,
+	afterskip=0.3ex,
 ]{section,subsection,subsubsection}
 
 \newcommand{\decoRule}{\rule{.8\textwidth}{.4pt}}
@@ -298,8 +298,8 @@
 \renewcommand\cftsubsubsecfont{\blenderfont\color{gray}}
 
 \RedeclareSectionCommands[
-  tocentryformat=\blenderfont\normalsize,
-  tocpagenumberformat=\blenderfont\normalsize
+	tocentryformat=\blenderfont\normalsize,
+	tocpagenumberformat=\blenderfont\normalsize
 ]{section,subsection}
 
 % Figure and Table in the Table of Contents

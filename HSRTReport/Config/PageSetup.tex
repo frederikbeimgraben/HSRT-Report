@@ -28,6 +28,9 @@
 % Set page number font style
 \setkomafont{pagenumber}{\color{gray}\blenderfont\selectfont}
 
+% Adjust footer position - move up by 1em
+\addtolength{\footskip}{-1em}
+
 % ==============================================================================
 % Header and Footer Setup
 % ==============================================================================
@@ -38,14 +41,14 @@
 % Header Configuration
 % ------------------------------------------------------------------------------
 % Left header: Chapter number and title
-% Right header: Empty (no page number in header as per requirements)
+% Right header: Document title
 \fancyhead[L]{%
 	\color{gray}\blenderfont%
 	\ifnum\value{chapter}>0%
 		\thechapter\quad\leftmark%
 	\fi%
 }
-\fancyhead[R]{} % Empty right header
+\fancyhead[R]{\color{gray}\blenderfont\@title} % Document title on right
 
 % Update chapter marks to show only chapter name without "Chapter" prefix
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
@@ -55,7 +58,7 @@
 % Footer Configuration
 % ------------------------------------------------------------------------------
 % Footer format: Author Name | Module Name | Page X of Y
-% The footer is centered and uses proper spacing
+% The footer is centered
 \fancyfoot[C]{%
 	\color{gray}\blenderfont%
 	\@author%
@@ -98,7 +101,7 @@
 			\thechapter\quad\leftmark%
 		\fi%
 	}
-	\fancyhead[R]{}
+	\fancyhead[R]{\color{gray}\blenderfont\@title}
 	\fancyfoot[C]{%
 		\color{gray}\blenderfont%
 		\@author%

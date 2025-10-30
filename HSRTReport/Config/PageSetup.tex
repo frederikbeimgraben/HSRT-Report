@@ -22,6 +22,9 @@
 % Remove default header rule
 \renewcommand{\headrulewidth}{0pt}
 
+% Override KOMA-Script chapter page style to use fancy instead of plain
+\renewcommand{\chapterpagestyle}{fancy}
+
 % ==============================================================================
 % Page Number Configuration
 % ==============================================================================
@@ -74,9 +77,14 @@
 % Define the plain page style (used on chapter start pages)
 \fancypagestyle{plain}{
 	\fancyhf{}
-	% No header on chapter start pages
-	\fancyhead[R]{}
-	\fancyhead[L]{}
+	% Show headers also on chapter start pages
+	\fancyhead[L]{%
+		\color{gray}\blenderfont%
+		\ifnum\value{chapter}>0%
+			\thechapter\quad\leftmark%
+		\fi%
+	}
+	\fancyhead[R]{\color{gray}\blenderfont\@title}
 	% Same footer as regular pages
 	\fancyfoot[L]{%
 		\color{gray}\blenderfont%
@@ -120,6 +128,15 @@
 \renewcommand{\chapter}[1]{%
 	\clearpage%
 	\originalchapter{#1}%
+}
+
+% ==============================================================================
+% Override Default Page Styles
+% ==============================================================================
+% Ensure all special pages use fancy style
+\AtBeginDocument{%
+	\pagestyle{fancy}%
+	\renewcommand{\chapterpagestyle}{fancy}%
 }
 
 % ==============================================================================

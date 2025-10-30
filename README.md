@@ -1,7 +1,7 @@
 # HSRTReport LaTeX Template
 
-[![Build LaTeX Document](https://github.com/frederik/SAT-WiSe-25-26/actions/workflows/makefile.yml/badge.svg)](https://github.com/frederik/SAT-WiSe-25-26/actions/workflows/makefile.yml)
-[![GitHub release](https://img.shields.io/github/release/frederik/SAT-WiSe-25-26.svg)](https://github.com/frederik/SAT-WiSe-25-26/releases/latest)
+[![Build LaTeX Document](https://github.com/frederikbeimgraben/HSRT-Report/actions/workflows/makefile.yml/badge.svg)](https://github.com/frederikbeimgraben/HSRT-Report/actions/workflows/makefile.yml)
+[![GitHub release](https://img.shields.io/github/release/frederikbeimgraben/HSRT-Report.svg)](https://github.com/frederikbeimgraben/HSRT-Report/releases/latest)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 A professional LaTeX report template for academic papers and theses at the University of Applied Sciences Reutlingen (Hochschule Reutlingen).

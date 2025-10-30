@@ -44,10 +44,17 @@
 % ==============================================================================
 % Counter Configuration
 % ==============================================================================
-% Remove chapter dependency from figure, table, and equation counters
-\counterwithout{figure}{chapter}
-\counterwithout{table}{chapter}
+% Configure figure and table numbering to include chapter number
+% Format: Chapter.Number (e.g., 2.3 for third figure in chapter 2)
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
+% Keep equation counter independent of chapters
 \counterwithout{equation}{chapter}
+
+% Redefine the format to show as "Chapter.Number" instead of "Chapter:Number"
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
 
 % ==============================================================================
 % End of Sections Configuration Module

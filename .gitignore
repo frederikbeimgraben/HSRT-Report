@@ -38,3 +38,4 @@ Output/
 # Ignore chapter backups and Temporary PDF files from Inkscape
 .chapter-backups/
 svg-inkscape/
+.config/

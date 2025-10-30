@@ -135,8 +135,8 @@ check-docker:
 .PHONY: docker-build
 docker-build: check-docker
 	@echo -e "$(BLUE)=== Building LaTeX Document with Docker ===$(NC)"
-	@echo -e "$(YELLOW)→ Starting Docker container...$(NC)"
-	@$(DOCKER_COMPOSE_CMD) up --build || { \
+	@echo -e "$(YELLOW)→ Starting Docker container with UID=$$(id -u) GID=$$(id -g)...$(NC)"
+	@HOST_UID=$$(id -u) HOST_GID=$$(id -g) $(DOCKER_COMPOSE_CMD) up --build || { \
 		echo -e "$(RED)✗ Docker build failed$(NC)"; \
 		echo -e "$(YELLOW)  Try 'make docker-clean' and rebuild$(NC)"; \
 		exit 1; \

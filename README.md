@@ -25,15 +25,29 @@ The HSRTReport class is a customized LaTeX document class based on KOMA-Script's
 
 - **Professional Typography**: Configured for optimal readability with proper font settings
 - **Automatic Title Page Generation**: Customizable title page with university branding
-- **Bibliography Management**: Integrated BibLaTeX support for citations
+- **Bibliography Management**: Integrated BibLaTeX support for APA-style citations
 - **Glossary Support**: Built-in glossary and acronym management
-- **Code Highlighting**: Syntax highlighting for source code listings
+- **Code Highlighting**: Syntax highlighting for multiple programming languages
 - **Word Count**: Automatic word counting functionality
 - **Cross-referencing**: Smart referencing with hyperref
+- **Advanced Page Break Control**: Intelligent section and listing page break management
+- **Docker Support**: Containerized build environment for consistent compilation
+- **Enhanced Spacing**: Optimized vertical spacing for sections and subsections
+- **Smart TOC Grouping**: Automatic chapter grouping in table of contents
 
 ## 🔧 Prerequisites
 
-### Required Software
+### Option 1: Docker (Recommended)
+
+- **Docker**: [Install Docker](https://docs.docker.com/get-docker/)
+- **Docker Compose**: Supports both variants:
+  - `docker-compose` (standalone tool)
+  - `docker compose` (Docker plugin, included with Docker Desktop)
+  - The Makefile automatically detects which version is available
+
+This is the easiest way to get started, as all LaTeX dependencies are handled automatically in a container.
+
+### Option 2: Local Installation
 
 - **XeLaTeX**: This template requires XeLaTeX for compilation (included in most TeX distributions)
 - **TeX Distribution**: One of the following:
@@ -41,6 +55,7 @@ The HSRTReport class is a customized LaTeX document class based on KOMA-Script's
   - [MiKTeX](https://miktex.org/) (Windows)
   - [MacTeX](https://www.tug.org/mactex/) (macOS)
 - **GNU make**: Automates compilation and cleaning tasks
+- **Inkscape**: For SVG to PDF conversion (optional, but needed for SVG graphics)
 
 ### Required LaTeX Packages
 
@@ -103,6 +118,7 @@ SAT-WiSe-25-26/
 ├── Main.bib                # Bibliography database
 ├── Makefile                # Build automation
 ├── .latexmkrc              # Latexmk configuration
+├── docker-compose.yml      # Docker configuration
 └── QUICKSTART.md           # Quick start guide
 ```
 
@@ -232,23 +248,52 @@ Removes the chapter and creates a backup in `.chapter_backups/`.
 
 ## 🔨 Building the Document
 
-### Using Make (Recommended)
+### Using Docker (Recommended - Default)
+
+The template now uses Docker by default for consistent builds across all platforms. The Makefile automatically detects whether you have `docker-compose` (standalone) or `docker compose` (plugin) installed:
 
 ```bash
-# Full build with bibliography and glossary – open after
+# Show Docker configuration and which compose variant is used
+make docker-info
+
+# Default build using Docker
 make
 
-# Just build
+# Docker build with image rebuild (after Dockerfile changes)
+make docker-build
+
+# Docker build using cached image (faster)
+make docker-build-cached
+
+# Open shell in Docker container for debugging
+make docker-shell
+
+# Clean Docker containers
+make docker-clean
+```
+
+### Using Local Installation
+
+If you have a local LaTeX installation:
+
+```bash
+# Local build with automatic PDF viewing
+make local
+
+# Just compile without opening
 make compile
 
 # Clean auxiliary files
 make clean
+
+# Full clean including output
+make distclean
 ```
 
-### Using latexmk
+### Using latexmk directly
 
 ```bash
-latexmk -xelatex -bibtex Main.tex
+latexmk -xelatex -shell-escape -bibtex Main.tex
 ```
 
 ## 🐛 Troubleshooting
@@ -258,14 +303,28 @@ latexmk -xelatex -bibtex Main.tex
 1. **"This class can only be used with XeLaTeX" error**
    - Solution: Ensure you're using XeLaTeX, not pdfLaTeX
    - Check your editor's compiler settings
+   - Use Docker build (`make`) to avoid this issue
 
 2. **Bibliography not appearing**
    - Run `biber Main` after the first XeLaTeX compilation
    - Check for errors in `Main.bib`
+   - The Docker build handles this automatically
 
 3. **Glossary entries not showing**
    - Run `makeglossaries Main` after adding new entries
    - Ensure entries are referenced in the document using `\gls{term}`
+
+4. **Docker build not working**
+   - Ensure Docker Desktop is running
+   - Run `make docker-info` to check your Docker setup
+   - Check that port is not blocked by firewall
+   - Try `docker-compose build --no-cache` or `docker compose build --no-cache` for a fresh build
+   - The Makefile supports both `docker-compose` and `docker compose` automatically
+
+5. **SVG images not converting**
+   - Inkscape is required for SVG support
+   - Docker build includes Inkscape automatically
+   - For local builds: Install Inkscape separately
 
 ## 📄 License
 
@@ -290,4 +349,26 @@ For questions, issues, or suggestions:
 
 ---
 
-*Last updated: October 2025*
+## 🆕 Recent Updates
+
+### Version 2.0 (October 2024)
+- Added Docker support for containerized compilation
+- Implemented advanced page break control system
+- Enhanced section spacing (4.5ex before sections, 3.5ex before subsections)
+- Added smart TOC chapter grouping for short chapters
+- Updated header format with em-dash separator (e.g., "1 – Introduction")
+- Fixed page numbering (TOC now starts at page 1)
+- Added comprehensive bibliography with academic writing references
+- Improved listing and itemize environment protection from page breaks
+
+### Key Configuration Changes
+- **Page Margins**: Unified 2cm on all sides
+- **Base Font Size**: 11pt 
+- **Line Spacing**: 1.5x (`baselinestretch=1.5`)
+- **Paragraph Spacing**: 6pt
+- **Section Minimum Content**: 12 baseline skips (~2 paragraphs)
+- **Citation Style**: APA format via BibLaTeX
+
+---
+
+*Last updated: October 2024*

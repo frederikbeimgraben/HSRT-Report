@@ -45,12 +45,32 @@ YELLOW = \033[1;33m
 BLUE = \033[0;34m
 NC = \033[0m # No Color
 
+# Docker Compose command detection
+# Support both docker-compose (standalone) and docker compose (plugin)
+DOCKER_COMPOSE := $(shell command -v docker-compose 2> /dev/null)
+ifdef DOCKER_COMPOSE
+    DOCKER_COMPOSE_CMD = docker-compose
+    DOCKER_COMPOSE_TYPE = standalone
+else
+    DOCKER_COMPOSE_CMD = docker compose
+    DOCKER_COMPOSE_TYPE = plugin
+endif
+
+# Docker availability check
+DOCKER_AVAILABLE := $(shell command -v docker 2> /dev/null)
+
 # ------------------------------------------------------------------------------
 # Main Targets
 # ------------------------------------------------------------------------------
+# Default target: Use Docker for compilation if available
 .PHONY: all
-all: compile view
-	@echo -e "$(GREEN)✓ Document built and opened successfully$(NC)"
+all: docker-build
+	@echo -e "$(GREEN)✓ Document built successfully using Docker$(NC)"
+
+# Alternative: Local build without Docker
+.PHONY: local
+local: compile view
+	@echo -e "$(GREEN)✓ Document built and opened successfully (local)$(NC)"
 
 .PHONY: compile
 compile:
@@ -75,6 +95,79 @@ view:
 		echo -e "$(RED)✗ PDF not found. Run 'make compile' first$(NC)"; \
 		exit 1; \
 	fi
+
+# ------------------------------------------------------------------------------
+# Docker Targets
+# ------------------------------------------------------------------------------
+.PHONY: docker-info
+docker-info:
+	@echo -e "$(BLUE)=== Docker Configuration ===$(NC)"
+	@if command -v docker >/dev/null 2>&1; then \
+		echo -e "$(GREEN)✓ Docker:$(NC) $$(docker --version | cut -d' ' -f3 | tr -d ',')"; \
+	else \
+		echo -e "$(RED)✗ Docker:$(NC) Not found"; \
+	fi
+	@echo -e "$(GREEN)✓ Docker Compose:$(NC) $(DOCKER_COMPOSE_CMD) ($(DOCKER_COMPOSE_TYPE))"
+	@if command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1; then \
+		echo -e "$(GREEN)✓ Docker Daemon:$(NC) Running"; \
+		echo -e "$(GREEN)✓ Containers:$(NC) $$(docker ps -q | wc -l) running, $$(docker ps -aq | wc -l) total"; \
+		echo -e "$(GREEN)✓ Images:$(NC) $$(docker images -q | wc -l) available"; \
+	else \
+		echo -e "$(YELLOW)⚠ Docker Daemon:$(NC) Not running or not accessible"; \
+	fi
+	@echo ""
+
+.PHONY: check-docker
+check-docker:
+	@command -v docker >/dev/null 2>&1 || { \
+		echo -e "$(RED)✗ Docker is not installed or not in PATH$(NC)"; \
+		echo -e "$(YELLOW)  Please install Docker from https://docs.docker.com/get-docker/$(NC)"; \
+		exit 1; \
+	}
+	@docker info >/dev/null 2>&1 || { \
+		echo -e "$(RED)✗ Docker daemon is not running$(NC)"; \
+		echo -e "$(YELLOW)  Please start Docker Desktop or the Docker daemon$(NC)"; \
+		exit 1; \
+	}
+	@echo -e "$(GREEN)✓ Docker is available$(NC)"
+	@echo -e "$(YELLOW)→ Using Docker Compose command: $(DOCKER_COMPOSE_CMD)$(NC)"
+
+.PHONY: docker-build
+docker-build: check-docker
+	@echo -e "$(BLUE)=== Building LaTeX Document with Docker ===$(NC)"
+	@echo -e "$(YELLOW)→ Starting Docker container...$(NC)"
+	@$(DOCKER_COMPOSE_CMD) up --build || { \
+		echo -e "$(RED)✗ Docker build failed$(NC)"; \
+		echo -e "$(YELLOW)  Try 'make docker-clean' and rebuild$(NC)"; \
+		exit 1; \
+	}
+	@echo -e "$(GREEN)✓ Docker build completed$(NC)"
+	@echo -e "$(GREEN)✓ PDF created: $(PDF_TARGET)$(NC)"
+
+.PHONY: docker-build-cached
+docker-build-cached: check-docker
+	@echo -e "$(BLUE)=== Building LaTeX Document with Docker (cached) ===$(NC)"
+	@echo -e "$(YELLOW)→ Starting Docker container (using cache)...$(NC)"
+	@$(DOCKER_COMPOSE_CMD) up || { \
+		echo -e "$(RED)✗ Docker build failed$(NC)"; \
+		echo -e "$(YELLOW)  Try 'make docker-build' to rebuild the image$(NC)"; \
+		exit 1; \
+	}
+	@echo -e "$(GREEN)✓ Docker build completed$(NC)"
+
+.PHONY: docker-clean
+docker-clean: check-docker
+	@echo -e "$(YELLOW)→ Removing Docker containers...$(NC)"
+	@$(DOCKER_COMPOSE_CMD) down --remove-orphans || true
+	@echo -e "$(GREEN)✓ Docker containers removed$(NC)"
+
+.PHONY: docker-shell
+docker-shell: check-docker
+	@echo -e "$(BLUE)→ Opening shell in Docker container...$(NC)"
+	@$(DOCKER_COMPOSE_CMD) run --rm --entrypoint /bin/bash latex || { \
+		echo -e "$(RED)✗ Failed to start Docker shell$(NC)"; \
+		exit 1; \
+	}
 
 # ------------------------------------------------------------------------------
 # Clean Targets
@@ -204,10 +297,19 @@ help:
 	@echo -e "===============================================================================$(NC)"
 	@echo ""
 	@echo -e "$(GREEN)Main Targets:$(NC)"
-	@echo "  make              - Build document and open PDF"
-	@echo "  make compile      - Build the LaTeX document"
+	@echo "  make              - Build document using Docker (default)"
+	@echo "  make local        - Build document locally and open PDF"
+	@echo "  make compile      - Build the LaTeX document (local)"
 	@echo "  make full         - Clean and rebuild everything"
 	@echo "  make view         - Open the PDF file"
+	@echo ""
+	@echo -e "$(GREEN)Docker Targets:$(NC)"
+	@echo "  make docker-info         - Show Docker configuration and status"
+	@echo "  make check-docker        - Check if Docker is available"
+	@echo "  make docker-build        - Build with Docker (rebuild image)"
+	@echo "  make docker-build-cached - Build with Docker (use cached image)"
+	@echo "  make docker-shell        - Open shell in Docker container"
+	@echo "  make docker-clean        - Remove Docker containers"
 	@echo ""
 	@echo -e "$(GREEN)Chapter Management:$(NC)"
 	@echo "  make chapter NUM=02 NAME=methodology  - Create a new chapter"
@@ -237,5 +339,5 @@ help:
 	@echo "  make show-chapter NAME=01_introduction"
 	@echo ""
 
-# Default target
-.DEFAULT_GOAL := help
+# Default target - use Docker build
+.DEFAULT_GOAL := all

@@ -1,14 +1,50 @@
+# ==============================================================================
+# Docker Compose Configuration for LaTeX Compilation
+# ==============================================================================
+# Description: This Docker Compose file sets up a containerized LaTeX build
+#              environment with all necessary dependencies for compiling the
+#              HSRTReport template documents.
+# Usage:       docker-compose up (or make docker-build)
+# ==============================================================================
+
 services:
+  # ------------------------------------------------------------------------------
+  # LaTeX Compilation Service
+  # ------------------------------------------------------------------------------
+  # This service provides a complete TeXLive environment for document compilation
   latex:
+    # Base image: Full TeXLive distribution (latest version)
+    # Note: The image line is commented out because we're using a custom build
     #image: texlive/texlive:latest
+
+    # Custom build configuration to add additional dependencies
     build:
+      # Build context is the current directory
       context: .
+      # Inline Dockerfile definition for additional packages
       dockerfile_inline: |
+        # Start from the full TeXLive image (includes XeLaTeX, Biber, etc.)
         FROM texlive/texlive:latest
+
+        # Update package lists to ensure we get the latest versions
         RUN apt update -y
+
+        # Install Inkscape for SVG to PDF conversion
+        # Required for processing SVG graphics in the document
         RUN apt install inkscape -y
+
+    # Volume mappings
     volumes:
+      # Mount the entire project directory to /data in the container
+      # This allows the container to access all project files and write outputs
       - ./:/data
+
+    # Working directory configuration
+    # Previous project-specific path (kept for reference):
     # working_dir: /data/Projektbeschreibung-MKI-METI-Projekt
+    # Current: Set to /data root for general use
     working_dir: /data
+
+    # Default command when container starts
+    # Executes 'make compile' to build the LaTeX document
     entrypoint: ["make", "compile"]

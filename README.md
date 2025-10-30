@@ -14,7 +14,6 @@ A professional LaTeX report template for academic papers and theses at the Unive
 - [Customization](#customization)
 - [Building the Document](#building-the-document)
 - [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## 📖 Overview
@@ -339,7 +338,7 @@ For questions, issues, or suggestions:
 
 ## 🆕 Recent Updates
 
-### Version 1.0 (October 2024)
+### Version 1.0 (October 2025)
 - Added Docker support for containerized compilation
 
 ### Key Configuration Changes

@@ -78,13 +78,13 @@
 \fancypagestyle{plain}{
 	\fancyhf{}
 	% Show headers also on chapter start pages
-	\fancyhead[L]{%
+	\fancyhead[R]{%
 		\color{gray}\blenderfont%
 		\ifnum\value{chapter}>0%
 			\thechapter\quad\leftmark%
 		\fi%
 	}
-	\fancyhead[R]{\color{gray}\blenderfont\@title}
+	\fancyhead[L]{\color{gray}\blenderfont\@title}
 	% Same footer as regular pages
 	\fancyfoot[L]{%
 		\color{gray}\blenderfont%

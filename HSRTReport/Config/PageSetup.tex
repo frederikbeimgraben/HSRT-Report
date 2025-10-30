@@ -121,16 +121,6 @@
 }
 
 % ==============================================================================
-% Chapter Start Configuration
-% ==============================================================================
-% Ensure chapters start on a new page
-\let\originalchapter\chapter
-\renewcommand{\chapter}[1]{%
-	\clearpage%
-	\originalchapter{#1}%
-}
-
-% ==============================================================================
 % Override Default Page Styles
 % ==============================================================================
 % Ensure all special pages use fancy style

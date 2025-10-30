@@ -15,6 +15,11 @@
 % Generate the main table of contents with custom formatting
 % The blenderfont provides a consistent typographic style
 % ------------------------------------------------------------------------------
+
+
+\newcommand{\offsetA}{\vspace{-5.5em}}
+\newcommand{\offsetB}{\vspace{-1em}}
+
 \newpage
 \pagestyle{fancy}
 {
@@ -25,6 +30,7 @@
 	% Formatting
 	\blenderfont
 	\chapter*{\oldcontentsname}
+	\offsetA\offsetB
 	\tableofcontents
 }
 
@@ -56,21 +62,25 @@
 
 	% List of Figures
 	\chapter*{\oldlistfigurename}
+	\offsetA\offsetB
 	\listoffigures
 
 	% List of Tables
 	\vspace{1em}
 	\chapter*{\oldlisttablename}
+	\offsetA\offsetB
 	\listoftables
 
 	% List of Listings
 	\vspace{1em}
 	\chapter*{\oldlstlistlistingname}
+	\offsetB
 	\lstlistoflistings
 
 	% List of Equations
 	\vspace{1em}
 	\chapter*{\oldlistequationsname}
+	\offsetA\offsetB
 	\listofmyequations
 }
 
@@ -106,6 +116,9 @@
 		\printglossary[type=\acronymtype]
 	}
 }
+
+% Break pages for following chapters
+\AddToHook{cmd/chapter/before}{\clearpage}
 
 % ==============================================================================
 % End of Table of Contents and Lists

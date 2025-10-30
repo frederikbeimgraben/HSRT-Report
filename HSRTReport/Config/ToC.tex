@@ -38,18 +38,29 @@
 % Figure and Table TOC Formatting
 % ==============================================================================
 % Configure font for figure entries in list of figures
-\renewcommand\cftfigfont{\blenderfont\color{gray}}
-\renewcommand\cftfigpagefont{\blenderfont\color{gray}}
+\renewcommand\cftfigfont{\blenderfont}
+\renewcommand\cftfigpagefont{\blenderfont}
 
 % Configure font for table entries in list of tables
-\renewcommand\cfttabfont{\blenderfont\color{gray}}
-\renewcommand\cfttabpagefont{\blenderfont\color{gray}}
+\renewcommand\cfttabfont{\blenderfont}
+\renewcommand\cfttabpagefont{\blenderfont}
+
+% Configure font for equation entries in list of equations
+% Define robust font commands
+
+
+% Configure font for listing entries in lstlistings list
+\renewcommand*{\l@lstlisting}[2]{
+	\@dottedtocline{1}{1em}{2.3em}
+	{\blenderfont#1}
+	{\blenderfont#2}
+}
 
 % ==============================================================================
 % Dot Separation Configuration
 % ==============================================================================
 % Set spacing between dots in TOC
-\renewcommand{\cftdotsep}{1.5}
+% \renewcommand{\cftdotsep}{1.5}
 
 % ==============================================================================
 % End of Table of Contents Configuration Module

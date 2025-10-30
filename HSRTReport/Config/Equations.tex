@@ -21,8 +21,16 @@
 % Equation List Commands
 % ==============================================================================
 % Command to add equations to the list
-\newcommand{\myequations}[1]{%
-	\addcontentsline{equ}{myequations}{\protect\equationname~\numberline{\theequation:} #1}\par}
+\newfloat{Formel}{htbp}{}
+\newcommand\numbereq{\addtocounter{equation}{1}\tag{\theequation}}
+
+\newcommand{\myequations}[1]{
+	% Add Floating (N) #1 below (This function is called after the equation environment)
+	\captionof{Formel}{#1}\vspace{1em}
+
+	% Add to list of equations
+	\cftaddtitleline{equ}{myequations}{\quad\blenderfont(\theequation)\quad #1}{\blenderfont\thepage}\par
+}
 
 % ==============================================================================
 % Equation Counter Configuration

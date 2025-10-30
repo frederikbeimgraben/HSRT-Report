@@ -87,6 +87,7 @@ Formeln können direkt im Text verwendet werden, wie z.\,B. $E = mc^2$ oder $a^2
 \label{subsec:abgesetzte_formeln}
 
 Einfache nummerierte Gleichung:
+
 \begin{equation}
 	\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}
 	\label{eq:maxwell1}
@@ -94,13 +95,16 @@ Einfache nummerierte Gleichung:
 \myequations{Erste Maxwell-Gleichung (Faradaysches Induktionsgesetz)}
 
 Mehrzeilige Gleichung mit Alignment:
-\begin{align}
-	f(x) & = x^2 + 2x + 1 \\
-	     & = (x + 1)^2
+
+\begin{align*}
+	f(x) & = x^2 + 2x + 1        \\
+	     & = (x + 1)^2 \numbereq
 	\label{eq:binomial}
-\end{align}
+\end{align*}
+\myequations{Binomische Formel}
 
 Matrix-Darstellung:
+
 \begin{equation}
 	\mathbf{A} = \begin{pmatrix}
 		a_{11} & a_{12} & a_{13} \\

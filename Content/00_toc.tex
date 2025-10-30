@@ -113,10 +113,10 @@
 % ------------------------------------------------------------------------------
 % Glossary Section
 % ------------------------------------------------------------------------------
-% Generate glossary and list of acronyms
+% Generate glossary and list of abbreviations
 % Two separate glossaries are printed:
 %   1. Main glossary with technical terms
-%   2. Acronym list with abbreviations
+%   2. List of abbreviations
 % ------------------------------------------------------------------------------
 {
 	\noindent
@@ -132,14 +132,14 @@
 		\printglossary
 	}
 
-	% --- Acronym List ---
-	% Print acronym glossary with German header "Abkürzung"
+	% --- List of Abbreviations ---
+	% Print abbreviation glossary with German header "Abkürzung"
 	{
 		\renewcommand*{\entryname}{Abkürzung}
 		\newpage
 		\pagestyle{fancy}
 		\vspace*{-2.25em}
-		\printglossary[type=\acronymtype]
+		\printglossary[type=\acronymtype,title=Abkürzungen]
 	}
 }
 

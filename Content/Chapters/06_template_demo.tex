@@ -209,7 +209,7 @@ Mit dem \texttt{subcaption}-Paket können mehrere Abbildungen nebeneinander plat
 \label{subsec:python_code}
 
 %TC:Ignore
-\begin{lstlisting}[caption={Python-Beispiel: Fakultätsfunktion},label={lst:python_factorial},language=Python]
+\begin{lstlisting}[caption={Python-Beispiel: Fakultätsfunktion},language=Python]
 def factorial(n):
     """Berechnet die Fakultät einer Zahl rekursiv."""
     if n <= 1:
@@ -220,14 +220,14 @@ def factorial(n):
 # Verwendungsbeispiel
 for i in range(10):
     print(f"{i}! = {factorial(i)}")
-\end{lstlisting}\label{lst:python_factorial}
+\end{lstlisting}
 %TC:EndIgnore
 
 \subsection*{LaTeX-Code}
 \label{subsec:latex_code}
 
 %TC:Ignore
-\begin{lstlisting}[caption={LaTeX-Beispiel: Dokumentstruktur},label={lst:latex_example},language=TeX]
+\begin{lstlisting}[caption={LaTeX-Beispiel: Dokumentstruktur},language=TeX]
 \documentclass{article}
 \usepackage[ngerman]{babel}
 \usepackage{amsmath}
@@ -256,7 +256,6 @@ Das Template unterstützt intelligente Querverweise mit dem \texttt{cleveref}-Pa
 	\item Verweis auf Gleichung: siehe \cref{eq:maxwell1}
 	\item Verweis auf Abbildung: siehe \cref{fig:demo_abbildung}
 	\item Verweis auf Tabelle: siehe \cref{tab:messwerte}
-	\item Verweis auf Listing: siehe \cref{lst:python_factorial}
 \end{itemize}
 
 \subsection*{Fußnoten}

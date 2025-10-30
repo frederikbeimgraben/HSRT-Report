@@ -14,7 +14,6 @@
 % ------------------------------------------------------------------------------
 % Generate the main table of contents with custom formatting
 % The blenderfont provides a consistent typographic style
-% Vertical spacing is adjusted for optimal layout
 % ------------------------------------------------------------------------------
 {
 \newpage
@@ -28,59 +27,33 @@
 \vspace{\fill}
 
 % ------------------------------------------------------------------------------
-% List of Figures
+% Lists of Figures, Tables, Listings, and Equations
 % ------------------------------------------------------------------------------
-% Generate list of all figures in the document
-% Figures are automatically numbered and referenced
+% Generate all lists on a single page with compact spacing
+% The lists will only show entries if they exist
 % ------------------------------------------------------------------------------
 \newpage
 \pagestyle{fancy}
 {
 	\noindent
 	\blenderfont
-	\vspace*{-6em}
+
+	% List of Figures
+	\vspace*{-2.25em}
 	\listoffigures
-}
 
-% ------------------------------------------------------------------------------
-% List of Tables
-% ------------------------------------------------------------------------------
-% Generate list of all tables in the document
-% Tables are automatically numbered and referenced
-% ------------------------------------------------------------------------------
-{
-	\noindent
-	\blenderfont
+	% List of Tables
+	\vspace{1em}
 	\listoftables
-}
-\pagestyle{fancy}
 
-% ------------------------------------------------------------------------------
-% List of Listings
-% ------------------------------------------------------------------------------
-% Generate list of all code listings in the document
-% Code listings are automatically numbered and referenced
-% This includes all lstlisting environments with captions
-% ------------------------------------------------------------------------------
-{
-	\noindent
-	\blenderfont
+	% List of Listings
+	\vspace{1em}
 	\lstlistoflistings
-}
-\pagestyle{fancy}
 
-% ------------------------------------------------------------------------------
-% List of Equations
-% ------------------------------------------------------------------------------
-% Generate list of all equations in the document
-% Uses custom command \listofmyequations defined in the class
-% ------------------------------------------------------------------------------
-{
-	\noindent
-	\blenderfont
+	% List of Equations
+	\vspace{1em}
 	\listofmyequations
 }
-\pagestyle{fancy}
 
 % ------------------------------------------------------------------------------
 % Glossary Section

@@ -1,0 +1,60 @@
+% !TEX root = ../../Main.tex
+% ==============================================================================
+% Test Chapter
+% ==============================================================================
+% Description: Test chapter with sample elements for lists
+% ==============================================================================
+
+\chapter{Test-Kapitel}
+\label{chap:test}
+
+Dies ist ein Test-Kapitel mit verschiedenen Elementen, um die Listen zu testen.
+
+% ------------------------------------------------------------------------------
+% Test-Abbildung
+% ------------------------------------------------------------------------------
+\begin{figure}[h]
+	\centering
+	\fbox{\parbox{0.5\textwidth}{\centering\vspace{2cm}Beispiel-Abbildung\vspace{2cm}}}
+	\caption{Eine Beispiel-Abbildung zur Demonstration}
+	\label{fig:beispiel}
+\end{figure}
+
+% ------------------------------------------------------------------------------
+% Test-Tabelle
+% ------------------------------------------------------------------------------
+\begin{table}[h]
+	\centering
+	\caption{Eine Beispiel-Tabelle}
+	\label{tab:beispiel}
+	\begin{tabular}{|l|c|r|}
+		\hline
+		\textbf{Links} & \textbf{Mitte} & \textbf{Rechts} \\
+		\hline
+		Wert 1         & Wert 2         & Wert 3          \\
+		Wert A         & Wert B         & Wert C          \\
+		\hline
+	\end{tabular}
+\end{table}
+
+% ------------------------------------------------------------------------------
+% Test-Gleichung
+% ------------------------------------------------------------------------------
+Eine wichtige Formel:
+\begin{equation}
+	E = mc^2
+	\label{eq:einstein}
+\end{equation}
+\myequations{Einstein's Relativitätstheorie}
+
+% ------------------------------------------------------------------------------
+% Test-Listing
+% ------------------------------------------------------------------------------
+\begin{lstlisting}[caption={Beispiel Python-Code},label={lst:python},language=Python]
+def hello_world():
+    print("Hallo Welt!")
+    return 42
+\end{lstlisting}
+
+Dieser Text referenziert Abbildung~\ref{fig:beispiel}, Tabelle~\ref{tab:beispiel},
+Gleichung~\ref{eq:einstein} und Listing~\ref{lst:python}.

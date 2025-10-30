@@ -1,0 +1,299 @@
+Studiengang Medizinisch-Technische Informatik
+„Ausgewählte Themen der Medizinisch-Technischen Informatik“,
+WS2099
+Prof. Dr. Sven Steddin
+
+- Seminararbeit -
+
+Vorgaben zur Formatierung der Seminararbeit
+
+vorgelegt von:
+Hans Maria Muster
+x. Fachsemester
+
+
+
+Kontaktadresse: hans-maria.muster@student.hs-reutlingen.de
+vorgelegt am: 12.12.20xx
+Anzahl der Wörter:  2942
+
+Abstract: Das Abstract beschreibt in wenigen Sätzen die Zielsetzung und das Ergebnis der Ausarbeitung. Das Abstract muss sich vollständig auf der Titelseite befinden. Die Zeichensatzformatierung wird in einem eigenen Absatz beschrieben  Das Abstract soll es den Lesern:innen ermöglichen, innerhalb von wenigen Augenblicken zu erfassen, welcher Inhalt hinter der Überschrift steckt und ob das Thema, aus Sicht der Leser:innen, zur weiteren Bearbeitung lohnt. Das Abstract ist keine verbale Beschreibung des Inhaltsverzeichnisses, sondern gibt kurz und knapp z.B. die Zielsetzung (z.B. Hypothese), die eingesetzten Methoden und die erzielten Ergebnisse / Erkenntnisse bekannt. Weitere Hinweise finden Sie außerdem im Vorlesungsskript.
+Keywords: Seminararbeit, wissenschaftliche Ausarbeitung, Bachelor-Thesis, Studium, Plagiat
+
+Inhalt
+1 Einleitung 3
+2 Gliederung des Textes 3
+3 Seitenformatierung 3
+3.1 Seitenformat und Festlegung der richtigen Formatierung für zweizeilige Überschriften die eine Trennung von Hand erforderlich machen würden 3
+3.1.1 Seitenformat und Festlegung der richtigen Formatierung für zweizeilige Überschriften die eine Trennung von Hand erforderlich machen würden Fehler! Textmarke nicht definiert.
+3.2 Seitenränder 3
+3.3 Titel und Überschriften 3
+3.4 Textabsätze 3
+3.5 Kopfzeile 3
+3.6 Fußzeile 3
+3.7 Seitennummerierung 3
+3.8 Fußnoten 3
+3.9 Formeln 3
+3.10 Abbildungen 3
+3.11 Tabellen 3
+3.12 Abkürzungen 3
+3.13 Zitate 3
+3.14 Vorgabe für das Ausdrucken von Seiten 3
+4 Formatierung der Abschnitte 3
+4.1 Gestaltung des Titelblattes 3
+4.1.1 Titel der Arbeit 3
+4.1.2 Abstract 3
+4.2 Inhaltsverzeichnis 3
+4.3 Abbildungsverzeichnis 3
+4.4 Tabellenverzeichnis 3
+4.5 Abkürzungsverzeichnis 3
+4.6 Glossar 3
+4.7 Textkörper 3
+4.8 Literaturverzeichnis 3
+4.9 Eidesstattliche Erklärung 3
+5 Zeichenformate 3
+6 Literaturverzeichnis 3
+7 Eidesstattliche Erklärung 3
+8 Anhang 3
+8.1 Arbeitshypothese 3
+8.2 Leitfragen 3
+8.3 Projektplan 3
+8.4 Verbesserungsvorschläge 3
+
+
+Abbildungsverzeichnis
+Abbildung 3-1 : Auswahlmenü auf der web-Seite der HS Reutlingen 3
+
+
+Tabellenverzeichnis
+Tabelle 3-2 : Beispiele für Formatvorlagen 3
+
+Formelverzeichnis
+Formel 1 : Polstellenberechnung 3
+
+Abkürzungsverzeichnis
+Abb.	--	Abbildung
+MPG	--	Medizinproduktegesetz
+MS	--	Microsoft®
+Tab.	--	Tabelle
+
+Glossar
+Textkörper	Bezeichnung für den Bereich innerhalb der Arbeit, in dem die eigentliche Ausarbeitung enthalten ist
+
+Versionshinweis
+Diese Textvorlage wird als *.dotx Datei gespeichert und kann daher als Vorlage für die eigene Ausarbeitung verwendet werden. Die Vorlage wird in der nächsten Zeit noch weiter ausgearbeitet, so dass mit weiteren Versionen dieses Dokumentes zu rechnen ist. Aus diesem Grund erfolgt hier eine Versionsangabe. Bei Verwendung der Vorlage für eine Seminararbeit ist dieser Abschnitt zu löschen!
+Aktuelle Version: siehe Titelblatt
+Historie
+Ver.	Freigabe	Änderungen
+7.3	23.06.24	Beseitigung der Pflicht zur Unterzeichnung der eidesstattlichen Erklärung in SAT
+7.2	04.11.22	Optimierung des Inhaltsverzeichnisses für Überschriften, die sich über 2 Zeilen erstrecken. Einsatz von Franklin Gothic Book als Standardzeichensatz
+7.1	13.10.21	Abgleich Bearbeitungsvorgaben mit der Kursrichtlinie Version 8.2
+7.0	05.05.21	Änderungen in der Zeichenformatierung und entsprechende Hinweise im Text (Verwendung Franklin Gothic Book anstelle von Arial)
+6.0	09.03.19	Absatz für Projektplan
+5.0	12.11.18	Verbindliche Vorgabe der Gliederung
+4.4	10.12.17	Anpassungen zu Version 6 der Leitlinie
+4.3	13.03.17	Formelverzeichnis, Hypothese + Leitfragen im Anhang
+4.1	02.05.16	 nur redaktionelle Änderungen
+1	Einleitung
+Das hier vorliegende Dokument soll als Vorlage für die Gestaltung der im Seminarkurs Ausgewählte Themen der Medizinisch-Technischen Informatik erstellten schriftlichen Ausarbeitungen dienen.
+Es ist zu beachten, dass das Formatieren des Textes als einer der letzten Schritte der Ausarbeitung durchgeführt wird, da dieser Schritt erfahrungsgemäß viel Zeit in Anspruch nimmt und daher nur einmalig ausgeführt werden sollte.
+Der vorliegende Entwurf wurde mit Microsoft Office 2016 erstellt.
+Alle in diesem Dokument enthaltenen Hinweise zur Gestaltung des Dokumentes dürfen im daraus abgeleiteten Dokument nicht mehr enthalten sein und müssen somit gelöscht werden.
+
+2	Gliederung des Textes
+Nach jedem der nachfolgend genannten Abschnitte muss mit einer neuen Seite begonnen werden. Die Ausarbeitung muss die nachfolgend gegebene Gliederung aufweisen (Hauptüberschriften).
+Die als Liste angegeben Stichpunkte beschreiben, welche Inhalte in den Abschnitten behandelt werden sollten. Diese Stichpunkte sind, mit Ausnahme des Abschnitts „Verzeichnisse“, nicht zwingend als Unterüberschriften vorgegeben, können aber in gleicher oder ähnlicher Form verwendet werden, sofern dies sinnvoll erscheint. Achten Sie hierbei insbesondere darauf, dass ein mit einer Überschrift versehener Textblock nicht nur aus einem oder wenigen Sätzen bestehen darf.
+Titelseite mit Abstract
+Verzeichnisse
+	Inhaltsverzeichnis
+	Abbildungsverzeichnis
+	Tabellenverzeichnis
+	Formelverzeichnis
+	Abkürzungsverzeichnis
+	Glossar
+Einleitung
+	Beschreibung des Problems und der Forschungsaufgabe
+	Verdeutlichung der Relevanz für Wissenschaft und Gesellschaft
+	Hypothese
+	Definition der Leitfragen
+	Stand der Wissenschaft / Technik
+	Vorgehensweise zur Verifikation der Hypothese
+Methoden
+	Beschreibung der Umsetzung der Vorgehensweise zur Erzielung der gesuchten Ergebnisse (z.B. Aufbau der Messtechnik und Ablauf der Experimente, Beschreibung der Arbeitsinstrumente und Werkzeuge, Beschreibung der Lösungsprozesse oder Vorgehensweise bei der Literaturrecherche / Selektionskriterien, …)
+	Methoden müssen so beschrieben sein, dass andere Personen das Verfahren nachvollziehen/reproduzieren können.
+Ergebnisse
+	Darstellung der über die Untersuchungsmethoden erzielten Ergebnisse (objektive Darstellung)
+	Stellungnahme zur Verifikation der Hypothese durch Beantwortung der Leitfragen
+Diskussion
+	Interpretation der Ergebnisse (was lässt sich aus den Daten folgern à subjektive Beurteilung / persönliche Meinung)
+	Vergleich der Ergebnisse mit den bisher bekannten Daten (Bewertung der Ergebnisse aus der Literatur: gibt es Übereinstimmung oder Widersprüche; wie lassen sich mögliche Widersprüche erklären?)
+Zusammenfassung
+	Kurze Beschreibung der Fragestellung und der Ergebnisse
+	Ausblick und Empfehlungen
+Literaturverzeichnis
+Danksagungen
+	Benennung der Sponsoren
+	Nennung der Hilfspersonen und deren Aufgabengebiet
+Eidesstattliche Erklärung
+	Der hier im Dokument gegebene Text muss übernommen werden.
+	Das Dokument muss unterschrieben werden (z.B. durch die Verwendung der pdf-Unterschriftsfunktion im Acrobat Reader).
+Anhang
+	Der hier im Dokument gegebene Text muss übernommen werden.
+
+3	Seitenformatierung
+3.1	Seitenformat
+	DinA4, hochkant
+3.2	Seitenränder
+	Linker Rand:   4 cm
+	Rechter Rand:   3 cm
+	Oberer Rand:   3 cm
+	Unterer Rand:   2 cm
+Jeder neue Absatz hat zum vorhergehenden Absatz einen Abstand von 6 Punkten. Für Listen (siehe letzter Absatz) gibt es die Formatvorlage „Listenabsatz“, bei der kein Abstand zwischen den Absätzen enthalten ist.
+Die Ausrichtung des Textes und aller Überschriften erfolgt linksbündig mit Flattersatz. Nach Möglichkeit muss die Silbentrennung eingesetzt werden, damit der Flattersatz den Gesamteindruck der Druckseite nicht zu sehr beeinträchtigt. Es wird empfohlen, zur Silbentrennung sogenannte bedingte Trennstriche einzusetzen.
+3.3	Titel und Überschriften
+Titel und Überschriften müssen kurz und aussagekräftig sein. Überschriften dürfen sich nicht wiederholen, sondern müssen eindeutig voneinander zu unterscheiden sein.
+Die Gliederung des Textes sollte maximal über 2 Ebenen erfolgen. Es ist darauf zu achten, dass nicht jeder Absatz eine eigene Kapitelüberschrift erhält (siehe oben).
+3.4	Textabsätze
+Ein Absatz darf nie mit einer einzelnen Zeile auf einer neuen Seite enden oder mit einer einzelnen Zeile am Seitenende beginnen. Dies gilt in gleicher Weise für Überschriften.
+Die Länge eines Absatzes ist auf maximal 400 Zeichen zu beschränken.
+Absätze werden nicht willkürlich gesetzt. Sie sollen dazu dienen das Dokument nicht nur formal, sondern auch inhaltlich zu gliedern und somit das Lesen und Verstehen des Textes erleichtern.
+Die Silbentrennung ist so einzusetzen, dass jede Zeile möglichst bis zum Zeilenrand beschrieben ist. Beim Einsatz von Blocksatz ist darauf zu achten, dass die Lücken zwischen den Worten nicht zu groß werden.
+Zwischen den einzelnen Absätzen ist ein Abstand von 6 Punkten einzuhalten.
+3.5	Kopfzeile
+Der Aufbau der Kopfzeile erfolgt, mit Ausnahme der Titelseite, gemäß dem in diesem Dokument enthaltenen Beispiel und beinhaltet auch die Kapitelnummer und –überschrift der ersten Ebene.
+3.6	Fußzeile
+Der Aufbau der Fußzeile erfolgt, mit Ausnahme der Titelseite, gemäß dem in diesem Dokument enthaltenen Beispiel.
+3.7	Seitennummerierung
+Die Seitennummerierung erfolgt entsprechend der Darstellung in diesem Dokument. Die Zählung beginnt bei 0 für das Titelblatt, so dass die erste Verzeichnisseite die Nummer 1 aufweist.
+3.8	Fußnoten
+Fußnoten werden im Text durch eine hochgestellte Ziffer grundsätzlich nach einem Satzzeichen (Komma, Strichpunkt, Punkt, Fragezeichen, Ausrufungszeichen, Gedankenstrich) referenziert. Die Fußnotennummerierung erfolgt fortlaufend über die gesamte Arbeit.
+Erläuterungen zu den Fußnoten erfolgen oberhalb der Fußzeile und reduzieren die Zeilenzahl des Textkörpers. Der Beginn einer Fußnote wird durch einen linksbündigen horizontalen Strich, dessen Länge ca. 30% Breite des Textblockes beträgt, vom Textkörper abgetrennt.
+Die Fußnotentexte sollten nicht länger als 4 Zeilen sein. Ebenso sollte vermieden werden, den Umbruch der Fußnoten auf die nächste Seite zu erzwingen.
+3.9	Formeln
+Formeln werden vom Rand einheitlich um 1 cm eingerückt und vom vorhergehenden und nachfolgenden Absatz um zwei Zeilen abgesetzt. Jede Formel ist über eine fortlaufend aufsteigend zu vergebende Nummer zu kennzeichnen. Bei Formeln, die durch Umformung auseinander hervorgehen, können die Zwischenschritte durch eine einheitliche Nummer, ergänzt um einen Buchstaben, referenziert werden.
+Beispiel:
+x=(-b±√(b^2-4ac))/( 2a)
+Formel 1 : Polstellenberechnung
+Um die Platzierung der automatischen Referenzierung der Formel auf der rechten Seite der Formel platzieren zu können, kann, wie oben gezeigt, eine Tabelle ohne sichtbare Ränder eingesetzt werden
+3.10	Abbildungen
+Abbildungen können an beliebiger Stelle im Text eingebaut werden. Jede Abbildung erhält eine Nummer, die sich aus der Abschnittsnummer der Ebene 1 und einer fortlaufenden, in jedem Abschnitt bei Eins beginnenden Nummer ergibt. Der Nummer folgt eine kurze Beschreibung zum Bild, die unterhalb des Bildes platziert wird. Die Nummer kann in Verbindung mit der Abkürzung Abb. oder dem Wort Abbildung zur Referenzierung einer Abbildung im Text eingesetzt werden. Hierzu werden im Text runde Klammern verwendet, z.B. (Abbildung 1) oder (Abb. 23).
+Alle Abbildungsnummern und – überschriften werden im Abbildungsverzeichnis referenziert. In Microsoft Word 2013 kann die Erstellung eines Abbildungsverzeichnisses automatisiert werden. Hierzu wird die Formatvorlage Beschriftung zur Verfügung gestellt.
+
+
+
+Werden Abbildungen aus fremden Quellen übernommen, so müssen die Copyrightvorgaben berücksichtigt werden, d.h. die Quelle der Abbildung muss angegeben und im Literaturverzeichnis referenziert werden. Für alle Abbildungen ohne Referenz beansprucht der Autor / die Autorin die eigene Urheberschaft. Dementsprechend dürfen selbst erstellte Abbildungen nicht mit Angaben wie „eigene Abbildung“ o.ä. versehen werden.
+3.11	Tabellen
+Tabellen können an beliebiger Stelle im Text eingebaut werden. Die erste Zeile einer Tabelle enthält die Spaltenbeschriftung, die erste Spalte ggf. die Zeilenbeschriftung.
+Es ist darauf zu achten, dass innerhalb einer Tabellenzeile kein Seitenumbruch erfolgt. Ist es erforderlich einen Seitenumbruch zwischen den Zeilen durchzuführen, so muss auf der nächsten Seite die Beschriftung der Spalten wiederholt werden.
+
+Formatbezeichner	Schrift	Größe	kursiv
+Überschrift 1	Franklin Gothic Book	16	nein
+Eigennamen	Times New Roman	12	ja
+ Tabelle 3-1 : Beispiele für Formatvorlagen
+Auch die Tabellen werden in gleicher Form wie die Abbildungen nummeriert und beschriftet. Der Nummer wird hierbei das Präfix Tabelle oder Tab. vorangestellt. Aus den Referenznummern und der Beschreibung wird das am Anfang der Ausarbeitung stehende Tabellenverzeichnis erstellt. In Microsoft Word 2013 wird dies wiederum durch die Verwendung der Formatvorlage Beschriftung vereinfacht.
+Wenn bei einer Tabelle die Umrandung nicht sichtbar ist, so sollte der Einzug auf der linken Seite auf 0 cm gesetzt werden, damit der Text der Tabelle bündig zum Zeilenbeginn aller weiteren Textelemente steht.
+3.12	Abkürzungen
+Abkürzungen dürfen nur verwendet werden, wenn dies bei sehr häufiger Verwendung umfänglicher Begriffe zu einer erheblichen Ersparnis des Textumfanges führt und die Verständlichkeit des Textes nicht verschlechtert wird. Die Verwendung von allgemein gebräuchlichen Abkürzungen ist ebenfalls möglich. Ganz verzichten sollte man jedoch auf die Verwendung von selbst erfundenen Abkürzungen (Theisen, 2013, S. 213).
+Abkürzungen sind innerhalb des Textes bei der ersten Verwendung in runden Klammern nach der vollständigen Angabe des nicht abgekürzten Textes zu benennen und im Abkürzungsverzeichnis aufzuführen. Wird zum Beispiel vom Medizinproduktegesetz (MPG) gesprochen, so kann dies später nur noch als MPG bezeichnet werden.
+3.13	Zitate
+In der Seminararbeit werden die Hinweise auf die verwendete Literatur im Stil APA 6th durchgeführt. Dieser Stil wird von MS Word direkt unterstützt.
+3.14	Vorgabe für das Ausdrucken von Seiten
+Der Ausdruck erfolgt vorzugsweise beidseitig (Papier einsparen!). Bei der Formatierung wird nicht zwischen linker und rechter Seite unterschieden.
+Die Ausarbeitung muss als pdf-Datei abgegeben werden.
+
+4	Formatierung der Abschnitte
+4.1	Gestaltung des Titelblattes
+Die Gestaltung des Titelblattes erfolgt wie im Titelblatt dieses Dokumentes.
+4.1.1	Titel der Arbeit
+Abstand zum oberen Blattrand:  6 cm
+Ausrichtung: zentriert
+Email-Anschrift: Als Hyperlink kenntlich machen
+4.1.2	Abstract
+Alle für die Formatierung erforderlichen Informationen sind auf dem Titelblatt dieses Dokumentes enthalten.
+4.2	Inhaltsverzeichnis
+Das Inhaltsverzeichnis soll gemäß der in diesem Dokument enthaltenen Vorlage erstellt werden. Das Verzeichnis darf nicht mehr als 3 Ebenen umfassen. Halten Sie die Struktur so flach wie möglich.
+4.3	Abbildungsverzeichnis
+Das Abbildungsverzeichnis soll gemäß der in diesem Dokument enthaltenen Vorlage erstellt werden. In MS Word kann das Verzeichnis automatisch erstellt werden, wenn die Formatvorlage Beschriftung verwendet wird.
+4.4	Tabellenverzeichnis
+Das Tabellenverzeichnis soll gemäß der in diesem Dokument enthaltenen Vorlage erstellt werden. In MS Word kann das Verzeichnis automatisch erstellt werden, wenn die Formatvorlage Beschriftung verwendet wird.
+4.5	Abkürzungsverzeichnis
+Das Abkürzungsverzeichnis kann in Form einer Tabelle mit 3 Spalten, deren Rand nicht sichtbar ist, dargestellt werden. Allgemein bekannte Abkürzungen sollen nicht in das Verzeichnis aufgenommen werden.
+4.6	Glossar
+Das Glossar dient dazu, dem Leser vermutlich nicht bekannte Fachbegriffe zu erläutern. Das Glossar ist nicht zu verwechseln mit dem Index, welcher im Rahmen dieser Seminararbeit nicht zur Anwendung kommt. Das Glossar kann in Form einer Tabelle mit 2 Spalten, deren Rand nicht sichtbar ist, dargestellt werden.
+4.7	Textkörper
+Die Gestaltung und Unterteilung des Textkörpers in verschiedene Abschnitte muss entsprechend der Beschreibung der Inhalte erfolgen (siehe oben). Es gibt jedoch auch andere Ansätze für den Entwurf einer sinnvollen Gliederung (Ahrens, 2014).
+4.8	Literaturverzeichnis
+Die Anleitungen zur Gestaltung des Literaturverzeichnisses sind in der Regel sehr umfänglich und wurden bereits vielfach beschrieben. Trotzdem lässt sich aus der Literatur kein eindeutiger Standard entnehmen und für die Beschreibung von Quellen aus dem Internet fehlen die Angaben oftmals gänzlich.
+Anstelle einer erneuten detaillierten Zusammenstellung der Vorschriften erfolgt daher an dieser Stelle nur die Beschreibung von einigen allgemeinen Regeln, die bei der Seminararbeit beachtet werden müssen:
+	Im Literaturverzeichnis werden die Quellen in alphabethischer Ordnung, sortiert nach dem Nachnamen des Hauptautors, aufgelistet.
+	Materialien die aus dem Internet geladen werden, müssen neben der Angabe der URL und des Zugriffsdatums ebenfalls mit den Namen der Verfasserinnen / Verfasser, dem Titel des Dokumentes und aller weitere Referenzbezeichnungen (Erscheinungsjahr, Ort, …) beschrieben werden, die für das entsprechende Dokument verfügbar sind. Ist kein Verfasser genannt, so muss statt dem Namen des Autors die Abkürzung o.V. eingetragen werden. Ist eine Quelle neben der Zugriffsmöglichkeit über das Internet auch noch über ein offiziell referenziertes Druckmedium verfügbar, so muss grundsätzlich das Druckmedium benannt werden!
+Für die Qualität des Literaturverzeichnisses ist entscheidend, dass der gewählte Stil (Format: APA 6th) einheitlich angewendet wird.
+Sehr hilfreich kann hierbei die Verwendung der Funktion zur automatischen Erstellung eines Literaturverzeichnisses, wie in MS Word (Hahner, Scheide, & Wilke-Thissen, 2011) oder OpenOffice, sein. Es besteht auch die Möglichkeit, das Literaturverwaltungsprogramm CITAVI zu verwenden, auf das Hochschulangehörige kostenfrei Zugriff haben.
+4.9	Eidesstattliche Erklärung
+Die eidesstattliche Erklärung muss unterschrieben, gescannt und als letzte Seite ausgedruckt werden (als pdf-Datei zur Abgabe oder auf Papier).
+5	Zeichenformate
+Titel:  24 Punkte Franklin Gothic Book
+Standardtext: 12 Punkte Franklin Gothic Book
+Überschrift 1: 16 Punkte Franklin Gothic Book
+Überschrift 2: 14 Punkte Franklin Gothic Book
+Überschrift 3: 12 Punkte Franklin Gothic Book fett
+Inhaltsverzeichnis: 10 Punkte Franklin Gothic Book
+Abb.-verzeichnis: 10 Punkte Franklin Gothic Book
+Tab.-verzeichnis: 10 Punkte Franklin Gothic Book
+Abk.-verzeichnis: 10 Punkte Franklin Gothic Book
+Glossar:  10 Punkte Franklin Gothic Book
+Zitate:  12 Punkte Franklin Gothic Book
+Kopfzeilen: 12 Punkte Franklin Gothic Book; 1-zeilig
+Fußzeilen:  10 Punkte Franklin Gothic Book; 1-zeilig
+Fußnoten:  10 Punkte Franklin Gothic Book
+Abstract:   10 Punkte Times New Roman kursiv
+
+Abstand Tabulatoren: 2 cm
+Auf Hervorhebungen von Text mittels Fettdruck, Unterstreichungen, etc. soll verzichtet werden. Bei der Nennung von Eigennamen kann eine Kursivschrift mit Serifen (z.B. Times New Roman, kursiv) verwendet werden. Hierfür wird Ihnen in diesem Dokument die Formatvorlage Eigennamen bereitgestellt.
+6	Literaturverzeichnis
+Ahrens, V. (2014). Abschlussarbeiten richtig gliedern in Naturwissenschaften, Technik und Wirtschaft. Zürich: vdf Hochschulverlag AGan der ETH Zürich.
+Brunner, H., Knietel, D., Mader, R., & Resinger, P. (2015). Leitfaden zur Bachelor- und Masterarbeit. Marburg: Tectum Verlag.
+Hahner, M., Scheide, W., & Wilke-Thissen, E. (2011). Wissenschaftliche[s] Arbeiten mit Word 2010. Köln: O'Reilly Verlag GmbH & Co. KG.
+Reiter, M. (2011). Schreibtipps für Studierende. Stuttgart: Schäffer-Poeschel Verlag.
+Theisen, M. R. (2013). Wissenschaftliches Arbeiten. München: Verlag Franz Vahlen GmbH.
+Wagner, L. (2007). Die wissenschaftliche Abschlussarbeit. Saarbrücken: Verlag Dr. Müller.
+
+
+
+7	Eidesstattliche Erklärung
+Hiermit erkläre ich an Eides statt, dass ich die vorliegende Arbeit selbstständig erstellt, keine nicht genannte fremde Hilfe in Anspruch genommen und alle von mir verwendeten Hilfsmittel und Quellen in der Arbeit benannt und kenntlich gemacht habe. Die Arbeit oder Teile davon wurden in keinem Prüfungsmodul zur Prüfung vorgelegt und verletzt in keiner Weise Rechte Dritter.
+Mir ist bekannt, dass eine unwahre Erklärung als Täuschung gewertet wird.
+
+
+Nicht ausfüllen Nicht ausfüllen Nicht ausfüllen
+______________ ___________ ________________________
+Ort,  Datum  Unterschrift
+    (Vor- und Nachname)
+
+8	Anhang
+8.1	Arbeitshypothese
+[Hier die Arbeitshypothese eintragen]
+
+8.2	Leitfragen
+[Worin liegen die wichtigsten Anforderungen zum Inhalt der Arbeit (inhaltliche Ziele / Leitfragen der Ausarbeitung)? Dies sind die hauptsächlichen Fragestellungen, über welche die Arbeitshypothese verifiziert wird. Die Validierung der Leitfragen erfolgt, indem in die rechte Spalte ein Querverweis auf den Abschnitt oder eine zuvor definierte Textmarke erfolgt, in dem die Leitfrage erschöpfend und erkennbar behandelt wurde]
+#	Leitfrage	Beantwortung der Leitfrage (Validierung)
+1
+2
+3
+4
+5
+
+8.3	Projektplan
+[Hier das Gantt-Diagramm einfügen, welches bereits in Version 1 der Ausarbeitung abgegeben werden muss. Das Gantt Diagramm muss die Vorgänge mit Anordnungsbeziehungen versehen. Verwenden Sie ein geeignetes Programm, wie z.B. Visio oder OpenProject, TeamGantt oder Redmine oder … Das Diagramm muss so gestaltet sein, dass es ein wirksames Projektcontrolling ermöglicht (nicht zu trivial aber auch nicht zu detailliert) und bei der Zwischenpräsentation ermöglicht, einen Soll/Istvergleich durchzuführen.]
+
+8.4	Verbesserungsvorschläge
+[Nur in Version 2 zu bearbeiten: Übernehmen Sie die Verbesserungsvorschläge aus den Kommentaren der Korrektur von Version 1 der Ausarbeitung (pdf-Feedback) und leiten Sie die Vorschläge mit einer Überschrift ein (Format Überschrift 4 – diese darf im Inhaltsverzeichnis nicht erscheinen). Verlinken Sie den Text des Verbesserungsvorschlages mit dem Absatz, in dem Sie die entsprechende Korrektur durchgeführt haben. Sofern der Verbesserungsvorschlag auf mehrere Absätze zutrifft, führen Sie die Verbesserung im gesamten Dokument aus. Es genügt jedoch die Verlinkung mit nur einem Absatz. Beachten Sie, dass die Überarbeitung im Änderungsmodus durchgeführt werden muss, so dass erkennbar ist, welche Form der Änderung stattgefunden hat.
+Beispiel:
+8.4.1.1	VS001-Kommasetzung beachten
+Text aus dem Kommentar
+
+
+---
+IGNORE ME:
+
+In [RAW_OLD_REQUIREMENTS.txt] findest du die roh (aus der Word) kopierten Anforderungen der alten Word-Vorlage. Füge den Text als Chapters angepasst auf die Gegebenheiten unseres Templates ein. Füge ein extra Chapter ein, dass die Features des Templates demonstriert.

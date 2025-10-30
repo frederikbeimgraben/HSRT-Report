@@ -35,8 +35,7 @@
 % Equation Formatting Configuration
 % ==============================================================================
 % Set equation indentation to 1cm from margin
-% Note: Equation indentation requires document class configuration
-% This will be handled via custom equation environments if needed
+% We redefine the equation environment to add left margin
 
 % Configure vertical spacing around equations
 % Two lines spacing before and after equations as per requirements
@@ -44,6 +43,59 @@
 \setlength{\belowdisplayskip}{24pt plus 6pt minus 6pt}
 \setlength{\abovedisplayshortskip}{12pt plus 3pt minus 3pt}
 \setlength{\belowdisplayshortskip}{12pt plus 3pt minus 3pt}
+
+% Save original equation environments
+\let\originalequation\equation
+\let\endoriginalequation\endequation
+\let\originalequationstar\[
+	\let\endoriginalequationstar\]
+
+% Redefine equation environment with 1cm left indent
+\renewenvironment{equation}{%
+	\vspace{\abovedisplayskip}%
+	\noindent\hspace{1cm}\begin{minipage}{\dimexpr\textwidth-1cm\relax}%
+		\originalequation%
+		}{%
+		\endoriginalequation%
+	\end{minipage}%
+	\vspace{\belowdisplayskip}%
+}
+
+% Redefine displaymath with 1cm left indent
+\renewenvironment{displaymath}{%
+	\vspace{\abovedisplayskip}%
+	\noindent\hspace{1cm}\begin{minipage}{\dimexpr\textwidth-1cm\relax}%
+		\[%
+			}{%
+		\]%
+	\end{minipage}%
+	\vspace{\belowdisplayskip}%
+}
+
+% ==============================================================================
+% Alternative Indented Equation Environments
+% ==============================================================================
+% These can be used when you don't want global indentation
+\newenvironment{indentedequation}{%
+	\vspace{\abovedisplayskip}%
+	\noindent\hspace{1cm}\begin{minipage}{\dimexpr\textwidth-1cm\relax}%
+		\originalequation%
+		}{%
+		\endoriginalequation%
+	\end{minipage}%
+	\vspace{\belowdisplayskip}%
+}
+
+% Define unnumbered version
+\newenvironment{indentedequation*}{%
+	\vspace{\abovedisplayskip}%
+	\noindent\hspace{1cm}\begin{minipage}{\dimexpr\textwidth-1cm\relax}%
+		\[%
+			}{%
+		\]%
+	\end{minipage}%
+	\vspace{\belowdisplayskip}%
+}
 
 % ==============================================================================
 % End of Equations Configuration Module

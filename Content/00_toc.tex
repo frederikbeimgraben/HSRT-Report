@@ -15,12 +15,17 @@
 % Generate the main table of contents with custom formatting
 % The blenderfont provides a consistent typographic style
 % ------------------------------------------------------------------------------
-{
 \newpage
 \pagestyle{fancy}
-\blenderfont
-\vspace*{-5.5em}
-\tableofcontents
+{
+	% Remove title
+	\let\oldcontentsname\contentsname
+	\renewcommand{\contentsname}{}
+
+	% Formatting
+	\blenderfont
+	\chapter*{\oldcontentsname}
+	\tableofcontents
 }
 
 % Add vertical fill to push subsequent content down
@@ -35,23 +40,37 @@
 \newpage
 \pagestyle{fancy}
 {
+	% Remove titles
+	\let\oldlistfigurename\listfigurename
+	\let\oldlisttablename\listtablename
+	\let\oldlstlistlistingname\lstlistlistingname
+	\let\oldlistequationsname\listequationsname
+	\renewcommand{\listfigurename}{}
+	\renewcommand{\listtablename}{}
+	\renewcommand{\lstlistlistingname}{}
+	\renewcommand{\listequationsname}{}
+
+	% Formatting
 	\noindent
 	\blenderfont
 
 	% List of Figures
-	\vspace*{-2.25em}
+	\chapter*{\oldlistfigurename}
 	\listoffigures
 
 	% List of Tables
 	\vspace{1em}
+	\chapter*{\oldlisttablename}
 	\listoftables
 
 	% List of Listings
 	\vspace{1em}
+	\chapter*{\oldlstlistlistingname}
 	\lstlistoflistings
 
 	% List of Equations
 	\vspace{1em}
+	\chapter*{\oldlistequationsname}
 	\listofmyequations
 }
 

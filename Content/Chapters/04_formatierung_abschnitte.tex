@@ -1,0 +1,123 @@
+% !TEX root = ../../Main.tex
+% ==============================================================================
+% Kapitel 4: Formatierung der Abschnitte
+% ==============================================================================
+% Description: Spezifische Formatierungsanforderungen für verschiedene Abschnitte
+% ==============================================================================
+
+\chapter{Formatierung der Abschnitte}
+\label{chap:formatierung_abschnitte}
+
+\section{Gestaltung des Titelblattes}
+\label{sec:titelblatt}
+
+Die Gestaltung des Titelblattes erfolgt automatisch durch das Template. Alle erforderlichen Informationen werden in der Datei \texttt{Settings/General.tex} konfiguriert.
+
+\subsection{Titel der Arbeit}
+\label{subsec:titel_arbeit}
+
+Der Titel der Arbeit wird mit folgenden Eigenschaften formatiert:
+\begin{listenabsatz}
+	\item Abstand zum oberen Blattrand: 6\,cm
+	\item Ausrichtung: zentriert
+	\item Schriftgröße: 24 Punkte
+	\item E-Mail-Anschrift: Als Hyperlink kenntlich gemacht
+\end{listenabsatz}
+
+\subsection{Abstract}
+\label{subsec:abstract}
+
+Das Abstract wird auf der Titelseite platziert und hat folgende Eigenschaften:
+\begin{listenabsatz}
+	\item Schriftart: Times New Roman kursiv
+	\item Schriftgröße: 10 Punkte
+	\item Maximale Länge: 150--250 Wörter
+	\item Inhalt: Zielsetzung, Methoden und Ergebnisse der Arbeit
+\end{listenabsatz}
+
+Das Abstract soll es den Lesern und Leserinnen ermöglichen, innerhalb von wenigen Augenblicken zu erfassen, welcher Inhalt hinter der Überschrift steckt und ob das Thema zur weiteren Bearbeitung lohnt.
+
+\section{Inhaltsverzeichnis}
+\label{sec:inhaltsverzeichnis_format}
+
+Das Inhaltsverzeichnis wird automatisch generiert und umfasst:
+\begin{listenabsatz}
+	\item Maximal 3 Gliederungsebenen
+	\item Schriftgröße: 10 Punkte
+	\item Automatische Seitenzahlen mit Punktführung
+	\item Struktur so flach wie möglich halten
+\end{listenabsatz}
+
+\section{Abbildungsverzeichnis}
+\label{sec:abbildungsverzeichnis}
+
+Das Abbildungsverzeichnis wird automatisch aus allen mit \texttt{\textbackslash caption} versehenen Abbildungen erstellt. Die Formatierung erfolgt analog zum Inhaltsverzeichnis mit 10 Punkt Schriftgröße.
+
+\section{Tabellenverzeichnis}
+\label{sec:tabellenverzeichnis}
+
+Das Tabellenverzeichnis wird automatisch aus allen mit \texttt{\textbackslash caption} versehenen Tabellen erstellt. Die Formatierung entspricht dem Abbildungsverzeichnis.
+
+\section{Abkürzungsverzeichnis}
+\label{sec:abkuerzungsverzeichnis}
+
+Das Abkürzungsverzeichnis wird durch das \texttt{glossaries}-Paket verwaltet und hat folgende Eigenschaften:
+\begin{listenabsatz}
+	\item Tabellarische Darstellung mit drei Spalten
+	\item Alphabetische Sortierung
+	\item Allgemein bekannte Abkürzungen werden nicht aufgenommen
+	\item Schriftgröße: 10 Punkte
+\end{listenabsatz}
+
+\section{Glossar}
+\label{sec:glossar}
+
+Das Glossar dient dazu, dem Leser vermutlich nicht bekannte Fachbegriffe zu erläutern. Das Glossar ist nicht zu verwechseln mit dem Index, welcher im Rahmen dieser Seminararbeit nicht zur Anwendung kommt.
+
+Das Glossar wird ebenfalls durch das \texttt{glossaries}-Paket verwaltet:
+\begin{listenabsatz}
+	\item Tabellarische Darstellung mit zwei Spalten
+	\item Alphabetische Sortierung
+	\item Schriftgröße: 10 Punkte
+\end{listenabsatz}
+
+\section{Textkörper}
+\label{sec:textkoerper}
+
+Die Gestaltung und Unterteilung des Textkörpers in verschiedene Abschnitte muss entsprechend der Beschreibung der Inhalte erfolgen. Der Haupttext verwendet:
+\begin{listenabsatz}
+	\item Schriftart: Franklin Gothic Book (oder Systemalternative)
+	\item Schriftgröße: 12 Punkte
+	\item Zeilenabstand: 1,5-fach
+	\item Absatzabstand: 6 Punkte
+	\item Ausrichtung: Blocksatz mit Silbentrennung
+\end{listenabsatz}
+
+\section{Literaturverzeichnis}
+\label{sec:literaturverzeichnis_format}
+
+Das Literaturverzeichnis wird automatisch durch BibLaTeX generiert und folgt diesen Regeln:
+
+Die Quellen werden in alphabetischer Ordnung, sortiert nach dem Nachnamen des Hauptautors, aufgelistet.
+
+Materialien, die aus dem Internet geladen werden, müssen neben der Angabe der URL und des Zugriffsdatums ebenfalls mit den Namen der Verfasser/innen, dem Titel des Dokumentes und allen weiteren Referenzbezeichnungen (Erscheinungsjahr, Ort, etc.) beschrieben werden, die für das entsprechende Dokument verfügbar sind.
+
+Ist kein Verfasser genannt, so muss statt dem Namen des Autors die Abkürzung o.\,V. eingetragen werden. Ist eine Quelle neben der Zugriffsmöglichkeit über das Internet auch noch über ein offiziell referenziertes Druckmedium verfügbar, so muss grundsätzlich das Druckmedium benannt werden!
+
+Für die Qualität des Literaturverzeichnisses ist entscheidend, dass der gewählte Stil (Format: APA) einheitlich angewendet wird.
+
+\section{Eidesstattliche Erklärung}
+\label{sec:eidesstattliche_erklaerung}
+
+Die eidesstattliche Erklärung muss:
+\begin{listenabsatz}
+	\item Den vorgegebenen Text verwenden
+	\item Unterschrieben werden (z.\,B. durch PDF-Unterschriftsfunktion)
+	\item Als letzte Seite vor dem Anhang eingefügt werden
+\end{listenabsatz}
+
+Der Wortlaut der Erklärung ist vorgegeben und darf nicht verändert werden.
+
+% ==============================================================================
+% End of Kapitel 4
+% ==============================================================================

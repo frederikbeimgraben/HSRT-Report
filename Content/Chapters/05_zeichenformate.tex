@@ -1,0 +1,115 @@
+% !TEX root = ../../Main.tex
+% ==============================================================================
+% Kapitel 5: Zeichenformate
+% ==============================================================================
+% Description: Übersicht über die verwendeten Zeichenformate
+% ==============================================================================
+
+\chapter{Zeichenformate}
+\label{chap:zeichenformate}
+
+Die Zeichenformatierung ist ein wesentlicher Bestandteil der Dokumentgestaltung. Im Folgenden sind die Vorgaben für die verschiedenen Textelemente aufgeführt.
+
+\section{Übersicht der Zeichenformate}
+\label{sec:zeichenformate_uebersicht}
+
+Die folgende Tabelle gibt eine Übersicht über alle verwendeten Zeichenformate:
+
+\begin{table}[h]
+	\centering
+	\caption{Zeichenformate im Dokument}
+	\label{tab:zeichenformate}
+	\begin{tabular}{|l|l|c|}
+		\hline
+		\textbf{Element}   & \textbf{Schriftart}         & \textbf{Größe (pt)} \\
+		\hline
+		Titel              & Franklin Gothic Book        & 24                  \\
+		Standardtext       & Franklin Gothic Book        & 12                  \\
+		Überschrift 1      & Franklin Gothic Book        & 16                  \\
+		Überschrift 2      & Franklin Gothic Book        & 14                  \\
+		Überschrift 3      & Franklin Gothic Book (fett) & 12                  \\
+		\hline
+		Inhaltsverzeichnis & Franklin Gothic Book        & 10                  \\
+		Abb.-verzeichnis   & Franklin Gothic Book        & 10                  \\
+		Tab.-verzeichnis   & Franklin Gothic Book        & 10                  \\
+		Abk.-verzeichnis   & Franklin Gothic Book        & 10                  \\
+		Glossar            & Franklin Gothic Book        & 10                  \\
+		\hline
+		Zitate             & Franklin Gothic Book        & 12                  \\
+		Kopfzeilen         & Franklin Gothic Book        & 12                  \\
+		Fußzeilen          & Franklin Gothic Book        & 10                  \\
+		Fußnoten           & Franklin Gothic Book        & 10                  \\
+		Abstract           & Times New Roman (kursiv)    & 10                  \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\section{Formatierungsrichtlinien}
+\label{sec:formatierungsrichtlinien}
+
+\subsection{Standardtext}
+\label{subsec:standardtext}
+
+Der Standardtext verwendet Franklin Gothic Book in 12 Punkt Größe. Diese Schriftart bietet eine gute Lesbarkeit sowohl auf Bildschirmen als auch im Druck. In \LaTeX{} wird eine passende Alternative automatisch ausgewählt, falls die exakte Schriftart nicht verfügbar ist.
+
+\subsection{Überschriften}
+\label{subsec:ueberschriften_format}
+
+Die Hierarchie der Überschriften wird durch unterschiedliche Schriftgrößen deutlich gemacht:
+\begin{listenabsatz}
+	\item Überschrift 1. Ebene: 16 Punkte
+	\item Überschrift 2. Ebene: 14 Punkte
+	\item Überschrift 3. Ebene: 12 Punkte (fett)
+\end{listenabsatz}
+
+Alle Überschriften verwenden die gleiche Schriftart wie der Standardtext, um ein einheitliches Erscheinungsbild zu gewährleisten.
+
+\subsection{Verzeichnisse}
+\label{subsec:verzeichnisse_format}
+
+Alle Verzeichnisse (Inhalts-, Abbildungs-, Tabellen-, Abkürzungsverzeichnis und Glossar) werden einheitlich in 10 Punkt Schriftgröße formatiert. Dies sorgt für eine kompakte Darstellung bei gleichzeitig guter Übersichtlichkeit.
+
+\subsection{Spezielle Formatierungen}
+\label{subsec:spezielle_formatierungen}
+
+\subsubsection{Eigennamen}
+Bei der Nennung von Eigennamen kann eine Kursivschrift mit Serifen verwendet werden, beispielsweise \emph{Times New Roman} in kursiv. Dies hebt Eigennamen vom restlichen Text ab.
+
+\subsubsection{Hervorhebungen}
+Auf Hervorhebungen von Text mittels Fettdruck, Unterstreichungen etc. soll generell verzichtet werden. Ausnahmen bilden:
+\begin{listenabsatz}
+	\item Überschriften der dritten Ebene (fett)
+	\item Tabellenköpfe (fett)
+	\item Eigennamen (kursiv mit Serifen)
+\end{listenabsatz}
+
+\subsubsection{Abstract}
+Das Abstract auf der Titelseite verwendet als einziges Element \emph{Times New Roman} in kursiv mit 10 Punkt Schriftgröße. Diese Formatierung hebt das Abstract visuell vom restlichen Dokument ab.
+
+\section{Tabulatoren und Abstände}
+\label{sec:tabulatoren}
+
+Der Abstand für Tabulatoren beträgt einheitlich 2\,cm. Dies gewährleistet eine konsistente Einrückung bei:
+\begin{listenabsatz}
+	\item Listen und Aufzählungen
+	\item Eingerückten Zitaten
+	\item Formeln (1\,cm Einrückung)
+	\item Strukturierten Daten
+\end{listenabsatz}
+
+\section{Technische Umsetzung in \LaTeX}
+\label{sec:technische_umsetzung}
+
+In \LaTeX{} werden die Zeichenformate automatisch durch die Dokumentklasse und die gewählten Pakete umgesetzt. Die HSRTReport-Klasse definiert:
+\begin{listenabsatz}
+	\item Standardschriftart und -größe
+	\item Überschriftformatierung durch KOMA-Script
+	\item Verzeichnisformatierung durch \texttt{tocloft}
+	\item Spezialformatierungen durch entsprechende Befehle
+\end{listenabsatz}
+
+Die konsistente Anwendung der Zeichenformate trägt wesentlich zur Professionalität und Lesbarkeit des Dokuments bei.
+
+% ==============================================================================
+% End of Kapitel 5
+% ==============================================================================

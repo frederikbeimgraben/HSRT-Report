@@ -1,0 +1,343 @@
+% !TEX root = ../../Main.tex
+% ==============================================================================
+% Kapitel 6: Template-Features Demonstration
+% ==============================================================================
+% Description: Demonstration aller Features des HSRTReport Templates
+% ==============================================================================
+
+\chapter{Template-Features Demonstration}
+\label{chap:template_demo}
+
+Dieses Kapitel demonstriert die verschiedenen Funktionen und Möglichkeiten des HSRTReport-Templates für wissenschaftliche Arbeiten.
+
+\section{Textformatierung}
+\label{sec:textformatierung_demo}
+
+\subsection{Grundlegende Textauszeichnungen}
+\label{subsec:textauszeichnungen}
+
+Das Template unterstützt verschiedene Textauszeichnungen:
+\begin{listenabsatz}
+	\item \textbf{Fetter Text} für wichtige Begriffe
+	\item \emph{Kursiver Text} für Betonungen und Eigennamen
+	\item \texttt{Maschinenschrift} für Code und Befehle
+	\item \textsf{Serifenlose Schrift} für spezielle Hervorhebungen
+	\item \textsc{Kapitälchen} für besondere Formatierungen
+\end{listenabsatz}
+
+\subsection{Spezielle Zeichen und Symbole}
+\label{subsec:spezielle_zeichen}
+
+Das Template unterstützt korrekte Typografie:
+\begin{listenabsatz}
+	\item Gedankenstriche -- so wie hier -- für Einschübe
+	\item Anführungszeichen: "`deutsche Anführungszeichen"' und ``englische Quotes''
+	\item Auslassungspunkte \ldots{} mit korrektem Spacing
+	\item Geschützte Leerzeichen: z.\,B. oder 10\,cm oder S.\,42
+	\item Mathematische Symbole: $\alpha$, $\beta$, $\gamma$, $\sum$, $\int$
+\end{listenabsatz}
+
+\section{Listen und Aufzählungen}
+\label{sec:listen_demo}
+
+\subsection{Verschiedene Listentypen}
+\label{subsec:listentypen}
+
+Standard-Aufzählung:
+\begin{itemize}
+	\item Erster Punkt
+	\item Zweiter Punkt
+	\item Dritter Punkt mit Unterpunkten:
+	      \begin{itemize}
+		      \item Unterpunkt A
+		      \item Unterpunkt B
+	      \end{itemize}
+\end{itemize}
+
+Nummerierte Liste:
+\begin{enumerate}
+	\item Erster Schritt
+	\item Zweiter Schritt
+	\item Dritter Schritt
+\end{enumerate}
+
+Kompakte Liste ohne Abstände (listenabsatz):
+\begin{listenabsatz}
+	\item Element ohne Abstand darüber
+	\item Element ohne Abstand dazwischen
+	\item Element ohne Abstand darunter
+\end{listenabsatz}
+
+Beschreibungsliste:
+\begin{description}
+	\item[Begriff 1] Erklärung des ersten Begriffs
+	\item[Begriff 2] Erklärung des zweiten Begriffs
+	\item[Begriff 3] Erklärung des dritten Begriffs
+\end{description}
+
+\section{Mathematische Formeln}
+\label{sec:formeln_demo}
+
+\subsection{Inline-Formeln}
+\label{subsec:inline_formeln}
+
+Formeln können direkt im Text verwendet werden, wie z.\,B. $E = mc^2$ oder $a^2 + b^2 = c^2$. Auch komplexere Ausdrücke wie $\int_{0}^{\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2}$ sind möglich.
+
+\subsection{Abgesetzte Formeln}
+\label{subsec:abgesetzte_formeln}
+
+Einfache nummerierte Gleichung:
+\begin{equation}
+	\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}
+	\label{eq:maxwell1}
+\end{equation}
+\myequations{Erste Maxwell-Gleichung (Faradaysches Induktionsgesetz)}
+
+Mehrzeilige Gleichung mit Alignment:
+\begin{align}
+	f(x) & = x^2 + 2x + 1 \\
+	     & = (x + 1)^2
+	\label{eq:binomial}
+\end{align}
+
+Matrix-Darstellung:
+\begin{equation}
+	\mathbf{A} = \begin{pmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{pmatrix}
+	\label{eq:matrix}
+\end{equation}
+\myequations{3x3-Matrix}
+
+\section{Abbildungen und Grafiken}
+\label{sec:abbildungen_demo}
+
+\subsection{Einfache Abbildung}
+\label{subsec:einfache_abbildung}
+
+\begin{figure}[h]
+	\centering
+	\fbox{\parbox{0.7\textwidth}{
+			\centering
+			\vspace{4cm}
+			\Large Platzhalter für Abbildung\\
+			\normalsize (Hier könnte eine Grafik, ein Diagramm oder ein Foto stehen)
+			\vspace{4cm}
+		}}
+	\caption{Demonstrationsabbildung mit Platzhalter}
+	\label{fig:demo_abbildung}
+\end{figure}
+
+Die Abbildung~\ref{fig:demo_abbildung} zeigt einen Platzhalter für eine echte Grafik. Abbildungen werden automatisch nummeriert und im Abbildungsverzeichnis aufgeführt.
+
+\subsection{Subfigures}
+\label{subsec:subfigures}
+
+Mit dem \texttt{subcaption}-Paket können mehrere Abbildungen nebeneinander platziert werden:
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}Bild A\vspace{2cm}}}
+		\caption{Erste Teilabbildung}
+		\label{fig:sub1}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}Bild B\vspace{2cm}}}
+		\caption{Zweite Teilabbildung}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{Zwei Abbildungen nebeneinander}
+	\label{fig:subfigures_demo}
+\end{figure}
+
+\section{Tabellen}
+\label{sec:tabellen_demo}
+
+\subsection{Einfache Tabelle}
+\label{subsec:einfache_tabelle}
+
+\begin{table}[h]
+	\centering
+	\caption{Messwerte-Demonstration}
+	\label{tab:messwerte}
+	\begin{tabular}{|l|c|c|c|c|}
+		\hline
+		\textbf{Messung} & \textbf{Zeit [s]} & \textbf{Spannung [V]} & \textbf{Strom [A]} & \textbf{Leistung [W]} \\
+		\hline
+		1                & 0                 & 12.0                  & 0.5                & 6.0                   \\
+		2                & 10                & 11.8                  & 0.6                & 7.1                   \\
+		3                & 20                & 11.5                  & 0.7                & 8.1                   \\
+		4                & 30                & 11.2                  & 0.8                & 9.0                   \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\subsection{Komplexe Tabelle mit multirow und multicolumn}
+\label{subsec:komplexe_tabelle}
+
+\begin{table}[h]
+	\centering
+	\caption{Komplexe Tabellenstruktur}
+	\label{tab:komplex}
+	\begin{tabular}{|l|c|c|c|}
+		\hline
+		\multirow{2}{*}{\textbf{Kategorie}} & \multicolumn{3}{c|}{\textbf{Messwerte}}                                  \\
+		\cline{2-4}
+		                                    & \textbf{Min}                            & \textbf{Max} & \textbf{Mittel} \\
+		\hline
+		Temperatur [°C]                     & 18.5                                    & 24.3         & 21.2            \\
+		Luftfeuchtigkeit [\%]               & 45                                      & 62           & 53              \\
+		Druck [hPa]                         & 1013                                    & 1021         & 1017            \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\section{Code-Listings}
+\label{sec:code_listings}
+
+\subsection{Python-Code}
+\label{subsec:python_code}
+
+\begin{lstlisting}[caption={Python-Beispiel: Fakultätsfunktion},label={lst:python_factorial},language=Python]
+def factorial(n):
+    """Berechnet die Fakultät einer Zahl rekursiv."""
+    if n <= 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+# Verwendungsbeispiel
+for i in range(10):
+    print(f"{i}! = {factorial(i)}")
+\end{lstlisting}
+
+\subsection{LaTeX-Code}
+\label{subsec:latex_code}
+
+\begin{lstlisting}[caption={LaTeX-Beispiel: Dokumentstruktur},label={lst:latex_example},language=TeX]
+\documentclass{article}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+
+\begin{document}
+\section{Überschrift}
+Dies ist ein Beispieltext mit einer Formel: $x^2 + y^2 = r^2$
+
+\begin{equation}
+    \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+\end{equation}
+\end{document}
+\end{lstlisting}
+
+\section{Querverweise und Zitationen}
+\label{sec:querverweise}
+
+\subsection{Interne Querverweise}
+\label{subsec:querverweise_intern}
+
+Das Template unterstützt intelligente Querverweise mit dem \texttt{cleveref}-Paket:
+\begin{listenabsatz}
+	\item Verweis auf Kapitel: siehe \cref{chap:template_demo}
+	\item Verweis auf Abschnitt: siehe \cref{sec:formeln_demo}
+	\item Verweis auf Gleichung: siehe \cref{eq:maxwell1}
+	\item Verweis auf Abbildung: siehe \cref{fig:demo_abbildung}
+	\item Verweis auf Tabelle: siehe \cref{tab:messwerte}
+	\item Verweis auf Listing: siehe \cref{lst:python_factorial}
+\end{listenabsatz}
+
+\subsection{Fußnoten}
+\label{subsec:fussnoten_demo}
+
+Fußnoten\footnote{Dies ist eine Beispiel-Fußnote mit zusätzlichen Informationen.} können für ergänzende Informationen verwendet werden. Sie sollten jedoch sparsam eingesetzt werden\footnote{Eine zweite Fußnote zur Demonstration der automatischen Nummerierung.} und nicht länger als vier Zeilen sein.
+
+\section{Glossar und Abkürzungen}
+\label{sec:glossar_demo}
+
+\subsection{Verwendung von Glossareinträgen}
+\label{subsec:glossar_verwendung}
+
+Das Template nutzt das \texttt{glossaries}-Paket für die Verwaltung von Fachbegriffen und Abkürzungen:
+\begin{listenabsatz}
+	\item Erster Aufruf eines Glossarbegriffs: \gls{Textkörper}
+	\item Zweiter Aufruf desselben Begriffs: \gls{Textkörper}
+	\item Verwendung einer Abkürzung: \gls{MPG}
+	\item Nochmalige Verwendung: \gls{MPG}
+\end{listenabsatz}
+
+Die Begriffe werden automatisch in das entsprechende Verzeichnis aufgenommen.
+
+\section{Spezielle Umgebungen}
+\label{sec:spezielle_umgebungen}
+
+\subsection{Theorem-ähnliche Umgebungen}
+\label{subsec:theoreme}
+
+Obwohl nicht standardmäßig aktiviert, können bei Bedarf Theorem-Umgebungen definiert werden für:
+\begin{listenabsatz}
+	\item Definitionen
+	\item Sätze (Theoreme)
+	\item Lemmata
+	\item Korollare
+	\item Beweise
+	\item Beispiele
+\end{listenabsatz}
+
+\subsection{Infoboxen und Warnungen}
+\label{subsec:infoboxen}
+
+Das Template kann erweitert werden um spezielle Boxen für:
+\begin{listenabsatz}
+	\item Wichtige Hinweise
+	\item Warnungen
+	\item Tipps und Tricks
+	\item Zusammenfassungen
+\end{listenabsatz}
+
+\section{Erweiterte Features}
+\label{sec:erweiterte_features}
+
+\subsection{TikZ-Grafiken}
+\label{subsec:tikz}
+
+Mit TikZ können komplexe Diagramme direkt in \LaTeX{} erstellt werden. Das Template lädt die notwendigen Pakete automatisch.
+
+\subsection{SVG-Integration}
+\label{subsec:svg}
+
+SVG-Dateien können direkt eingebunden werden mit dem \texttt{\textbackslash includesvg}-Befehl, was besonders für Vektorgrafiken aus Inkscape nützlich ist.
+
+\subsection{Hyperlinks}
+\label{subsec:hyperlinks}
+
+Das Template unterstützt:
+\begin{listenabsatz}
+	\item Automatische Verlinkung von Querverweisen
+	\item Klickbare URLs: \url{https://www.example.com}
+	\item E-Mail-Links: \href{mailto:example@domain.com}{example@domain.com}
+	\item Verlinktes Inhaltsverzeichnis im PDF
+\end{listenabsatz}
+
+\section{Zusammenfassung der Template-Features}
+\label{sec:template_zusammenfassung}
+
+Das HSRTReport-Template bietet eine umfassende Lösung für wissenschaftliche Arbeiten mit:
+\begin{listenabsatz}
+	\item Automatischer Formatierung gemäß den Vorgaben
+	\item Konsistenter Typografie und Layout
+	\item Intelligenter Verwaltung von Verzeichnissen
+	\item Flexiblen Möglichkeiten für Formeln, Abbildungen und Tabellen
+	\item Professioneller PDF-Ausgabe mit Hyperlinks
+	\item Einfacher Anpassbarkeit über Konfigurationsdateien
+\end{listenabsatz}
+
+Alle diese Features tragen dazu bei, dass sich der Autor auf den Inhalt konzentrieren kann, während das Template die korrekte Formatierung übernimmt.
+
+% ==============================================================================
+% End of Kapitel 6
+% ==============================================================================

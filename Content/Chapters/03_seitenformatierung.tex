@@ -1,0 +1,156 @@
+% !TEX root = ../../Main.tex
+% ==============================================================================
+% Kapitel 3: Seitenformatierung
+% ==============================================================================
+% Description: Vorgaben zur Seitenformatierung der Seminararbeit
+% ==============================================================================
+
+\chapter{Seitenformatierung}
+\label{chap:seitenformatierung}
+
+\section{Seitenformat und Festlegung der richtigen Formatierung für zweizeilige Überschriften die eine Trennung von Hand erforderlich machen würden}
+\label{sec:seitenformat}
+
+Das Dokument wird im DIN-A4-Format im Hochformat erstellt. Die automatische Silbentrennung sorgt dafür, dass auch längere Überschriften korrekt umgebrochen werden.
+
+\subsection{Seitenformat}
+\label{subsec:seitenformat_detail}
+
+Das Seitenformat ist auf DIN-A4 im Hochformat festgelegt. Diese Einstellung wird automatisch durch das Template vorgenommen.
+
+\section{Seitenränder}
+\label{sec:seitenraender}
+
+Die Seitenränder sind wie folgt definiert:
+\begin{listenabsatz}
+	\item Linker Rand: 4\,cm
+	\item Rechter Rand: 3\,cm
+	\item Oberer Rand: 3\,cm
+	\item Unterer Rand: 2\,cm
+\end{listenabsatz}
+
+Jeder neue Absatz hat zum vorhergehenden Absatz einen Abstand von 6 Punkten. Für Listen gibt es die Formatvorlage \texttt{listenabsatz}, bei der kein Abstand zwischen den Absätzen enthalten ist.
+
+Die Ausrichtung des Textes und aller Überschriften erfolgt im Blocksatz. Die Silbentrennung wird automatisch eingesetzt, um ein ausgewogenes Schriftbild zu erreichen.
+
+\section{Titel und Überschriften}
+\label{sec:titel_ueberschriften}
+
+Titel und Überschriften müssen kurz und aussagekräftig sein. Überschriften dürfen sich nicht wiederholen, sondern müssen eindeutig voneinander zu unterscheiden sein.
+
+Die Gliederung des Textes sollte maximal über 2 Ebenen erfolgen. Es ist darauf zu achten, dass nicht jeder Absatz eine eigene Kapitelüberschrift erhält.
+
+\section{Textabsätze}
+\label{sec:textabsaetze}
+
+Ein Absatz darf nie mit einer einzelnen Zeile auf einer neuen Seite enden oder mit einer einzelnen Zeile am Seitenende beginnen. Dies gilt in gleicher Weise für Überschriften. Das Template verhindert dies automatisch durch entsprechende Penalties.
+
+Die Länge eines Absatzes ist auf maximal 400 Zeichen zu beschränken.
+
+Absätze werden nicht willkürlich gesetzt. Sie sollen dazu dienen, das Dokument nicht nur formal, sondern auch inhaltlich zu gliedern und somit das Lesen und Verstehen des Textes zu erleichtern.
+
+Die Silbentrennung ist so einzusetzen, dass jede Zeile möglichst bis zum Zeilenrand beschrieben ist. Beim Einsatz von Blocksatz ist darauf zu achten, dass die Lücken zwischen den Worten nicht zu groß werden.
+
+Zwischen den einzelnen Absätzen ist ein Abstand von 6 Punkten einzuhalten.
+
+\section{Kopfzeile}
+\label{sec:kopfzeile}
+
+Der Aufbau der Kopfzeile erfolgt, mit Ausnahme der Titelseite, automatisch und beinhaltet die Kapitelnummer und -überschrift der ersten Ebene auf der linken Seite sowie den Dokumenttitel auf der rechten Seite.
+
+\section{Fußzeile}
+\label{sec:fusszeile}
+
+Der Aufbau der Fußzeile erfolgt, mit Ausnahme der Titelseite, automatisch und zeigt: Autorname | Modulname | Seite X von Y.
+
+\section{Seitennummerierung}
+\label{sec:seitennummerierung}
+
+Die Seitennummerierung erfolgt automatisch. Die Zählung beginnt bei 0 für das Titelblatt, so dass die erste Verzeichnisseite die Nummer 1 aufweist.
+
+\section{Fußnoten}
+\label{sec:fussnoten}
+
+Fußnoten\footnote{Dies ist ein Beispiel für eine Fußnote.} werden im Text durch eine hochgestellte Ziffer grundsätzlich nach einem Satzzeichen (Komma, Strichpunkt, Punkt, Fragezeichen, Ausrufungszeichen, Gedankenstrich) referenziert. Die Fußnotennummerierung erfolgt fortlaufend über die gesamte Arbeit.
+
+Erläuterungen zu den Fußnoten erfolgen oberhalb der Fußzeile und reduzieren die Zeilenzahl des Textkörpers. Der Beginn einer Fußnote wird durch einen linksbündigen horizontalen Strich, dessen Länge ca. 30\,\% der Breite des Textblockes beträgt, vom Textkörper abgetrennt.
+
+Die Fußnotentexte sollten nicht länger als 4 Zeilen sein. Ebenso sollte vermieden werden, den Umbruch der Fußnoten auf die nächste Seite zu erzwingen.
+
+\section{Formeln}
+\label{sec:formeln}
+
+Formeln werden vom Rand einheitlich um 1\,cm eingerückt und vom vorhergehenden und nachfolgenden Absatz um zwei Zeilen abgesetzt. Jede Formel ist über eine fortlaufend aufsteigend zu vergebende Nummer zu kennzeichnen. Bei Formeln, die durch Umformung auseinander hervorgehen, können die Zwischenschritte durch eine einheitliche Nummer, ergänzt um einen Buchstaben, referenziert werden.
+
+Beispiel für die Mitternachtsformel:
+\begin{equation}
+	x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+	\label{eq:mitternachtsformel}
+\end{equation}
+\myequations{Mitternachtsformel zur Lösung quadratischer Gleichungen}
+
+Die Formel~\ref{eq:mitternachtsformel} zeigt die bekannte Lösungsformel für quadratische Gleichungen.
+
+\section{Abbildungen}
+\label{sec:abbildungen}
+
+Abbildungen können an beliebiger Stelle im Text eingebaut werden. Jede Abbildung erhält eine Nummer, die sich aus der Abschnittsnummer der Ebene 1 und einer fortlaufenden, in jedem Abschnitt bei Eins beginnenden Nummer ergibt. Der Nummer folgt eine kurze Beschreibung zum Bild, die unterhalb des Bildes platziert wird.
+
+\begin{figure}[h]
+	\centering
+	\fbox{\parbox{0.6\textwidth}{\centering\vspace{3cm}Beispielabbildung\vspace{3cm}}}
+	\caption{Auswahlmenü auf der Website der HS Reutlingen}
+	\label{fig:hs_website}
+\end{figure}
+
+Die Nummer kann in Verbindung mit der Abkürzung Abb. oder dem Wort Abbildung zur Referenzierung einer Abbildung im Text eingesetzt werden. Hierzu werden im Text runde Klammern verwendet, z.\,B. (Abbildung~\ref{fig:hs_website}) oder (Abb.~\ref{fig:hs_website}).
+
+Alle Abbildungsnummern und -überschriften werden automatisch im Abbildungsverzeichnis referenziert.
+
+Werden Abbildungen aus fremden Quellen übernommen, so müssen die Copyright-Vorgaben berücksichtigt werden, d.\,h. die Quelle der Abbildung muss angegeben und im Literaturverzeichnis referenziert werden. Für alle Abbildungen ohne Referenz beansprucht der Autor/die Autorin die eigene Urheberschaft. Dementsprechend dürfen selbst erstellte Abbildungen nicht mit Angaben wie „eigene Abbildung" o.\,ä. versehen werden.
+
+\section{Tabellen}
+\label{sec:tabellen}
+
+Tabellen können an beliebiger Stelle im Text eingebaut werden. Die erste Zeile einer Tabelle enthält die Spaltenbeschriftung, die erste Spalte ggf. die Zeilenbeschriftung.
+
+\begin{table}[h]
+	\centering
+	\caption{Beispiele für Formatvorlagen}
+	\label{tab:formatvorlagen}
+	\begin{tabular}{|l|l|c|c|}
+		\hline
+		\textbf{Formatbezeichner} & \textbf{Schrift}     & \textbf{Größe} & \textbf{kursiv} \\
+		\hline
+		Überschrift 1             & Franklin Gothic Book & 16             & nein            \\
+		Eigennamen                & Times New Roman      & 12             & ja              \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Es ist darauf zu achten, dass innerhalb einer Tabellenzeile kein Seitenumbruch erfolgt. Ist es erforderlich einen Seitenumbruch zwischen den Zeilen durchzuführen, so muss auf der nächsten Seite die Beschriftung der Spalten wiederholt werden.
+
+Auch die Tabellen werden in gleicher Form wie die Abbildungen nummeriert und beschriftet (siehe Tabelle~\ref{tab:formatvorlagen}). Der Nummer wird hierbei das Präfix Tabelle oder Tab. vorangestellt. Aus den Referenznummern und der Beschreibung wird das am Anfang der Ausarbeitung stehende Tabellenverzeichnis automatisch erstellt.
+
+\section{Abkürzungen}
+\label{sec:abkuerzungen}
+
+Abkürzungen dürfen nur verwendet werden, wenn dies bei sehr häufiger Verwendung umfänglicher Begriffe zu einer erheblichen Ersparnis des Textumfanges führt und die Verständlichkeit des Textes nicht verschlechtert wird. Die Verwendung von allgemein gebräuchlichen Abkürzungen ist ebenfalls möglich. Ganz verzichten sollte man jedoch auf die Verwendung von selbst erfundenen Abkürzungen.
+
+Abkürzungen sind innerhalb des Textes bei der ersten Verwendung in runden Klammern nach der vollständigen Angabe des nicht abgekürzten Textes zu benennen und im Abkürzungsverzeichnis aufzuführen. Wird zum Beispiel vom \gls{MPG} gesprochen, so kann dies später nur noch als \gls{MPG} bezeichnet werden.
+
+\section{Zitate}
+\label{sec:zitate}
+
+In der Seminararbeit werden die Hinweise auf die verwendete Literatur im Stil APA durchgeführt. Dieser Stil wird durch das Template automatisch unterstützt.
+
+\section{Vorgabe für das Ausdrucken von Seiten}
+\label{sec:ausdruck}
+
+Der Ausdruck erfolgt vorzugsweise beidseitig (Papier einsparen!). Bei der Formatierung wird nicht zwischen linker und rechter Seite unterschieden.
+
+Die Ausarbeitung muss als PDF-Datei abgegeben werden.
+
+% ==============================================================================
+% End of Kapitel 3
+% ==============================================================================

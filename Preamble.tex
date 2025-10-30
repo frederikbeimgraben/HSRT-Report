@@ -19,6 +19,57 @@
 \addbibresource{Main.bib}
 
 % ------------------------------------------------------------------------------
+% Citation Hyperlink Configuration
+% ------------------------------------------------------------------------------
+% Make entire citation content clickable (Author, Year) instead of just parts
+% This uses BibLaTeX's internal commands for better compatibility with APA style
+% ------------------------------------------------------------------------------
+
+% Use AtBeginDocument to ensure our settings override the APA style
+\AtBeginDocument{%
+	% Store original definitions
+	\let\origparencite\parencite
+	\let\origtextcite\textcite
+	\let\origcite\cite
+
+	% Redefine parencite to make entire content clickable
+	\DeclareCiteCommand{\parencite}[\mkbibparens]
+	{\usebibmacro{prenote}}
+	{\bibhyperref{%
+			\usebibmacro{citeindex}%
+			\usebibmacro{cite}%
+		}}
+	{\multicitedelim}
+	{\usebibmacro{postnote}}
+
+	% Redefine textcite to make entire content clickable
+	\DeclareCiteCommand{\textcite}
+	{\boolfalse{cbx:parens}%
+		\usebibmacro{prenote}}
+	{\bibhyperref{%
+			\usebibmacro{citeindex}%
+			\printnames{labelname}%
+			\setunit{\addspace}%
+			\bibopenparen\usebibmacro{citeyear}\bibcloseparen%
+		}}
+	{\ifbool{cbx:parens}
+		{\bibcloseparen\global\boolfalse{cbx:parens}}
+		{}%
+		\multicitedelim}
+	{\usebibmacro{postnote}}
+
+	% Redefine cite to make entire content clickable
+	\DeclareCiteCommand{\cite}
+	{\usebibmacro{prenote}}
+	{\bibhyperref{%
+			\usebibmacro{citeindex}%
+			\usebibmacro{cite}%
+		}}
+	{\multicitedelim}
+	{\usebibmacro{postnote}}
+}
+
+% ------------------------------------------------------------------------------
 % Document Settings Import
 % ------------------------------------------------------------------------------
 % Load document-specific settings from external files

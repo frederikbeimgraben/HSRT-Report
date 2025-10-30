@@ -73,6 +73,7 @@
 % Configuration Modules
 % ------------------------------------------------------------------------------
 \input{\classPath/Config/Hyperref}
+\input{\classPath/Config/Bibliography}
 \input{\classPath/Config/Fonts}
 \input{\classPath/Config/PageSetup}
 \input{\classPath/Config/Sections}

@@ -83,7 +83,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload PDF as artifact (backup)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: SAT-WiSe-25-26-Release-${{ steps.version.outputs.VERSION }}
           path: |

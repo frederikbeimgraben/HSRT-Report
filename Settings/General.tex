@@ -54,13 +54,17 @@
 % Add spacing between sections
 \AddTitlePageDataSpace{5pt}
 
+
 % --- Author Information ---
 % Student name, semester, and contact information
+\author{Hans Maria Muster}
+\makeatletter
 \AddTitlePageDataLine{Vorgelegt von}{
-	Hans Maria Muster \newline
+	\@author \newline
 	X. Fachsemester \newline
 	\href{mailto:hans-maria.muster@student.hs-reutlingen.de}{hans-maria.muster@student.hs-reutlingen.de}
 }
+\makeatother
 
 % Add spacing
 \AddTitlePageDataSpace{5pt}
@@ -143,7 +147,7 @@
 % This is typically the course or module code and name
 % Example: \newcommand{\modulename}{SAT - Seminararbeit Technik}
 % ------------------------------------------------------------------------------
-\newcommand{\modulename}{Modulname}
+\newcommand{\modulename}{METI6.3 – SAT – WiSe 25/26}
 
 % ------------------------------------------------------------------------------
 % List of Equations Configuration

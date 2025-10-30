@@ -73,7 +73,7 @@ The template automatically loads all necessary packages. Key dependencies includ
 ## 📁 Project Structure
 
 ```sh
-SAT-WiSe-25-26/
+HSRT-Report/
 │
 ├── HSRTReport/             # Document class files
 │   ├── HSRTReport.cls      # Main class definition
@@ -107,6 +107,7 @@ SAT-WiSe-25-26/
 │
 ├── Settings/               # Document settings
 │   ├── General.tex         # General settings
+│   ├── CleverefNames.tex   # \cref names configuration
 │   └── Logos.tex           # Logo configuration
 │
 ├── scripts/                # Chapter management scripts
@@ -332,7 +333,7 @@ The workflow will automatically:
 1. Go to the **Actions** tab in your GitHub repository
 2. Select a workflow run
 3. Scroll down to **Artifacts**
-4. Download `SAT-WiSe-25-26-PDF`
+4. Download `Main.pdf`
 
 ## 🐛 Troubleshooting
 

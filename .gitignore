@@ -1,5 +1,6 @@
-# Ignore build/
-build/*
+# Ignore Build/ and Output/
+Build/
+Output/
 *.log
 *.aux
 *.out
@@ -15,7 +16,6 @@ build/*
 *.lot
 *.xdv
 *.bak
-svg-inkscape/
 *.tex~
 *.bib~*
 *.nav
@@ -32,23 +32,9 @@ svg-inkscape/
 *.alg
 *.acr
 *.acn
-Main.pdf
+*.pdf
 *.lol
-.chapter-backups
 
-# Python
-*.pyc
-__pycache__/
-*.egg-info/
-*.egg
-*.pyo
-*.pyd
-*.pyc
-
-.env/
-.venv/
-env/
-venv/
-
-Build/
-Output/
+# Ignore chapter backups and Temporary PDF files from Inkscape
+.chapter-backups/
+svg-inkscape/

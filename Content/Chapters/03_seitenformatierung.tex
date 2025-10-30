@@ -72,7 +72,7 @@ Die Seitennummerierung erfolgt automatisch. Die Zählung beginnt bei 0 für das 
 
 Fußnoten\footnote{Dies ist ein Beispiel für eine Fußnote.} werden im Text durch eine hochgestellte Ziffer grundsätzlich nach einem Satzzeichen (Komma, Strichpunkt, Punkt, Fragezeichen, Ausrufungszeichen, Gedankenstrich) referenziert. Die Fußnotennummerierung erfolgt fortlaufend über die gesamte Arbeit.
 
-Erläuterungen zu den Fußnoten erfolgen oberhalb der Fußzeile und reduzieren die Zeilenzahl des Textkörpers. Der Beginn einer Fußnote wird durch einen linksbündigen horizontalen Strich, dessen Länge ca. 30\,\% der Breite des Textblockes beträgt, vom Textkörper abgetrennt.
+Erläuterungen zu den Fußnoten erfolgen oberhalb der Fußzeile und reduzieren die Zeilenzahl des \glsgen{Textkörper}. Der Beginn einer Fußnote wird durch einen linksbündigen horizontalen Strich, dessen Länge ca. 30\,\% der Breite des Textblockes beträgt, vom \gls{Textkörper} abgetrennt.
 
 Die Fußnotentexte sollten nicht länger als 4 Zeilen sein. Ebenso sollte vermieden werden, den Umbruch der Fußnoten auf die nächste Seite zu erzwingen.
 
@@ -89,7 +89,7 @@ Beispiel für die Mitternachtsformel:
 \end{equation}
 \myequations{Mitternachtsformel zur Lösung quadratischer Gleichungen}
 
-Die Formel~\ref{eq:mitternachtsformel} zeigt die bekannte Lösungsformel für quadratische Gleichungen.
+Die \cref{eq:mitternachtsformel} zeigt die bekannte Lösungsformel für quadratische Gleichungen.
 
 \section{Abbildungen}
 \label{sec:abbildungen}
@@ -99,11 +99,11 @@ Abbildungen können an beliebiger Stelle im Text eingebaut werden. Jede Abbildun
 \begin{figure}[h]
 	\centering
 	\fbox{\parbox{0.6\textwidth}{\centering\vspace{3cm}Beispielabbildung\vspace{3cm}}}
-	\caption{Auswahlmenü auf der Website der HS Reutlingen}
-	\label{fig:hs_website}
+	\caption{Beispielabbildung}
+	\label{fig:ex01}
 \end{figure}
 
-Die Nummer kann in Verbindung mit der Abkürzung Abb. oder dem Wort Abbildung zur Referenzierung einer Abbildung im Text eingesetzt werden. Hierzu werden im Text runde Klammern verwendet, z.\,B. (Abbildung~\ref{fig:hs_website}) oder (Abb.~\ref{fig:hs_website}).
+Die Nummer kann in Verbindung mit der Abkürzung Abb. oder dem Wort Abbildung zur Referenzierung einer Abbildung im Text eingesetzt werden. Hierzu werden im Text runde Klammern verwendet, z.\,B. (\cref{fig:ex01}) oder (Abb.~\ref{fig:ex01}).
 
 Alle Abbildungsnummern und -überschriften werden automatisch im Abbildungsverzeichnis referenziert.
 
@@ -130,7 +130,7 @@ Tabellen können an beliebiger Stelle im Text eingebaut werden. Die erste Zeile 
 
 Es ist darauf zu achten, dass innerhalb einer Tabellenzeile kein Seitenumbruch erfolgt. Das Template verwendet automatische Seitenumbruchkontrolle, um Tabellen möglichst auf einer Seite zu halten. Bei sehr langen Tabellen, die einen Seitenumbruch erfordern, muss auf der nächsten Seite die Beschriftung der Spalten wiederholt werden.
 
-Auch die Tabellen werden in gleicher Form wie die Abbildungen nummeriert und beschriftet (siehe Tabelle~\ref{tab:formatvorlagen}). Der Nummer wird hierbei das Präfix Tabelle oder Tab. vorangestellt. Aus den Referenznummern und der Beschreibung wird das am Anfang der Ausarbeitung stehende Tabellenverzeichnis automatisch erstellt.
+Auch die Tabellen werden in gleicher Form wie die Abbildungen nummeriert und beschriftet (siehe \cref{tab:formatvorlagen}). Der Nummer wird hierbei das Präfix Tabelle oder Tab. vorangestellt. Aus den Referenznummern und der Beschreibung wird das am Anfang der Ausarbeitung stehende Tabellenverzeichnis automatisch erstellt.
 
 \section{Abkürzungen}
 \label{sec:abkuerzungen}

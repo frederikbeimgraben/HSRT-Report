@@ -28,14 +28,15 @@ Das Template unterstützt verschiedene Textauszeichnungen:
 \subsection*{Spezielle Zeichen und Symbole}
 \label{subsec:spezielle_zeichen}
 
-Das Template unterstützt korrekte Typografie:
+Das Template unterstützt übliche Typografie:
 \begin{itemize}
 	\item Gedankenstriche -- so wie hier -- für Einschübe
 	\item Anführungszeichen: "`deutsche Anführungszeichen"' und ``englische Quotes''
 	\item Auslassungspunkte \ldots{} mit korrektem Spacing
-	\item Geschützte Leerzeichen: z.\,B. oder 10\,cm oder S.\,42
 	\item Mathematische Symbole: $\alpha$, $\beta$, $\gamma$, $\sum$, $\int$
 \end{itemize}
+
+\newpage
 
 \section{Listen und Aufzählungen}
 \label{sec:listen_demo}
@@ -61,12 +62,12 @@ Nummerierte Liste:
 	\item Dritter Schritt
 \end{enumerate}
 
-Kompakte Liste ohne Abstände (itemize):
-\begin{itemize}
+Kompakte Liste ohne Abstände (listenabsatz):
+\begin{listenabsatz}
 	\item Element ohne Abstand darüber
 	\item Element ohne Abstand dazwischen
 	\item Element ohne Abstand darunter
-\end{itemize}
+\end{listenabsatz}
 
 Beschreibungsliste:
 \begin{description}
@@ -134,7 +135,7 @@ Matrix-Darstellung:
 	\label{fig:demo_abbildung}
 \end{figure}
 
-Die Abbildung~\ref{fig:demo_abbildung} zeigt einen Platzhalter für eine echte Grafik. Abbildungen werden automatisch nummeriert und im Abbildungsverzeichnis aufgeführt.
+Die \cref{fig:demo_abbildung} zeigt einen Platzhalter für eine echte Grafik. Abbildungen werden automatisch nummeriert und im Abbildungsverzeichnis aufgeführt.
 
 \subsection*{Subfigures}
 \label{subsec:subfigures}
@@ -298,16 +299,6 @@ Obwohl nicht standardmäßig aktiviert, können bei Bedarf Theorem-Umgebungen de
 \subsection*{Infoboxen und Warnungen}
 \label{subsec:infoboxen}
 
-Das Template kann erweitert werden um spezielle Boxen für:
-\begin{itemize}
-	\item Wichtige Hinweise
-	\item Warnungen
-	\item Tipps und Tricks
-	\item Zusammenfassungen
-\end{itemize}
-
-anzuzeigen:
-
 \begin{InfoBox}{}
 	Das ist der Inhalt der Info-Box.
 
@@ -316,6 +307,10 @@ anzuzeigen:
 		Das ist der Inhalt der geschachtelten Info-Box.
 	\end{InfoBox}
 \end{InfoBox}
+
+\vspace{\fill}
+
+\pagebreak
 
 \section{Erweiterte Features}
 \label{sec:erweiterte_features}

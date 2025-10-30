@@ -8,6 +8,12 @@
 % ==============================================================================
 
 % ==============================================================================
+% Required Packages
+% ==============================================================================
+\usepackage{lastpage}  % For "Page X of Y" functionality
+\usepackage{fancyhdr}  % Already loaded, but ensure it's available
+
+% ==============================================================================
 % Page Style Configuration
 % ==============================================================================
 % Use fancy page style for headers and footers
@@ -28,22 +34,89 @@
 % Clear all header and footer fields
 \fancyhf{}
 
-% Configure header
-\fancyhead[L]{\color{gray}\blenderfont \@title}  % Document title on left
-\fancyhead[R]{\pagemark}                         % Page number on right
+% ------------------------------------------------------------------------------
+% Header Configuration
+% ------------------------------------------------------------------------------
+% Left header: Chapter number and title
+% Right header: Empty (no page number in header as per requirements)
+\fancyhead[L]{%
+	\color{gray}\blenderfont%
+	\ifnum\value{chapter}>0%
+		\thechapter\quad\leftmark%
+	\fi%
+}
+\fancyhead[R]{} % Empty right header
 
-% Clear footer
-\fancyfoot[C]{}
+% Update chapter marks to show only chapter name without "Chapter" prefix
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{}  % Don't show sections in header
+
+% ------------------------------------------------------------------------------
+% Footer Configuration
+% ------------------------------------------------------------------------------
+% Footer format: Author Name | Module Name | Page X of Y
+% The footer is centered and uses proper spacing
+\fancyfoot[C]{%
+	\color{gray}\blenderfont%
+	\@author%
+	\quad|\quad%
+	\ifdef{\modulename}{\modulename}{Modul-Name}%
+	\quad|\quad%
+	Seite~\thepage~von~\pageref{LastPage}%
+}
+
+% ==============================================================================
+% Plain Page Style (for chapter pages)
+% ==============================================================================
+% Define the plain page style (used on chapter start pages)
+\fancypagestyle{plain}{
+	\fancyhf{}
+	% No header on chapter start pages
+	\fancyhead[L]{}
+	\fancyhead[R]{}
+	% Same footer as regular pages
+	\fancyfoot[C]{%
+		\color{gray}\blenderfont%
+		\@author%
+		\quad|\quad%
+		\ifdef{\modulename}{\modulename}{Modul-Name}%
+		\quad|\quad%
+		Seite~\thepage~von~\pageref{LastPage}%
+	}
+	\renewcommand{\headrulewidth}{0pt}
+}
 
 % ==============================================================================
 % Fancy Page Style Definition
 % ==============================================================================
-% Define the fancy page style explicitly
+% Explicitly define the fancy page style
 \fancypagestyle{fancy}{
 	\fancyhf{}
-	\fancyhead[L]{\color{gray}\blenderfont \@title}
-	\fancyhead[R]{\pagemark}
-	\fancyfoot[C]{}
+	\fancyhead[L]{%
+		\color{gray}\blenderfont%
+		\ifnum\value{chapter}>0%
+			\thechapter\quad\leftmark%
+		\fi%
+	}
+	\fancyhead[R]{}
+	\fancyfoot[C]{%
+		\color{gray}\blenderfont%
+		\@author%
+		\quad|\quad%
+		\ifdef{\modulename}{\modulename}{Modul-Name}%
+		\quad|\quad%
+		Seite~\thepage~von~\pageref{LastPage}%
+	}
+}
+
+% ==============================================================================
+% Chapter Start Configuration
+% ==============================================================================
+% Ensure chapters start on a new page
+\let\originalchapter\chapter
+\renewcommand{\chapter}[1]{%
+	\clearpage%
+	\originalchapter{#1}%
 }
 
 % ==============================================================================

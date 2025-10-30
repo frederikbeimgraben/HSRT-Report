@@ -21,14 +21,19 @@
 % ==============================================================================
 % Text Alignment
 % ==============================================================================
-% Set left-justified text with ragged right edge (Flattersatz)
-% This applies to the main text body
-\raggedright
+% Use justified text (Blocksatz) - this is the default in LaTeX
+% No \raggedright command needed
 
-% Enable hyphenation for better text distribution
-% Even with ragged right, hyphenation improves readability
-\hyphenpenalty=750
-\exhyphenpenalty=750
+% Enable hyphenation for better text distribution in justified text
+% Lower penalties encourage more hyphenation for better spacing
+\hyphenpenalty=500
+\exhyphenpenalty=500
+\tolerance=1000
+\emergencystretch=3em
+
+% Prevent excessive word spacing in justified text
+\spaceskip=0.3em plus 0.2em minus 0.1em
+\xspaceskip=0.6em plus 0.3em minus 0.15em
 
 % ==============================================================================
 % Widow and Orphan Control

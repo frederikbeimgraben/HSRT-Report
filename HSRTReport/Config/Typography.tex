@@ -1,6 +1,66 @@
-% !TEX root = ../../Main.tex
-% ==== Page Style ====
+% !TEX root = ../HSRTReport.cls
+% ==============================================================================
+% Typography Configuration Module
+% ==============================================================================
+% Description: Typography settings including text alignment, spacing, and formatting
+% Author: Frederik Beimgraben
+% License: Creative Commons CC BY 4.0
+% ==============================================================================
+
+% ==============================================================================
+% Page Style Configuration
+% ==============================================================================
 \pagestyle{fancy}
 
+% ==============================================================================
+% Line and Paragraph Spacing
+% ==============================================================================
 % Line spacing
 \renewcommand{\baselinestretch}{1.5}
+
+% ==============================================================================
+% Text Alignment
+% ==============================================================================
+% Set left-justified text with ragged right edge (Flattersatz)
+% This applies to the main text body
+\raggedright
+
+% Enable hyphenation for better text distribution
+% Even with ragged right, hyphenation improves readability
+\hyphenpenalty=750
+\exhyphenpenalty=750
+
+% ==============================================================================
+% Widow and Orphan Control
+% ==============================================================================
+% Prevent single lines at the beginning or end of a page
+% High penalties discourage but don't absolutely prevent widows/orphans
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+
+% Prevent page breaks right after section headings
+\@beginparpenalty=10000
+\@endparpenalty=10000
+
+% ==============================================================================
+% List Formatting
+% ==============================================================================
+% Define a list paragraph style with no spacing between items
+% This will be used for compact lists as required
+\newenvironment{listenabsatz}{%
+	\begin{itemize}[nosep,left=0pt,labelwidth=*,itemsep=0pt,parsep=0pt,topsep=0pt]%
+		}{%
+	\end{itemize}%
+}
+
+% Also provide enumerated version
+\newenvironment{listenabsatz*}{%
+	\begin{enumerate}[nosep,left=0pt,labelwidth=*,itemsep=0pt,parsep=0pt,topsep=0pt]%
+		}{%
+	\end{enumerate}%
+}
+
+% ==============================================================================
+% End of Typography Configuration Module
+% ==============================================================================

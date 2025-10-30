@@ -53,18 +53,24 @@
       "settings": {
         "texlab": {
           "build": {
-            "executable": "make",
-            "args": [],
+            "executable": "/bin/echo",
+            "args": ["Skipping auto-build - use 'make' in terminal instead"],
             "onSave": false,
             "forwardSearchAfter": false
           },
           "chktex": {
             "onEdit": false,
-            "onOpenAndSave": true
+            "onOpenAndSave": false
           },
-          "latexFormatter": "latexindent",
-          "latexindent": {
-            "modifyLineBreaks": false
+          "diagnostics": {
+            "allowedPatterns": []
+          },
+          "formatterLineLength": 120,
+          "latexFormatter": "none",
+          "experimental": {
+            "followPackageLinks": true,
+            "mathEnvironments": ["align", "align*", "equation", "equation*"],
+            "verbatimEnvironments": ["verbatim", "lstlisting", "minted"]
           }
         }
       }

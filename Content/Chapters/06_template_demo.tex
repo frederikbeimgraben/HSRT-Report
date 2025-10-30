@@ -17,25 +17,25 @@ Dieses Kapitel demonstriert die verschiedenen Funktionen und Möglichkeiten des 
 \label{subsec:textauszeichnungen}
 
 Das Template unterstützt verschiedene Textauszeichnungen:
-\begin{listenabsatz}
+\begin{itemize}
 	\item \textbf{Fetter Text} für wichtige Begriffe
 	\item \emph{Kursiver Text} für Betonungen und Eigennamen
 	\item \texttt{Maschinenschrift} für Code und Befehle
 	\item \textsf{Serifenlose Schrift} für spezielle Hervorhebungen
 	\item \textsc{Kapitälchen} für besondere Formatierungen
-\end{listenabsatz}
+\end{itemize}
 
 \subsection*{Spezielle Zeichen und Symbole}
 \label{subsec:spezielle_zeichen}
 
 Das Template unterstützt korrekte Typografie:
-\begin{listenabsatz}
+\begin{itemize}
 	\item Gedankenstriche -- so wie hier -- für Einschübe
 	\item Anführungszeichen: "`deutsche Anführungszeichen"' und ``englische Quotes''
 	\item Auslassungspunkte \ldots{} mit korrektem Spacing
 	\item Geschützte Leerzeichen: z.\,B. oder 10\,cm oder S.\,42
 	\item Mathematische Symbole: $\alpha$, $\beta$, $\gamma$, $\sum$, $\int$
-\end{listenabsatz}
+\end{itemize}
 
 \section{Listen und Aufzählungen}
 \label{sec:listen_demo}
@@ -61,12 +61,12 @@ Nummerierte Liste:
 	\item Dritter Schritt
 \end{enumerate}
 
-Kompakte Liste ohne Abstände (listenabsatz):
-\begin{listenabsatz}
+Kompakte Liste ohne Abstände (itemize):
+\begin{itemize}
 	\item Element ohne Abstand darüber
 	\item Element ohne Abstand dazwischen
 	\item Element ohne Abstand darunter
-\end{listenabsatz}
+\end{itemize}
 
 Beschreibungsliste:
 \begin{description}
@@ -220,7 +220,7 @@ def factorial(n):
 # Verwendungsbeispiel
 for i in range(10):
     print(f"{i}! = {factorial(i)}")
-\end{lstlisting}
+\end{lstlisting}\label{lst:python_factorial}
 %TC:EndIgnore
 
 \subsection*{LaTeX-Code}
@@ -250,14 +250,14 @@ Dies ist ein Beispieltext mit einer Formel: $x^2 + y^2 = r^2$
 \label{subsec:querverweise_intern}
 
 Das Template unterstützt intelligente Querverweise mit dem \texttt{cleveref}-Paket:
-\begin{listenabsatz}
+\begin{itemize}
 	\item Verweis auf Kapitel: siehe \cref{chap:template_demo}
 	\item Verweis auf Abschnitt: siehe \cref{sec:formeln_demo}
 	\item Verweis auf Gleichung: siehe \cref{eq:maxwell1}
 	\item Verweis auf Abbildung: siehe \cref{fig:demo_abbildung}
 	\item Verweis auf Tabelle: siehe \cref{tab:messwerte}
 	\item Verweis auf Listing: siehe \cref{lst:python_factorial}
-\end{listenabsatz}
+\end{itemize}
 
 \subsection*{Fußnoten}
 \label{subsec:fussnoten_demo}
@@ -271,12 +271,12 @@ Fußnoten\footnote{Dies ist eine Beispiel-Fußnote mit zusätzlichen Information
 \label{subsec:glossar_verwendung}
 
 Das Template nutzt das \texttt{glossaries}-Paket für die Verwaltung von Fachbegriffen und Abkürzungen:
-\begin{listenabsatz}
+\begin{itemize}
 	\item Erster Aufruf eines Glossarbegriffs: \gls{Textkörper}
 	\item Zweiter Aufruf desselben Begriffs: \gls{Textkörper}
 	\item Verwendung einer Abkürzung: \gls{MPG}
 	\item Nochmalige Verwendung: \gls{MPG}
-\end{listenabsatz}
+\end{itemize}
 
 Die Begriffe werden automatisch in das entsprechende Verzeichnis aufgenommen.
 
@@ -287,25 +287,25 @@ Die Begriffe werden automatisch in das entsprechende Verzeichnis aufgenommen.
 \label{subsec:theoreme}
 
 Obwohl nicht standardmäßig aktiviert, können bei Bedarf Theorem-Umgebungen definiert werden für:
-\begin{listenabsatz}
+\begin{itemize}
 	\item Definitionen
 	\item Sätze (Theoreme)
 	\item Lemmata
 	\item Korollare
 	\item Beweise
 	\item Beispiele
-\end{listenabsatz}
+\end{itemize}
 
 \subsection*{Infoboxen und Warnungen}
 \label{subsec:infoboxen}
 
 Das Template kann erweitert werden um spezielle Boxen für:
-\begin{listenabsatz}
+\begin{itemize}
 	\item Wichtige Hinweise
 	\item Warnungen
 	\item Tipps und Tricks
 	\item Zusammenfassungen
-\end{listenabsatz}
+\end{itemize}
 
 \section{Erweiterte Features}
 \label{sec:erweiterte_features}
@@ -324,25 +324,25 @@ SVG-Dateien können direkt eingebunden werden mit dem \texttt{\textbackslash inc
 \label{subsec:hyperlinks}
 
 Das Template unterstützt:
-\begin{listenabsatz}
+\begin{itemize}
 	\item Automatische Verlinkung von Querverweisen
 	\item Klickbare URLs: \url{https://www.example.com}
 	\item E-Mail-Links: \href{mailto:example@domain.com}{example@domain.com}
 	\item Verlinktes Inhaltsverzeichnis im PDF
-\end{listenabsatz}
+\end{itemize}
 
 \section{Zusammenfassung der Template-Features}
 \label{sec:template_zusammenfassung}
 
 Das HSRTReport-Template bietet eine umfassende Lösung für wissenschaftliche Arbeiten mit:
-\begin{listenabsatz}
+\begin{itemize}
 	\item Automatischer Formatierung gemäß den Vorgaben
 	\item Konsistenter Typografie und Layout
 	\item Intelligenter Verwaltung von Verzeichnissen
 	\item Flexiblen Möglichkeiten für Formeln, Abbildungen und Tabellen
 	\item Professioneller PDF-Ausgabe mit Hyperlinks
 	\item Einfacher Anpassbarkeit über Konfigurationsdateien
-\end{listenabsatz}
+\end{itemize}
 
 Alle diese Features tragen dazu bei, dass sich der Autor auf den Inhalt konzentrieren kann, während das Template die korrekte Formatierung übernimmt.
 

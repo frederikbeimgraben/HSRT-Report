@@ -69,22 +69,22 @@ The template automatically loads all necessary packages. Key dependencies includ
 
 ## 📁 Project Structure
 
-```
+```sh
 SAT-WiSe-25-26/
 │
-├── HSRTReport/               # Document class files
-│   ├── HSRTReport.cls       # Main class definition
-│   ├── Assets/              # Fonts and images
+├── HSRTReport/             # Document class files
+│   ├── HSRTReport.cls      # Main class definition
+│   ├── Assets/             # Fonts and images
 │   │   ├── Fonts/          # Custom fonts
 │   │   └── Images/         # Logo and graphics
 │   ├── Config/             # Configuration modules
 │   │   ├── Fonts.tex       # Font settings
 │   │   ├── PageSetup.tex   # Page layout
-│   │   └── ...            # Other configurations
+│   │   └── ...             # Other configurations
 │   ├── Imports/            # Package imports
 │   │   ├── Core.tex        # Core packages
 │   │   ├── Document.tex    # Document structure
-│   │   └── ...            # Other imports
+│   │   └── ...             # Other imports
 │   ├── Modules/            # Feature modules
 │   │   ├── Content/        # Content-related features
 │   │   ├── Layout/         # Layout features
@@ -92,7 +92,7 @@ SAT-WiSe-25-26/
 │   └── Pages/              # Page templates
 │       └── Titlepage.tex   # Title page definition
 │
-├── Content/                 # Document content
+├── Content/                # Document content
 │   ├── 00_toc.tex          # Table of contents and lists
 │   ├── 01_content.tex      # Chapter loader (auto-managed)
 │   ├── 99_bibliography.tex # Bibliography
@@ -102,42 +102,30 @@ SAT-WiSe-25-26/
 │   │   └── ...
 │   └── Images/             # Document images
 │
-├── Settings/                # Document settings
+├── Settings/               # Document settings
 │   ├── General.tex         # General settings
 │   └── Logos.tex           # Logo configuration
 │
-├── scripts/                 # Chapter management scripts
+├── scripts/                # Chapter management scripts
 │   ├── create_chapter.sh   # Create new chapters
 │   ├── list_chapters.sh    # List all chapters
 │   ├── delete_chapter.sh   # Delete chapters
 │   └── show_chapter.sh     # View chapter content
 │
-├── Main.tex                 # Main document file
+├── Main.tex                # Main document file
 ├── Preamble.tex            # Document preamble
 ├── Glossary.tex            # Glossary definitions
 ├── Main.bib                # Bibliography database
 ├── Makefile                # Build automation
 ├── .latexmkrc              # Latexmk configuration
-├── docker-compose.yml      # Docker configuration
-└── QUICKSTART.md           # Quick start guide
+└── docker-compose.yml      # Docker configuration
 ```
 
 ## 📝 Usage
 
 ### Basic Document Setup
 
-1. **Edit `Main.tex`** to configure document class options:
-   ```latex
-   \documentclass[
-       11pt,           % Font size (10pt, 11pt, 12pt)
-       paper=a4,       % Paper size
-       oneside,        % Single-sided (use twoside for double)
-       DIV=14,         % Page layout calculation
-       onecolumn       % Single column layout
-   ]{HSRTReport/HSRTReport}
-   ```
-
-2. **Configure document metadata** in `Settings/General.tex`:
+1. **Configure document metadata** in `Settings/General.tex`:
    ```latex
    % Document title
    \title{Your Document Title}
@@ -149,7 +137,7 @@ SAT-WiSe-25-26/
    % ... additional fields
    ```
 
-3. **Add your content** using one of these methods:
+2. **Add your content** using one of these methods:
    - **Automatic (Recommended)**: Use scripts to manage chapters
      ```bash
      ./scripts/create_chapter.sh 02 methodology
@@ -158,9 +146,9 @@ SAT-WiSe-25-26/
      ```
    - **Manual**: Create files in `Content/Chapters/` and add them to `Content/01_content.tex`
 
-4. **Manage bibliography** in `Main.bib` using BibTeX format
+3. **Manage bibliography** in `Main.bib` using BibTeX format (I recommend using a tool like [Zotero](https://www.zotero.org/))
 
-5. **Define glossary entries** in `Glossary.tex`:
+4. **Define glossary entries** in `Glossary.tex`:
    ```latex
    \newglossaryentry{term}{
        name=Term,
@@ -351,24 +339,14 @@ For questions, issues, or suggestions:
 
 ## 🆕 Recent Updates
 
-### Version 2.0 (October 2024)
+### Version 1.0 (October 2024)
 - Added Docker support for containerized compilation
-- Implemented advanced page break control system
-- Enhanced section spacing (4.5ex before sections, 3.5ex before subsections)
-- Added smart TOC chapter grouping for short chapters
-- Updated header format with em-dash separator (e.g., "1 – Introduction")
-- Fixed page numbering (TOC now starts at page 1)
-- Added comprehensive bibliography with academic writing references
-- Improved listing and itemize environment protection from page breaks
 
 ### Key Configuration Changes
-- **Page Margins**: Unified 2cm on all sides
-- **Base Font Size**: 11pt 
-- **Line Spacing**: 1.5x (`baselinestretch=1.5`)
 - **Paragraph Spacing**: 6pt
 - **Section Minimum Content**: 12 baseline skips (~2 paragraphs)
 - **Citation Style**: APA format via BibLaTeX
 
 ---
 
-*Last updated: October 2024*
+*Documentation Last updated: 30th of October 2025*

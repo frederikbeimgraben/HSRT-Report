@@ -1,59 +1,59 @@
 % !TEX root = ../../Main.tex
 
-\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true,numbers=left,frame=single}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true,numbers=left,frame=single,float=H}
 
 \lstdefinestyle{htmlCode} {
-   language=html,
-   basicstyle=\scriptsize\ttfamily,
-   keywordstyle=\color{blue}\bfseries\ttfamily,
-   commentstyle=\color{gray}\ttfamily,
-   escapechar=| % Escape to LaTeX between |...|
+	language=html,
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\color{blue}\bfseries\ttfamily,
+	commentstyle=\color{gray}\ttfamily,
+	escapechar=| % Escape to LaTeX between |...|
 }
 
 \lstdefinestyle{phpCode} {
-   language=php,
-   morekeywords={php},
-   basicstyle=\footnotesize\ttfamily,
-   keywordstyle=\color{blue}\bfseries\ttfamily,
-   commentstyle=\color{gray}\ttfamily,
-   escapechar=| % Escape to LaTeX between |...|
+	language=php,
+	morekeywords={php},
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\color{blue}\bfseries\ttfamily,
+	commentstyle=\color{gray}\ttfamily,
+	escapechar=| % Escape to LaTeX between |...|
 }
 
 \lstdefinestyle{jsCode} {
-   language=javascript,
-   morekeywords=,
-   basicstyle=\scriptsize\ttfamily,
-   keywordstyle=\color{blue}\bfseries\ttfamily,
-   commentstyle=\color{gray}\ttfamily,
-   escapechar=| % Escape to LaTeX between |...|
+	language=javascript,
+	morekeywords=,
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\color{blue}\bfseries\ttfamily,
+	commentstyle=\color{gray}\ttfamily,
+	escapechar=| % Escape to LaTeX between |...|
 }
 
 \lstdefinestyle{shellCodeNOPASSWD} {
-   language=sh,
-   deletekeywords={for,kill,cat},
-   morekeywords={sudo},
-   basicstyle=\scriptsize\ttfamily,
-   keywordstyle=\color{blue}\bfseries\ttfamily,
-   commentstyle=\color{gray}\ttfamily,
-   escapechar=|, % Escape to LaTeX between |...|
-   numbers=none
+	language=sh,
+	deletekeywords={for,kill,cat},
+	morekeywords={sudo},
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\color{blue}\bfseries\ttfamily,
+	commentstyle=\color{gray}\ttfamily,
+	escapechar=|, % Escape to LaTeX between |...|
+	numbers=none
 }
 
 \lstdefinestyle{shellCode} {
-   language=sh,
-   deletekeywords={},
-   morekeywords={sudo,chmod,chown,cp,su,rm,python},
-   basicstyle=\scriptsize\ttfamily,
-   keywordstyle=\color{blue}\bfseries\ttfamily,
-   commentstyle=\color{gray}\ttfamily,
-   escapechar=| % Escape to LaTeX between |...|
+	language=sh,
+	deletekeywords={},
+	morekeywords={sudo,chmod,chown,cp,su,rm,python},
+	basicstyle=\scriptsize\ttfamily,
+	keywordstyle=\color{blue}\bfseries\ttfamily,
+	commentstyle=\color{gray}\ttfamily,
+	escapechar=| % Escape to LaTeX between |...|
 }
 
 \lstdefinestyle{URL} {
-   basicstyle=\footnotesize\ttfamily,
-   commentstyle=\color{gray}\ttfamily,
-   escapechar=|, % Escape to LaTeX between |...|
-   numbers=none
+	basicstyle=\footnotesize\ttfamily,
+	commentstyle=\color{gray}\ttfamily,
+	escapechar=|, % Escape to LaTeX between |...|
+	numbers=none
 }
 
 % BLST
@@ -63,37 +63,39 @@
 \ExplSyntaxOn
 \tl_new:N \l_listings_boxed_options_tl
 \keys_define:nn { listings/boxed }
- {
-  caption .tl_set:N = \l_listings_boxed_caption_tl,
-  shortcaption .tl_set:N = \l_listings_boxed_shortcaption_tl,
-  label .tl_set:N = \l_listings_boxed_label_tl,
-  unknown .code:n =
-          \tl_put_right:NV \l_listings_boxed_options_tl \l_keys_key_tl
-          \tl_put_right:Nn \l_listings_boxed_options_tl { = #1 , },
- }
+{
+	caption .tl_set:N = \l_listings_boxed_caption_tl,
+	shortcaption .tl_set:N = \l_listings_boxed_shortcaption_tl,
+	label .tl_set:N = \l_listings_boxed_label_tl,
+	unknown .code:n =
+	\tl_put_right:NV \l_listings_boxed_options_tl \l_keys_key_tl
+	\tl_put_right:Nn \l_listings_boxed_options_tl { = #1 , },
+}
 \box_new:N \l_listings_boxed_box
 
 \lstnewenvironment{blstlisting}[1][]
- {
-  \keys_set:nn { listings/boxed } { #1 }
-  \exp_args:NV \lstset \l_listings_boxed_options_tl
-  \hbox_set:Nw \l_listings_boxed_box
- }
- {
-  \hbox_set_end:
-  \cs_set_eq:cc {c@figure} {c@lstlisting}
-  \tl_set_eq:NN \figurename \lstlistingname
-  \tl_if_empty:NF \l_listings_boxed_caption_tl
-   {
-    \tl_if_empty:NTF \l_listings_boxed_shortcaption_tl
-     {
-      \captionof{figure}{\l_listings_boxed_caption_tl}
-     }
-     {
-      \captionof{figure}[\l_listings_boxed_shortcaption_tl]{\l_listings_boxed_caption_tl}
-     }
-    \tl_if_empty:NF \l_listings_boxed_label_tl { \label{\l_listings_boxed_label_tl} }
-   }
-  \leavevmode\box_use:N \l_listings_boxed_box
- }
+{
+	\nopagebreak[4]
+	\keys_set:nn { listings/boxed } { #1 }
+	\exp_args:NV \lstset \l_listings_boxed_options_tl
+	\hbox_set:Nw \l_listings_boxed_box
+}
+{
+	\hbox_set_end:
+	\cs_set_eq:cc {c@figure} {c@lstlisting}
+	\tl_set_eq:NN \figurename \lstlistingname
+	\tl_if_empty:NF \l_listings_boxed_caption_tl
+	{
+		\tl_if_empty:NTF \l_listings_boxed_shortcaption_tl
+		{
+			\captionof{figure}{\l_listings_boxed_caption_tl}
+		}
+		{
+			\captionof{figure}[\l_listings_boxed_shortcaption_tl]{\l_listings_boxed_caption_tl}
+		}
+		\tl_if_empty:NF \l_listings_boxed_label_tl { \label{\l_listings_boxed_label_tl} }
+	}
+	\leavevmode\box_use:N \l_listings_boxed_box
+	\nopagebreak[3]
+}
 \ExplSyntaxOff

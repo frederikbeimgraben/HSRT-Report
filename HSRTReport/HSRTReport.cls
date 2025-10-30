@@ -81,6 +81,7 @@
 \input{\classPath/Config/Equations}
 \input{\classPath/Config/Floats}
 \input{\classPath/Config/Typography}
+\input{\classPath/Config/PageBreakControl}
 
 % ------------------------------------------------------------------------------
 % Content Modules

@@ -104,11 +104,11 @@
 	\begin{tikzpicture}[overlay, remember picture]
 		% === Main Logo(s) ===
 		\node[anchor=south east, inner sep=0pt, xshift=-\footerXShift, yshift=\footerYShift, opacity=0.0] (logo0) at (current page.south east) {
-			\strcompare{\thepage}{1}{}{
+			\strcompare{\thepage}{0}{}{
 				\includegraphics[height=\imageHeight]{\imagesPath/DUMMY_FOOT.png}
 			}
 		};
-		\ifnum\thepage=1
+		\ifnum\thepage=0
 		\else
 			% For loop to place all logos
 			\foreach \i in {1,...,\value{logoCounter}} {

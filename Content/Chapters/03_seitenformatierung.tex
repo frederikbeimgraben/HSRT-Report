@@ -11,9 +11,9 @@
 \section{Seitenformat und Festlegung der richtigen Formatierung für zweizeilige Überschriften die eine Trennung von Hand erforderlich machen würden}
 \label{sec:seitenformat}
 
-Das Dokument wird im DIN-A4-Format im Hochformat erstellt. Die automatische Silbentrennung sorgt dafür, dass auch längere Überschriften korrekt umgebrochen werden.
+Das Dokument wird im DIN-A4-Format im Hochformat erstellt \parencite{hahner2011}. Die automatische Silbentrennung sorgt dafür, dass auch längere Überschriften korrekt umgebrochen werden.
 
-\subsection{Seitenformat}
+\subsection*{Seitenformat}
 \label{subsec:seitenformat_detail}
 
 Das Seitenformat ist auf DIN-A4 im Hochformat festgelegt. Diese Einstellung wird automatisch durch das Template vorgenommen.
@@ -23,35 +23,34 @@ Das Seitenformat ist auf DIN-A4 im Hochformat festgelegt. Diese Einstellung wird
 
 Die Seitenränder sind wie folgt definiert:
 \begin{listenabsatz}
-	\item Linker Rand: 4\,cm
-	\item Rechter Rand: 3\,cm
-	\item Oberer Rand: 3\,cm
-	\item Unterer Rand: 2\,cm
+	\item Einheitlicher Rand: 2\,cm (alle Seiten)
+	\item Zusätzlicher Textbereich durch DIV=14 Einstellung
+	\item Automatische Berechnung des Satzspiegels durch KOMA-Script
 \end{listenabsatz}
 
-Jeder neue Absatz hat zum vorhergehenden Absatz einen Abstand von 6 Punkten. Für Listen gibt es die Formatvorlage \texttt{listenabsatz}, bei der kein Abstand zwischen den Absätzen enthalten ist.
+Jeder neue Absatz hat zum vorhergehenden Absatz einen Abstand von 6 Punkten (konfiguriert in \texttt{Settings/General.tex}). Zusätzlich wird ein erhöhter Abstand vor Sections (4,5ex) und Subsections (3,5ex) eingefügt, um eine bessere visuelle Gliederung zu erreichen \parencite{theisen2013}. Für Listen gibt es die Formatvorlage \texttt{listenabsatz}, bei der kein Abstand zwischen den Listenelementen enthalten ist.
 
 Die Ausrichtung des Textes und aller Überschriften erfolgt im Blocksatz. Die Silbentrennung wird automatisch eingesetzt, um ein ausgewogenes Schriftbild zu erreichen.
 
 \section{Titel und Überschriften}
 \label{sec:titel_ueberschriften}
 
-Titel und Überschriften müssen kurz und aussagekräftig sein. Überschriften dürfen sich nicht wiederholen, sondern müssen eindeutig voneinander zu unterscheiden sein.
+Titel und Überschriften müssen kurz und aussagekräftig sein \parencite{reiter2011}. Überschriften dürfen sich nicht wiederholen, sondern müssen eindeutig voneinander zu unterscheiden sein.
 
-Die Gliederung des Textes sollte maximal über 2 Ebenen erfolgen. Es ist darauf zu achten, dass nicht jeder Absatz eine eigene Kapitelüberschrift erhält.
+Die Gliederung des Textes sollte maximal über 2 Ebenen erfolgen \parencite{ahrens2014,brunner2015}. Es ist darauf zu achten, dass nicht jeder Absatz eine eigene Kapitelüberschrift erhält.
 
 \section{Textabsätze}
 \label{sec:textabsaetze}
 
-Ein Absatz darf nie mit einer einzelnen Zeile auf einer neuen Seite enden oder mit einer einzelnen Zeile am Seitenende beginnen. Dies gilt in gleicher Weise für Überschriften. Das Template verhindert dies automatisch durch entsprechende Penalties.
+Ein Absatz darf nie mit einer einzelnen Zeile auf einer neuen Seite enden oder mit einer einzelnen Zeile am Seitenende beginnen. Dies gilt in gleicher Weise für Überschriften. Das Template verhindert dies automatisch durch entsprechende Penalties (\texttt{widowpenalty=10000}, \texttt{clubpenalty=10000}). Zusätzlich werden Sections automatisch auf die nächste Seite verschoben, wenn weniger als 12 Grundlinienabstände (ca. 2 Absätze) auf der aktuellen Seite verbleiben würden.
 
 Die Länge eines Absatzes ist auf maximal 400 Zeichen zu beschränken.
 
-Absätze werden nicht willkürlich gesetzt. Sie sollen dazu dienen, das Dokument nicht nur formal, sondern auch inhaltlich zu gliedern und somit das Lesen und Verstehen des Textes zu erleichtern.
+Absätze werden nicht willkürlich gesetzt. Sie sollen dazu dienen, das Dokument nicht nur formal, sondern auch inhaltlich zu gliedern und somit das Lesen und Verstehen des Textes zu erleichtern \parencite{wagner2007}.
 
-Die Silbentrennung ist so einzusetzen, dass jede Zeile möglichst bis zum Zeilenrand beschrieben ist. Beim Einsatz von Blocksatz ist darauf zu achten, dass die Lücken zwischen den Worten nicht zu groß werden.
+Die Silbentrennung ist so einzusetzen, dass jede Zeile möglichst bis zum Zeilenrand beschrieben ist. Beim Einsatz von Blocksatz ist darauf zu achten, dass die Lücken zwischen den Worten nicht zu groß werden. Dies wird durch die Einstellungen \texttt{hyphenpenalty=500}, \texttt{tolerance=1000} und \texttt{emergencystretch=3em} automatisch optimiert.
 
-Zwischen den einzelnen Absätzen ist ein Abstand von 6 Punkten einzuhalten.
+Zwischen den einzelnen Absätzen ist ein Abstand von 6 Punkten einzuhalten. Der Zeilenabstand beträgt 1,5 (konfiguriert durch \texttt{baselinestretch=1.5}).
 
 \section{Kopfzeile}
 \label{sec:kopfzeile}
@@ -95,7 +94,7 @@ Die Formel~\ref{eq:mitternachtsformel} zeigt die bekannte Lösungsformel für qu
 \section{Abbildungen}
 \label{sec:abbildungen}
 
-Abbildungen können an beliebiger Stelle im Text eingebaut werden. Jede Abbildung erhält eine Nummer, die sich aus der Abschnittsnummer der Ebene 1 und einer fortlaufenden, in jedem Abschnitt bei Eins beginnenden Nummer ergibt. Der Nummer folgt eine kurze Beschreibung zum Bild, die unterhalb des Bildes platziert wird.
+Abbildungen können an beliebiger Stelle im Text eingebaut werden. Jede Abbildung erhält eine Nummer, die sich aus der Kapitelnummer und einer fortlaufenden, in jedem Kapitel bei Eins beginnenden Nummer ergibt (Format: Kapitel.Nummer). Der Nummer folgt eine kurze Beschreibung zum Bild, die unterhalb des Bildes platziert wird. Abbildungen werden automatisch mit ihrer Beschriftung zusammengehalten, um Seitenumbrüche zwischen Bild und Beschriftung zu vermeiden.
 
 \begin{figure}[h]
 	\centering
@@ -113,7 +112,7 @@ Werden Abbildungen aus fremden Quellen übernommen, so müssen die Copyright-Vor
 \section{Tabellen}
 \label{sec:tabellen}
 
-Tabellen können an beliebiger Stelle im Text eingebaut werden. Die erste Zeile einer Tabelle enthält die Spaltenbeschriftung, die erste Spalte ggf. die Zeilenbeschriftung.
+Tabellen können an beliebiger Stelle im Text eingebaut werden. Die erste Zeile einer Tabelle enthält die Spaltenbeschriftung, die erste Spalte ggf. die Zeilenbeschriftung. Tabellen werden analog zu Abbildungen nummeriert (Kapitel.Nummer) und automatisch mit ihrer Beschriftung zusammengehalten.
 
 \begin{table}[h]
 	\centering
@@ -129,7 +128,7 @@ Tabellen können an beliebiger Stelle im Text eingebaut werden. Die erste Zeile 
 	\end{tabular}
 \end{table}
 
-Es ist darauf zu achten, dass innerhalb einer Tabellenzeile kein Seitenumbruch erfolgt. Ist es erforderlich einen Seitenumbruch zwischen den Zeilen durchzuführen, so muss auf der nächsten Seite die Beschriftung der Spalten wiederholt werden.
+Es ist darauf zu achten, dass innerhalb einer Tabellenzeile kein Seitenumbruch erfolgt. Das Template verwendet automatische Seitenumbruchkontrolle, um Tabellen möglichst auf einer Seite zu halten. Bei sehr langen Tabellen, die einen Seitenumbruch erfordern, muss auf der nächsten Seite die Beschriftung der Spalten wiederholt werden.
 
 Auch die Tabellen werden in gleicher Form wie die Abbildungen nummeriert und beschriftet (siehe Tabelle~\ref{tab:formatvorlagen}). Der Nummer wird hierbei das Präfix Tabelle oder Tab. vorangestellt. Aus den Referenznummern und der Beschreibung wird das am Anfang der Ausarbeitung stehende Tabellenverzeichnis automatisch erstellt.
 
@@ -143,7 +142,7 @@ Abkürzungen sind innerhalb des Textes bei der ersten Verwendung in runden Klamm
 \section{Zitate}
 \label{sec:zitate}
 
-In der Seminararbeit werden die Hinweise auf die verwendete Literatur im Stil APA durchgeführt. Dieser Stil wird durch das Template automatisch unterstützt.
+In der Seminararbeit werden die Hinweise auf die verwendete Literatur im Stil APA durchgeführt \parencite{theisen2013}. Dieser Stil wird durch das Template automatisch unterstützt. Die Literaturverwaltung erfolgt über BibLaTeX mit Biber als Backend. Zitationen können mit \texttt{\textbackslash cite\{key\}}, \texttt{\textbackslash textcite\{key\}} oder \texttt{\textbackslash parencite\{key\}} eingefügt werden.
 
 \section{Vorgabe für das Ausdrucken von Seiten}
 \label{sec:ausdruck}

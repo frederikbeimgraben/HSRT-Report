@@ -138,7 +138,7 @@ show_structure() {
             title=$(echo "$content" | sed 's/.*\\section{\([^}]*\)}.*/\1/')
             echo -e "${BLUE}  [$line_num] Section: $title${NC}"
         elif [[ "$content" =~ \\subsection ]]; then
-            title=$(echo "$content" | sed 's/.*\\subsection{\([^}]*\)}.*/\1/')
+            title=$(echo "$content" | sed 's/.*\\subsection*{\([^}]*\)}.*/\1/')
             echo -e "${CYAN}    [$line_num] Subsection: $title${NC}"
         fi
     done

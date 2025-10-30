@@ -13,7 +13,7 @@ Dieses Kapitel demonstriert die verschiedenen Funktionen und Möglichkeiten des 
 \section{Textformatierung}
 \label{sec:textformatierung_demo}
 
-\subsection{Grundlegende Textauszeichnungen}
+\subsection*{Grundlegende Textauszeichnungen}
 \label{subsec:textauszeichnungen}
 
 Das Template unterstützt verschiedene Textauszeichnungen:
@@ -25,7 +25,7 @@ Das Template unterstützt verschiedene Textauszeichnungen:
 	\item \textsc{Kapitälchen} für besondere Formatierungen
 \end{listenabsatz}
 
-\subsection{Spezielle Zeichen und Symbole}
+\subsection*{Spezielle Zeichen und Symbole}
 \label{subsec:spezielle_zeichen}
 
 Das Template unterstützt korrekte Typografie:
@@ -40,7 +40,7 @@ Das Template unterstützt korrekte Typografie:
 \section{Listen und Aufzählungen}
 \label{sec:listen_demo}
 
-\subsection{Verschiedene Listentypen}
+\subsection*{Verschiedene Listentypen}
 \label{subsec:listentypen}
 
 Standard-Aufzählung:
@@ -78,12 +78,12 @@ Beschreibungsliste:
 \section{Mathematische Formeln}
 \label{sec:formeln_demo}
 
-\subsection{Inline-Formeln}
+\subsection*{Inline-Formeln}
 \label{subsec:inline_formeln}
 
 Formeln können direkt im Text verwendet werden, wie z.\,B. $E = mc^2$ oder $a^2 + b^2 = c^2$. Auch komplexere Ausdrücke wie $\int_{0}^{\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2}$ sind möglich.
 
-\subsection{Abgesetzte Formeln}
+\subsection*{Abgesetzte Formeln}
 \label{subsec:abgesetzte_formeln}
 
 Einfache nummerierte Gleichung:
@@ -118,7 +118,7 @@ Matrix-Darstellung:
 \section{Abbildungen und Grafiken}
 \label{sec:abbildungen_demo}
 
-\subsection{Einfache Abbildung}
+\subsection*{Einfache Abbildung}
 \label{subsec:einfache_abbildung}
 
 \begin{figure}[h]
@@ -136,7 +136,7 @@ Matrix-Darstellung:
 
 Die Abbildung~\ref{fig:demo_abbildung} zeigt einen Platzhalter für eine echte Grafik. Abbildungen werden automatisch nummeriert und im Abbildungsverzeichnis aufgeführt.
 
-\subsection{Subfigures}
+\subsection*{Subfigures}
 \label{subsec:subfigures}
 
 Mit dem \texttt{subcaption}-Paket können mehrere Abbildungen nebeneinander platziert werden:
@@ -163,7 +163,7 @@ Mit dem \texttt{subcaption}-Paket können mehrere Abbildungen nebeneinander plat
 \section{Tabellen}
 \label{sec:tabellen_demo}
 
-\subsection{Einfache Tabelle}
+\subsection*{Einfache Tabelle}
 \label{subsec:einfache_tabelle}
 
 \begin{table}[h]
@@ -182,7 +182,7 @@ Mit dem \texttt{subcaption}-Paket können mehrere Abbildungen nebeneinander plat
 	\end{tabular}
 \end{table}
 
-\subsection{Komplexe Tabelle mit multirow und multicolumn}
+\subsection*{Komplexe Tabelle mit multirow und multicolumn}
 \label{subsec:komplexe_tabelle}
 
 \begin{table}[h]
@@ -205,7 +205,7 @@ Mit dem \texttt{subcaption}-Paket können mehrere Abbildungen nebeneinander plat
 \section{Code-Listings}
 \label{sec:code_listings}
 
-\subsection{Python-Code}
+\subsection*{Python-Code}
 \label{subsec:python_code}
 
 \begin{lstlisting}[caption={Python-Beispiel: Fakultätsfunktion},label={lst:python_factorial},language=Python]
@@ -221,7 +221,7 @@ for i in range(10):
     print(f"{i}! = {factorial(i)}")
 \end{lstlisting}
 
-\subsection{LaTeX-Code}
+\subsection*{LaTeX-Code}
 \label{subsec:latex_code}
 
 \begin{lstlisting}[caption={LaTeX-Beispiel: Dokumentstruktur},label={lst:latex_example},language=TeX]
@@ -242,7 +242,7 @@ Dies ist ein Beispieltext mit einer Formel: $x^2 + y^2 = r^2$
 \section{Querverweise und Zitationen}
 \label{sec:querverweise}
 
-\subsection{Interne Querverweise}
+\subsection*{Interne Querverweise}
 \label{subsec:querverweise_intern}
 
 Das Template unterstützt intelligente Querverweise mit dem \texttt{cleveref}-Paket:
@@ -255,7 +255,7 @@ Das Template unterstützt intelligente Querverweise mit dem \texttt{cleveref}-Pa
 	\item Verweis auf Listing: siehe \cref{lst:python_factorial}
 \end{listenabsatz}
 
-\subsection{Fußnoten}
+\subsection*{Fußnoten}
 \label{subsec:fussnoten_demo}
 
 Fußnoten\footnote{Dies ist eine Beispiel-Fußnote mit zusätzlichen Informationen.} können für ergänzende Informationen verwendet werden. Sie sollten jedoch sparsam eingesetzt werden\footnote{Eine zweite Fußnote zur Demonstration der automatischen Nummerierung.} und nicht länger als vier Zeilen sein.
@@ -263,7 +263,7 @@ Fußnoten\footnote{Dies ist eine Beispiel-Fußnote mit zusätzlichen Information
 \section{Glossar und Abkürzungen}
 \label{sec:glossar_demo}
 
-\subsection{Verwendung von Glossareinträgen}
+\subsection*{Verwendung von Glossareinträgen}
 \label{subsec:glossar_verwendung}
 
 Das Template nutzt das \texttt{glossaries}-Paket für die Verwaltung von Fachbegriffen und Abkürzungen:
@@ -279,7 +279,7 @@ Die Begriffe werden automatisch in das entsprechende Verzeichnis aufgenommen.
 \section{Spezielle Umgebungen}
 \label{sec:spezielle_umgebungen}
 
-\subsection{Theorem-ähnliche Umgebungen}
+\subsection*{Theorem-ähnliche Umgebungen}
 \label{subsec:theoreme}
 
 Obwohl nicht standardmäßig aktiviert, können bei Bedarf Theorem-Umgebungen definiert werden für:
@@ -292,7 +292,7 @@ Obwohl nicht standardmäßig aktiviert, können bei Bedarf Theorem-Umgebungen de
 	\item Beispiele
 \end{listenabsatz}
 
-\subsection{Infoboxen und Warnungen}
+\subsection*{Infoboxen und Warnungen}
 \label{subsec:infoboxen}
 
 Das Template kann erweitert werden um spezielle Boxen für:
@@ -306,17 +306,17 @@ Das Template kann erweitert werden um spezielle Boxen für:
 \section{Erweiterte Features}
 \label{sec:erweiterte_features}
 
-\subsection{TikZ-Grafiken}
+\subsection*{TikZ-Grafiken}
 \label{subsec:tikz}
 
 Mit TikZ können komplexe Diagramme direkt in \LaTeX{} erstellt werden. Das Template lädt die notwendigen Pakete automatisch.
 
-\subsection{SVG-Integration}
+\subsection*{SVG-Integration}
 \label{subsec:svg}
 
 SVG-Dateien können direkt eingebunden werden mit dem \texttt{\textbackslash includesvg}-Befehl, was besonders für Vektorgrafiken aus Inkscape nützlich ist.
 
-\subsection{Hyperlinks}
+\subsection*{Hyperlinks}
 \label{subsec:hyperlinks}
 
 Das Template unterstützt:

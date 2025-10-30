@@ -33,6 +33,7 @@ svg-inkscape/
 *.acr
 *.acn
 Main.pdf
+*.lol
 
 # Python
 *.pyc

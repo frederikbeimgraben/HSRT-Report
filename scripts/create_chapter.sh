@@ -146,7 +146,7 @@ will be covered in this chapter.]
 % ------------------------------------------------------------------------------
 % Subsection: Example Subsection
 % ------------------------------------------------------------------------------
-\subsection{Example Subsection}
+\subsection*{Example Subsection}
 \label{subsec:CHAPTER_LABEL_PLACEHOLDER_example}
 
 [Subsection content goes here.]

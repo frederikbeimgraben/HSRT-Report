@@ -21,25 +21,26 @@ Die folgende Tabelle gibt eine Übersicht über alle verwendeten Zeichenformate:
 	\label{tab:zeichenformate}
 	\begin{tabular}{|l|l|c|}
 		\hline
-		\textbf{Element}   & \textbf{Schriftart}         & \textbf{Größe (pt)} \\
+		\textbf{Element}              & \textbf{Schriftart} & \textbf{Größe}       \\
 		\hline
-		Titel              & Franklin Gothic Book        & 24                  \\
-		Standardtext       & Franklin Gothic Book        & 12                  \\
-		Überschrift 1      & Franklin Gothic Book        & 16                  \\
-		Überschrift 2      & Franklin Gothic Book        & 14                  \\
-		Überschrift 3      & Franklin Gothic Book (fett) & 12                  \\
+		Titel                         & Blender-Bold        & 24 pt                \\
+		Standardtext                  & DIN-Regular         & 11 pt                \\
+		Kapitel (Chapter)             & Blender-Bold        & \textbackslash LARGE \\
+		Überschrift 1 (Section)       & Blender-Bold        & \textbackslash Large \\
+		Überschrift 2 (Subsection)    & Blender-Bold        & \textbackslash large \\
+		Überschrift 3 (Subsubsection) & Blender-Bold        & \textbackslash large \\
 		\hline
-		Inhaltsverzeichnis & Franklin Gothic Book        & 10                  \\
-		Abb.-verzeichnis   & Franklin Gothic Book        & 10                  \\
-		Tab.-verzeichnis   & Franklin Gothic Book        & 10                  \\
-		Abk.-verzeichnis   & Franklin Gothic Book        & 10                  \\
-		Glossar            & Franklin Gothic Book        & 10                  \\
+		Inhaltsverzeichnis            & Blender-Bold        & 10                   \\
+		Abb.-verzeichnis              & Blender-Bold        & 10                   \\
+		Tab.-verzeichnis              & Blender-Bold        & 10                   \\
+		Abk.-verzeichnis              & Blender-Bold        & 10                   \\
+		Glossar                       & Blender-Bold        & 10                   \\
 		\hline
-		Zitate             & Franklin Gothic Book        & 12                  \\
-		Kopfzeilen         & Franklin Gothic Book        & 12                  \\
-		Fußzeilen          & Franklin Gothic Book        & 10                  \\
-		Fußnoten           & Franklin Gothic Book        & 10                  \\
-		Abstract           & Times New Roman (kursiv)    & 10                  \\
+		Zitate                        & DIN-Regular         & 12                   \\
+		Kopfzeilen                    & Blender-Bold        & 10                   \\
+		Fußzeilen                     & Blender-Bold        & 10                   \\
+		Fußnoten                      & DIN-Regular         & 9                    \\
+		Abstract                      & DIN-Regular         & 11                   \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -47,29 +48,32 @@ Die folgende Tabelle gibt eine Übersicht über alle verwendeten Zeichenformate:
 \section{Formatierungsrichtlinien}
 \label{sec:formatierungsrichtlinien}
 
-\subsection{Standardtext}
+\subsection*{Standardtext}
 \label{subsec:standardtext}
 
-Der Standardtext verwendet Franklin Gothic Book in 12 Punkt Größe. Diese Schriftart bietet eine gute Lesbarkeit sowohl auf Bildschirmen als auch im Druck. In \LaTeX{} wird eine passende Alternative automatisch ausgewählt, falls die exakte Schriftart nicht verfügbar ist.
+Der Standardtext verwendet Franklin Gothic Book (oder die in \LaTeX{} konfigurierte Alternative \texttt{blenderfont}) in 11 Punkt Größe als Basisschriftgröße. Der Zeilenabstand ist auf 1,5-fach eingestellt (\texttt{baselinestretch=1.5}), was eine gute Lesbarkeit sowohl auf Bildschirmen als auch im Druck gewährleistet.
 
-\subsection{Überschriften}
+\subsection*{Überschriften}
 \label{subsec:ueberschriften_format}
 
-Die Hierarchie der Überschriften wird durch unterschiedliche Schriftgrößen deutlich gemacht:
+Die Hierarchie der Überschriften wird durch unterschiedliche \LaTeX{}-Schriftgrößenbefehle und vertikale Abstände deutlich gemacht:
 \begin{listenabsatz}
-	\item Überschrift 1. Ebene: 16 Punkte
-	\item Überschrift 2. Ebene: 14 Punkte
-	\item Überschrift 3. Ebene: 12 Punkte (fett)
+	\item Kapitel (Chapter): \textbackslash LARGE mit 3ex Abstand davor
+	\item Überschrift 1. Ebene (Section): \textbackslash Large mit 4,5ex Abstand davor
+	\item Überschrift 2. Ebene (Subsection): \textbackslash large mit 3,5ex Abstand davor
+	\item Überschrift 3. Ebene (Subsubsection): \textbackslash large mit 2ex Abstand davor
 \end{listenabsatz}
 
-Alle Überschriften verwenden die gleiche Schriftart wie der Standardtext, um ein einheitliches Erscheinungsbild zu gewährleisten.
+Die großzügigen vertikalen Abstände vor Sections und Subsections sorgen für eine klare visuelle Gliederung des Dokuments. Alle Überschriften verwenden Fettdruck (\texttt{\textbackslash bfseries}) zusätzlich zur \texttt{blenderfont}.
 
-\subsection{Verzeichnisse}
+Alle Überschriften verwenden die gleiche Schriftart wie der Standardtext (\texttt{blenderfont}), jedoch mit Fettdruck versehen, um ein einheitliches und hierarchisches Erscheinungsbild zu gewährleisten.
+
+\subsection*{Verzeichnisse}
 \label{subsec:verzeichnisse_format}
 
 Alle Verzeichnisse (Inhalts-, Abbildungs-, Tabellen-, Abkürzungsverzeichnis und Glossar) werden einheitlich in 10 Punkt Schriftgröße formatiert. Dies sorgt für eine kompakte Darstellung bei gleichzeitig guter Übersichtlichkeit.
 
-\subsection{Spezielle Formatierungen}
+\subsection*{Spezielle Formatierungen}
 \label{subsec:spezielle_formatierungen}
 
 \subsubsection{Eigennamen}
@@ -102,10 +106,13 @@ Der Abstand für Tabulatoren beträgt einheitlich 2\,cm. Dies gewährleistet ein
 
 In \LaTeX{} werden die Zeichenformate automatisch durch die Dokumentklasse und die gewählten Pakete umgesetzt. Die HSRTReport-Klasse definiert:
 \begin{listenabsatz}
-	\item Standardschriftart und -größe
-	\item Überschriftformatierung durch KOMA-Script
-	\item Verzeichnisformatierung durch \texttt{tocloft}
-	\item Spezialformatierungen durch entsprechende Befehle
+	\item Basisschriftgröße: 11pt (durch Dokumentklassen-Option)
+	\item Schriftart: \texttt{blenderfont} (Franklin Gothic Book oder Systemalternative)
+	\item Überschriftformatierung durch KOMA-Script mit erweiterten Abständen
+	\item Verzeichnisformatierung durch \texttt{tocloft} mit \texttt{blenderfont}
+	\item Automatische Seitenumbruchkontrolle durch \texttt{PageBreakControl.tex}
+	\item Zeilenabstand: 1,5-fach (\texttt{baselinestretch=1.5})
+	\item Absatzabstand: 6pt (\texttt{parskip=6pt})
 \end{listenabsatz}
 
 Die konsistente Anwendung der Zeichenformate trägt wesentlich zur Professionalität und Lesbarkeit des Dokuments bei.

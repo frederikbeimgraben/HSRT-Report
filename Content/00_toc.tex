@@ -29,33 +29,33 @@
 	% Formatting
 	\blenderfont
 	\chapter*{\oldcontentsname}
-	\offsetA\offsetB
-
 	% Configure TOC page breaking to keep chapters with their sections
 	% Set penalties to keep related entries together
 	\begingroup
 	\interlinepenalty=500      % Discourage breaks within entries
 	\widowpenalty=10000        % Prevent orphaned lines
 	\clubpenalty=10000         % Prevent widowed lines
-	\@clubpenalty=10000        % Additional club penalty
 	\brokenpenalty=10000       % Penalty for hyphenated breaks
 
+	\makeatletter
 	% Add hook to keep short chapters together on same page
 	\pretocmd{\l@chapter}{%
-		\needspace{10\baselineskip}% Ensure space for chapter + sections
+		\needspace{10\baselineskip} % Ensure space for chapter + sections
 		\nopagebreak[4]%            % Strongly discourage break after chapter
 	}{}{}
 
 	% Add vertical spacing before chapters in TOC
-	\pretocmd{\l@chapter}{%
-		\vspace{1.5em plus 0.5em minus 0.2em}% Add space before chapters
-	}{}{}
+	%\pretocmd{\l@chapter}{%
+	%	\vspace{1.5em plus 0.5em minus 0.2em}% Add space before chapters
+	%}{}{}
 
 	% Keep sections with their chapter
 	\pretocmd{\l@section}{%
 		\nopagebreak[3]%            % Discourage break before first sections
 	}{}{}
+	\makeatother
 
+	\offsetA\offsetB
 	\tableofcontents
 	\endgroup
 }

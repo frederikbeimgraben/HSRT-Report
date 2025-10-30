@@ -1,6 +1,6 @@
 # HSRTReport LaTeX Template
 
-[![Build LaTeX Document](https://github.com/frederikbeimgraben/HSRT-Report/actions/workflows/makefile.yml/badge.svg)](https://github.com/frederikbeimgraben/HSRT-Report/actions/workflows/makefile.yml)
+[![Build LaTeX Document](https://github.com/frederikbeimgraben/HSRT-Report/actions/workflows/release.yml/badge.svg)](https://github.com/frederikbeimgraben/HSRT-Report/actions/workflows/release.yml)
 [![GitHub release](https://img.shields.io/github/release/frederikbeimgraben/HSRT-Report.svg)](https://github.com/frederikbeimgraben/HSRT-Report/releases/latest)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 

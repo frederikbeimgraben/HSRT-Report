@@ -236,5 +236,50 @@
 }
 
 % ==============================================================================
+% Table of Contents Page Break Control
+% ==============================================================================
+% Keep chapters with their sections together in TOC
+\newcommand{\protectchapterintoc}{%
+	\addtocontents{toc}{\protect\needspace{10\baselineskip}}%
+	\addtocontents{toc}{\protect\nopagebreak[4]}%
+}
+
+% Add space and break control for TOC chapters
+\pretocmd{\chapter}{%
+	\protectchapterintoc%
+}{}{}
+
+% Configure TOC to keep related entries together
+\AtBeginDocument{%
+	\addtocontents{toc}{\protect\interlinepenalty=500}%
+	\addtocontents{toc}{\protect\widowpenalty=10000}%
+	\addtocontents{toc}{\protect\clubpenalty=10000}%
+}
+
+% Command to mark TOC entries that should stay together
+\newcommand{\tockeeptogether}[1]{%
+	\addtocontents{toc}{\protect\begin{minipage}{\textwidth}}%
+			#1%
+			\addtocontents{toc}{\protect\end{minipage}}%
+}
+
+% Automatic TOC chapter grouping for short chapters
+\newcounter{tocsectioncount}
+\pretocmd{\section}{%
+	\stepcounter{tocsectioncount}%
+}{}{}
+
+\pretocmd{\chapter}{%
+	\setcounter{tocsectioncount}{0}%
+}{}{}
+
+% Check if chapter should be kept together based on section count
+\newcommand{\checktocgrouping}{%
+	\ifnum\value{tocsectioncount}<8% If chapter has less than 8 sections
+		\addtocontents{toc}{\protect\needspace{15\baselineskip}}% Keep it together
+	\fi%
+}
+
+% ==============================================================================
 % End of Page Break Control Module
 % ==============================================================================

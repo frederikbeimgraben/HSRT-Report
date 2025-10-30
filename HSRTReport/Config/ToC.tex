@@ -8,6 +8,35 @@
 % ==============================================================================
 
 % ==============================================================================
+% Chapter Grouping and Page Break Control in TOC
+% ==============================================================================
+% Keep chapters with their sections together on the same page if they fit
+% This prevents orphaned chapter titles at the bottom of pages
+
+% Add penalties to keep chapter entries with their sections
+\pretocmd{\addchaptertocentry}{%
+	\needspace{8\baselineskip}% Ensure space for chapter + at least 2 sections
+}{}{}
+
+% Add penalty after chapter to keep first sections together
+\apptocmd{\addchaptertocentry}{%
+	\nopagebreak[4]%
+}{}{}
+
+% Hook into TOC generation to add spacing and break control
+\AtBeginEnvironment{toc}{%
+	% Set penalties for better page breaking
+	\clubpenalty=10000
+	\widowpenalty=10000
+	\interlinepenalty=500
+}
+
+% Add vertical space before chapters in TOC for better visual separation
+\RedeclareSectionCommand[
+	tocbeforeskip=1.5em plus 0.5em,% Space before chapter entries in TOC
+]{chapter}
+
+% ==============================================================================
 % Page Number Formatting in TOC
 % ==============================================================================
 % Configure page number font for different section levels
@@ -31,8 +60,25 @@
 % Configure TOC entry and page number format for sections and subsections
 \RedeclareSectionCommands[
 	tocentryformat=\blenderfont\normalsize,
-	tocpagenumberformat=\blenderfont\normalsize
+	tocpagenumberformat=\blenderfont\normalsize,
+	tocindent=1.5em,% Indent for sections
+	tocnumwidth=2.5em% Width for section numbers
 ]{section,subsection}
+
+% Add spacing before sections in TOC
+\RedeclareSectionCommand[
+	tocbeforeskip=0.5em,% Small space before section entries
+]{section}
+
+% Keep sections with their subsections
+\pretocmd{\addsectiontocentry}{%
+	\penalty-500% Allow break before sections but discourage it
+}{}{}
+
+% Keep subsections together
+\pretocmd{\addsubsectiontocentry}{%
+	\nopagebreak[3]%
+}{}{}
 
 % ==============================================================================
 % Figure and Table TOC Formatting

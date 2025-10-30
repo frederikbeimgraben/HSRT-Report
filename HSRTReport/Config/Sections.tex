@@ -22,18 +22,32 @@
 % ==============================================================================
 % Section Spacing Configuration
 % ==============================================================================
-% Redefine chapter spacing
+% Redefine chapter spacing with more generous vertical spacing
 \RedeclareSectionCommand[
-	beforeskip=1ex,      % Space before chapter
-	afterskip=0.5ex,     % Space after chapter
-	style=section        % Use section style
+	beforeskip=3ex plus 1ex minus 0.5ex,  % Larger space before chapter (approx. 3 lines)
+	afterskip=1.5ex plus 0.3ex,           % Larger space after chapter
+	style=section                         % Use section style
 ]{chapter}
 
 % Redefine spacing for sections, subsections, and subsubsections
-\RedeclareSectionCommands[
-	beforeskip=0.6ex,    % Space before section
-	afterskip=0.3ex,     % Space after section
-]{section,subsection,subsubsection}
+% Significantly increased vertical spacing before sections and subsections for better visual separation
+\RedeclareSectionCommand[
+	beforeskip=4.5ex plus 1.5ex minus 0.5ex, % Very large space before section (approx. 4-5 lines)
+	afterskip=1.5ex plus 0.3ex,              % Generous space after section
+]{section}
+
+\RedeclareSectionCommand[
+	beforeskip=3.5ex plus 1ex minus 0.5ex,   % Large space before subsection (approx. 3-4 lines)
+	afterskip=1ex plus 0.2ex,                % Good space after subsection
+]{subsection}
+
+\RedeclareSectionCommand[
+	beforeskip=2ex plus 0.5ex minus 0.3ex,   % Moderate space before subsubsection
+	afterskip=0.8ex plus 0.1ex,              % Space after subsubsection
+]{subsubsection}
+
+% Add additional vertical spacing adjustments
+\setlength{\parskip}{0.8ex plus 0.2ex minus 0.1ex}  % Slightly increase paragraph spacing
 
 % ==============================================================================
 % Decorative Elements

@@ -21,26 +21,26 @@ Die folgende Tabelle gibt eine Übersicht über alle verwendeten Zeichenformate:
 	\label{tab:zeichenformate}
 	\begin{tabular}{|l|l|c|}
 		\hline
-		\textbf{Element}              & \textbf{Schriftart} & \textbf{Größe}       \\
+		\textbf{Element}              & \textbf{Schriftart} & \textbf{Größe}              \\
 		\hline
-		Titel                         & Blender-Bold        & 24 pt                \\
-		Standardtext                  & DIN-Regular         & 11 pt                \\
-		Kapitel (Chapter)             & Blender-Bold        & \textbackslash LARGE \\
-		Überschrift 1 (Section)       & Blender-Bold        & \textbackslash Large \\
-		Überschrift 2 (Subsection)    & Blender-Bold        & \textbackslash large \\
-		Überschrift 3 (Subsubsection) & Blender-Bold        & \textbackslash large \\
+		Titel                         & Blender-Bold        & \textbackslash Huge         \\
+		Standardtext                  & DIN-Regular         & \textbackslash normalsize   \\
+		Kapitel (Chapter)             & Blender-Bold        & \textbackslash LARGE        \\
+		Überschrift 1 (Section)       & Blender-Bold        & \textbackslash Large        \\
+		Überschrift 2 (Subsection)    & Blender-Bold        & \textbackslash large        \\
+		Überschrift 3 (Subsubsection) & Blender-Bold        & \textbackslash large        \\
 		\hline
-		Inhaltsverzeichnis            & Blender-Bold        & 10                   \\
-		Abb.-verzeichnis              & Blender-Bold        & 10                   \\
-		Tab.-verzeichnis              & Blender-Bold        & 10                   \\
-		Abk.-verzeichnis              & Blender-Bold        & 10                   \\
-		Glossar                       & Blender-Bold        & 10                   \\
+		Inhaltsverzeichnis            & Blender-Bold        & \textbackslash normalsize   \\
+		Abb.-verzeichnis              & Blender-Bold        & \textbackslash normalsize   \\
+		Tab.-verzeichnis              & Blender-Bold        & \textbackslash normalsize   \\
+		Abk.-verzeichnis              & Blender-Bold        & \textbackslash normalsize   \\
+		Glossar                       & Blender-Bold        & \textbackslash normalsize   \\
 		\hline
-		Zitate                        & DIN-Regular         & 12                   \\
-		Kopfzeilen                    & Blender-Bold        & 10                   \\
-		Fußzeilen                     & Blender-Bold        & 10                   \\
-		Fußnoten                      & DIN-Regular         & 9                    \\
-		Abstract                      & DIN-Regular         & 11                   \\
+		Zitate                        & DIN-Regular         & \textbackslash normalsize   \\
+		Kopfzeilen                    & Blender-Bold        & \textbackslash normalsize   \\
+		Fußzeilen                     & Blender-Bold        & \textbackslash normalsize   \\
+		Fußnoten                      & DIN-Regular         & \textbackslash footnotesize \\
+		Abstract                      & DIN-Regular         & \textbackslash normalsize   \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -57,12 +57,12 @@ Der Standardtext verwendet Franklin Gothic Book (oder die in \LaTeX{} konfigurie
 \label{subsec:ueberschriften_format}
 
 Die Hierarchie der Überschriften wird durch unterschiedliche \LaTeX{}-Schriftgrößenbefehle und vertikale Abstände deutlich gemacht:
-\begin{listenabsatz}
+\begin{itemize}
 	\item Kapitel (Chapter): \textbackslash LARGE mit 3ex Abstand davor
 	\item Überschrift 1. Ebene (Section): \textbackslash Large mit 4,5ex Abstand davor
 	\item Überschrift 2. Ebene (Subsection): \textbackslash large mit 3,5ex Abstand davor
 	\item Überschrift 3. Ebene (Subsubsection): \textbackslash large mit 2ex Abstand davor
-\end{listenabsatz}
+\end{itemize}
 
 Die großzügigen vertikalen Abstände vor Sections und Subsections sorgen für eine klare visuelle Gliederung des Dokuments. Alle Überschriften verwenden Fettdruck (\texttt{\textbackslash bfseries}) zusätzlich zur \texttt{blenderfont}.
 
@@ -81,11 +81,11 @@ Bei der Nennung von Eigennamen kann eine Kursivschrift mit Serifen verwendet wer
 
 \subsubsection{Hervorhebungen}
 Auf Hervorhebungen von Text mittels Fettdruck, Unterstreichungen etc. soll generell verzichtet werden. Ausnahmen bilden:
-\begin{listenabsatz}
+\begin{itemize}
 	\item Überschriften der dritten Ebene (fett)
 	\item Tabellenköpfe (fett)
 	\item Eigennamen (kursiv mit Serifen)
-\end{listenabsatz}
+\end{itemize}
 
 \subsubsection{Abstract}
 Das Abstract auf der Titelseite verwendet als einziges Element \emph{Times New Roman} in kursiv mit 10 Punkt Schriftgröße. Diese Formatierung hebt das Abstract visuell vom restlichen Dokument ab.
@@ -94,18 +94,18 @@ Das Abstract auf der Titelseite verwendet als einziges Element \emph{Times New R
 \label{sec:tabulatoren}
 
 Der Abstand für Tabulatoren beträgt einheitlich 2\,cm. Dies gewährleistet eine konsistente Einrückung bei:
-\begin{listenabsatz}
+\begin{itemize}
 	\item Listen und Aufzählungen
 	\item Eingerückten Zitaten
 	\item Formeln (1\,cm Einrückung)
 	\item Strukturierten Daten
-\end{listenabsatz}
+\end{itemize}
 
 \section{Technische Umsetzung in \LaTeX}
 \label{sec:technische_umsetzung}
 
 In \LaTeX{} werden die Zeichenformate automatisch durch die Dokumentklasse und die gewählten Pakete umgesetzt. Die HSRTReport-Klasse definiert:
-\begin{listenabsatz}
+\begin{itemize}
 	\item Basisschriftgröße: 11pt (durch Dokumentklassen-Option)
 	\item Schriftart: \texttt{blenderfont} (Franklin Gothic Book oder Systemalternative)
 	\item Überschriftformatierung durch KOMA-Script mit erweiterten Abständen
@@ -113,7 +113,7 @@ In \LaTeX{} werden die Zeichenformate automatisch durch die Dokumentklasse und d
 	\item Automatische Seitenumbruchkontrolle durch \texttt{PageBreakControl.tex}
 	\item Zeilenabstand: 1,5-fach (\texttt{baselinestretch=1.5})
 	\item Absatzabstand: 6pt (\texttt{parskip=6pt})
-\end{listenabsatz}
+\end{itemize}
 
 Die konsistente Anwendung der Zeichenformate trägt wesentlich zur Professionalität und Lesbarkeit des Dokuments bei.
 

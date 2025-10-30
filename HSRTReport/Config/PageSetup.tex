@@ -46,10 +46,10 @@
 % Left header: Chapter number and title
 % Right header: Document title
 \fancyhead[R]{%
-	\color{gray}\blenderfont%
-	\ifnum\value{chapter}>0%
-		\thechapter\quad\leftmark%
-	\fi%
+	\color{gray}\blenderfont
+
+	% show if chapter > 0
+	\ifthenelse{\value{chapter} > 0}{\thechapter~–~\leftmark}{}
 }
 \fancyhead[L]{\color{gray}\blenderfont\@title} % Document title on right
 
@@ -57,17 +57,19 @@
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\sectionmark}[1]{}  % Don't show sections in header
 
+\newcommand{\footerhorizspacing}{\qquad}
+
 % ------------------------------------------------------------------------------
 % Footer Configuration
 % ------------------------------------------------------------------------------
 % Footer format: Author Name | Module Name | Page X of Y
 % The footer is centered
-\fancyfoot[L]{%
+\fancyfoot[C]{%
 	\color{gray}\blenderfont%
 	\@author%
-	\quad|\quad%
+	\footerhorizspacing%
 	\ifdef{\modulename}{\modulename}{Modul-Name}%
-	\quad|\quad%
+	\footerhorizspacing%
 	Seite~\thepage~von~\pageref{LastPage}%
 }
 
@@ -79,19 +81,19 @@
 	\fancyhf{}
 	% Show headers also on chapter start pages
 	\fancyhead[R]{%
-		\color{gray}\blenderfont%
-		\ifnum\value{chapter}>0%
-			\thechapter\quad\leftmark%
-		\fi%
+		\color{gray}\blenderfont
+
+		% show if chapter > 0
+		\ifthenelse{\value{chapter} > 0}{\thechapter~–~\leftmark}{}
 	}
 	\fancyhead[L]{\color{gray}\blenderfont\@title}
 	% Same footer as regular pages
-	\fancyfoot[L]{%
+	\fancyfoot[C]{%
 		\color{gray}\blenderfont%
 		\@author%
-		\quad|\quad%
+		\footerhorizspacing%
 		\ifdef{\modulename}{\modulename}{Modul-Name}%
-		\quad|\quad%
+		\footerhorizspacing%
 		Seite~\thepage~von~\pageref{LastPage}%
 	}
 	\renewcommand{\headrulewidth}{0pt}
@@ -104,18 +106,18 @@
 \fancypagestyle{fancy}{
 	\fancyhf{}
 	\fancyhead[R]{%
-		\color{gray}\blenderfont%
-		\ifnum\value{chapter}>0%
-			\thechapter\quad\leftmark%
-		\fi%
+		\color{gray}\blenderfont
+
+		% show if chapter > 0
+		\ifthenelse{\value{chapter} > 0}{\thechapter~–~\leftmark}{}
 	}
 	\fancyhead[L]{\color{gray}\blenderfont\@title}
-	\fancyfoot[L]{%
+	\fancyfoot[C]{%
 		\color{gray}\blenderfont%
 		\@author%
-		\quad|\quad%
+		\footerhorizspacing%
 		\ifdef{\modulename}{\modulename}{Modul-Name}%
-		\quad|\quad%
+		\footerhorizspacing%
 		Seite~\thepage~von~\pageref{LastPage}%
 	}
 }

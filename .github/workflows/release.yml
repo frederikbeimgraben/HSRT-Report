@@ -72,7 +72,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            SAT-WiSe-25-26_${{ steps.version.outputs.VERSION }}.pdf
+            Report_${{ steps.version.outputs.VERSION }}.pdf
             Output/Main.pdf
           name: Release ${{ steps.version.outputs.VERSION }}
           body_path: release_notes.md
@@ -85,9 +85,9 @@ jobs:
       - name: Upload PDF as artifact (backup)
         uses: actions/upload-artifact@v4
         with:
-          name: SAT-WiSe-25-26-Release-${{ steps.version.outputs.VERSION }}
+          name: Report-${{ steps.version.outputs.VERSION }}
           path: |
-            SAT-WiSe-25-26_${{ steps.version.outputs.VERSION }}.pdf
+            Report_${{ steps.version.outputs.VERSION }}.pdf
             Output/Main.pdf
           retention-days: 90
           if-no-files-found: error

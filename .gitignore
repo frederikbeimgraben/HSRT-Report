@@ -34,6 +34,7 @@ svg-inkscape/
 *.acn
 Main.pdf
 *.lol
+.chapter-backups
 
 # Python
 *.pyc

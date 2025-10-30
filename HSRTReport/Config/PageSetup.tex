@@ -28,8 +28,8 @@
 % Set page number font style
 \setkomafont{pagenumber}{\color{gray}\blenderfont\selectfont}
 
-% Adjust footer position - move up by 1em
-\addtolength{\footskip}{-1em}
+% Adjust footer position - move up by reducing footskip
+\setlength{\footskip}{25pt}  % Reduced from default to move footer up
 
 % ==============================================================================
 % Header and Footer Setup
@@ -42,13 +42,13 @@
 % ------------------------------------------------------------------------------
 % Left header: Chapter number and title
 % Right header: Document title
-\fancyhead[L]{%
+\fancyhead[R]{%
 	\color{gray}\blenderfont%
 	\ifnum\value{chapter}>0%
 		\thechapter\quad\leftmark%
 	\fi%
 }
-\fancyhead[R]{\color{gray}\blenderfont\@title} % Document title on right
+\fancyhead[L]{\color{gray}\blenderfont\@title} % Document title on right
 
 % Update chapter marks to show only chapter name without "Chapter" prefix
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
@@ -59,7 +59,7 @@
 % ------------------------------------------------------------------------------
 % Footer format: Author Name | Module Name | Page X of Y
 % The footer is centered
-\fancyfoot[C]{%
+\fancyfoot[L]{%
 	\color{gray}\blenderfont%
 	\@author%
 	\quad|\quad%
@@ -75,10 +75,10 @@
 \fancypagestyle{plain}{
 	\fancyhf{}
 	% No header on chapter start pages
-	\fancyhead[L]{}
 	\fancyhead[R]{}
+	\fancyhead[L]{}
 	% Same footer as regular pages
-	\fancyfoot[C]{%
+	\fancyfoot[L]{%
 		\color{gray}\blenderfont%
 		\@author%
 		\quad|\quad%
@@ -95,14 +95,14 @@
 % Explicitly define the fancy page style
 \fancypagestyle{fancy}{
 	\fancyhf{}
-	\fancyhead[L]{%
+	\fancyhead[R]{%
 		\color{gray}\blenderfont%
 		\ifnum\value{chapter}>0%
 			\thechapter\quad\leftmark%
 		\fi%
 	}
-	\fancyhead[R]{\color{gray}\blenderfont\@title}
-	\fancyfoot[C]{%
+	\fancyhead[L]{\color{gray}\blenderfont\@title}
+	\fancyfoot[L]{%
 		\color{gray}\blenderfont%
 		\@author%
 		\quad|\quad%

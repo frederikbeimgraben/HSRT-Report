@@ -3,15 +3,15 @@ name: Create Release with PDF
 on:
   push:
     tags:
-      - 'v*.*.*'  # Trigger on version tags like v1.0.0
-      - 'release-*'  # Trigger on release tags like release-2024-10
+      - "v*.*.*" # Trigger on version tags like v1.0.0
+      - "release-*" # Trigger on release tags like release-2024-10
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write  # Required for creating releases
+      contents: write # Required for creating releases
 
     steps:
       - name: Checkout repository
@@ -37,13 +37,13 @@ jobs:
 
       - name: Rename PDF with version
         run: |
-          cp Output/Main.pdf "SAT-WiSe-25-26_${{ steps.version.outputs.VERSION }}.pdf"
+          cp Output/Main.pdf "Report_${{ steps.version.outputs.VERSION }}.pdf"
 
       - name: Generate release notes
         id: release_notes
         run: |
           cat << EOF > release_notes.md
-          ## SAT-WiSe-25-26 Document Release
+          ## Report Document Release
 
           **Version:** ${{ steps.version.outputs.VERSION }}
           **Date:** ${{ steps.version.outputs.DATE }}
@@ -54,7 +54,7 @@ jobs:
           - **Build System:** Docker-based compilation
 
           ### 📦 Included Files
-          - \`SAT-WiSe-25-26_${{ steps.version.outputs.VERSION }}.pdf\` - The compiled document
+          - \`Report_${{ steps.version.outputs.VERSION }}.pdf\` - The compiled document
 
           ### 🔧 Build Information
           - Built with XeLaTeX
@@ -78,7 +78,7 @@ jobs:
           body_path: release_notes.md
           draft: false
           prerelease: false
-          generate_release_notes: true  # Append auto-generated notes
+          generate_release_notes: true # Append auto-generated notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

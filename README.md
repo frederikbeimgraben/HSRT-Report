@@ -4,17 +4,17 @@ A professional LaTeX report template for academic papers and theses at the Unive
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Project Structure](#project-structure)
-- [Usage](#usage)
-- [Document Class Options](#document-class-options)
-- [Customization](#customization)
-- [Building the Document](#building-the-document)
-- [Troubleshooting](#troubleshooting)
-- [License](#license)
+- [Overview](#-overview)
+- [Features](#-features)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Project Structure](#-project-structure)
+- [Usage](#-usage)
+- [Document Class Options](#-document-class-options)
+- [Customization](#-customization)
+- [Building the Document](#-building-the-document)
+- [Troubleshooting](#-troubleshooting)
+- [License](#-license)
 
 ## 📖 Overview
 

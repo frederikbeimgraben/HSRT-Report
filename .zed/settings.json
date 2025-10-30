@@ -1,0 +1,80 @@
+{
+  "languages": {
+    "LaTeX": {
+      "tab_size": 2,
+      "hard_tabs": false,
+      "soft_wrap": "editor_width",
+      "show_whitespaces": "selection",
+      "use_autoclose": true,
+      "enable_language_server": true
+    }
+  },
+
+  "file_scan_exclusions": [
+    "Build/",
+    "*.aux",
+    "*.log",
+    "*.out",
+    "*.toc",
+    "*.lof",
+    "*.lot",
+    "*.lol",
+    "*.bbl",
+    "*.blg",
+    "*.synctex.gz",
+    "*.fdb_latexmk",
+    "*.fls",
+    "*.idx",
+    "*.ind",
+    "*.ilg",
+    "*.glo",
+    "*.gls",
+    "*.glg",
+    "*.nav",
+    "*.snm",
+    "*.vrb",
+    "*.bcf",
+    "*.run.xml"
+  ],
+
+  "show_line_numbers": true,
+  "relative_line_numbers": false,
+  "cursor_blink": true,
+
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+
+  "lsp": {
+    "texlab": {
+      "settings": {
+        "texlab": {
+          "build": {
+            "executable": "make",
+            "args": [],
+            "onSave": false,
+            "forwardSearchAfter": false
+          },
+          "chktex": {
+            "onEdit": false,
+            "onOpenAndSave": true
+          },
+          "latexFormatter": "latexindent",
+          "latexindent": {
+            "modifyLineBreaks": false
+          }
+        }
+      }
+    }
+  },
+
+  "task_aliases": {
+    "build": "make",
+    "clean": "make clean",
+    "full": "make full",
+    "view": "make view"
+  }
+}

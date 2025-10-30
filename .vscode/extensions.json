@@ -1,0 +1,26 @@
+{
+  // Recommended extensions for LaTeX development
+  "recommendations": [
+    // LaTeX Workshop - Main LaTeX extension
+    "james-yu.latex-workshop",
+
+    // PDF viewer
+    "tomoki1207.pdf",
+
+    // Spell checking
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-german",
+
+    // File icons
+    "vscode-icons-team.vscode-icons",
+
+    // Docker support (for building with Docker)
+    "ms-azuretools.vscode-docker",
+
+    // Path intellisense
+    "christian-kohler.path-intellisense",
+
+    // TODO highlighting
+    "gruntfuggly.todo-tree"
+  ]
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "label": "Build LaTeX Document",
+    "command": "make",
+    "args": [],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Clean Build Files",
+    "command": "make",
+    "args": ["clean"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Full Build (Clean + Build)",
+    "command": "make",
+    "args": ["full"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "View PDF",
+    "command": "make",
+    "args": ["view"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "reveal": "never"
+  },
+  {
+    "label": "Docker Build",
+    "command": "make",
+    "args": ["docker-build"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Docker Build (Cached)",
+    "command": "make",
+    "args": ["docker-build-cached"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Docker Clean",
+    "command": "make",
+    "args": ["docker-clean"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Docker Shell",
+    "command": "make",
+    "args": ["docker-shell"],
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Docker Info",
+    "command": "make",
+    "args": ["docker-info"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "reveal": "always"
+  },
+  {
+    "label": "List Chapters",
+    "command": "make",
+    "args": ["chapters"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "reveal": "always"
+  },
+  {
+    "label": "Word Count",
+    "command": "make",
+    "args": ["count"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "reveal": "always"
+  },
+  {
+    "label": "Check Prerequisites",
+    "command": "make",
+    "args": ["check"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "reveal": "always"
+  },
+  {
+    "label": "Project Structure",
+    "command": "make",
+    "args": ["structure"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "reveal": "always"
+  },
+  {
+    "label": "Help",
+    "command": "make",
+    "args": ["help"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": true,
+    "reveal": "always"
+  },
+  {
+    "label": "Watch (Continuous Build)",
+    "command": "make",
+    "args": ["watch"],
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Draft Build",
+    "command": "make",
+    "args": ["draft"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Local Build (No Docker)",
+    "command": "make",
+    "args": ["local"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Compile Only",
+    "command": "make",
+    "args": ["compile"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Clean Output",
+    "command": "make",
+    "args": ["clean-output"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Clean Auxiliary Files",
+    "command": "make",
+    "args": ["clean-aux"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Distribution Clean",
+    "command": "make",
+    "args": ["distclean"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always"
+  }
+]

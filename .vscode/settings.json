@@ -1,0 +1,114 @@
+{
+  // LaTeX Workshop Configuration
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "make",
+      "tools": ["make"]
+    },
+    {
+      "name": "make clean",
+      "tools": ["make-clean"]
+    },
+    {
+      "name": "make full",
+      "tools": ["make-full"]
+    }
+  ],
+
+  "latex-workshop.latex.tools": [
+    {
+      "name": "make",
+      "command": "make",
+      "args": [],
+      "env": {},
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "make-clean",
+      "command": "make",
+      "args": ["clean"],
+      "env": {},
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "make-full",
+      "command": "make",
+      "args": ["full"],
+      "env": {},
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+
+  // Set default recipe
+  "latex-workshop.latex.recipe.default": "first",
+
+  // Use external build command
+  "latex-workshop.latex.external.build.command": "make",
+  "latex-workshop.latex.external.build.args": [],
+
+  // Disable auto-build on save (optional, remove if you want auto-build)
+  "latex-workshop.latex.autoBuild.run": "never",
+
+  // Clean auxiliary files
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+
+  // PDF viewer settings
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.zoom": "auto",
+
+  // Output directory
+  "latex-workshop.latex.outDir": "./Output",
+
+  // Root file
+  "latex-workshop.latex.rootFile.usePolling": true,
+  "latex-workshop.latex.rootFile.indicator": "\\documentclass",
+
+  // Disable other build methods to avoid confusion
+  "latex-workshop.latex.magic.enabled": false,
+  "latex-workshop.latex.build.forceRecipeUsage": true,
+
+  // File associations
+  "files.associations": {
+    "*.tex": "latex",
+    "*.cls": "latex",
+    "*.sty": "latex",
+    "*.bib": "bibtex"
+  },
+
+  // Editor settings for LaTeX files
+  "[latex]": {
+    "editor.wordWrap": "on",
+    "editor.rulers": [80, 100],
+    "editor.formatOnSave": false,
+    "editor.suggestSelection": "first"
+  },
+
+  // Spell check settings (optional)
+  "cSpell.language": "de,en",
+  "cSpell.enableFiletypes": ["latex", "bibtex"],
+
+  // Hide auxiliary files from explorer (optional)
+  "files.exclude": {
+    "**/*.aux": true,
+    "**/*.log": true,
+    "**/*.synctex.gz": true,
+    "**/*.fdb_latexmk": true,
+    "**/*.fls": true,
+    "**/*.out": true,
+    "**/*.toc": true,
+    "**/*.bbl": true,
+    "**/*.blg": true,
+    "**/*.lof": true,
+    "**/*.lot": true,
+    "**/*.nav": true,
+    "**/*.snm": true,
+    "**/*.vrb": true,
+    "Build/**": false
+  },
+
+  // Search exclude patterns
+  "search.exclude": {
+    "Build/**": true,
+    "Output/**": false
+  }
+}

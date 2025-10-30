@@ -40,6 +40,24 @@
 % Clear all header and footer fields
 \fancyhf{}
 
+\newcommand{\fancyfootL}{
+	\color{gray}\blenderfont
+	\raisebox{0em}{
+		\hspace{-2pt}\@author
+	}
+	\newline
+	\raisebox{0em}{
+		\hspace{-2pt}\ifdef{\modulename}{\modulename}{Modul-Name}
+	}
+}
+
+\newcommand{\fancyfootC}{
+	\color{gray}\blenderfont\newline
+	\raisebox{0em}{
+		Seite~\thepage~von~\pageref{LastPage}
+	}
+}
+
 % ------------------------------------------------------------------------------
 % Header Configuration
 % ------------------------------------------------------------------------------
@@ -64,13 +82,11 @@
 % ------------------------------------------------------------------------------
 % Footer format: Author Name | Module Name | Page X of Y
 % The footer is centered
-\fancyfoot[C]{%
-	\color{gray}\blenderfont%
-	\@author%
-	\footerhorizspacing%
-	\ifdef{\modulename}{\modulename}{Modul-Name}%
-	\footerhorizspacing%
-	Seite~\thepage~von~\pageref{LastPage}%
+\fancyfoot[L]{
+	\fancyfootL
+}
+\fancyfoot[C]{
+	\fancyfootC
 }
 
 % ==============================================================================
@@ -88,13 +104,11 @@
 	}
 	\fancyhead[L]{\color{gray}\blenderfont\@title}
 	% Same footer as regular pages
-	\fancyfoot[C]{%
-		\color{gray}\blenderfont%
-		\@author%
-		\footerhorizspacing%
-		\ifdef{\modulename}{\modulename}{Modul-Name}%
-		\footerhorizspacing%
-		Seite~\thepage~von~\pageref{LastPage}%
+	\fancyfoot[C]{
+		\fancyfootC
+	}
+	\fancyfoot[L]{
+		\fancyfootL
 	}
 	\renewcommand{\headrulewidth}{0pt}
 }
@@ -112,13 +126,11 @@
 		\ifthenelse{\value{chapter} > 0}{\thechapter~–~\leftmark}{}
 	}
 	\fancyhead[L]{\color{gray}\blenderfont\@title}
-	\fancyfoot[C]{%
-		\color{gray}\blenderfont%
-		\@author%
-		\footerhorizspacing%
-		\ifdef{\modulename}{\modulename}{Modul-Name}%
-		\footerhorizspacing%
-		Seite~\thepage~von~\pageref{LastPage}%
+	\fancyfoot[C]{
+		\fancyfootC
+	}
+	\fancyfoot[L]{
+		\fancyfootL
 	}
 }
 

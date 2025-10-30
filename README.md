@@ -1,5 +1,9 @@
 # HSRTReport LaTeX Template
 
+[![Build LaTeX Document](https://github.com/frederik/SAT-WiSe-25-26/actions/workflows/makefile.yml/badge.svg)](https://github.com/frederik/SAT-WiSe-25-26/actions/workflows/makefile.yml)
+[![GitHub release](https://img.shields.io/github/release/frederik/SAT-WiSe-25-26.svg)](https://github.com/frederik/SAT-WiSe-25-26/releases/latest)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+
 A professional LaTeX report template for academic papers and theses at the University of Applied Sciences Reutlingen (Hochschule Reutlingen).
 
 ## 📋 Table of Contents
@@ -282,6 +286,53 @@ make distclean
 ```bash
 latexmk -xelatex -shell-escape -bibtex Main.tex
 ```
+
+## 🚀 CI/CD Pipeline
+
+### Continuous Integration
+
+The project includes GitHub Actions workflows for automated building and testing:
+
+#### Build Workflow (`makefile.yml`)
+- **Triggers on:** Push to main, Pull requests
+- **Actions:**
+  - Builds the document using Docker
+  - Uploads the PDF as an artifact
+  - Available for 30 days after build
+  - Build logs uploaded on failure
+
+#### Release Workflow (`release.yml`)
+- **Triggers on:** Version tags (e.g., `v1.0.0`, `release-2024-10`)
+- **Actions:**
+  - Creates a GitHub release
+  - Attaches the PDF with version number
+  - Generates release notes automatically
+  - Archives artifacts for 90 days
+
+### Creating a Release
+
+To create a new release with the PDF:
+
+```bash
+# Tag the current commit
+git tag -a v1.0.0 -m "Release version 1.0.0"
+
+# Push the tag to trigger the release workflow
+git push origin v1.0.0
+```
+
+The workflow will automatically:
+1. Build the document
+2. Create a GitHub release
+3. Attach the PDF to the release
+4. Generate release notes from commit history
+
+### Accessing Build Artifacts
+
+1. Go to the **Actions** tab in your GitHub repository
+2. Select a workflow run
+3. Scroll down to **Artifacts**
+4. Download `SAT-WiSe-25-26-PDF`
 
 ## 🐛 Troubleshooting
 

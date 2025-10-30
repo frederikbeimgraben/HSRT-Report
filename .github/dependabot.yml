@@ -1,0 +1,49 @@
+# ==============================================================================
+# Dependabot Configuration
+# ==============================================================================
+# Description: Automated dependency updates for GitHub Actions
+# Documentation: https://docs.github.com/en/code-security/dependabot
+# ==============================================================================
+
+version: 2
+
+updates:
+  # ------------------------------------------------------------------------------
+  # GitHub Actions Updates
+  # ------------------------------------------------------------------------------
+  # Keep GitHub Actions up to date automatically
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    assignees:
+      - "frederikbeimgraben"
+    open-pull-requests-limit: 5
+
+  # ------------------------------------------------------------------------------
+  # Docker Updates
+  # ------------------------------------------------------------------------------
+  # Keep Docker base images up to date
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      day: "monday"
+      time: "06:00"
+    commit-message:
+      prefix: "docker"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "docker"
+    assignees:
+      - "frederikbeimgraben"
+    open-pull-requests-limit: 3

@@ -1,17 +1,44 @@
-name: Makefile CI
+name: Build LaTeX Document
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
+  workflow_dispatch: # Allow manual triggering
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Build
-      run: make
+      - name: Build document with Docker
+        run: make docker-build
+
+      - name: Check if PDF was created
+        run: |
+          if [ ! -f Output/Main.pdf ]; then
+            echo "Error: PDF was not created"
+            exit 1
+          fi
+          echo "PDF size: $(du -h Output/Main.pdf)"
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SAT-WiSe-25-26-PDF
+          path: Output/Main.pdf
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Upload build logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: Build/*.log
+          retention-days: 7
+          if-no-files-found: ignore

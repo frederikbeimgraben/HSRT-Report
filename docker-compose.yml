@@ -1,0 +1,14 @@
+services:
+  latex:
+    #image: texlive/texlive:latest
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM texlive/texlive:latest
+        RUN apt update -y
+        RUN apt install inkscape -y
+    volumes:
+      - ./:/data
+    # working_dir: /data/Projektbeschreibung-MKI-METI-Projekt
+    working_dir: /data
+    entrypoint: ["make", "compile"]

@@ -39,3 +39,4 @@ Output/
 .chapter-backups/
 svg-inkscape/
 .config/
+.cache/

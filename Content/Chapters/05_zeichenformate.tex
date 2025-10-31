@@ -21,26 +21,26 @@ Die folgende Tabelle gibt eine Übersicht über alle verwendeten Zeichenformate:
 	\label{tab:zeichenformate}
 	\begin{tabular}{|l|l|c|}
 		\hline
-		\textbf{Element}              & \textbf{Schriftart} & \textbf{Größe}              \\
+		\textbf{Element}              & \textbf{Schriftart} & \textbf{Größe}                       \\
 		\hline
-		Titel                         & Blender-Bold        & \textbackslash Huge         \\
-		Standardtext                  & DIN-Regular         & \textbackslash normalsize   \\
-		Kapitel (Chapter)             & Blender-Bold        & \textbackslash LARGE        \\
-		Überschrift 1 (Section)       & Blender-Bold        & \textbackslash Large        \\
-		Überschrift 2 (Subsection)    & Blender-Bold        & \textbackslash large        \\
-		Überschrift 3 (Subsubsection) & Blender-Bold        & \textbackslash large        \\
+		Titel                         & Blender-Bold        & \texttt{\textbackslash Huge}         \\
+		Standardtext                  & DIN-Regular         & \texttt{\textbackslash normalsize}   \\
+		Kapitel (Chapter)             & Blender-Bold        & \texttt{\textbackslash LARGE}        \\
+		Überschrift 1 (Section)       & Blender-Bold        & \texttt{\textbackslash Large}        \\
+		Überschrift 2 (Subsection)    & Blender-Bold        & \texttt{\textbackslash large}        \\
+		Überschrift 3 (Subsubsection) & Blender-Bold        & \texttt{\textbackslash large}        \\
 		\hline
-		Inhaltsverzeichnis            & Blender-Medium      & \textbackslash normalsize   \\
-		Abb.-verzeichnis              & Blender-Medium      & \textbackslash normalsize   \\
-		Tab.-verzeichnis              & Blender-Medium      & \textbackslash normalsize   \\
-		Abk.-verzeichnis              & Blender-Medium      & \textbackslash normalsize   \\
-		Glossar                       & Blender-Medium      & \textbackslash normalsize   \\
+		Inhaltsverzeichnis            & Blender-Medium      & \texttt{\textbackslash normalsize}   \\
+		Abb.-verzeichnis              & Blender-Medium      & \texttt{\textbackslash normalsize}   \\
+		Tab.-verzeichnis              & Blender-Medium      & \texttt{\textbackslash normalsize}   \\
+		Abk.-verzeichnis              & Blender-Medium      & \texttt{\textbackslash normalsize}   \\
+		Glossar                       & Blender-Medium      & \texttt{\textbackslash normalsize}   \\
 		\hline
-		Zitate                        & DIN-Regular         & \textbackslash normalsize   \\
-		Kopfzeilen                    & Blender-Medium      & \textbackslash normalsize   \\
-		Fußzeilen                     & Blender-Medium      & \textbackslash normalsize   \\
-		Fußnoten                      & DIN-Regular         & \textbackslash footnotesize \\
-		Abstract                      & DIN-Regular         & \textbackslash normalsize   \\
+		Zitate                        & DIN-Regular         & \texttt{\textbackslash normalsize}   \\
+		Kopfzeilen                    & Blender-Medium      & \texttt{\textbackslash normalsize}   \\
+		Fußzeilen                     & Blender-Medium      & \texttt{\textbackslash normalsize}   \\
+		Fußnoten                      & DIN-Regular         & \texttt{\textbackslash footnotesize} \\
+		Abstract                      & DIN-Regular         & \texttt{\textbackslash normalsize}   \\
 		\hline
 	\end{tabular}
 \end{table}
@@ -58,10 +58,10 @@ Der Standardtext verwendet Franklin Gothic Book (oder die in \LaTeX{} konfigurie
 
 Die Hierarchie der Überschriften wird durch unterschiedliche \LaTeX{}-Schriftgrößenbefehle und vertikale Abstände deutlich gemacht:
 \begin{itemize}
-	\item Kapitel (Chapter): \textbackslash LARGE mit 3ex Abstand davor
-	\item Überschrift 1. Ebene (Section): \textbackslash Large mit 4,5ex Abstand davor
-	\item Überschrift 2. Ebene (Subsection): \textbackslash large mit 3,5ex Abstand davor
-	\item Überschrift 3. Ebene (Subsubsection): \textbackslash large mit 2ex Abstand davor
+	\item Kapitel (Chapter): \texttt{\textbackslash LARGE}mit 3ex Abstand davor
+	\item Überschrift 1. Ebene (Section): \texttt{\textbackslash Large}mit 4,5ex Abstand davor
+	\item Überschrift 2. Ebene (Subsection): \texttt{\textbackslash large}mit 3,5ex Abstand davor
+	\item Überschrift 3. Ebene (Subsubsection): \texttt{\textbackslash large}mit 2ex Abstand davor
 \end{itemize}
 
 Die großzügigen vertikalen Abstände vor Sections und Subsections sorgen für eine klare visuelle Gliederung des Dokuments. Alle Überschriften verwenden Fettdruck (\texttt{\textbackslash bfseries}) zusätzlich zur \texttt{blenderfont}.
@@ -77,7 +77,7 @@ Alle Verzeichnisse (Inhalts-, Abbildungs-, Tabellen-, Abkürzungsverzeichnis und
 \label{subsec:spezielle_formatierungen}
 
 \subsubsection{Eigennamen}
-Bei der Nennung von Eigennamen kann eine Kursivschrift mit Serifen verwendet werden, beispielsweise \emph{Times New Roman} in kursiv. Dies hebt Eigennamen vom restlichen Text ab.
+Bei der Nennung von Eigennamen \textit{kann} eine Kursivschrift mit Serifen verwendet werden, beispielsweise \emph{Times New Roman} in kursiv. Dies hebt Eigennamen vom restlichen Text ab.
 
 \subsubsection{Hervorhebungen}
 Auf Hervorhebungen von Text mittels Fettdruck, Unterstreichungen etc. soll generell verzichtet werden. Ausnahmen bilden:
@@ -87,8 +87,6 @@ Auf Hervorhebungen von Text mittels Fettdruck, Unterstreichungen etc. soll gener
 	\item Eigennamen (kursiv mit Serifen)
 \end{itemize}
 
-\subsubsection{Abstract}
-Das Abstract auf der Titelseite verwendet als einziges Element \emph{Times New Roman} in kursiv mit 10 Punkt Schriftgröße. Diese Formatierung hebt das Abstract visuell vom restlichen Dokument ab.
 
 \section{Tabulatoren und Abstände}
 \label{sec:tabulatoren}

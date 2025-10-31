@@ -18,10 +18,9 @@ Die Gestaltung des Titelblattes erfolgt automatisch durch das Template. Alle erf
 
 Der Titel der Arbeit wird mit folgenden Eigenschaften formatiert:
 \begin{itemize}
-	\item Abstand zum oberen Blattrand: 6\,cm
-	\item Ausrichtung: zentriert
-	\item Schriftgröße: 24 Punkte
-	\item E-Mail-Anschrift: Als Hyperlink kenntlich gemacht
+	\item Abstand zum oberen Blattrand: 6,5\,cm
+	\item Ausrichtung: linksbündig
+	\item Schriftgröße: \texttt{\textbackslash Huge}
 \end{itemize}
 
 \subsection*{Abstract}
@@ -29,9 +28,9 @@ Der Titel der Arbeit wird mit folgenden Eigenschaften formatiert:
 
 Das Abstract wird auf der Titelseite platziert und hat folgende Eigenschaften:
 \begin{itemize}
-	\item Schriftart: Times New Roman kursiv
-	\item Schriftgröße: 10 Punkte
-	\item Maximale Länge: 150--250 Wörter
+	\item Schriftart: DIN-Regular
+	\item Schriftgröße: \texttt{\textbackslash normalsize}
+	\item Maximale Länge: 150–250 Wörter
 	\item Inhalt: Zielsetzung, Methoden und Ergebnisse der Arbeit
 \end{itemize}
 
@@ -42,16 +41,18 @@ Das Abstract soll es den Lesern und Leserinnen ermöglichen, innerhalb von wenig
 
 Das Inhaltsverzeichnis wird automatisch generiert und umfasst:
 \begin{itemize}
-	\item Maximal 3 Gliederungsebenen
-	\item Schriftgröße: 10 Punkte
+	\item Maximal 3 Gliederungsebenen (\texttt{\textbackslash chapter}, \texttt{\textbackslash section} und \texttt{\textbackslash subsection*} – \texttt{*} sorgt dafür, dass die Überschriften nicht in die Nummerierung einbezogen werden)
+	\item Schriftgröße: \texttt{\textbackslash normalsize} (11pt)
+	\item Schriftart: Blender-Medium (Wirkt u.U. eher wie 10pt)
 	\item Automatische Seitenzahlen mit Punktführung
 	\item Struktur so flach wie möglich halten
 \end{itemize}
 
+\newpage
 \section{Abbildungsverzeichnis}
 \label{sec:abbildungsverzeichnis}
 
-Das Abbildungsverzeichnis wird automatisch aus allen mit \texttt{\textbackslash caption} versehenen Abbildungen erstellt. Die Formatierung erfolgt analog zum Inhaltsverzeichnis mit 10 Punkt Schriftgröße.
+Das Abbildungsverzeichnis wird automatisch aus allen mit \texttt{\textbackslash caption} versehenen Abbildungen erstellt. Die Formatierung erfolgt analog zum Inhaltsverzeichnis mit 11pt Schriftgröße.
 
 \section{Tabellenverzeichnis}
 \label{sec:tabellenverzeichnis}
@@ -66,7 +67,8 @@ Das Abkürzungsverzeichnis wird durch das \texttt{glossaries}-Paket verwaltet un
 	\item Tabellarische Darstellung mit drei Spalten
 	\item Alphabetische Sortierung
 	\item Allgemein bekannte Abkürzungen werden nicht aufgenommen
-	\item Schriftgröße: 10 Punkte
+	\item Schriftgröße: \texttt{\textbackslash normalsize} (11pt)
+	\item Schriftart: DIN-Regular
 \end{itemize}
 
 \section{Glossar}
@@ -76,9 +78,11 @@ Das Glossar dient dazu, dem Leser vermutlich nicht bekannte Fachbegriffe zu erl�
 
 Das Glossar wird ebenfalls durch das \texttt{glossaries}-Paket verwaltet:
 \begin{itemize}
-	\item Tabellarische Darstellung mit zwei Spalten
+	\item Tabellarische Darstellung mit drei Spalten
 	\item Alphabetische Sortierung
-	\item Schriftgröße: 10 Punkte
+	\item Allgemein bekannte Fachbegriffe werden nicht aufgenommen
+	\item Schriftgröße: \texttt{\textbackslash normalsize} (11pt)
+	\item Schriftart: DIN-Regular
 \end{itemize}
 
 \section{Textkörper}
@@ -87,7 +91,7 @@ Das Glossar wird ebenfalls durch das \texttt{glossaries}-Paket verwaltet:
 Die Gestaltung und Unterteilung des \glsgen{Textkörper} in verschiedene Abschnitte muss entsprechend der Beschreibung der Inhalte erfolgen. Der Haupttext verwendet:
 \begin{itemize}
 	\item Schriftart: DIN-Regular
-	\item Schriftgröße: \textbackslash normalsize (ca. 11 Punkte)
+	\item Schriftgröße: \texttt{\textbackslash normalsize} (ca. 11 Punkte)
 	\item Zeilenabstand: 1,5-fach
 	\item Absatzabstand: 6 Punkte
 	\item Ausrichtung: Blocksatz

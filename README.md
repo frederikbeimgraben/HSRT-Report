@@ -294,14 +294,6 @@ latexmk -xelatex -shell-escape -bibtex Main.tex
 
 The project includes GitHub Actions workflows for automated building and testing:
 
-#### Build Workflow (`makefile.yml`)
-- **Triggers on:** Push to main, Pull requests
-- **Actions:**
-  - Builds the document using Docker
-  - Uploads the PDF as an artifact
-  - Available for 30 days after build
-  - Build logs uploaded on failure
-
 #### Release Workflow (`release.yml`)
 - **Triggers on:** Version tags (e.g., `v1.0.0`, `release-2024-10`)
 - **Actions:**
@@ -316,10 +308,10 @@ To create a new release with the PDF:
 
 ```bash
 # Tag the current commit
-git tag -a v1.0.0 -m "Release version 1.0.0"
+git tag -a v1.X.X -m "Release version 1.X.X"
 
 # Push the tag to trigger the release workflow
-git push origin v1.0.0
+git push origin v1.X.X
 ```
 
 The workflow will automatically:

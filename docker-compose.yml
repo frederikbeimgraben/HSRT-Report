@@ -73,7 +73,7 @@ services:
     volumes:
       # Mount the entire project directory to /data in the container
       # This allows the container to access all project files and write outputs
-      - ./:/data
+      - ./:/data:Z
 
     # Working directory configuration
     working_dir: /data

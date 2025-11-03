@@ -42,19 +42,19 @@
 
 \newcommand{\fancyfootL}{
 	\color{gray}\blenderfont
-	\raisebox{0em}{
+	\raisebox{3pt}{
 		\hspace{-2pt}\@author
 	}
 	\newline
-	\raisebox{0em}{
+	\raisebox{3pt}{
 		\hspace{-2pt}\ifdef{\modulename}{\modulename}{Modul-Name}
 	}
 }
 
 \newcommand{\fancyfootC}{
 	\color{gray}\blenderfont\newline
-	\raisebox{0em}{
-		Seite~\thepage~von~\pageref{LastPage}
+	\raisebox{3pt}{
+		Seite~\thepage~von~\pageref*{LastPage}
 	}
 }
 

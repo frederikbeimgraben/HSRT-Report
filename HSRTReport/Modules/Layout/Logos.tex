@@ -114,7 +114,7 @@
 			\foreach \i in {1,...,\value{logoCounter}} {
 					% Calculate name for i-1
 					\pgfmathtruncatemacro{\prev}{\i-1}
-					\node[anchor=east, inner sep=0pt, xshift=-0.1cm, opacity=0.3] (logo\i) at (logo\prev.west) {
+					\node[anchor=east, inner sep=0pt, xshift=-0.1cm, yshift=2pt, opacity=0.3] (logo\i) at (logo\prev.west) {
 						\makeatletter
 						\testarray{LogosScales}(\i)
 						\setlength{\imageHeight}{1.5cm*\real{\temp@macro}*\real{\logosScale}*\real{0.55}}

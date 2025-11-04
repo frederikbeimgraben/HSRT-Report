@@ -40,3 +40,6 @@ Output/
 svg-inkscape/
 .config/
 .cache/
+
+# Ignore environment file
+.env

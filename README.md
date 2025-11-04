@@ -42,6 +42,7 @@ The HSRTReport class is a customized LaTeX document class based on KOMA-Script's
 
 ### Option 1: Docker (Recommended)
 
+- **ENV**: Copy the `.env.example` and rename it to `.env`
 - **Docker**: [Install Docker](https://docs.docker.com/get-docker/)
 - **Docker Compose**: Supports both variants:
   - `docker-compose` (standalone tool)

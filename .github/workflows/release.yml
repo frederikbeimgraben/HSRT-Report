@@ -9,22 +9,34 @@ on:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
+    container:
+      image: texlive/texlive:latest
 
     permissions:
       contents: write # Required for creating releases
 
     steps:
+      - name: Install dependencies
+        run: |
+          apt-get update -y
+          apt-get install -y inkscape git make
+
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Configure git safe directory
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
       - name: Extract version from tag
         id: version
+        shell: bash
         run: |
-          echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-          echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "VERSION=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+          echo "DATE=$(date +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
 
-      - name: Build document with Docker
-        run: make docker-build
+      - name: Build document
+        run: make compile
 
       - name: Verify PDF creation
         run: |
@@ -51,7 +63,7 @@ jobs:
           ### 📄 Document Information
           - **Template:** HSRTReport LaTeX Template
           - **Institution:** University of Applied Sciences Reutlingen
-          - **Build System:** Docker-based compilation
+          - **Build System:** TeXLive with XeLaTeX
 
           ### 📦 Included Files
           - \`Report_${{ steps.version.outputs.VERSION }}.pdf\` - The compiled document

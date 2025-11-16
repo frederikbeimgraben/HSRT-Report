@@ -31,7 +31,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0 # Fetch all history for commit info
+          fetch-depth: 0
+          submodules: recursive
 
       - name: Configure git safe directory
         run: |

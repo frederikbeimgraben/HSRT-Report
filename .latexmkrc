@@ -16,3 +16,23 @@ sub run_makeglossaries {
 
     popd; # ... and cd-ing back again
 }
+
+# Use XeLaTeX as the default PDF generator
+$pdflatex = 'xelatex %O %S';
+$pdf_mode = 1;         # produce PDF
+$dvi_mode = 0;         # do not produce DVI
+$postscript_mode = 0;  # do not produce PS
+
+# Add biber dependency for biblatex
+add_cus_dep('bib', 'bbl', 0, 'run_biber');
+
+sub run_biber {
+    my ($base_name, $path) = fileparse( $_[0] );
+    pushd $path;
+    if ($silent) {
+        system "biber --quiet '$base_name'";
+    } else {
+        system "biber '$base_name'";
+    }
+    popd;
+}

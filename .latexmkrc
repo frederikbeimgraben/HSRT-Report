@@ -18,6 +18,7 @@ sub run_makeglossaries {
 }
 
 # Use XeLaTeX as the default PDF generator
+$ENV{'OPENOUT_ANY'} = 'r';
 $pdflatex = 'xelatex %O %S';
 $pdf_mode = 1;         # produce PDF
 $dvi_mode = 0;         # do not produce DVI

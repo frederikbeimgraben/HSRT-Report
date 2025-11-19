@@ -34,6 +34,7 @@ Output/
 *.acn
 *.pdf
 *.lol
+*.fmt
 
 # Ignore chapter backups and Temporary PDF files from Inkscape
 .chapter-backups/

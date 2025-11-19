@@ -21,9 +21,6 @@ services:
     build:
       # Build context is the current directory
       context: .
-      # Pass the current directory's UID and GID as build arguments
-      # These are automatically set by the Makefile, or can be manually provided:
-      # HOST_UID=$(id -u) HOST_GID=$(id -g) docker-compose up --build
       args:
         HOST_UID: ${HOST_UID:-1000}
         HOST_GID: ${HOST_GID:-1000}

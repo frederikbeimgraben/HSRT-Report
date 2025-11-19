@@ -1,344 +1,307 @@
 # ==============================================================================
-# Makefile for HSRTReport LaTeX Template
+# Makefile for HSRT-Report with Tectonic
 # ==============================================================================
-# Description: Build automation for LaTeX documents with chapter management
-# Usage:       make [target]
-# Author:      HSRTReport Template
+# Description: Build automation for the HSRT-Report LaTeX template using Tectonic
+# Author: Frederik Beimgraben
+# Version: 2.0.0
 # ==============================================================================
 
-# ------------------------------------------------------------------------------
 # Configuration
 # ------------------------------------------------------------------------------
-LATEX = latexmk
-TEX_ENGINE = lualatex
-LATEX_FLAGS = -$(TEX_ENGINE) -shell-escape -synctex=1 -interaction=nonstopmode
-BIBER = biber
-MAKEGLOSSARIES = makeglossaries
+TECTONIC = tectonic
+TECTONIC_FLAGS = -X compile --keep-logs --keep-intermediates
+DOCKER = docker
+DOCKER_COMPOSE = docker-compose
 
 # Main document
 SOURCE = Main.tex
-PDF = $(SOURCE:.tex=.pdf)
-
-# Directories
 BUILD_DIR = Build
 OUT_DIR = Output
-CHAPTERS_DIR = Content/Chapters
-SCRIPTS_DIR = scripts
-
-# Output files
-PDF_SOURCE = $(BUILD_DIR)/$(PDF)
-PDF_TARGET = $(OUT_DIR)/$(PDF)
-
-# Platform detection for opening PDF
-UNAME := $(shell uname)
-ifeq ($(UNAME), Linux)
-	OPEN_CMD = xdg-open
-else ifeq ($(UNAME), Darwin)
-	OPEN_CMD = open
-else
-	OPEN_CMD = start
-endif
+PDF_SOURCE = $(BUILD_DIR)/Main.pdf
+PDF_TARGET = $(OUT_DIR)/Main.pdf
+PDF = $(SOURCE:.tex=.pdf)
 
 # Colors for output
-RED = \033[0;31m
+BLUE = \033[0;34m
 GREEN = \033[0;32m
 YELLOW = \033[1;33m
-BLUE = \033[0;34m
+RED = \033[0;31m
 NC = \033[0m # No Color
 
-# Docker Compose command detection
-# Support both docker-compose (standalone) and docker compose (plugin)
-DOCKER_COMPOSE := $(shell command -v docker-compose 2> /dev/null)
-ifdef DOCKER_COMPOSE
-    DOCKER_COMPOSE_CMD = docker-compose
-    DOCKER_COMPOSE_TYPE = standalone
-else
-    DOCKER_COMPOSE_CMD = docker compose
-    DOCKER_COMPOSE_TYPE = plugin
-endif
-
-# Docker availability check
-DOCKER_AVAILABLE := $(shell command -v docker 2> /dev/null)
-
-# ------------------------------------------------------------------------------
-# Main Targets
-# ------------------------------------------------------------------------------
-# Default target: Use Docker for compilation if available
-.PHONY: all
-all: docker-build
-	@echo -e "$(GREEN)✓ Document built successfully using Docker$(NC)"
-
-# Alternative: Local build without Docker
-.PHONY: local
-local: compile view
-	@echo -e "$(GREEN)✓ Document built and opened successfully (local)$(NC)"
-
-.PHONY: compile
-compile:
-	@echo -e "$(BLUE)=== Building LaTeX Document ===$(NC)"
-	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
-	@echo -e "$(YELLOW)→ Running $(TEX_ENGINE)...$(NC)"
-	$(LATEX) $(LATEX_FLAGS) -output-directory=$(BUILD_DIR) $(SOURCE)
-	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
-	@cp $(PDF_SOURCE) $(PDF_TARGET)
-	@echo -e "$(GREEN)✓ PDF created: $(PDF_TARGET)$(NC)"
-
-.PHONY: full
-full: clean-aux compile
-	@echo -e "$(GREEN)✓ Full build completed$(NC)"
-
-.PHONY: view
-view:
-	@echo -e "$(BLUE)→ Opening PDF...$(NC)"
-	@if [ -f $(PDF_TARGET) ]; then \
-		$(OPEN_CMD) $(PDF_TARGET); \
-	else \
-		echo -e "$(RED)✗ PDF not found. Run 'make compile' first$(NC)"; \
-		exit 1; \
-	fi
-
-# ------------------------------------------------------------------------------
-# Docker Targets
-# ------------------------------------------------------------------------------
-.PHONY: docker-info
-docker-info:
-	@echo -e "$(BLUE)=== Docker Configuration ===$(NC)"
-	@if command -v docker >/dev/null 2>&1; then \
-		echo -e "$(GREEN)✓ Docker:$(NC) $$(docker --version | cut -d' ' -f3 | tr -d ',')"; \
-	else \
-		echo -e "$(RED)✗ Docker:$(NC) Not found"; \
-	fi
-	@echo -e "$(GREEN)✓ Docker Compose:$(NC) $(DOCKER_COMPOSE_CMD) ($(DOCKER_COMPOSE_TYPE))"
-	@if command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1; then \
-		echo -e "$(GREEN)✓ Docker Daemon:$(NC) Running"; \
-		echo -e "$(GREEN)✓ Containers:$(NC) $$(docker ps -q | wc -l) running, $$(docker ps -aq | wc -l) total"; \
-		echo -e "$(GREEN)✓ Images:$(NC) $$(docker images -q | wc -l) available"; \
-	else \
-		echo -e "$(YELLOW)⚠ Docker Daemon:$(NC) Not running or not accessible"; \
-	fi
+# ==============================================================================
+# HELP
+# ==============================================================================
+.PHONY: help
+help:
+	@echo -e "$(BLUE)=== HSRT-Report Makefile ===$(NC)"
+	@echo ""
+	@echo -e "$(GREEN)Available targets:$(NC)"
+	@echo ""
+	@echo -e "  $(YELLOW)make$(NC)           - Build the PDF using Tectonic"
+	@echo -e "  $(YELLOW)make compile$(NC)   - Compile the LaTeX document"
+	@echo -e "  $(YELLOW)make clean$(NC)     - Remove all generated files"
+	@echo -e "  $(YELLOW)make distclean$(NC) - Remove all generated files and directories"
+	@echo -e "  $(YELLOW)make watch$(NC)     - Watch for changes and rebuild automatically"
+	@echo -e "  $(YELLOW)make docker$(NC)    - Build using Docker"
+	@echo -e "  $(YELLOW)make check$(NC)     - Check if all prerequisites are installed"
+	@echo -e "  $(YELLOW)make install-fonts$(NC) - Install custom fonts to system (Linux/Mac)"
+	@echo ""
+	@echo -e "$(GREEN)Quick commands:$(NC)"
+	@echo ""
+	@echo -e "  $(YELLOW)make pdf$(NC)       - Alias for 'make compile'"
+	@echo -e "  $(YELLOW)make all$(NC)       - Full build with all features"
+	@echo -e "  $(YELLOW)make fast$(NC)      - Fast compilation (single pass)"
+	@echo ""
+	@echo -e "$(GREEN)Docker commands:$(NC)"
+	@echo ""
+	@echo -e "  $(YELLOW)make docker-build$(NC)  - Build Docker image"
+	@echo -e "  $(YELLOW)make docker-shell$(NC)  - Open shell in Docker container"
+	@echo -e "  $(YELLOW)make docker-clean$(NC)  - Remove Docker containers and images"
 	@echo ""
 
-.PHONY: check-docker
-check-docker:
-	@command -v docker >/dev/null 2>&1 || { \
-		echo -e "$(RED)✗ Docker is not installed or not in PATH$(NC)"; \
-		echo -e "$(YELLOW)  Please install Docker from https://docs.docker.com/get-docker/$(NC)"; \
-		exit 1; \
-	}
-	@docker info >/dev/null 2>&1 || { \
-		echo -e "$(RED)✗ Docker daemon is not running$(NC)"; \
-		echo -e "$(YELLOW)  Please start Docker Desktop or the Docker daemon$(NC)"; \
-		exit 1; \
-	}
-	@echo -e "$(GREEN)✓ Docker is available$(NC)"
-	@echo -e "$(YELLOW)→ Using Docker Compose command: $(DOCKER_COMPOSE_CMD)$(NC)"
+# ==============================================================================
+# DEFAULT TARGET
+# ==============================================================================
+.DEFAULT_GOAL := compile
 
-.PHONY: docker-build
-docker-build: check-docker
-	@echo -e "$(BLUE)=== Building LaTeX Document with Docker ===$(NC)"
-	@echo -e "$(YELLOW)→ Starting Docker container with UID=$$(id -u) GID=$$(id -g)...$(NC)"
-	@HOST_UID=$$(id -u) HOST_GID=$$(id -g) $(DOCKER_COMPOSE_CMD) up --build || { \
-		echo -e "$(RED)✗ Docker build failed$(NC)"; \
-		echo -e "$(YELLOW)  Try 'make docker-clean' and rebuild$(NC)"; \
-		exit 1; \
-	}
-	@echo -e "$(GREEN)✓ Docker build completed$(NC)"
-	@echo -e "$(GREEN)✓ PDF created: $(PDF_TARGET)$(NC)"
+# ==============================================================================
+# BUILD TARGETS
+# ==============================================================================
 
-.PHONY: docker-build-cached
-docker-build-cached: check-docker
-	@echo -e "$(BLUE)=== Building LaTeX Document with Docker (cached) ===$(NC)"
-	@echo -e "$(YELLOW)→ Starting Docker container (using cache)...$(NC)"
-	@$(DOCKER_COMPOSE_CMD) up || { \
-		echo -e "$(RED)✗ Docker build failed$(NC)"; \
-		echo -e "$(YELLOW)  Try 'make docker-build' to rebuild the image$(NC)"; \
-		exit 1; \
-	}
-	@echo -e "$(GREEN)✓ Docker build completed$(NC)"
+# Main build target
+.PHONY: all
+all: clean compile
+	@echo -e "$(GREEN)✓ Full build complete$(NC)"
 
-.PHONY: docker-clean
-docker-clean: check-docker
-	@echo -e "$(YELLOW)→ Removing Docker containers...$(NC)"
-	@$(DOCKER_COMPOSE_CMD) down --remove-orphans || true
-	@echo -e "$(GREEN)✓ Docker containers removed$(NC)"
-
-.PHONY: docker-shell
-docker-shell: check-docker
-	@echo -e "$(BLUE)→ Opening shell in Docker container...$(NC)"
-	@$(DOCKER_COMPOSE_CMD) run --rm --entrypoint /bin/bash latex || { \
-		echo -e "$(RED)✗ Failed to start Docker shell$(NC)"; \
-		exit 1; \
-	}
-
-# ------------------------------------------------------------------------------
-# Clean Targets
-# ------------------------------------------------------------------------------
-.PHONY: clean
-clean: clean-aux clean-output
-	@echo -e "$(GREEN)✓ All files cleaned$(NC)"
-
-.PHONY: clean-aux
-clean-aux:
-	@echo -e "$(YELLOW)→ Cleaning auxiliary files...$(NC)"
-	@rm -rf $(BUILD_DIR)
-	@rm -f *.aux *.log *.out *.toc *.lof *.lot *.lol *.bbl *.blg *.synctex.gz
-	@rm -f *.fdb_latexmk *.fls *.idx *.ind *.ilg *.glo *.gls *.glg
-	@rm -f Content/*.aux Content/Chapters/*.aux
-	@echo -e "$(GREEN)✓ Auxiliary files cleaned$(NC)"
-
-.PHONY: clean-output
-clean-output:
-	@echo -e "$(YELLOW)→ Cleaning output files...$(NC)"
-	@rm -rf $(OUT_DIR)
-	@echo -e "$(GREEN)✓ Output files cleaned$(NC)"
-
-.PHONY: distclean
-distclean: clean
-	@echo -e "$(YELLOW)→ Removing all generated files...$(NC)"
-	@git clean -dfX 2>/dev/null || rm -rf $(BUILD_DIR) $(OUT_DIR)
-	@echo -e "$(GREEN)✓ Distribution clean completed$(NC)"
-
-# ------------------------------------------------------------------------------
-# Chapter Management Targets
-# ------------------------------------------------------------------------------
-.PHONY: chapter
-chapter:
-	@if [ -z "$(NUM)" ] || [ -z "$(NAME)" ]; then \
-		echo -e "$(RED)✗ Usage: make chapter NUM=02 NAME=methodology$(NC)"; \
+# Compile the document
+.PHONY: compile
+compile:
+	@echo -e "$(BLUE)=== Building LaTeX Document with Tectonic ===$(NC)"
+	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
+	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
+	@echo -e "$(YELLOW)→ Running Tectonic...$(NC)"
+	$(TECTONIC) $(TECTONIC_FLAGS) --outdir=$(BUILD_DIR) $(SOURCE)
+	@if [ -f $(PDF_SOURCE) ]; then \
+		cp $(PDF_SOURCE) $(PDF_TARGET); \
+		echo -e "$(GREEN)✓ PDF created: $(PDF_TARGET)$(NC)"; \
+	else \
+		echo -e "$(RED)✗ PDF creation failed$(NC)"; \
 		exit 1; \
 	fi
-	@echo -e "$(BLUE)=== Creating New Chapter ===$(NC)"
-	@$(SCRIPTS_DIR)/create_chapter.sh $(NUM) $(NAME)
 
-.PHONY: chapters
-chapters: list-chapters
+# Fast compilation (single pass)
+.PHONY: fast
+fast:
+	@echo -e "$(BLUE)=== Fast Compilation ===$(NC)"
+	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
+	$(TECTONIC) -X compile --pass=tex --outdir=$(BUILD_DIR) $(SOURCE)
+	@echo -e "$(GREEN)✓ Fast compilation complete$(NC)"
 
-.PHONY: list-chapters
-list-chapters:
-	@echo -e "$(BLUE)=== Chapter Overview ===$(NC)"
-	@$(SCRIPTS_DIR)/list_chapters.sh
+# Alias for compile
+.PHONY: pdf
+pdf: compile
 
-.PHONY: show-chapter
-show-chapter:
-	@if [ -z "$(NAME)" ]; then \
-		echo -e "$(RED)✗ Usage: make show-chapter NAME=02_methodology$(NC)"; \
-		exit 1; \
-	fi
-	@$(SCRIPTS_DIR)/show_chapter.sh $(NAME)
-
-.PHONY: delete-chapter
-delete-chapter:
-	@if [ -z "$(NAME)" ]; then \
-		echo -e "$(RED)✗ Usage: make delete-chapter NAME=02_methodology$(NC)"; \
-		exit 1; \
-	fi
-	@echo -e "$(YELLOW)⚠ Warning: This will delete the chapter file$(NC)"
-	@$(SCRIPTS_DIR)/delete_chapter.sh $(NAME)
-
-# ------------------------------------------------------------------------------
-# Development Targets
-# ------------------------------------------------------------------------------
+# ==============================================================================
+# WATCH TARGET
+# ==============================================================================
 .PHONY: watch
 watch:
-	@echo -e "$(BLUE)=== Starting continuous build ===$(NC)"
-	@echo -e "$(YELLOW)→ Watching for changes... (Ctrl+C to stop)$(NC)"
-	$(LATEX) $(LATEX_FLAGS) -pvc -output-directory=$(BUILD_DIR) $(SOURCE)
+	@echo -e "$(BLUE)=== Watching for changes ===$(NC)"
+	@echo -e "$(YELLOW)Press Ctrl+C to stop watching$(NC)"
+	@if command -v inotifywait >/dev/null 2>&1; then \
+		while true; do \
+			inotifywait -qre modify --format '%w%f' \
+				--exclude '(Build/|Output/|\.git/|.*\.swp|.*~)' \
+				*.tex Content/*.tex Content/Chapters/*.tex HSRTReport/**/*.tex Settings/*.tex; \
+			clear; \
+			$(MAKE) compile; \
+		done; \
+	elif command -v fswatch >/dev/null 2>&1; then \
+		fswatch -o --exclude='Build' --exclude='Output' \
+			*.tex Content/**/*.tex HSRTReport/**/*.tex Settings/*.tex | \
+			while read num; do \
+				clear; \
+				$(MAKE) compile; \
+			done; \
+	else \
+		echo -e "$(RED)✗ No file watcher found. Install inotifywait (Linux) or fswatch (Mac)$(NC)"; \
+		exit 1; \
+	fi
 
-.PHONY: draft
-draft:
-	@echo -e "$(BLUE)=== Building draft version ===$(NC)"
-	$(LATEX) -$(TEX_ENGINE) -interaction=nonstopmode -output-directory=$(BUILD_DIR) $(SOURCE)
-	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
-	@cp $(PDF_SOURCE) $(OUT_DIR)/$(SOURCE:.tex=_draft.pdf)
-	@echo -e "$(GREEN)✓ Draft created: $(OUT_DIR)/$(SOURCE:.tex=_draft.pdf)$(NC)"
+# ==============================================================================
+# DOCKER TARGETS
+# ==============================================================================
 
-# ------------------------------------------------------------------------------
-# Utility Targets
-# ------------------------------------------------------------------------------
-.PHONY: count
-count:
-	@echo -e "$(BLUE)=== Document Statistics ===$(NC)"
-	@echo -n "Chapters: "
-	@ls -1 $(CHAPTERS_DIR)/*.tex 2>/dev/null | wc -l
-	@echo -n "Total lines: "
-	@wc -l $(CHAPTERS_DIR)/*.tex 2>/dev/null | tail -1 | awk '{print $$1}'
-	@echo -n "Approx. words: "
-	@cat $(CHAPTERS_DIR)/*.tex 2>/dev/null | \
-		sed 's/\\[a-zA-Z]*\({[^}]*}\)\?//g' | wc -w
+# Build using Docker
+.PHONY: docker
+docker: docker-build
+	@echo -e "$(BLUE)=== Building with Docker ===$(NC)"
+	$(DOCKER_COMPOSE) run --rm latex make compile
+	@echo -e "$(GREEN)✓ Docker build complete$(NC)"
 
+# Build Docker image
+.PHONY: docker-build
+docker-build:
+	@echo -e "$(BLUE)=== Building Docker Image ===$(NC)"
+	$(DOCKER_COMPOSE) build
+	@echo -e "$(GREEN)✓ Docker image ready$(NC)"
+
+# Open shell in Docker container
+.PHONY: docker-shell
+docker-shell:
+	@echo -e "$(BLUE)=== Opening Docker Shell ===$(NC)"
+	$(DOCKER_COMPOSE) run --rm latex bash
+
+# Clean Docker containers and images
+.PHONY: docker-clean
+docker-clean:
+	@echo -e "$(BLUE)=== Cleaning Docker Resources ===$(NC)"
+	$(DOCKER_COMPOSE) down --rmi all --volumes --remove-orphans
+	@echo -e "$(GREEN)✓ Docker resources cleaned$(NC)"
+
+# ==============================================================================
+# CLEAN TARGETS
+# ==============================================================================
+
+# Clean build artifacts
+.PHONY: clean
+clean:
+	@echo -e "$(BLUE)=== Cleaning build artifacts ===$(NC)"
+	@rm -f *.aux *.log *.out *.toc *.bbl *.blg *.fls *.fdb_latexmk *.synctex.gz
+	@rm -f *.lot *.lof *.lol *.idx *.ind *.ilg *.gls *.glo *.glg
+	@rm -f *.acn *.acr *.alg *.ist *.xdy
+	@rm -f *.bcf *.run.xml *-blx.bib
+	@rm -f *.nav *.snm *.vrb
+	@rm -rf _minted-*
+	@echo -e "$(GREEN)✓ Build artifacts cleaned$(NC)"
+
+# Deep clean - remove all generated files and directories
+.PHONY: distclean
+distclean: clean
+	@echo -e "$(BLUE)=== Deep cleaning ===$(NC)"
+	@rm -rf $(BUILD_DIR)
+	@rm -rf $(OUT_DIR)
+	@rm -f $(PDF)
+	@echo -e "$(GREEN)✓ All generated files removed$(NC)"
+
+# ==============================================================================
+# UTILITY TARGETS
+# ==============================================================================
+
+# Check prerequisites
 .PHONY: check
 check:
 	@echo -e "$(BLUE)=== Checking Prerequisites ===$(NC)"
-	@command -v $(TEX_ENGINE) >/dev/null 2>&1 && \
-		echo -e "$(GREEN)✓ $(TEX_ENGINE) found$(NC)" || \
-		echo -e "$(RED)✗ $(TEX_ENGINE) not found$(NC)"
-	@command -v biber >/dev/null 2>&1 && \
-		echo -e "$(GREEN)✓ Biber found$(NC)" || \
-		echo -e "$(RED)✗ Biber not found$(NC)"
-	@command -v makeglossaries >/dev/null 2>&1 && \
-		echo -e "$(GREEN)✓ makeglossaries found$(NC)" || \
-		echo -e "$(RED)✗ makeglossaries not found$(NC)"
-	@command -v latexmk >/dev/null 2>&1 && \
-		echo -e "$(GREEN)✓ latexmk found$(NC)" || \
-		echo -e "$(RED)✗ latexmk not found$(NC)"
+	@command -v $(TECTONIC) >/dev/null 2>&1 && \
+		echo -e "$(GREEN)✓ Tectonic found$(NC)" || \
+		echo -e "$(RED)✗ Tectonic not found - install from: https://tectonic-typesetting.github.io/$(NC)"
+	@command -v git >/dev/null 2>&1 && \
+		echo -e "$(GREEN)✓ Git found$(NC)" || \
+		echo -e "$(RED)✗ Git not found$(NC)"
+	@command -v $(DOCKER) >/dev/null 2>&1 && \
+		echo -e "$(GREEN)✓ Docker found$(NC)" || \
+		echo -e "$(YELLOW)⚠ Docker not found (optional)$(NC)"
+	@echo ""
+	@echo -e "$(BLUE)Tectonic version:$(NC)"
+	@$(TECTONIC) --version 2>/dev/null || echo "Tectonic not installed"
 
-.PHONY: structure
-structure:
-	@echo -e "$(BLUE)=== Project Structure ===$(NC)"
-	@tree -d -L 2 --charset ascii 2>/dev/null || \
-		find . -type d -maxdepth 2 | sed 's|./||' | sort
+# Install fonts to system (Linux/Mac)
+.PHONY: install-fonts
+install-fonts:
+	@echo -e "$(BLUE)=== Installing Custom Fonts ===$(NC)"
+	@if [ -d "HSRTReport/Assets/Fonts" ]; then \
+		if [ "$$(uname)" = "Darwin" ]; then \
+			echo -e "$(YELLOW)→ Installing fonts on macOS...$(NC)"; \
+			cp -r HSRTReport/Assets/Fonts/*/*.ttf ~/Library/Fonts/ 2>/dev/null || true; \
+			cp -r HSRTReport/Assets/Fonts/*/*.otf ~/Library/Fonts/ 2>/dev/null || true; \
+			echo -e "$(GREEN)✓ Fonts installed to ~/Library/Fonts/$(NC)"; \
+		elif [ "$$(uname)" = "Linux" ]; then \
+			echo -e "$(YELLOW)→ Installing fonts on Linux...$(NC)"; \
+			mkdir -p ~/.local/share/fonts; \
+			cp -r HSRTReport/Assets/Fonts/*/*.ttf ~/.local/share/fonts/ 2>/dev/null || true; \
+			cp -r HSRTReport/Assets/Fonts/*/*.otf ~/.local/share/fonts/ 2>/dev/null || true; \
+			fc-cache -fv >/dev/null 2>&1; \
+			echo -e "$(GREEN)✓ Fonts installed to ~/.local/share/fonts/$(NC)"; \
+		else \
+			echo -e "$(RED)✗ Unsupported operating system$(NC)"; \
+		fi; \
+	else \
+		echo -e "$(RED)✗ Font directory not found$(NC)"; \
+	fi
 
-# ------------------------------------------------------------------------------
-# Help Target
-# ------------------------------------------------------------------------------
-.PHONY: help
-help:
-	@echo -e "$(BLUE)==============================================================================="
-	@echo "HSRTReport LaTeX Template - Makefile Targets"
-	@echo -e "===============================================================================$(NC)"
-	@echo ""
-	@echo -e "$(GREEN)Main Targets:$(NC)"
-	@echo "  make              - Build document using Docker (default)"
-	@echo "  make local        - Build document locally and open PDF"
-	@echo "  make compile      - Build the LaTeX document (local)"
-	@echo "  make full         - Clean and rebuild everything"
-	@echo "  make view         - Open the PDF file"
-	@echo ""
-	@echo -e "$(GREEN)Docker Targets:$(NC)"
-	@echo "  make docker-info         - Show Docker configuration and status"
-	@echo "  make check-docker        - Check if Docker is available"
-	@echo "  make docker-build        - Build with Docker (rebuild image)"
-	@echo "  make docker-build-cached - Build with Docker (use cached image)"
-	@echo "  make docker-shell        - Open shell in Docker container"
-	@echo "  make docker-clean        - Remove Docker containers"
-	@echo ""
-	@echo -e "$(GREEN)Chapter Management:$(NC)"
-	@echo "  make chapter NUM=02 NAME=methodology  - Create a new chapter"
-	@echo "  make chapters                         - List all chapters"
-	@echo "  make show-chapter NAME=02_methodology - Display chapter content"
-	@echo "  make delete-chapter NAME=02_methodology - Delete a chapter (with backup)"
-	@echo ""
-	@echo -e "$(GREEN)Cleaning:$(NC)"
-	@echo "  make clean        - Remove all generated files"
-	@echo "  make clean-aux    - Remove auxiliary files only"
-	@echo "  make clean-output - Remove output files only"
-	@echo "  make distclean    - Remove everything (git clean)"
-	@echo ""
-	@echo -e "$(GREEN)Development:$(NC)"
-	@echo "  make watch        - Continuous compilation on file changes"
-	@echo "  make draft        - Quick draft compilation"
-	@echo ""
-	@echo -e "$(GREEN)Utilities:$(NC)"
-	@echo "  make count        - Show document statistics"
-	@echo "  make check        - Check for required tools"
-	@echo "  make structure    - Show project structure"
-	@echo "  make help         - Show this help message"
-	@echo ""
-	@echo -e "$(YELLOW)Examples:$(NC)"
-	@echo "  make chapter NUM=01 NAME=introduction"
-	@echo "  make chapter NUM=02 NAME=literature_review"
-	@echo "  make show-chapter NAME=01_introduction"
-	@echo ""
+# Create a new chapter
+.PHONY: new-chapter
+new-chapter:
+	@echo -e "$(BLUE)=== Creating New Chapter ===$(NC)"
+	@bash scripts/create_chapter.sh
 
-# Default target - use Docker build
-.DEFAULT_GOAL := all
+# Count words in the document
+.PHONY: wordcount
+wordcount:
+	@echo -e "$(BLUE)=== Word Count ===$(NC)"
+	@if command -v texcount >/dev/null 2>&1; then \
+		texcount -inc -total -brief Main.tex; \
+	else \
+		echo -e "$(YELLOW)Installing texcount...$(NC)"; \
+		echo -e "$(RED)✗ texcount not found. Please install it manually.$(NC)"; \
+	fi
+
+# Open the PDF
+.PHONY: open
+open: compile
+	@echo -e "$(BLUE)=== Opening PDF ===$(NC)"
+	@if [ -f $(PDF_TARGET) ]; then \
+		if command -v xdg-open >/dev/null 2>&1; then \
+			xdg-open $(PDF_TARGET); \
+		elif command -v open >/dev/null 2>&1; then \
+			open $(PDF_TARGET); \
+		else \
+			echo -e "$(RED)✗ No PDF viewer found$(NC)"; \
+		fi; \
+	else \
+		echo -e "$(RED)✗ PDF not found. Run 'make' first.$(NC)"; \
+	fi
+
+# ==============================================================================
+# DEVELOPMENT TARGETS
+# ==============================================================================
+
+# Format all TeX files
+.PHONY: format
+format:
+	@echo -e "$(BLUE)=== Formatting TeX Files ===$(NC)"
+	@if command -v latexindent >/dev/null 2>&1; then \
+		find . -name "*.tex" -not -path "./Build/*" -not -path "./Output/*" \
+			-exec latexindent -w {} \; 2>/dev/null; \
+		echo -e "$(GREEN)✓ Files formatted$(NC)"; \
+	else \
+		echo -e "$(RED)✗ latexindent not found$(NC)"; \
+	fi
+
+# Validate LaTeX syntax
+.PHONY: validate
+validate:
+	@echo -e "$(BLUE)=== Validating LaTeX Syntax ===$(NC)"
+	@if command -v lacheck >/dev/null 2>&1; then \
+		lacheck $(SOURCE) || true; \
+	else \
+		echo -e "$(YELLOW)⚠ lacheck not found (optional)$(NC)"; \
+	fi
+	@if command -v chktex >/dev/null 2>&1; then \
+		chktex -q $(SOURCE) || true; \
+	else \
+		echo -e "$(YELLOW)⚠ chktex not found (optional)$(NC)"; \
+	fi
+
+# ==============================================================================
+# SPECIAL TARGETS
+# ==============================================================================
+
+# Prevent make from treating these as file targets
+.PHONY: all compile fast pdf watch docker docker-build docker-shell docker-clean
+.PHONY: clean distclean check install-fonts new-chapter wordcount open
+.PHONY: format validate help
+
+# ==============================================================================
+# END OF MAKEFILE
+# ==============================================================================

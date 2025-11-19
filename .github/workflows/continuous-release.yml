@@ -15,28 +15,40 @@ on:
 jobs:
   build-and-update-latest:
     runs-on: ubuntu-latest
-    container:
-      image: texlive/texlive:latest
 
     permissions:
       contents: write # Required for creating/updating releases
       checks: write # Required for status checks
 
     steps:
-      - name: Install dependencies
-        run: |
-          apt-get update -y
-          apt-get install -y inkscape git make
-
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
           submodules: recursive
 
-      - name: Configure git safe directory
+      - name: Install Tectonic
         run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          # Download and install Tectonic
+          curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y \
+            git \
+            make \
+            fonts-texgyre \
+            fonts-lmodern
+
+      - name: Cache Tectonic files
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Tectonic
+          key: ${{ runner.os }}-tectonic-${{ hashFiles('**/*.tex') }}
+          restore-keys: |
+            ${{ runner.os }}-tectonic-
 
       - name: Get build information
         id: build_info
@@ -55,8 +67,20 @@ jobs:
           AUTHOR=$(git log -1 --pretty=%an)
           echo "AUTHOR=${AUTHOR}" >> "$GITHUB_OUTPUT"
 
-      - name: Build document
-        run: make compile
+      - name: Build document with Tectonic
+        run: |
+          # Create output directories
+          mkdir -p Build Output
+
+          # Build with Tectonic
+          tectonic -X compile \
+            --keep-logs \
+            --keep-intermediates \
+            --outdir=Build \
+            Main.tex
+
+          # Copy to Output directory
+          cp Build/Main.pdf Output/Main.pdf
 
       - name: Verify PDF creation
         run: |
@@ -64,6 +88,10 @@ jobs:
             echo "::error::PDF was not created - build failed"
             exit 1
           fi
+
+          # Display PDF info
+          echo "PDF created successfully:"
+          ls -lh Output/Main.pdf
 
       - name: Prepare PDF for upload
         run: |
@@ -85,6 +113,11 @@ jobs:
           ```
           ${{ steps.build_info.outputs.COMMIT_MSG }}
           ```
+
+          ### 🔧 Build System
+          - **Engine:** Tectonic
+          - **Format:** XeLaTeX
+          - **Bibliography:** BibTeX
 
           ### 📦 Download Files
           - `Report_Latest.pdf` - The latest compiled document
@@ -153,7 +186,9 @@ jobs:
         uses: actions/upload-artifact@v5
         with:
           name: build-${{ steps.build_info.outputs.SHORT_SHA }}
-          path: Report_Latest.pdf
+          path: |
+            Report_Latest.pdf
+            Build/*.log
           retention-days: 30
           if-no-files-found: error
 
@@ -170,10 +205,16 @@ jobs:
           | **Commit** | \`${{ steps.build_info.outputs.SHORT_SHA }}\` |
           | **Branch** | \`${{ steps.build_info.outputs.BRANCH }}\` |
           | **Timestamp** | ${{ steps.build_info.outputs.DATE }} |
+          | **Build Tool** | Tectonic |
 
           ### 📦 Downloads
           - [Latest Release](https://github.com/${{ github.repository }}/releases/tag/latest)
           - [Direct PDF Download](https://github.com/${{ github.repository }}/releases/latest/download/Report_Latest.pdf)
+
+          ### 🔧 Build Details
+          - Engine: Tectonic with XeLaTeX format
+          - Bibliography: BibTeX backend
+          - Fonts: TeX Gyre (fallback fonts)
 
           EOF
 
@@ -184,7 +225,7 @@ jobs:
           script: |
             const status = '${{ job.status }}' === 'success' ? 'success' : 'failure';
             const description = status === 'success'
-              ? 'Document built successfully'
+              ? 'Document built successfully with Tectonic'
               : 'Document build failed';
 
             try {
@@ -194,7 +235,7 @@ jobs:
                 sha: context.sha,
                 state: status,
                 description: description,
-                context: 'continuous-build/latex'
+                context: 'continuous-build/tectonic'
               });
             } catch (error) {
               console.log('Could not create commit status:', error.message);
@@ -217,13 +258,14 @@ jobs:
           script: |
             const comment = `## ✅ LaTeX Build Successful
 
-            The document has been successfully built for this pull request.
+            The document has been successfully built for this pull request using **Tectonic**.
 
             **Preview:** [Download Latest PDF](https://github.com/${{ github.repository }}/releases/latest/download/Report_Latest.pdf)
 
             <details>
             <summary>Build Details</summary>
 
+            - **Engine:** Tectonic (XeLaTeX format)
             - **Commit:** \`${context.sha.substring(0, 8)}\`
             - **Workflow Run:** [#${context.runNumber}](https://github.com/${{ github.repository }}/actions/runs/${context.runId})
 

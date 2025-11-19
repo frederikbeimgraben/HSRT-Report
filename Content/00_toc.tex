@@ -20,14 +20,12 @@
 \newcommand{\offsetB}{\vspace{-1em}}
 
 \newpage
-\pagestyle{fancy}
 {
 	% Remove title
 	\let\oldcontentsname\contentsname
 	\renewcommand{\contentsname}{}
 
 	% Formatting
-	\blenderfont
 	\chapter*{\oldcontentsname}
 	% Configure TOC page breaking to keep chapters with their sections
 	% Set penalties to keep related entries together
@@ -61,7 +59,7 @@
 }
 
 % Add vertical fill to push subsequent content down
-\vspace{\fill}
+% \vfill
 
 % ------------------------------------------------------------------------------
 % Lists of Figures, Tables, Listings, and Equations
@@ -69,46 +67,41 @@
 % Generate all lists on a single page with compact spacing
 % The lists will only show entries if they exist
 % ------------------------------------------------------------------------------
+\pagestyle{empty}
 \newpage
 \pagestyle{fancy}
-{
-	% Remove titles
-	\let\oldlistfigurename\listfigurename
-	\let\oldlisttablename\listtablename
-	\let\oldlstlistlistingname\lstlistlistingname
-	\let\oldlistequationsname\listequationsname
-	\renewcommand{\listfigurename}{}
-	\renewcommand{\listtablename}{}
-	\renewcommand{\lstlistlistingname}{}
-	\renewcommand{\listequationsname}{}
+% Remove titles
+\let\oldlistfigurename\listfigurename
+\let\oldlisttablename\listtablename
+\let\oldlstlistlistingname\lstlistlistingname
+\let\oldlistequationsname\listequationsname
+\renewcommand{\listfigurename}{}
+\renewcommand{\listtablename}{}
+\renewcommand{\lstlistlistingname}{}
+\renewcommand{\listequationsname}{}
 
-	% Formatting
-	\noindent
-	\blenderfont
+% List of Figures
+\chapter*{\oldlistfigurename}
+\offsetA\offsetB
+\listoffigures
 
-	% List of Figures
-	\chapter*{\oldlistfigurename}
-	\offsetA\offsetB
-	\listoffigures
+% List of Tables
+\vspace{1em}
+\chapter*{\oldlisttablename}
+\offsetA\offsetB
+\listoftables
 
-	% List of Tables
-	\vspace{1em}
-	\chapter*{\oldlisttablename}
-	\offsetA\offsetB
-	\listoftables
+% List of Listings
+% \vspace{1em}
+% \chapter*{\oldlstlistlistingname}
+% \offsetB
+% \lstlistoflistings
 
-	% List of Listings
-	% \vspace{1em}
-	% \chapter*{\oldlstlistlistingname}
-	% \offsetB
-	% \lstlistoflistings
-
-	% List of Equations
-	\vspace{1em}
-	\chapter*{\oldlistequationsname}
-	\offsetA\offsetB
-	\listofmyequations
-}
+% List of Equations
+\vspace{1em}
+\chapter*{\oldlistequationsname}
+\offsetA\offsetB
+\listofmyequations
 
 % ------------------------------------------------------------------------------
 % Glossary Section
@@ -124,23 +117,24 @@
 
 	% --- Main Glossary ---
 	% Print main glossary with German header "Wort"
-	{
-		\renewcommand*{\entryname}{Wort}
-		\newpage
-		\pagestyle{fancy}
-		\vspace*{-2.25em}
-		\printglossary
-	}
+	\begingroup
+	\renewcommand*{\entryname}{Wort}
+	\pagestyle{empty}
+	\clearpage
+	\pagestyle{fancy}
+	\vspace*{-2.25em}
+	\printglossary
+	\endgroup
 
-	% --- List of Abbreviations ---
 	% Print abbreviation glossary with German header "Abkürzung"
-	{
-		\renewcommand*{\entryname}{Abkürzung}
-		\newpage
-		\pagestyle{fancy}
-		\vspace*{-2.25em}
-		\printglossary[type=\acronymtype,title=Abkürzungen]
-	}
+	\begingroup
+	\renewcommand*{\entryname}{Abkürzung}
+	\pagestyle{empty}
+	\clearpage
+	\pagestyle{fancy}
+	\vspace*{-2.25em}
+	\printglossary[type=\acronymtype,title=Abkürzungen]
+	\endgroup
 }
 
 % Break pages for following chapters

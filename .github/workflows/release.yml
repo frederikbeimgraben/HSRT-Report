@@ -1,92 +1,266 @@
-name: Create Release with PDF
+name: Create Release
 
 on:
   push:
     tags:
-      - "v*.*.*" # Trigger on version tags like v1.0.0
-      - "release-*" # Trigger on release tags like release-2024-10
+      - "v*.*.*"
+      - "release-*"
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Tag name for the release (e.g., v1.0.0)"
+        required: true
+        type: string
+      release_name:
+        description: "Name for the release"
+        required: false
+        type: string
+      is_prerelease:
+        description: "Mark as pre-release"
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
-    container:
-      image: texlive/texlive:latest
 
     permissions:
-      contents: write # Required for creating releases
+      contents: write
 
     steps:
-      - name: Install dependencies
-        run: |
-          apt-get update -y
-          apt-get install -y inkscape git make
-
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
+          fetch-depth: 0
           submodules: recursive
 
-      - name: Configure git safe directory
+      - name: Install Tectonic
         run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          # Download and install Tectonic
+          curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
-      - name: Extract version from tag
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y \
+            git \
+            make \
+            fonts-texgyre \
+            fonts-lmodern \
+            zip
+
+      - name: Cache Tectonic files
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Tectonic
+          key: ${{ runner.os }}-tectonic-${{ hashFiles('**/*.tex') }}
+          restore-keys: |
+            ${{ runner.os }}-tectonic-
+
+      - name: Determine release version
         id: version
-        shell: bash
         run: |
-          echo "VERSION=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
-          echo "DATE=$(date +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            TAG="${{ github.event.inputs.tag_name }}"
+            RELEASE_NAME="${{ github.event.inputs.release_name }}"
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+            RELEASE_NAME=""
+          fi
 
-      - name: Build document
-        run: make compile
+          # Extract version from tag
+          VERSION=${TAG#v}
+          VERSION=${VERSION#release-}
 
-      - name: Verify PDF creation
+          # Set release name if not provided
+          if [ -z "$RELEASE_NAME" ]; then
+            RELEASE_NAME="Release ${VERSION}"
+          fi
+
+          echo "TAG=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "VERSION=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "RELEASE_NAME=${RELEASE_NAME}" >> "$GITHUB_OUTPUT"
+
+          # Determine if pre-release based on tag format or input
+          if [ "${{ github.event.inputs.is_prerelease }}" == "true" ]; then
+            echo "IS_PRERELEASE=true" >> "$GITHUB_OUTPUT"
+          elif echo "$TAG" | grep -qE "(alpha|beta|rc|pre)"; then
+            echo "IS_PRERELEASE=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "IS_PRERELEASE=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build document with Tectonic
         run: |
-          if [ ! -f Output/Main.pdf ]; then
-            echo "Error: PDF was not created"
+          echo "Building document for release ${VERSION}..."
+
+          # Create output directories
+          mkdir -p Build Output
+
+          # Build with Tectonic
+          tectonic -X compile \
+            --keep-logs \
+            --keep-intermediates \
+            --outdir=Build \
+            Main.tex
+
+          # Copy to Output directory with versioned name
+          cp Build/Main.pdf "Output/Main.pdf"
+          cp Build/Main.pdf "Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf"
+
+      - name: Verify build
+        run: |
+          if [ ! -f "Output/Main.pdf" ]; then
+            echo "::error::PDF was not created - build failed"
             exit 1
           fi
-          echo "PDF successfully created"
-          echo "Size: $(du -h Output/Main.pdf)"
 
-      - name: Rename PDF with version
+          echo "PDF created successfully:"
+          ls -lh Output/*.pdf
+
+      - name: Create source archive
         run: |
-          cp Output/Main.pdf "Report_${{ steps.version.outputs.VERSION }}.pdf"
+          # Create a clean source archive without build artifacts
+          ARCHIVE_NAME="HSRT-Report_v${{ steps.version.outputs.VERSION }}_source"
 
-      - name: Generate release notes
-        id: release_notes
+          # Create temporary directory for archive
+          mkdir -p /tmp/${ARCHIVE_NAME}
+
+          # Copy source files (excluding build artifacts)
+          rsync -av \
+            --exclude='.git' \
+            --exclude='Build' \
+            --exclude='Output' \
+            --exclude='*.aux' \
+            --exclude='*.log' \
+            --exclude='*.out' \
+            --exclude='*.toc' \
+            --exclude='*.bbl' \
+            --exclude='*.blg' \
+            --exclude='*.synctex.gz' \
+            --exclude='*.fdb_latexmk' \
+            --exclude='*.fls' \
+            --exclude='__pycache__' \
+            --exclude='.DS_Store' \
+            ./ /tmp/${ARCHIVE_NAME}/
+
+          # Create zip archive
+          cd /tmp
+          zip -r "${ARCHIVE_NAME}.zip" "${ARCHIVE_NAME}"
+          mv "${ARCHIVE_NAME}.zip" "$GITHUB_WORKSPACE/Output/"
+
+          echo "Source archive created:"
+          ls -lh "$GITHUB_WORKSPACE/Output/${ARCHIVE_NAME}.zip"
+
+      - name: Generate changelog
+        id: changelog
         run: |
-          cat << EOF > release_notes.md
-          ## Report Document Release
+          # Get the previous tag
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
 
-          **Version:** ${{ steps.version.outputs.VERSION }}
-          **Date:** ${{ steps.version.outputs.DATE }}
+          if [ -z "$PREV_TAG" ]; then
+            echo "This is the first release" > changelog.md
+          else
+            echo "## Changes since ${PREV_TAG}" > changelog.md
+            echo "" >> changelog.md
 
-          ### 📦 Included Files
-          - \`Report_${{ steps.version.outputs.VERSION }}.pdf\` - The compiled document
+            # Get commit list
+            git log --pretty=format:"- %s (%an)" ${PREV_TAG}..HEAD >> changelog.md
+          fi
 
-          ---
-          *This release was automatically generated by GitHub Actions*
+          # Add build information
+          cat << EOF >> changelog.md
+
+          ## Build Information
+
+          - **Build Date:** $(date +'%Y-%m-%d %H:%M:%S UTC')
+          - **Build System:** Tectonic
+          - **TeX Format:** XeLaTeX
+          - **Bibliography:** BibTeX
+          - **Commit:** \`$(git rev-parse --short HEAD)\`
+
+          ## Files
+
+          - \`HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf\` - The compiled document
+          - \`HSRT-Report_v${{ steps.version.outputs.VERSION }}_source.zip\` - Complete source code
+
+          ## Installation
+
+          To build from source:
+          1. Install [Tectonic](https://tectonic-typesetting.github.io/)
+          2. Extract the source archive
+          3. Run \`tectonic -X compile Main.tex\`
+
+          Or use the Makefile:
+          \`\`\`bash
+          make compile
+          \`\`\`
           EOF
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.version.outputs.TAG }}
+          name: ${{ steps.version.outputs.RELEASE_NAME }}
+          body_path: changelog.md
           files: |
-            Report_${{ steps.version.outputs.VERSION }}.pdf
-          name: Release ${{ steps.version.outputs.VERSION }}
-          body_path: release_notes.md
+            Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf
+            Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}_source.zip
           draft: false
-          prerelease: false
-          generate_release_notes: true # Append auto-generated notes
+          prerelease: ${{ steps.version.outputs.IS_PRERELEASE }}
+          make_latest: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload PDF as artifact (backup)
+      - name: Upload release artifacts
         uses: actions/upload-artifact@v5
         with:
-          name: Report-${{ steps.version.outputs.VERSION }}
+          name: release-${{ steps.version.outputs.VERSION }}
           path: |
-            Report_${{ steps.version.outputs.VERSION }}.pdf
+            Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf
+            Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}_source.zip
+            Build/*.log
           retention-days: 90
           if-no-files-found: error
+
+      - name: Post release summary
+        run: |
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+          # 🎉 Release Created Successfully!
+
+          ## 📦 Release Information
+
+          | Property | Value |
+          |----------|-------|
+          | **Version** | ${{ steps.version.outputs.VERSION }} |
+          | **Tag** | \`${{ steps.version.outputs.TAG }}\` |
+          | **Release Name** | ${{ steps.version.outputs.RELEASE_NAME }} |
+          | **Pre-release** | ${{ steps.version.outputs.IS_PRERELEASE }} |
+          | **PDF Size** | $(du -h Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf | cut -f1) |
+          | **Source Size** | $(du -h Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}_source.zip | cut -f1) |
+
+          ## 📄 Files
+
+          - ✅ HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf
+          - ✅ HSRT-Report_v${{ steps.version.outputs.VERSION }}_source.zip
+
+          ## 🔧 Build System
+
+          Built with **Tectonic** using XeLaTeX format and BibTeX backend.
+
+          ## 🔗 Links
+
+          - [Release Page](https://github.com/${{ github.repository }}/releases/tag/${{ steps.version.outputs.TAG }})
+          - [Download PDF](https://github.com/${{ github.repository }}/releases/download/${{ steps.version.outputs.TAG }}/HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf)
+          - [Download Source](https://github.com/${{ github.repository }}/releases/download/${{ steps.version.outputs.TAG }}/HSRT-Report_v${{ steps.version.outputs.VERSION }}_source.zip)
+
+          EOF
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Release creation failed!"
+          echo "Check the logs for more information."
+          exit 1

@@ -10,7 +10,8 @@
 # Configuration
 # ------------------------------------------------------------------------------
 LATEX = latexmk
-LATEX_FLAGS = -xelatex -shell-escape -synctex=1 -interaction=nonstopmode
+TEX_ENGINE = lualatex
+LATEX_FLAGS = -$(TEX_ENGINE) -shell-escape -synctex=1 -interaction=nonstopmode
 BIBER = biber
 MAKEGLOSSARIES = makeglossaries
 
@@ -76,7 +77,7 @@ local: compile view
 compile:
 	@echo -e "$(BLUE)=== Building LaTeX Document ===$(NC)"
 	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
-	@echo -e "$(YELLOW)→ Running XeLaTeX...$(NC)"
+	@echo -e "$(YELLOW)→ Running $(TEX_ENGINE)...$(NC)"
 	$(LATEX) $(LATEX_FLAGS) -output-directory=$(BUILD_DIR) $(SOURCE)
 	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
 	@cp $(PDF_SOURCE) $(PDF_TARGET)
@@ -246,7 +247,7 @@ watch:
 .PHONY: draft
 draft:
 	@echo -e "$(BLUE)=== Building draft version ===$(NC)"
-	$(LATEX) -xelatex -interaction=nonstopmode -output-directory=$(BUILD_DIR) $(SOURCE)
+	$(LATEX) -$(TEX_ENGINE) -interaction=nonstopmode -output-directory=$(BUILD_DIR) $(SOURCE)
 	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
 	@cp $(PDF_SOURCE) $(OUT_DIR)/$(SOURCE:.tex=_draft.pdf)
 	@echo -e "$(GREEN)✓ Draft created: $(OUT_DIR)/$(SOURCE:.tex=_draft.pdf)$(NC)"
@@ -268,9 +269,9 @@ count:
 .PHONY: check
 check:
 	@echo -e "$(BLUE)=== Checking Prerequisites ===$(NC)"
-	@command -v xelatex >/dev/null 2>&1 && \
-		echo -e "$(GREEN)✓ XeLaTeX found$(NC)" || \
-		echo -e "$(RED)✗ XeLaTeX not found$(NC)"
+	@command -v $(TEX_ENGINE) >/dev/null 2>&1 && \
+		echo -e "$(GREEN)✓ $(TEX_ENGINE) found$(NC)" || \
+		echo -e "$(RED)✗ $(TEX_ENGINE) not found$(NC)"
 	@command -v biber >/dev/null 2>&1 && \
 		echo -e "$(GREEN)✓ Biber found$(NC)" || \
 		echo -e "$(RED)✗ Biber not found$(NC)"

@@ -40,7 +40,29 @@ jobs:
             git \
             make \
             fonts-texgyre \
-            fonts-lmodern
+            fonts-lmodern \
+            fontconfig
+
+      - name: Install custom fonts
+        run: |
+          echo "Installing custom fonts..."
+          mkdir -p ~/.local/share/fonts
+
+          # Copy all font files from the repository
+          if [ -d "HSRTReport/Assets/Fonts" ]; then
+            find HSRTReport/Assets/Fonts -type f \( -name "*.ttf" -o -name "*.otf" \) -exec cp {} ~/.local/share/fonts/ \;
+            echo "Fonts copied to ~/.local/share/fonts/"
+
+            # Update font cache
+            fc-cache -fv
+            echo "Font cache updated"
+
+            # Verify fonts are installed
+            echo "Installed custom fonts:"
+            fc-list | grep -E "(Blender|DIN)" || echo "Warning: Custom fonts may not be properly installed"
+          else
+            echo "Warning: Font directory not found"
+          fi
 
       - name: Cache Tectonic files
         uses: actions/cache@v4

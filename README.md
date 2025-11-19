@@ -28,48 +28,33 @@ The HSRTReport class is a customized LaTeX document class based on KOMA-Script's
 
 - **Professional Typography**: Configured for optimal readability with proper font settings
 - **Automatic Title Page Generation**: Customizable title page with university branding
-- **Bibliography Management**: Integrated BibLaTeX support for APA-style citations
+- **Bibliography Management**: Integrated BibLaTeX support with BibTeX backend
 - **Glossary Support**: Built-in glossary and acronym management
 - **Code Highlighting**: Syntax highlighting for multiple programming languages
 - **Word Count**: Automatic word counting functionality
 - **Cross-referencing**: Smart referencing with hyperref
 - **Advanced Page Break Control**: Intelligent section and listing page break management
-- **Docker Support**: Containerized build environment for consistent compilation
+- **Tectonic Engine**: Modern, self-contained TeX system with automatic package management
+- **Auto Font Installation**: Custom fonts automatically installed on first build
 - **Enhanced Spacing**: Optimized vertical spacing for sections and subsections
 - **Smart TOC Grouping**: Automatic chapter grouping in table of contents
 
 ## 🔧 Prerequisites
 
-### Option 1: Docker (Recommended)
+### Required Software
 
-- **ENV**: Copy the `.env.example` and rename it to `.env`
-- **Docker**: [Install Docker](https://docs.docker.com/get-docker/)
-- **Docker Compose**: Supports both variants:
-  - `docker-compose` (standalone tool)
-  - `docker compose` (Docker plugin, included with Docker Desktop)
-  - The Makefile automatically detects which version is available
+- **Tectonic**: Modern, self-contained TeX/LaTeX engine
+  - [Install Tectonic](https://tectonic-typesetting.github.io/en-US/install.html)
+  - Or install via: `curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh`
+- **GNU make**: Automates compilation and cleaning tasks (optional but recommended)
+- **Git**: For version control
 
-This is the easiest way to get started, as all LaTeX dependencies are handled automatically in a container.
+### Automatic Features
 
-### Option 2: Local Installation
-
-- **XeLaTeX**: This template requires XeLaTeX for compilation (included in most TeX distributions)
-- **TeX Distribution**: One of the following:
-  - [TeX Live](https://www.tug.org/texlive/) (Linux/Windows/macOS)
-  - [MiKTeX](https://miktex.org/) (Windows)
-  - [MacTeX](https://www.tug.org/mactex/) (macOS)
-- **GNU make**: Automates compilation and cleaning tasks
-- **Inkscape**: For SVG to PDF conversion (optional, but needed for SVG graphics)
-
-### Required LaTeX Packages
-
-The template automatically loads all necessary packages. Key dependencies include:
-- KOMA-Script bundle
-- BibLaTeX with Biber backend
-- glossaries-extra
-- fontspec (for font management)
-- TikZ (for graphics)
-- listings (for code)
+- **Custom Fonts**: Automatically installed on first build
+- **Bibliography**: Managed with BibLaTeX (using BibTeX backend)
+- **Packages**: All LaTeX packages are automatically downloaded by Tectonic
+- **No manual installation needed**: Tectonic handles all dependencies
 
 ## 📁 Project Structure
 
@@ -85,10 +70,7 @@ HSRT-Report/
 │   │   ├── Fonts.tex       # Font settings
 │   │   ├── PageSetup.tex   # Page layout
 │   │   └── ...             # Other configurations
-│   ├── Imports/            # Package imports
-│   │   ├── Core.tex        # Core packages
-│   │   ├── Document.tex    # Document structure
-│   │   └── ...             # Other imports
+│   ├── Imports.tex         # Package imports
 │   ├── Modules/            # Feature modules
 │   │   ├── Content/        # Content-related features
 │   │   ├── Layout/         # Layout features
@@ -98,11 +80,11 @@ HSRT-Report/
 │
 ├── Content/                # Document content
 │   ├── 00_toc.tex          # Table of contents and lists
-│   ├── 01_content.tex      # Chapter loader (auto-managed)
+│   ├── 01_content.tex      # Chapter loader
 │   ├── 99_bibliography.tex # Bibliography
 │   ├── Chapters/           # Individual chapter files
-│   │   ├── 01_introduction.tex
-│   │   ├── example_chapter.tex
+│   │   ├── 01_einleitung.tex
+│   │   ├── 02_gliederung.tex
 │   │   └── ...
 │   └── Images/             # Document images
 │
@@ -111,19 +93,14 @@ HSRT-Report/
 │   ├── CleverefNames.tex   # \cref names configuration
 │   └── Logos.tex           # Logo configuration
 │
-├── scripts/                # Chapter management scripts
-│   ├── create_chapter.sh   # Create new chapters
-│   ├── list_chapters.sh    # List all chapters
-│   ├── delete_chapter.sh   # Delete chapters
-│   └── show_chapter.sh     # View chapter content
+├── Build/                  # Build output directory (auto-created)
+├── Output/                 # Final PDF output (auto-created)
 │
 ├── Main.tex                # Main document file
 ├── Preamble.tex            # Document preamble
 ├── Glossary.tex            # Glossary definitions
 ├── Main.bib                # Bibliography database
-├── Makefile                # Build automation
-├── .latexmkrc              # Latexmk configuration
-└── docker-compose.yml      # Docker configuration
+└── Makefile                # Build automation
 ```
 
 ## 📝 Usage
@@ -241,40 +218,20 @@ Removes the chapter and creates a backup in `.chapter_backups/`.
 
 ## 🔨 Building the Document
 
-### Using Docker (Recommended - Default)
-
-The template now uses Docker by default for consistent builds across all platforms. The Makefile automatically detects whether you have `docker-compose` (standalone) or `docker compose` (plugin) installed:
+### Quick Start
 
 ```bash
-# Show Docker configuration and which compose variant is used
-make docker-info
-
-# Default build using Docker
+# Build the PDF (automatically installs fonts if needed)
 make
 
-# Docker build with image rebuild (after Dockerfile changes)
-make docker-build
+# Build and open the PDF
+make open
 
-# Docker build using cached image (faster)
-make docker-build-cached
+# Watch for changes and rebuild automatically
+make watch
 
-# Open shell in Docker container for debugging
-make docker-shell
-
-# Clean Docker containers
-make docker-clean
-```
-
-### Using Local Installation
-
-If you have a local LaTeX installation:
-
-```bash
-# Local build with automatic PDF viewing
-make local
-
-# Just compile without opening
-make compile
+# Fast single-pass compilation
+make fast
 
 # Clean auxiliary files
 make clean
@@ -283,10 +240,13 @@ make clean
 make distclean
 ```
 
-### Using latexmk directly
+### Using Tectonic directly
 
 ```bash
-latexmk -xelatex -shell-escape -bibtex Main.tex
+tectonic -X compile Main.tex
+
+# Or with specific output directory
+tectonic -X compile --outdir=Build Main.tex
 ```
 
 ## 🚀 CI/CD Pipeline
@@ -330,32 +290,25 @@ The workflow will automatically:
 
 ## 🐛 Troubleshooting
 
-### Common Issues
-
-1. **"This class can only be used with XeLaTeX" error**
-   - Solution: Ensure you're using XeLaTeX, not pdfLaTeX
-   - Check your editor's compiler settings
-   - Use Docker build (`make`) to avoid this issue
+1. **Custom fonts not displaying correctly**
+   - Solution: Run `make install-fonts` or let the Makefile auto-install them
+   - Fonts are installed to `~/.local/share/fonts/` (Linux) or `~/Library/Fonts/` (macOS)
+   - The build process handles this automatically on first run
 
 2. **Bibliography not appearing**
-   - Run `biber Main` after the first XeLaTeX compilation
+   - Tectonic automatically handles bibliography compilation
    - Check for errors in `Main.bib`
-   - The Docker build handles this automatically
+   - Ensure citations are properly formatted
 
 3. **Glossary entries not showing**
    - Run `makeglossaries Main` after adding new entries
-   - Ensure entries are referenced in the document using `\gls{term}`
+   - Check that entries are referenced in the document
+   - Verify syntax in `Glossary.tex`
 
-4. **Docker build not working**
-   - Ensure Docker Desktop is running
-   - Run `make docker-info` to check your Docker setup
-   - Check that port is not blocked by firewall
-   - Try `docker-compose build --no-cache` or `docker compose build --no-cache` for a fresh build
-   - The Makefile supports both `docker-compose` and `docker compose` automatically
-
-5. **SVG images not converting**
-   - Inkscape is required for SVG support
-   - Docker build includes Inkscape automatically
+4. **SVG images not supported**
+   - Tectonic doesn't support shell-escape for SVG conversion
+   - Pre-convert SVGs to PDFs using Inkscape or similar tools
+   - Use PDF or PNG images instead of SVG
    - For local builds: Install Inkscape separately
 
 ## 📄 License

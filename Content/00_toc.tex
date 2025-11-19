@@ -5,8 +5,8 @@
 % Description: This file generates the table of contents and all document lists
 %              including figures, tables, equations, listings, and glossaries.
 %              The formatting uses the blenderfont style for consistency.
-% Author: [Your Name]
-% Date: [Date]
+% Author: Frederik Beimgraben
+% Date: 19.11.2025
 % ==============================================================================
 
 % ------------------------------------------------------------------------------
@@ -20,12 +20,14 @@
 \newcommand{\offsetB}{\vspace{-1em}}
 
 \newpage
+\pagestyle{fancy}
 {
 	% Remove title
 	\let\oldcontentsname\contentsname
 	\renewcommand{\contentsname}{}
 
 	% Formatting
+	\blenderfont
 	\chapter*{\oldcontentsname}
 	% Configure TOC page breaking to keep chapters with their sections
 	% Set penalties to keep related entries together
@@ -59,7 +61,7 @@
 }
 
 % Add vertical fill to push subsequent content down
-% \vfill
+\vspace{\fill}
 
 % ------------------------------------------------------------------------------
 % Lists of Figures, Tables, Listings, and Equations
@@ -67,41 +69,46 @@
 % Generate all lists on a single page with compact spacing
 % The lists will only show entries if they exist
 % ------------------------------------------------------------------------------
-\pagestyle{empty}
 \newpage
 \pagestyle{fancy}
-% Remove titles
-\let\oldlistfigurename\listfigurename
-\let\oldlisttablename\listtablename
-\let\oldlstlistlistingname\lstlistlistingname
-\let\oldlistequationsname\listequationsname
-\renewcommand{\listfigurename}{}
-\renewcommand{\listtablename}{}
-\renewcommand{\lstlistlistingname}{}
-\renewcommand{\listequationsname}{}
+{
+	% Remove titles
+	\let\oldlistfigurename\listfigurename
+	\let\oldlisttablename\listtablename
+	\let\oldlstlistlistingname\lstlistlistingname
+	\let\oldlistequationsname\listequationsname
+	\renewcommand{\listfigurename}{}
+	\renewcommand{\listtablename}{}
+	\renewcommand{\lstlistlistingname}{}
+	\renewcommand{\listequationsname}{}
 
-% List of Figures
-\chapter*{\oldlistfigurename}
-\offsetA\offsetB
-\listoffigures
+	% Formatting
+	\noindent
+	\blenderfont
 
-% List of Tables
-\vspace{1em}
-\chapter*{\oldlisttablename}
-\offsetA\offsetB
-\listoftables
+	% List of Figures
+	\chapter*{\oldlistfigurename}
+	\offsetA\offsetB
+	\listoffigures
 
-% List of Listings
-% \vspace{1em}
-% \chapter*{\oldlstlistlistingname}
-% \offsetB
-% \lstlistoflistings
+	% List of Tables
+	\vspace{1em}
+	\chapter*{\oldlisttablename}
+	\offsetA\offsetB
+	\listoftables
 
-% List of Equations
-\vspace{1em}
-\chapter*{\oldlistequationsname}
-\offsetA\offsetB
-\listofmyequations
+	% List of Listings
+	% \vspace{1em}
+	% \chapter*{\oldlstlistlistingname}
+	% \offsetB
+	% \lstlistoflistings
+
+	% List of Equations
+	\vspace{1em}
+	\chapter*{\oldlistequationsname}
+	\offsetA\offsetB
+	\listofmyequations
+}
 
 % ------------------------------------------------------------------------------
 % Glossary Section
@@ -117,28 +124,24 @@
 
 	% --- Main Glossary ---
 	% Print main glossary with German header "Wort"
-	\begingroup
-	\renewcommand*{\entryname}{Wort}
-	\pagestyle{empty}
-	\clearpage
-	\pagestyle{fancy}
-	\vspace*{-2.25em}
-	\printglossary
-	\endgroup
+	{
+		\renewcommand*{\entryname}{Wort}
+		\newpage
+		\pagestyle{fancy}
+		\vspace*{-2.25em}
+		\printglossary
+	}
 
+	% --- List of Abbreviations ---
 	% Print abbreviation glossary with German header "Abkürzung"
-	\begingroup
-	\renewcommand*{\entryname}{Abkürzung}
-	\pagestyle{empty}
-	\clearpage
-	\pagestyle{fancy}
-	\vspace*{-2.25em}
-	\printglossary[type=\acronymtype,title=Abkürzungen]
-	\endgroup
+	{
+		\renewcommand*{\entryname}{Abkürzung}
+		\newpage
+		\pagestyle{fancy}
+		\vspace*{-2.25em}
+		\printglossary[type=\acronymtype,title=Abkürzungen]
+	}
 }
-
-% Break pages for following chapters
-\AddToHook{cmd/chapter/before}{\clearpage}
 
 % ==============================================================================
 % End of Table of Contents and Lists

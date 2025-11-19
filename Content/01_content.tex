@@ -1,10 +1,9 @@
 % !TEX root = ../Main.tex
 % ==============================================================================
-% Document Content Loader
+% Main Content Loader
 % ==============================================================================
-% Description: This file serves as the main content loader for all chapters.
-%              Chapters are included via \input commands in the designated area.
-%              The marked section is automatically managed by chapter scripts.
+% Description: This file loads all chapter files in the correct order.
+%              Add new chapters by including them with \input{} commands.
 % Author: [Your Name]
 % Date: [Date]
 % ==============================================================================
@@ -13,73 +12,22 @@
 % TexCount Settings -- For word count
 % ------------------------------------------------------------------------------
 %
-% Ignore Headings:
-%TC:macro \chapter [ignore]
-%TC:macro \section [ignore]
-%TC:macro \subsection [ignore]
-%TC:macro \subsubsection [ignore]
-%TC:macro \includesvg [ignore]
-%
-% Ignore Figures and Tables:
-%TC:envir figure [ignore] ignore
-%TC:envir table [ignore] ignore
-%TC:envir equation [ignore] ignore
-%TC:envir align [ignore] ignore
-%TC:envir alignat [ignore] ignore
-%TC:envir lstlisting [ignore] ignore
-% ------------------------------------------------------------------------------
-
-% ------------------------------------------------------------------------------
-% Chapter Loading Instructions
-% ------------------------------------------------------------------------------
-% To add chapters manually:
-%   1. Create a new .tex file in Content/Chapters/
-%   2. Add \input{Content/Chapters/filename} in the marked area below
-%
-% To use automatic chapter management:
-%   - Use ./scripts/create_chapter.sh to create new chapters
-%   - Use ./scripts/list_chapters.sh to view all chapters
-%   - Use ./scripts/delete_chapter.sh to remove chapters
-%
-% The scripts will automatically update this file's chapter list.
-% ------------------------------------------------------------------------------
+%TC:newcounter fwords Words in Footnotes
+%TC:macro \footnote [fwords]
+%TC:envir longtable 1 1
 
 % ==============================================================================
-% BEGIN CHAPTER INCLUDES (Auto-managed Section)
+% Chapter Includes
 % ==============================================================================
-% WARNING: Do not manually edit between the BEGIN and END markers if using
-%          the chapter management scripts. Manual edits will be preserved,
-%          but may interfere with automatic management.
-% ==============================================================================
+% Add your chapters here in the order they should appear in the document
 
-% Ensure content starts on a new page
-\clearpage
+% Template demonstration chapter
+\input{Content/Chapters/01_template_demo}
 
-% --- CHAPTER LIST START --- (Do not remove this marker)
-\input{Content/Chapters/01_einleitung}
-\input{Content/Chapters/02_gliederung}
-\input{Content/Chapters/03_seitenformatierung}
-\input{Content/Chapters/04_formatierung_abschnitte}
-\input{Content/Chapters/05_zeichenformate}
-\input{Content/Chapters/06_template_demo}
-% --- CHAPTER LIST END --- (Do not remove this marker)
+% Add more chapters as needed:
+% \input{Content/Chapters/02_your_chapter}
+% \input{Content/Chapters/03_another_chapter}
 
 % ==============================================================================
-% END CHAPTER INCLUDES
-% ==============================================================================
-
-% ------------------------------------------------------------------------------
-% Additional Content (Optional)
-% ------------------------------------------------------------------------------
-% Any content that should appear after all chapters but before the bibliography
-% can be added here. For example, appendices or supplementary material.
-% ------------------------------------------------------------------------------
-
-% Uncomment to add appendices:
-% \appendix
-% \input{Content/Chapters/appendix_a}
-% \input{Content/Chapters/appendix_b}
-
-% ==============================================================================
-% End of Content Loader
+% End of Content
 % ==============================================================================

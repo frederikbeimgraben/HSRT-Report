@@ -10,8 +10,6 @@
 # ------------------------------------------------------------------------------
 TECTONIC = tectonic
 TECTONIC_FLAGS = -X compile --keep-logs --keep-intermediates
-DOCKER = docker
-DOCKER_COMPOSE = docker-compose
 
 # Main document
 SOURCE = Main.tex
@@ -37,14 +35,15 @@ help:
 	@echo ""
 	@echo -e "$(GREEN)Available targets:$(NC)"
 	@echo ""
-	@echo -e "  $(YELLOW)make$(NC)           - Build the PDF using Tectonic"
+	@echo -e "  $(YELLOW)make$(NC)           - Build the PDF using Tectonic (auto-installs fonts)"
 	@echo -e "  $(YELLOW)make compile$(NC)   - Compile the LaTeX document"
 	@echo -e "  $(YELLOW)make clean$(NC)     - Remove all generated files"
 	@echo -e "  $(YELLOW)make distclean$(NC) - Remove all generated files and directories"
 	@echo -e "  $(YELLOW)make watch$(NC)     - Watch for changes and rebuild automatically"
-	@echo -e "  $(YELLOW)make docker$(NC)    - Build using Docker"
 	@echo -e "  $(YELLOW)make check$(NC)     - Check if all prerequisites are installed"
 	@echo -e "  $(YELLOW)make install-fonts$(NC) - Install custom fonts to system (Linux/Mac)"
+	@echo -e "  $(YELLOW)make wordcount$(NC) - Count words in the document"
+	@echo -e "  $(YELLOW)make open$(NC)      - Build and open the PDF"
 	@echo ""
 	@echo -e "$(GREEN)Quick commands:$(NC)"
 	@echo ""
@@ -52,11 +51,10 @@ help:
 	@echo -e "  $(YELLOW)make all$(NC)       - Full build with all features"
 	@echo -e "  $(YELLOW)make fast$(NC)      - Fast compilation (single pass)"
 	@echo ""
-	@echo -e "$(GREEN)Docker commands:$(NC)"
-	@echo ""
-	@echo -e "  $(YELLOW)make docker-build$(NC)  - Build Docker image"
-	@echo -e "  $(YELLOW)make docker-shell$(NC)  - Open shell in Docker container"
-	@echo -e "  $(YELLOW)make docker-clean$(NC)  - Remove Docker containers and images"
+	@echo -e "$(GREEN)Notes:$(NC)"
+	@echo -e "  - Custom fonts are automatically installed on first build"
+	@echo -e "  - Build outputs go to Build/ directory"
+	@echo -e "  - Final PDF is copied to Output/ directory"
 	@echo ""
 
 # ==============================================================================
@@ -73,9 +71,17 @@ help:
 all: clean compile
 	@echo -e "$(GREEN)✓ Full build complete$(NC)"
 
+# Check if fonts are installed
+.PHONY: check-fonts
+check-fonts:
+	@if ! fc-list | grep -q "Blender\|DIN" 2>/dev/null; then \
+		echo -e "$(YELLOW)→ Custom fonts not found. Installing...$(NC)"; \
+		$(MAKE) install-fonts; \
+	fi
+
 # Compile the document
 .PHONY: compile
-compile:
+compile: check-fonts
 	@echo -e "$(BLUE)=== Building LaTeX Document with Tectonic ===$(NC)"
 	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
 	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
@@ -129,37 +135,6 @@ watch:
 	fi
 
 # ==============================================================================
-# DOCKER TARGETS
-# ==============================================================================
-
-# Build using Docker
-.PHONY: docker
-docker: docker-build
-	@echo -e "$(BLUE)=== Building with Docker ===$(NC)"
-	$(DOCKER_COMPOSE) run --rm latex make compile
-	@echo -e "$(GREEN)✓ Docker build complete$(NC)"
-
-# Build Docker image
-.PHONY: docker-build
-docker-build:
-	@echo -e "$(BLUE)=== Building Docker Image ===$(NC)"
-	$(DOCKER_COMPOSE) build
-	@echo -e "$(GREEN)✓ Docker image ready$(NC)"
-
-# Open shell in Docker container
-.PHONY: docker-shell
-docker-shell:
-	@echo -e "$(BLUE)=== Opening Docker Shell ===$(NC)"
-	$(DOCKER_COMPOSE) run --rm latex bash
-
-# Clean Docker containers and images
-.PHONY: docker-clean
-docker-clean:
-	@echo -e "$(BLUE)=== Cleaning Docker Resources ===$(NC)"
-	$(DOCKER_COMPOSE) down --rmi all --volumes --remove-orphans
-	@echo -e "$(GREEN)✓ Docker resources cleaned$(NC)"
-
-# ==============================================================================
 # CLEAN TARGETS
 # ==============================================================================
 
@@ -198,9 +173,6 @@ check:
 	@command -v git >/dev/null 2>&1 && \
 		echo -e "$(GREEN)✓ Git found$(NC)" || \
 		echo -e "$(RED)✗ Git not found$(NC)"
-	@command -v $(DOCKER) >/dev/null 2>&1 && \
-		echo -e "$(GREEN)✓ Docker found$(NC)" || \
-		echo -e "$(YELLOW)⚠ Docker not found (optional)$(NC)"
 	@echo ""
 	@echo -e "$(BLUE)Tectonic version:$(NC)"
 	@$(TECTONIC) --version 2>/dev/null || echo "Tectonic not installed"
@@ -208,8 +180,10 @@ check:
 # Install fonts to system (Linux/Mac)
 .PHONY: install-fonts
 install-fonts:
-	@echo -e "$(BLUE)=== Installing Custom Fonts ===$(NC)"
-	@if [ -d "HSRTReport/Assets/Fonts" ]; then \
+	@if fc-list | grep -q "Blender\|DIN" 2>/dev/null; then \
+		echo -e "$(GREEN)✓ Custom fonts already installed$(NC)"; \
+	elif [ -d "HSRTReport/Assets/Fonts" ]; then \
+		echo -e "$(BLUE)=== Installing Custom Fonts ===$(NC)"; \
 		if [ "$$(uname)" = "Darwin" ]; then \
 			echo -e "$(YELLOW)→ Installing fonts on macOS...$(NC)"; \
 			cp -r HSRTReport/Assets/Fonts/*/*.ttf ~/Library/Fonts/ 2>/dev/null || true; \
@@ -228,12 +202,6 @@ install-fonts:
 	else \
 		echo -e "$(RED)✗ Font directory not found$(NC)"; \
 	fi
-
-# Create a new chapter
-.PHONY: new-chapter
-new-chapter:
-	@echo -e "$(BLUE)=== Creating New Chapter ===$(NC)"
-	@bash scripts/create_chapter.sh
 
 # Count words in the document
 .PHONY: wordcount
@@ -298,8 +266,8 @@ validate:
 # ==============================================================================
 
 # Prevent make from treating these as file targets
-.PHONY: all compile fast pdf watch docker docker-build docker-shell docker-clean
-.PHONY: clean distclean check install-fonts new-chapter wordcount open
+.PHONY: all compile fast pdf watch
+.PHONY: clean distclean check check-fonts install-fonts wordcount open
 .PHONY: format validate help
 
 # ==============================================================================

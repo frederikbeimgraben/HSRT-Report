@@ -1,6 +1,5 @@
 # Ignore Build/ and Output/
-Build/
-Output/
+build/
 *.log
 *.aux
 *.out

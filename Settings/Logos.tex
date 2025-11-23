@@ -6,8 +6,8 @@
 %              their positioning. Multiple logos can be displayed simultaneously.
 %              The AddLogo command handles logo placement and scaling.
 % Usage:       Uncomment the desired logo(s) and adjust parameters as needed.
-% Author: [Your Name]
-% Date: [Date]
+% Author: Frederik Beimgraben
+% Date: 23.11.2025
 % ==============================================================================
 
 % ------------------------------------------------------------------------------
@@ -17,7 +17,7 @@
 %
 % Parameters:
 %   LogoName - Name of the logo
-%   Scale   - Horizontal scaling factor (1.0 = original width)
+%   Scale   - Scaling factor
 %
 % Logo files must be placed in: HSRTReport/Assets/Images/
 % ------------------------------------------------------------------------------
@@ -30,11 +30,14 @@
 % Multiple logos can be active simultaneously and will be arranged automatically.
 % ------------------------------------------------------------------------------
 
-% --- Informatics Department Logo (Combined Version) ---
-% Standard logo for informatics department documents
-% Scale: 90% width, 100% height
-% This logo is active by default
+% --- INF/Kombiniert ---
 \AddLogo{INF/Kombiniert}{0.9}
+
+% --- INF/Simple ---
+% \AddLogo{INF/Simple}{0.9}
+
+% --- HSRT ---
+% \AddLogo{HSRT}{0.9}
 
 % ==============================================================================
 % End of Logo Configuration

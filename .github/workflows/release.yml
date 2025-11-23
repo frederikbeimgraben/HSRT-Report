@@ -118,29 +118,21 @@ jobs:
         run: |
           echo "Building document for release ${VERSION}..."
 
-          # Create output directories
-          mkdir -p Build Output
-
           # Build with Tectonic
-          tectonic -X compile \
-            --keep-logs \
-            --keep-intermediates \
-            --outdir=Build \
-            Main.tex
+          tectonic -X build
 
           # Copy to Output directory with versioned name
-          cp Build/Main.pdf "Output/Main.pdf"
-          cp Build/Main.pdf "Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf"
+          cp build/Main/Main.pdf "HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf"
 
       - name: Verify build
         run: |
-          if [ ! -f "Output/Main.pdf" ]; then
+          if [ ! -f "HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf" ]; then
             echo "::error::PDF was not created - build failed"
             exit 1
           fi
 
           echo "PDF created successfully:"
-          ls -lh Output/*.pdf
+          ls -lh "HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf"
 
       - name: Create source archive
         run: |
@@ -153,28 +145,16 @@ jobs:
           # Copy source files (excluding build artifacts)
           rsync -av \
             --exclude='.git' \
-            --exclude='Build' \
-            --exclude='Output' \
-            --exclude='*.aux' \
-            --exclude='*.log' \
-            --exclude='*.out' \
-            --exclude='*.toc' \
-            --exclude='*.bbl' \
-            --exclude='*.blg' \
-            --exclude='*.synctex.gz' \
-            --exclude='*.fdb_latexmk' \
-            --exclude='*.fls' \
-            --exclude='__pycache__' \
-            --exclude='.DS_Store' \
+            --exclude='build' \
             ./ /tmp/${ARCHIVE_NAME}/
 
           # Create zip archive
           cd /tmp
           zip -r "${ARCHIVE_NAME}.zip" "${ARCHIVE_NAME}"
-          mv "${ARCHIVE_NAME}.zip" "$GITHUB_WORKSPACE/Output/"
+          mv "${ARCHIVE_NAME}.zip" "$GITHUB_WORKSPACE/"
 
           echo "Source archive created:"
-          ls -lh "$GITHUB_WORKSPACE/Output/${ARCHIVE_NAME}.zip"
+          ls -lh "$GITHUB_WORKSPACE/${ARCHIVE_NAME}.zip"
 
       - name: Generate changelog
         id: changelog
@@ -213,12 +193,7 @@ jobs:
           To build from source:
           1. Install [Tectonic](https://tectonic-typesetting.github.io/)
           2. Extract the source archive
-          3. Run \`tectonic -X compile Main.tex\`
-
-          Or use the Makefile:
-          \`\`\`bash
-          make compile
-          \`\`\`
+          3. Run \`tectonic -X build\`
           EOF
 
       - name: Create GitHub Release
@@ -228,8 +203,8 @@ jobs:
           name: ${{ steps.version.outputs.RELEASE_NAME }}
           body_path: changelog.md
           files: |
-            Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf
-            Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}_source.zip
+            HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf
+            HSRT-Report_v${{ steps.version.outputs.VERSION }}_source.zip
           draft: false
           prerelease: ${{ steps.version.outputs.IS_PRERELEASE }}
           make_latest: true
@@ -241,9 +216,8 @@ jobs:
         with:
           name: release-${{ steps.version.outputs.VERSION }}
           path: |
-            Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf
-            Output/HSRT-Report_v${{ steps.version.outputs.VERSION }}_source.zip
-            Build/*.log
+            HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf
+            HSRT-Report_v${{ steps.version.outputs.VERSION }}_source.zip
           retention-days: 90
           if-no-files-found: error
 

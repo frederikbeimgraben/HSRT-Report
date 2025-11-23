@@ -91,34 +91,27 @@ jobs:
 
       - name: Build document with Tectonic
         run: |
-          # Create output directories
-          mkdir -p Build Output
-
           # Build with Tectonic
-          tectonic -X compile \
-            --keep-logs \
-            --keep-intermediates \
-            --outdir=Build \
-            Main.tex
+          tectonic -X build
 
           # Copy to Output directory
-          cp Build/Main.pdf Output/Main.pdf
+          cp build/Main/Main.pdf Main.pdf
 
       - name: Verify PDF creation
         run: |
-          if [ ! -f Output/Main.pdf ]; then
+          if [ ! -f Main.pdf ]; then
             echo "::error::PDF was not created - build failed"
             exit 1
           fi
 
           # Display PDF info
           echo "PDF created successfully:"
-          ls -lh Output/Main.pdf
+          ls -lh Main.pdf
 
       - name: Prepare PDF for upload
         run: |
           # Copy the PDF with a consistent name for the release
-          cp Output/Main.pdf "Report_Latest.pdf"
+          cp Main.pdf "Report_Latest.pdf"
 
       - name: Generate release notes
         id: release_notes
@@ -210,7 +203,6 @@ jobs:
           name: build-${{ steps.build_info.outputs.SHORT_SHA }}
           path: |
             Report_Latest.pdf
-            Build/*.log
           retention-days: 30
           if-no-files-found: error
 

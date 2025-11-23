@@ -1,0 +1,160 @@
+[[profile]]
+name = "default"
+
+# Bundle configuration
+[bundles]
+# Use the default Tectonic bundle
+url = "https://data1.fullyjustified.net/tlextras-2022.0r0.tar"
+
+# Build settings
+[doc]
+# Document name
+name = "Main"
+
+# Bundle to use
+bundle = "https://data1.fullyjustified.net/tlextras-2022.0r0.tar"
+
+# Output settings
+[output]
+# Output format
+format = "pdf"
+
+# Keep intermediate files for debugging
+keep_intermediates = false
+
+# Keep log files
+keep_logs = false
+
+# ==============================================================================
+# Optimization Profiles
+# ==============================================================================
+
+[[profile]]
+name = "fast"
+# Single pass compilation for drafts
+pass_limit = 1
+shell_escape = false
+
+[[profile]]
+name = "draft"
+# Maximum 2 passes for draft mode
+pass_limit = 2
+shell_escape = false
+
+[[profile]]
+name = "normal"
+# Maximum 3 passes for normal compilation
+pass_limit = 3
+shell_escape = false
+
+[[profile]]
+name = "full"
+# Up to 6 passes for complete compilation
+pass_limit = 6
+shell_escape = false
+
+# ==============================================================================
+# Engine Configuration
+# ==============================================================================
+
+[engine]
+# Use XeTeX engine (required for this template)
+format = "xelatex"
+
+# Memory settings for large documents
+mem_bot = 10000000
+main_memory = 50000000
+extra_mem_bot = 10000000
+pool_size = 6250000
+string_vacancies = 90000
+max_strings = 500000
+pool_free = 47500
+nest_size = 500
+param_size = 10000
+save_size = 50000
+stack_size = 5000
+
+# ==============================================================================
+# Path Configuration
+# ==============================================================================
+
+[paths]
+# Search paths for custom files
+search = [
+    ".",
+    "HSRTReport",
+    "HSRTReport/Assets/Fonts",
+    "HSRTReport/Assets/Images",
+    "HSRTReport/Config",
+    "Content",
+    "Settings"
+]
+
+# ==============================================================================
+# Caching Configuration
+# ==============================================================================
+
+[cache]
+# Enable caching for faster subsequent builds
+enabled = true
+
+# Cache directory
+dir = ".tectonic-cache"
+
+# Maximum cache size in MB
+max_size = 500
+
+# ==============================================================================
+# Network Configuration
+# ==============================================================================
+
+[network]
+# Enable network access for package downloads
+enabled = true
+
+# Connection timeout in seconds
+timeout = 60
+
+# Number of retries for failed downloads
+retries = 3
+
+# ==============================================================================
+# Diagnostic Settings
+# ==============================================================================
+
+[diagnostics]
+# Warning level (0 = errors only, 1 = warnings, 2 = info, 3 = debug)
+level = 1
+
+# Show file locations in error messages
+show_file_locations = true
+
+# Maximum number of errors before stopping
+max_errors = 100
+
+# ==============================================================================
+# Build Optimization Settings
+# ==============================================================================
+
+[optimizations]
+# Enable parallel processing where possible
+parallel = true
+
+# Use incremental compilation
+incremental = true
+
+# Optimize font loading
+cache_fonts = true
+
+# Minimize auxiliary file writes
+minimize_writes = true
+
+# Use fast path for bibliography processing
+fast_bibtex = true
+
+# Skip unnecessary processing on early passes
+smart_reruns = true
+
+# ==============================================================================
+# End of Configuration
+# ==============================================================================

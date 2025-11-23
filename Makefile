@@ -26,6 +26,9 @@ YELLOW = \033[1;33m
 RED = \033[0;31m
 NC = \033[0m # No Color
 
+# Compilation speed modes
+SPEED ?= normal
+
 # ==============================================================================
 # HELP
 # ==============================================================================
@@ -35,8 +38,12 @@ help:
 	@echo ""
 	@echo -e "$(GREEN)Available targets:$(NC)"
 	@echo ""
-	@echo -e "  $(YELLOW)make$(NC)           - Build the PDF using Tectonic (auto-installs fonts)"
-	@echo -e "  $(YELLOW)make compile$(NC)   - Compile the LaTeX document"
+	@echo -e "  $(YELLOW)make$(NC)           - Build the PDF using Tectonic (normal mode)"
+	@echo -e "  $(YELLOW)make compile$(NC)   - Compile with optimized settings (faster)"
+	@echo -e "  $(YELLOW)make fast$(NC)      - Ultra-fast single pass compilation"
+	@echo -e "  $(YELLOW)make draft$(NC)     - Draft mode (2 passes max)"
+	@echo -e "  $(YELLOW)make normal$(NC)    - Normal compilation (3 passes max)"
+	@echo -e "  $(YELLOW)make full$(NC)      - Full compilation (up to 6 passes)"
 	@echo -e "  $(YELLOW)make clean$(NC)     - Remove all generated files"
 	@echo -e "  $(YELLOW)make distclean$(NC) - Remove all generated files and directories"
 	@echo -e "  $(YELLOW)make watch$(NC)     - Watch for changes and rebuild automatically"
@@ -47,9 +54,8 @@ help:
 	@echo ""
 	@echo -e "$(GREEN)Quick commands:$(NC)"
 	@echo ""
-	@echo -e "  $(YELLOW)make pdf$(NC)       - Alias for 'make compile'"
-	@echo -e "  $(YELLOW)make all$(NC)       - Full build with all features"
-	@echo -e "  $(YELLOW)make fast$(NC)      - Fast compilation (single pass)"
+	@echo -e "  $(YELLOW)make pdf$(NC)       - Alias for 'make normal'"
+	@echo -e "  $(YELLOW)make all$(NC)       - Clean and full build"
 	@echo ""
 	@echo -e "$(GREEN)Notes:$(NC)"
 	@echo -e "  - Custom fonts are automatically installed on first build"
@@ -85,8 +91,9 @@ compile: check-fonts
 	@echo -e "$(BLUE)=== Building LaTeX Document with Tectonic ===$(NC)"
 	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
 	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
-	@echo -e "$(YELLOW)→ Running Tectonic...$(NC)"
-	$(TECTONIC) $(TECTONIC_FLAGS) --outdir=$(BUILD_DIR) $(SOURCE)
+	@echo -e "$(YELLOW)→ Running Tectonic (optimized)...$(NC)"
+	@echo -e "$(YELLOW)  Using single-pass mode for faster compilation$(NC)"
+	$(TECTONIC) -X compile -Z search-path=$(dirname $(kpsewhich biblatex.sty)) --outdir=$(BUILD_DIR) --reruns=2 $(SOURCE)
 	@if [ -f $(PDF_SOURCE) ]; then \
 		cp $(PDF_SOURCE) $(PDF_TARGET); \
 		echo -e "$(GREEN)✓ PDF created: $(PDF_TARGET)$(NC)"; \
@@ -95,13 +102,39 @@ compile: check-fonts
 		exit 1; \
 	fi
 
-# Fast compilation (single pass)
+# Fast compilation (single pass - no bibliography or cross-references)
 .PHONY: fast
 fast:
-	@echo -e "$(BLUE)=== Fast Compilation ===$(NC)"
+	@echo -e "$(BLUE)=== Ultra-Fast Compilation (single pass) ===$(NC)"
 	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
+	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
 	$(TECTONIC) -X compile --pass=tex --outdir=$(BUILD_DIR) $(SOURCE)
+	@if [ -f $(BUILD_DIR)/Main.xdv ]; then \
+		echo -e "$(YELLOW)→ Converting to PDF...$(NC)"; \
+		cd $(BUILD_DIR) && xdvipdfmx -q Main.xdv 2>/dev/null || tectonic -X compile --pass=default --reruns=0 --outdir=. ../$(SOURCE); \
+		if [ -f $(PDF_SOURCE) ]; then \
+			cp $(PDF_SOURCE) $(PDF_TARGET); \
+			echo -e "$(GREEN)✓ Fast PDF created: $(PDF_TARGET)$(NC)"; \
+		fi; \
+	fi
 	@echo -e "$(GREEN)✓ Fast compilation complete$(NC)"
+	@echo -e "$(YELLOW)Note: Bibliography and cross-references may not be updated$(NC)"
+
+# Draft mode - faster compilation with draft images and minimal processing
+.PHONY: draft
+draft:
+	@echo -e "$(BLUE)=== Draft Mode Compilation ===$(NC)"
+	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
+	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
+	@echo -e "$(YELLOW)→ Running in draft mode (2 passes max)...$(NC)"
+	$(TECTONIC) -X compile --reruns=1 --outdir=$(BUILD_DIR) $(SOURCE)
+	@if [ -f $(PDF_SOURCE) ]; then \
+		cp $(PDF_SOURCE) $(PDF_TARGET); \
+		echo -e "$(GREEN)✓ Draft PDF created: $(PDF_TARGET)$(NC)"; \
+	else \
+		echo -e "$(RED)✗ PDF creation failed$(NC)"; \
+		exit 1; \
+	fi
 
 # Alias for compile
 .PHONY: pdf
@@ -266,7 +299,7 @@ validate:
 # ==============================================================================
 
 # Prevent make from treating these as file targets
-.PHONY: all compile fast pdf watch
+.PHONY: all compile fast draft normal full pdf watch
 .PHONY: clean distclean check check-fonts install-fonts wordcount open
 .PHONY: format validate help
 

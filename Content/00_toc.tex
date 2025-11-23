@@ -75,7 +75,9 @@
 	% Remove titles
 	\let\oldlistfigurename\listfigurename
 	\let\oldlisttablename\listtablename
+	\providecommand{\lstlistlistingname}{Listings}% Provide default if not defined
 	\let\oldlstlistlistingname\lstlistlistingname
+	\providecommand{\listequationsname}{List of Equations}% Provide default if not defined
 	\let\oldlistequationsname\listequationsname
 	\renewcommand{\listfigurename}{}
 	\renewcommand{\listtablename}{}

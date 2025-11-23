@@ -38,46 +38,16 @@
 % Document Body
 % ==============================================================================
 \begin{document}
-
-% ------------------------------------------------------------------------------
-% Set Page Counter to 0
-% ------------------------------------------------------------------------------
-% Set page counter to 0, so that the table of contents starts at page 1
-\setcounter{page}{0}
-
-% ------------------------------------------------------------------------------
-% Title Page
-% ------------------------------------------------------------------------------
-% Generates the title page with university branding and document metadata
-% Configuration in Settings/General.tex
-\maketitle
-
-% ------------------------------------------------------------------------------
-% Set Page Style
-% ------------------------------------------------------------------------------
-% Ensure fancy page style is active after title page for headers/footers
-\pagestyle{fancy}
-
-% ------------------------------------------------------------------------------
-% Document Spacing
-% ------------------------------------------------------------------------------
-% Set line spacing for the main content (1.0 = single spacing)
-\setstretch{1.0}
-
 % ------------------------------------------------------------------------------
 % Content Sections
 % ------------------------------------------------------------------------------
 % Input content files in order of appearance
-\input{Content/00_toc}              % Table of contents, lists, and glossaries
-\input{Content/01_content}          % Main document content
-\input{Content/99_bibliography}     % Bibliography and references
-\input{Content/99_eidesstattliche}
+\input{Content/01_content}
 
 % ------------------------------------------------------------------------------
 % Glossary Processing
 % ------------------------------------------------------------------------------
 % Add all glossary entries to the document, even if not referenced
-% This ensures complete glossary for reference purposes
 \glsaddallunused
 
 \end{document}

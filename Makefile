@@ -9,7 +9,7 @@
 # Configuration
 # ------------------------------------------------------------------------------
 TECTONIC = tectonic
-TECTONIC_FLAGS = -X compile --keep-logs --keep-intermediates
+TECTONIC_FLAGS = -X compile -Z shell-escape --print --keep-intermediates
 
 # Main document
 SOURCE = Main.tex
@@ -93,7 +93,7 @@ compile: check-fonts
 	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
 	@echo -e "$(YELLOW)→ Running Tectonic (optimized)...$(NC)"
 	@echo -e "$(YELLOW)  Using single-pass mode for faster compilation$(NC)"
-	$(TECTONIC) -X compile -Z search-path=$(dirname $(kpsewhich biblatex.sty)) --outdir=$(BUILD_DIR) --reruns=2 $(SOURCE)
+	$(TECTONIC) $(TECTONIC_FLAGS) --outdir=$(BUILD_DIR) --reruns=2 $(SOURCE)
 	@if [ -f $(PDF_SOURCE) ]; then \
 		cp $(PDF_SOURCE) $(PDF_TARGET); \
 		echo -e "$(GREEN)✓ PDF created: $(PDF_TARGET)$(NC)"; \
@@ -108,7 +108,7 @@ fast:
 	@echo -e "$(BLUE)=== Ultra-Fast Compilation (single pass) ===$(NC)"
 	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
 	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
-	$(TECTONIC) -X compile --pass=tex --outdir=$(BUILD_DIR) $(SOURCE)
+	$(TECTONIC) $(TECTONIC_FLAGS) --pass=tex --outdir=$(BUILD_DIR) $(SOURCE)
 	@if [ -f $(BUILD_DIR)/Main.xdv ]; then \
 		echo -e "$(YELLOW)→ Converting to PDF...$(NC)"; \
 		cd $(BUILD_DIR) && xdvipdfmx -q Main.xdv 2>/dev/null || tectonic -X compile --pass=default --reruns=0 --outdir=. ../$(SOURCE); \
@@ -127,7 +127,7 @@ draft:
 	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
 	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
 	@echo -e "$(YELLOW)→ Running in draft mode (2 passes max)...$(NC)"
-	$(TECTONIC) -X compile --reruns=1 --outdir=$(BUILD_DIR) $(SOURCE)
+	$(TECTONIC) $(TECTONIC_FLAGS) --reruns=1 --outdir=$(BUILD_DIR) $(SOURCE)
 	@if [ -f $(PDF_SOURCE) ]; then \
 		cp $(PDF_SOURCE) $(PDF_TARGET); \
 		echo -e "$(GREEN)✓ Draft PDF created: $(PDF_TARGET)$(NC)"; \

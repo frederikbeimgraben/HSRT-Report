@@ -27,12 +27,17 @@
     footerlogos         % Footer logos
 ]{HSRTReport/HSRTReport}
 
+\addbibresource{Main.bib}
+
 % ------------------------------------------------------------------------------
 % Preamble and Configuration
 % ------------------------------------------------------------------------------
 % Load document-specific settings and configurations
-\input{Preamble}         % Document preamble with bibliography and settings
+\input{Metadata}         % Document metadata
 \input{Glossary}         % Glossary and acronym definitions
+
+% Add Bibliography
+\addbibresource{Main.bib}
 
 % ==============================================================================
 % Document Body
@@ -43,7 +48,7 @@
 % Content Sections
 % ------------------------------------------------------------------------------
 % Input content files in order of appearance
-\input{Content/Chapters/01_template_demo}
+\input{Chapters/01_template_demo}
 
 % ------------------------------------------------------------------------------
 % Glossary Processing

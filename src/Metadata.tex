@@ -44,12 +44,12 @@
 % Use \newline within content for line breaks
 % ------------------------------------------------------------------------------
 
-% --- Document Topic ---
+% --- Document Topic – MeTI-SAT Specific ---
 % The main topic or theme of the document
-\AddTitlePageDataLine{Thema}{
-	Thema-XXX: \newline
-	Template für wissenschaftliche Arbeiten
-}
+% \AddTitlePageDataLine{Thema}{
+%	 Thema-XXX: \newline
+%	 Template für wissenschaftliche Arbeiten
+% }
 
 \AddTitlePageDataSpace{5pt}
 
@@ -92,13 +92,11 @@
 % Academic semester (e.g., Wintersemester 2024/2025)
 \AddTitlePageDataLine{Semester}{Wintersemester 20XX/20XX}
 
-% \AddTitlePageDataSpace{5pt}
-
-% --- Word Count ---
+% --- Word Count – MeTI-SAT Specific ---
 % Automatic word count for the main content
-% Note: This only counts words in the specified file (Content/01_content.tex)
+% Note: This only counts words in the specified file(s) (e.g. content.tex)
 % For multiple files, use \quickwordcount{file1,file2,file3}
-% \AddTitlePageDataLine{Wortanzahl}{\quickwordcount{Content/01_content}}
+% \AddTitlePageDataLine{Wortanzahl}{\quickwordcount{content}}
 
 % ------------------------------------------------------------------------------
 % Abstract
@@ -130,7 +128,8 @@
 % Keywords help categorize and index the document
 % Separate keywords with commas
 % Choose 3-7 relevant keywords that describe the main topics
-% These appear on the title page and in PDF metadata
+% Use a standard selection of keywords (e.g. ACM CCS oder IEEE) to allow for
+% easy categorization and indexing of the document.
 % ------------------------------------------------------------------------------
 \newcommand{\titlepagekeywords}{%
 	Seminararbeit, wissenschaftliche Ausarbeitung, Bachelor-Thesis, Studium, Plagiat
@@ -141,58 +140,42 @@
 % ------------------------------------------------------------------------------
 % The module name for this document (appears in footer)
 % This is typically the course or module code and name
-% Example: \newcommand{\modulename}{SAT - Seminararbeit Technik}
 % ------------------------------------------------------------------------------
-\newcommand{\modulename}{METIX.Y -- Mustermodul -- WiSe XX/YY}
-
-% ------------------------------------------------------------------------------
-% List of Equations Configuration
-% ------------------------------------------------------------------------------
-% Customize the names for equation-related elements
-% These affect how equations are labeled in lists and references
-% ------------------------------------------------------------------------------
-
-% Name for the list of equations (appears as chapter/section title)
-\renewcommand{\listequationsname}{Formeln}
-\renewcommand{\equationname}{Formel}
-
-% ------------------------------------------------------------------------------
-% Paragraph Configuration
-% ------------------------------------------------------------------------------
-% Configure paragraph formatting throughout the document
-% ------------------------------------------------------------------------------
-
-% Paragraph indentation
-% 0pt = no indentation (German standard for academic texts)
-% >0pt = indent first line of each paragraph (English standard)
-\setlength{\parindent}{0pt}
-
-% Paragraph spacing (space between paragraphs)
-% Set to 6pt as per document requirements
-\setlength{\parskip}{6pt}
-
-% ------------------------------------------------------------------------------
-% Optional: Custom Author Commands
-% ------------------------------------------------------------------------------
-% If you need multiple authors or additional author information,
-% you can define custom commands here:
-%
-% \newcommand{\authorOne}{First Author}
-% \newcommand{\authorTwo}{Second Author}
-% \newcommand{\matriculationNumber}{12345678}
-% \newcommand{\studentID}{S-12345}
-% ------------------------------------------------------------------------------
-
-% ------------------------------------------------------------------------------
-% Optional: Document Version Control
-% ------------------------------------------------------------------------------
-% For tracking document versions during development
-%
-% \newcommand{\documentVersion}{1.0}
-% \newcommand{\lastModified}{\today}
-% \newcommand{\reviewStatus}{Draft}
-% ------------------------------------------------------------------------------
+\newcommand{\modulename}{METIX.Y – Mustermodul – WiSe XX/YY}
 
 % ==============================================================================
 % End of General Settings
+% ==============================================================================
+
+% ------------------------------------------------------------------------------
+% Logo Configuration Syntax
+% ------------------------------------------------------------------------------
+% \AddLogo{LogoName}{Scale}
+%
+% Parameters:
+%   LogoName - Name of the logo
+%   Scale   - Scaling factor
+%
+% Logo files must be placed in: HSRTReport/Assets/Images/
+% ------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+% Available Logos
+% ------------------------------------------------------------------------------
+% Below are pre-configured logos for various departments and organizations.
+% Uncomment (remove the % at the beginning) the logo(s) you want to use.
+% Multiple logos can be active simultaneously and will be arranged automatically.
+% ------------------------------------------------------------------------------
+
+% --- INF/Kombiniert ---
+\AddLogo{INF/Kombiniert}{0.9}
+
+% --- INF/Simple ---
+% \AddLogo{INF/Simple}{0.9}
+
+% --- HSRT ---
+% \AddLogo{HSRT}{0.9}
+
+% ==============================================================================
+% End of Logo Configuration
 % ==============================================================================

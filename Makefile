@@ -9,7 +9,7 @@
 # Configuration
 # ------------------------------------------------------------------------------
 TECTONIC = tectonic
-TECTONIC_FLAGS = -X compile -Z shell-escape --print --keep-intermediates
+TECTONIC_FLAGS = --keep-logs --keep-intermediates
 
 # Main document
 SOURCE = Main.tex
@@ -39,8 +39,6 @@ help:
 	@echo -e "$(GREEN)Available targets:$(NC)"
 	@echo ""
 	@echo -e "  $(YELLOW)make$(NC)           - Build the PDF using Tectonic (normal mode)"
-	@echo -e "  $(YELLOW)make compile$(NC)   - Compile with optimized settings (faster)"
-	@echo -e "  $(YELLOW)make fast$(NC)      - Ultra-fast single pass compilation"
 	@echo -e "  $(YELLOW)make draft$(NC)     - Draft mode (2 passes max)"
 	@echo -e "  $(YELLOW)make normal$(NC)    - Normal compilation (3 passes max)"
 	@echo -e "  $(YELLOW)make full$(NC)      - Full compilation (up to 6 passes)"
@@ -91,9 +89,11 @@ compile: check-fonts
 	@echo -e "$(BLUE)=== Building LaTeX Document with Tectonic ===$(NC)"
 	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
 	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
-	@echo -e "$(YELLOW)→ Running Tectonic (optimized)...$(NC)"
-	@echo -e "$(YELLOW)  Using single-pass mode for faster compilation$(NC)"
-	$(TECTONIC) $(TECTONIC_FLAGS) --outdir=$(BUILD_DIR) --reruns=2 $(SOURCE)
+	@echo -e "$(YELLOW)→ Running Tectonic first pass...$(NC)"
+	$(TECTONIC) -X compile $(TECTONIC_FLAGS) --pass=tex --outdir=$(BUILD_DIR) $(SOURCE)
+	makeindex -t $(BUILD_DIR)/Main.glg -s $(BUILD_DIR)/Main.ist -o $(BUILD_DIR)/Main.gls $(BUILD_DIR)/Main.glo
+	@echo -e "$(YELLOW)→ Running Tectonic second pass...$(NC)"
+	$(TECTONIC) -X build
 	@if [ -f $(PDF_SOURCE) ]; then \
 		cp $(PDF_SOURCE) $(PDF_TARGET); \
 		echo -e "$(GREEN)✓ PDF created: $(PDF_TARGET)$(NC)"; \
@@ -102,23 +102,6 @@ compile: check-fonts
 		exit 1; \
 	fi
 
-# Fast compilation (single pass - no bibliography or cross-references)
-.PHONY: fast
-fast:
-	@echo -e "$(BLUE)=== Ultra-Fast Compilation (single pass) ===$(NC)"
-	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
-	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
-	$(TECTONIC) $(TECTONIC_FLAGS) --pass=tex --outdir=$(BUILD_DIR) $(SOURCE)
-	@if [ -f $(BUILD_DIR)/Main.xdv ]; then \
-		echo -e "$(YELLOW)→ Converting to PDF...$(NC)"; \
-		cd $(BUILD_DIR) && xdvipdfmx -q Main.xdv 2>/dev/null || tectonic -X compile --pass=default --reruns=0 --outdir=. ../$(SOURCE); \
-		if [ -f $(PDF_SOURCE) ]; then \
-			cp $(PDF_SOURCE) $(PDF_TARGET); \
-			echo -e "$(GREEN)✓ Fast PDF created: $(PDF_TARGET)$(NC)"; \
-		fi; \
-	fi
-	@echo -e "$(GREEN)✓ Fast compilation complete$(NC)"
-	@echo -e "$(YELLOW)Note: Bibliography and cross-references may not be updated$(NC)"
 
 # Draft mode - faster compilation with draft images and minimal processing
 .PHONY: draft
@@ -127,7 +110,7 @@ draft:
 	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
 	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
 	@echo -e "$(YELLOW)→ Running in draft mode (2 passes max)...$(NC)"
-	$(TECTONIC) $(TECTONIC_FLAGS) --reruns=1 --outdir=$(BUILD_DIR) $(SOURCE)
+	$(TECTONIC) -X build draft
 	@if [ -f $(PDF_SOURCE) ]; then \
 		cp $(PDF_SOURCE) $(PDF_TARGET); \
 		echo -e "$(GREEN)✓ Draft PDF created: $(PDF_TARGET)$(NC)"; \

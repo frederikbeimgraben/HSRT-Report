@@ -150,7 +150,7 @@ jobs:
           EOF
 
       - name: Delete existing Latest release
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             try {
@@ -242,7 +242,7 @@ jobs:
 
       - name: Set commit status
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const status = '${{ job.status }}' === 'success' ? 'success' : 'failure';
@@ -275,7 +275,7 @@ jobs:
 
     steps:
       - name: Comment on PR
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const comment = `## ✅ LaTeX Build Successful

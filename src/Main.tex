@@ -21,20 +21,16 @@
     11pt,               % Base font size
     paper=a4,           % Paper format
     oneside,            % Single-sided printing
-    DIV=15,             % Type area calculation
+    DIV=20,             % Type area calculation
     onecolumn,          % Column layout
     variant=meti,       % Report variant (default: meti)
-    footerlogos         % Footer logos
+    footerlogos,        % Show Footer logos
+    % glossary,         % Include Glossary (WON'T WORK WITH TECTONIC)
+    % acronyms,         % Include Acronyms (WON'T WORK WITH TECTONIC)
+    % notoc             % Omit Table of Contents
 ]{HSRTReport/HSRTReport}
 
-\addbibresource{Main.bib}
-
-% ------------------------------------------------------------------------------
-% Preamble and Configuration
-% ------------------------------------------------------------------------------
-% Load document-specific settings and configurations
-\input{Metadata}         % Document metadata
-\input{Glossary}         % Glossary and acronym definitions
+\input{Preamble}
 
 % Add Bibliography
 \addbibresource{Main.bib}

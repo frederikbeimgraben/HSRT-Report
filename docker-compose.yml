@@ -1,0 +1,89 @@
+# ==============================================================================
+# Docker Compose Configuration for LaTeX Compilation
+# ==============================================================================
+# Description: This Docker Compose file sets up a containerized LaTeX build
+#              environment with all necessary dependencies for compiling the
+#              HSRTReport template documents.
+# Usage:       docker-compose up (or make docker-build)
+# ==============================================================================
+
+services:
+  # ------------------------------------------------------------------------------
+  # LaTeX Compilation Service
+  # ------------------------------------------------------------------------------
+  # This service provides a complete TeXLive environment for document compilation
+  latex:
+    # Base image: Full TeXLive distribution (latest version)
+    # Note: The image line is commented out because we're using a custom build
+    #image: texlive/texlive:latest
+
+    # Custom build configuration to add additional dependencies
+    build:
+      # Build context is the current directory
+      context: .
+      # Pass the current directory's UID and GID as build arguments
+      # These are automatically set by the Makefile, or can be manually provided:
+      # HOST_UID=$(id -u) HOST_GID=$(id -g) docker-compose up --build
+      args:
+        HOST_UID: ${HOST_UID:-1000}
+        HOST_GID: ${HOST_GID:-1000}
+      # Inline Dockerfile definition for additional packages
+      dockerfile_inline: |
+        # Start from the full TeXLive image (includes XeLaTeX, Biber, etc.)
+        FROM texlive/texlive:latest
+
+        # Accept build arguments for the host directory's UID and GID
+        ARG HOST_UID=1000
+        ARG HOST_GID=1000
+
+        # Update package lists to ensure we get the latest versions
+        RUN apt update -y
+
+        # Install Inkscape for SVG to PDF conversion
+        # Required for processing SVG graphics in the document
+        RUN apt install inkscape -y
+
+        # Create a group with the host directory's GID
+        # The '|| true' ensures the command succeeds even if the group already exists
+        RUN groupadd -g ${HOST_GID} texuser 2>/dev/null || true
+
+        # Create a user with the host directory's UID and GID
+        # - Same UID/GID as the host directory to avoid permission issues
+        # - Home directory at /home/texuser
+        # - Default shell /bin/bash
+        # If UID is taken in container, rename the user with the ID ${HOST_UID} to texuser
+        RUN useradd -m -u ${HOST_UID} -g ${HOST_GID} -s /bin/bash texuser || \
+            usermod --login texuser "$(id -nu ${HOST_UID})"
+
+        # Make /data and chown it to the user
+        RUN mkdir /data && \
+            chown -R ${HOST_UID}:${HOST_GID} /data
+
+        # Make /build and chown it to the user
+        RUN mkdir /build && \
+            chown -R ${HOST_UID}:${HOST_GID} /build
+
+        # Set /data as the user home
+        RUN usermod -d /data texuser
+
+        # Set /data as the working directory
+        WORKDIR /data
+
+        # Set the default user for running commands
+        # All subsequent commands will run as this user
+        USER texuser
+
+    # Volume mappings
+    volumes:
+      # Mount the entire project directory to /data in the container
+      # This allows the container to access all project files and write outputs
+      - ./src:/data:Z
+      - ./Makefile:/data/Makefile:ro
+      - ./build:/build:Z
+
+    # Working directory configuration
+    working_dir: /data
+
+    # Default command when container starts
+    # Executes 'make compile' to build the LaTeX document
+    entrypoint: ["make", "docker-build-entrypoint"]

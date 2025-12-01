@@ -22,22 +22,7 @@ A professional LaTeX report template for academic papers and theses at the Unive
 
 ## 📖 Overview
 
-The HSRTReport class is a customized LaTeX document class based on KOMA-Script's `scrreprt` class, specifically designed for creating professional academic reports, seminar papers, and bachelor/master theses at the University of Applied Sciences Reutlingen. It provides a consistent, professional layout with minimal configuration required.
-
-## ✨ Features
-
-- **Professional Typography**: Configured for optimal readability with proper font settings
-- **Automatic Title Page Generation**: Customizable title page with university branding
-- **Bibliography Management**: Integrated BibLaTeX support with BibTeX backend
-- **Glossary Support**: Built-in glossary and acronym management
-- **Code Highlighting**: Syntax highlighting for multiple programming languages
-- **Word Count**: Automatic word counting functionality
-- **Cross-referencing**: Smart referencing with hyperref
-- **Advanced Page Break Control**: Intelligent section and listing page break management
-- **Tectonic Engine**: Modern, self-contained TeX system with automatic package management
-- **Auto Font Installation**: Custom fonts automatically installed on first build
-- **Enhanced Spacing**: Optimized vertical spacing for sections and subsections
-- **Smart TOC Grouping**: Automatic chapter grouping in table of contents
+The HSRTReport class is a customized LaTeX document class based on KOMA-Script's `scrbook` class, specifically designed for creating professional academic reports, seminar papers, and bachelor/master theses at the University of Applied Sciences Reutlingen. It provides a consistent, professional layout with minimal configuration required.
 
 ## 🔧 Prerequisites
 
@@ -60,75 +45,32 @@ The HSRTReport class is a customized LaTeX document class based on KOMA-Script's
 
 ```sh
 HSRT-Report/
-│
-├── HSRTReport/             # Document class files
-│   ├── HSRTReport.cls      # Main class definition
-│   ├── Assets/             # Fonts and images
-│   │   ├── Fonts/          # Custom fonts
-│   │   └── Images/         # Logo and graphics
-│   ├── Config/             # Configuration modules
-│   │   ├── Fonts.tex       # Font settings
-│   │   ├── PageSetup.tex   # Page layout
-│   │   └── ...             # Other configurations
-│   ├── Imports.tex         # Package imports
-│   ├── Modules/            # Feature modules
-│   │   ├── Content/        # Content-related features
-│   │   ├── Layout/         # Layout features
-│   │   └── Tools/          # Utility tools
-│   └── Pages/              # Page templates
-│       └── Titlepage.tex   # Title page definition
-│
-├── Content/                # Document content
-│   ├── 00_toc.tex          # Table of contents and lists
-│   ├── 01_content.tex      # Chapter loader
-│   ├── 99_bibliography.tex # Bibliography
-│   ├── Chapters/           # Individual chapter files
-│   │   ├── 01_einleitung.tex
-│   │   ├── 02_gliederung.tex
-│   │   └── ...
-│   └── Images/             # Document images
-│
-├── Settings/               # Document settings
-│   ├── General.tex         # General settings
-│   ├── CleverefNames.tex   # \cref names configuration
-│   └── Logos.tex           # Logo configuration
-│
-├── Build/                  # Build output directory (auto-created)
-├── Output/                 # Final PDF output (auto-created)
-│
-├── Main.tex                # Main document file
-├── Preamble.tex            # Document preamble
-├── Glossary.tex            # Glossary definitions
-├── Main.bib                # Bibliography database
-└── Makefile                # Build automation
+├── build/              # Output Directory
+├── src                 # Document Source Code
+│   ├── Chapters        # Your Chapters
+│   │   └── ...
+│   ├── HSRTReport/     # Document Class (Subrepo)
+│   │   
+│   ├── Main.bib        # Bibliography
+│   ├── Main.tex        # Entrypoint / Main Document File
+│   ├── Preamble.tex    # Preamble
+│   ├── Metadata.tex    # Settings (Titlepage, Logos, etc.)
+│   └── Glossary.tex    # Glossary Definitions
+│  
+├── Makefile            # Build Directives
+├── README.md           # This README
+└── Tectonic.toml       # Tectonic Project Definition
 ```
 
 ## 📝 Usage
 
 ### Basic Document Setup
 
-1. **Configure document metadata** in `Settings/General.tex`:
-   ```latex
-   % Document title
-   \title{Your Document Title}
+1. **Configure document metadata** in `src/Metadata.tex`: Examples are included in the file.
 
-   % Title page information
-   \AddTitlePageDataLine{Thema}{Your Topic}
-   \AddTitlePageDataLine{Vorgelegt von}{Your Name}
-   \AddTitlePageDataLine{Studiengang}{Your Study Program}
-   % ... additional fields
-   ```
+2. **Add your content**: Create files in `src/Chapters/` and add them to `src/Main.tex`. Examples are included.
 
-2. **Add your content** using one of these methods:
-   - **Automatic (Recommended)**: Use scripts to manage chapters
-     ```bash
-     ./scripts/create_chapter.sh 02 methodology
-     ./scripts/create_chapter.sh 03 results
-     ./scripts/list_chapters.sh
-     ```
-   - **Manual**: Create files in `Content/Chapters/` and add them to `Content/01_content.tex`
-
-3. **Manage bibliography** in `Main.bib` using BibTeX format (I recommend using a tool like [Zotero](https://www.zotero.org/))
+3. **Manage bibliography** in `src/Main.bib` using BibTeX format (I recommend using a tool like [Zotero](https://www.zotero.org/))
 
 4. **Define glossary entries** in `Glossary.tex`:
    ```latex
@@ -151,12 +93,17 @@ The HSRTReport class accepts all standard KOMA-Script `scrreprt` options plus:
 | `oneside`/`twoside` | Page layout | Single or double-sided |
 | `DIV` | Type area calculation | Integer (12-16 recommended) |
 | `onecolumn`/`twocolumn` | Column layout | Single or double column |
+| `footerlogos` | If to include the logos in the footer |  |
+| `glossary` | If to include the glossary; Only works when manually building since Tectonic doesnt support makeindex |  |
+| `acronyms` | If to include the acronyms; Only works when manually building since Tectonic doesnt support makeindex |  |
+| `notoc` | Omit the automatic table of contents |  |
+| `variant` | Report Variant – To be implemented – **WIP!** | `meti`, `mki`, `huc` |
 
 ## 🎨 Customization
 
 ### Modifying the Title Page
 
-Edit `Settings/General.tex` to customize title page fields:
+Edit `src/Metadata.tex` to customize title page fields. e.g.:
 ```latex
 \AddTitlePageDataLine{Field Name}{Field Content}
 \AddTitlePageDataSpace{5pt}  % Add vertical space
@@ -164,7 +111,7 @@ Edit `Settings/General.tex` to customize title page fields:
 
 ### Adding Custom Packages
 
-Add custom packages to `Preamble.tex`:
+Add custom packages to `src/Preamble.tex`:
 ```latex
 \usepackage{yourpackage}
 \yourpackagesetup{options}
@@ -176,45 +123,10 @@ The template uses custom fonts defined in `HSRTReport/Config/Fonts.tex`. Modify 
 
 ### Creating Custom Commands
 
-Add custom commands to `Preamble.tex`:
+Add custom commands to `src/Preamble.tex`:
 ```latex
 \newcommand{\mycommand}[1]{#1}
 ```
-
-## 📚 Chapter Management
-
-### Automatic Chapter Management (Recommended)
-
-The template includes scripts for efficient chapter management:
-
-#### Create a New Chapter
-```bash
-./scripts/create_chapter.sh 02 methodology
-```
-This creates `Content/Chapters/02_methodology.tex` with a template structure and automatically adds it to the document.
-
-#### List All Chapters
-```bash
-./scripts/list_chapters.sh
-```
-Shows all chapters and their inclusion status in the document.
-
-#### View Chapter Content
-```bash
-./scripts/show_chapter.sh 02_methodology --info
-./scripts/show_chapter.sh 02_methodology --structure
-```
-
-#### Delete a Chapter
-```bash
-./scripts/delete_chapter.sh 02_methodology
-```
-Removes the chapter and creates a backup in `.chapter_backups/`.
-
-### Manual Chapter Management
-
-1. Create a file in `Content/Chapters/`
-2. Add `\input{Content/Chapters/your_chapter}` to the marked section in `Content/01_content.tex`
 
 ## 🔨 Building the Document
 
@@ -223,30 +135,20 @@ Removes the chapter and creates a backup in `.chapter_backups/`.
 ```bash
 # Build the PDF (automatically installs fonts if needed)
 make
+# OR
+make compile
 
 # Build and open the PDF
 make open
 
-# Watch for changes and rebuild automatically
-make watch
-
-# Fast single-pass compilation
-make fast
-
-# Clean auxiliary files
-make clean
-
-# Full clean including output
-make distclean
+# Install required fonts
+make install-fonts
 ```
 
 ### Using Tectonic directly
 
 ```bash
-tectonic -X compile Main.tex
-
-# Or with specific output directory
-tectonic -X compile --outdir=Build Main.tex
+tectonic -X build # Run from the repo root dir
 ```
 
 ## 🚀 CI/CD Pipeline
@@ -301,9 +203,7 @@ The workflow will automatically:
    - Ensure citations are properly formatted
 
 3. **Glossary entries not showing**
-   - Run `makeglossaries Main` after adding new entries
-   - Check that entries are referenced in the document
-   - Verify syntax in `Glossary.tex`
+   - For Glossaries to work you have to compile manually using texlive; Tectonic doesnt support makeindex
 
 4. **SVG images not supported**
    - Tectonic doesn't support shell-escape for SVG conversion

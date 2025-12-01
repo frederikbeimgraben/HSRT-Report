@@ -119,7 +119,7 @@ jobs:
           echo "Building document for release ${VERSION}..."
 
           # Build with Tectonic
-          tectonic -X build
+          ./tectonic -X build
 
           # Copy to Output directory with versioned name
           cp build/Main/Main.pdf "HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf"

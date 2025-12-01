@@ -96,6 +96,7 @@ The HSRTReport class accepts all standard KOMA-Script `scrreprt` options plus:
 | `footerlogos` | If to include the logos in the footer |  |
 | `glossary` | If to include the glossary; Only works when manually building since Tectonic doesnt support makeindex |  |
 | `acronyms` | If to include the acronyms; Only works when manually building since Tectonic doesnt support makeindex |  |
+| `bibliography` | Include a bibliography |  |
 | `toc` | Include a table of contents |  |
 | `variant` | Report Variant – To be implemented – **WIP!** | `meti`, `mki`, `huc` |
 

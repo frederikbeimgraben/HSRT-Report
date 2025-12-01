@@ -13,7 +13,7 @@ TECTONIC_FLAGS = --keep-logs --keep-intermediates --print
 
 # Main document
 SOURCE = src/Main.tex
-BUILD_DIR = build/PDF
+BUILD_DIR = build/Main
 PDF_BUILD = $(BUILD_DIR)/Main.pdf
 
 # Docker / latexmk

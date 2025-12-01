@@ -9,6 +9,6 @@ bundle = "https://data1.fullyjustified.net/tlextras-2022.0r0.tar"
 # Output settings
 [[output]]
 type = "pdf"
-name = "PDF"
+name = "Main"
 shell_escape = true
 preamble = "Main"

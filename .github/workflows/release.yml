@@ -122,7 +122,7 @@ jobs:
           ./tectonic -X build
 
           # Copy to Output directory with versioned name
-          cp build/PDF/PDF.pdf "HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf"
+          cp build/Main/Main.pdf "HSRT-Report_v${{ steps.version.outputs.VERSION }}.pdf"
 
       - name: Verify build
         run: |

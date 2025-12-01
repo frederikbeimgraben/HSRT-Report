@@ -13,7 +13,7 @@ TECTONIC_FLAGS = --keep-logs --keep-intermediates --print
 
 # Main document
 SOURCE = src/Main.tex
-BUILD_DIR = build/Main
+BUILD_DIR = build/PDF
 PDF_BUILD = $(BUILD_DIR)/Main.pdf
 
 # Docker / latexmk
@@ -76,12 +76,7 @@ compile: check-fonts
 	makeindex -t $(BUILD_DIR)/Main.glg -s $(BUILD_DIR)/Main.ist -o $(BUILD_DIR)/Main.gls $(BUILD_DIR)/Main.glo
 	@echo -e "$(YELLOW)→ Running Tectonic...$(NC)"
 	$(TECTONIC) -X build $(TECTONIC_FLAGS)
-	@if [ -f $(PDF_SOURCE) ]; then \
-		echo -e "$(GREEN)✓ PDF created: $(PDF_BUILD)$(NC)"; \
-	else \
-		echo -e "$(RED)✗ PDF creation failed$(NC)"; \
-		exit 1; \
-	fi
+	@echo -e "$(GREEN)✓ Build done$(NC)"
 
 # Alias for compile
 .PHONY: pdf

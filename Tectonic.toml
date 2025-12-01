@@ -8,8 +8,7 @@ bundle = "https://data1.fullyjustified.net/tlextras-2022.0r0.tar"
 
 # Output settings
 [[output]]
-# Output format
 type = "pdf"
-name = "Main"
+name = "PDF"
 shell_escape = true
 preamble = "Main"

@@ -95,7 +95,7 @@ jobs:
           ./tectonic -X build
 
           # Copy to Output directory
-          cp build/Main/Main.pdf Main.pdf
+          cp build/PDF/Main.pdf Main.pdf
 
       - name: Verify PDF creation
         run: |

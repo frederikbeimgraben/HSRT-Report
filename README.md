@@ -11,7 +11,6 @@ A professional LaTeX report template for academic papers and theses at the Unive
 - [Overview](#-overview)
 - [Features](#-features)
 - [Prerequisites](#-prerequisites)
-- [Installation](#-installation)
 - [Project Structure](#-project-structure)
 - [Usage](#-usage)
 - [Document Class Options](#-document-class-options)
@@ -33,6 +32,7 @@ The HSRTReport class is a customized LaTeX document class based on KOMA-Script's
   - Or install via: `curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh`
 - **GNU make**: Automates compilation and cleaning tasks (optional but recommended)
 - **Git**: For version control
+- ***Docker***: Alternative to **Tectonic**
 
 ### Automatic Features
 
@@ -144,6 +144,9 @@ make open
 
 # Install required fonts
 make install-fonts
+
+# Build using docker (texlive/texlive) + latexmk
+make docker-build
 ```
 
 ### Using Tectonic directly
@@ -165,31 +168,14 @@ The project includes GitHub Actions workflows for automated building and testing
   - Attaches the PDF with version number
   - Generates release notes automatically
   - Archives artifacts for 90 days
-
-### Creating a Release
-
-To create a new release with the PDF:
-
-```bash
-# Tag the current commit
-git tag -a v1.X.X -m "Release version 1.X.X"
-
-# Push the tag to trigger the release workflow
-git push origin v1.X.X
-```
-
-The workflow will automatically:
-1. Build the document
-2. Create a GitHub release
-3. Attach the PDF to the release
-4. Generate release notes from commit history
-
-### Accessing Build Artifacts
-
-1. Go to the **Actions** tab in your GitHub repository
-2. Select a workflow run
-3. Scroll down to **Artifacts**
-4. Download `Main.pdf`
+  
+#### Continuous Workflow (`continuous-release.yml`)
+- **Triggers on:** Push to `main`
+- **Actions:**
+  - Creates a GitHub release
+  - Attaches the PDF with version number
+  - Generates release notes automatically
+  - Archives artifacts for 90 days
 
 ## 🐛 Troubleshooting
 

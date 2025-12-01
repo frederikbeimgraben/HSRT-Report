@@ -21,8 +21,6 @@ LATEXMK = latexmk
 LATEXMK_FLAGS = -xelatex -shell-escape -synctex=1 -interaction=nonstopmode
 BIBER = biber
 MAKEGLOSSARIES = makeglossaries
-SOURCE_INT=Main.tex
-BUILD_DIR_INT=/build/Main
 
 # Colors for output
 BLUE = \033[0;34m
@@ -153,9 +151,9 @@ open: compile
 .PHONY: docker-build-entrypoint
 docker-build-entrypoint:
 	@echo -e "$(BLUE)=== Building LaTeX Document using latexmk ===$(NC)"
-	@[ -d $(BUILD_DIR_INT) ] || mkdir -p $(BUILD_DIR_INT)
+	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
 	@echo -e "$(YELLOW)→ Running XeLaTeX...$(NC)"
-	$(LATEXMK) $(LATEXMK_FLAGS) -output-directory=$(BUILD_DIR_INT) $(SOURCE_INT)
+	cd $(shell dirname $(SOURCE)) && $(LATEXMK) $(LATEXMK_FLAGS) -output-directory=$(BUILD_DIR) $(shell basename $(SOURCE))
 	@echo -e "$(GREEN)✓ Build Done"
 
 .PHONY: check-docker
@@ -180,8 +178,7 @@ docker-build: check-docker
 	@echo -e "$(YELLOW)→ Starting Docker container with UID=$$(id -u) GID=$$(id -g)...$(NC)"
 	@HOST_UID=$$(id -u) HOST_GID=$$(id -g) $(DOCKER_COMPOSE_CMD) up --build || { \
 		echo -e "$(RED)✗ Docker build failed$(NC)"; \
-		echo -e "$(YELLOW)  Try 'make docker-clean' and rebuild$(NC)"; \
+		echo -e "$(YELLOW)  Try to delete build/ and rebuild$(NC)"; \
 		exit 1; \
 	}
 	@echo -e "$(GREEN)✓ Docker build completed$(NC)"
-	@echo -e "$(GREEN)✓ PDF created: $(PDF_TARGET)$(NC)"

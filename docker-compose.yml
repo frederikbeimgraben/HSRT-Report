@@ -59,9 +59,13 @@ services:
         RUN mkdir /data && \
             chown -R ${HOST_UID}:${HOST_GID} /data
 
-        # Make /build and chown it to the user
-        RUN mkdir /build && \
-            chown -R ${HOST_UID}:${HOST_GID} /build
+        # Make /data/src and chown it to the user
+        RUN mkdir /data/src && \
+            chown -R ${HOST_UID}:${HOST_GID} /data/src
+
+        # Make /data/build and chown it to the user
+        RUN mkdir /data/build && \
+            chown -R ${HOST_UID}:${HOST_GID} /data/build
 
         # Set /data as the user home
         RUN usermod -d /data texuser
@@ -77,9 +81,9 @@ services:
     volumes:
       # Mount the entire project directory to /data in the container
       # This allows the container to access all project files and write outputs
-      - ./src:/data:Z
+      - ./src:/data/src:Z
       - ./Makefile:/data/Makefile:ro
-      - ./build:/build:Z
+      - ./build:/data/build:Z
 
     # Working directory configuration
     working_dir: /data

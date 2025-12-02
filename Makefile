@@ -71,9 +71,6 @@ compile: check-fonts
 	@echo -e "$(BLUE)=== Building LaTeX Document with Tectonic ===$(NC)"
 	@[ -d $(BUILD_DIR) ] || mkdir -p $(BUILD_DIR)
 	@[ -d $(OUT_DIR) ] || mkdir -p $(OUT_DIR)
-	@echo -e "$(YELLOW)→ Running Tectonic first pass...$(NC)"
-	$(TECTONIC) -X compile $(TECTONIC_FLAGS) --pass=tex --outdir=$(BUILD_DIR) $(SOURCE)
-	makeindex -t $(BUILD_DIR)/Main.glg -s $(BUILD_DIR)/Main.ist -o $(BUILD_DIR)/Main.gls $(BUILD_DIR)/Main.glo
 	@echo -e "$(YELLOW)→ Running Tectonic...$(NC)"
 	$(TECTONIC) -X build $(TECTONIC_FLAGS)
 	@echo -e "$(GREEN)✓ Build done$(NC)"
